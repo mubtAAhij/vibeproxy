@@ -702,32 +702,41 @@ jobs:
       - name: Notify completion
         if: always()
         run: |
-          echo "✅ Xcode string extraction completed"
-          echo "Skip list available at: gs://$GCS_BUCKET/$GCS_PATH"
-          echo "Project ID: $PROJECT_ID"
-          echo "Integration ID: $INTEGRATION_ID"
+          echo "Notify completion (job status: ${{ job.status }})"
           
           # Send final status update
           if [ -n "$JOB_ID" ] && [ -n "$API_KEY" ]; then
-            # Determine status based on whether skip list was created and uploaded
-            if [ -f "skip-list.json" ] && [ -s "skip-list.json" ]; then
+            # If the workflow job failed (e.g. no .xcodeproj found), report workflow_failed so
+            # SwiftStringExtractor can stop waiting immediately instead of timing out
+            if [ "${{ job.status }}" = "failure" ]; then
+              STATUS="workflow_failed"
+              EXTRACTION_STATUS="extracting"
+              MESSAGE="GitHub Actions workflow failed. Proceeding without skip list."
+              ERROR_MSG="Workflow failed - check GitHub Actions logs. Common causes: No .xcodeproj or .xcworkspace found, build errors, or missing dependencies."
+            # Success path: skip list was created and uploaded
+            elif [ -f "skip-list.json" ] && [ -s "skip-list.json" ]; then
               STATUS="workflow_finished"
               EXTRACTION_STATUS="extracting"
               MESSAGE="Build complete, SwiftStringExtractor starting..."
+              ERROR_MSG=""
+            # Workflow completed but skip list missing (e.g. upload failed)
             else
               STATUS="workflow_finished"
-              EXTRACTION_STATUS="error"
+              EXTRACTION_STATUS="extracting"
               MESSAGE="Workflow completed but skip list may be missing or empty"
+              ERROR_MSG=""
             fi
             
+            PAYLOAD=$(jq -n \
+              --arg jobId "$JOB_ID" \
+              --arg status "$STATUS" \
+              --arg extractionStatus "$EXTRACTION_STATUS" \
+              --arg errorMessage "$ERROR_MSG" \
+              --arg message "$MESSAGE" \
+              '{jobId: $jobId, status: $status, extractionStatus: $extractionStatus, errorMessage: $errorMessage, progress: ({"message": $message, "step": "complete"} | tostring)}')
             curl -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
               -H "Content-Type: application/json" \
               -H "api-key: $API_KEY" \
-              -d "{
-                \"jobId\": \"$JOB_ID\",
-                \"status\": \"$STATUS\",
-                \"extractionStatus\": \"$EXTRACTION_STATUS\",
-                \"progress\": \"{\\\"message\\\": \\\"$MESSAGE\\\", \\\"step\\\": \\\"complete\\\"}\"
-              }" || echo "⚠️  Failed to send final status update"
+              -d "$PAYLOAD" || echo "⚠️  Failed to send final status update"
           fi
 
