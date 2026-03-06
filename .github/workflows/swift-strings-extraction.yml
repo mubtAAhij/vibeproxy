@@ -1,0 +1,733 @@
+name: Swift Strings Extraction (Quetzal)
+
+on:
+  workflow_dispatch:
+    inputs:
+      project_id:
+        description: 'Quetzal Project ID'
+        required: true
+        type: string
+      integration_id:
+        description: 'Quetzal Integration ID'
+        required: true
+        type: string
+      branch:
+        description: 'Branch to process'
+        required: false
+        default: 'main'
+        type: string
+      gcs_bucket:
+        description: 'GCS bucket for skip list'
+        required: true
+        type: string
+      gcs_path:
+        description: 'GCS path for skip list'
+        required: true
+        type: string
+      gcp_project_id:
+        description: 'GCP Project ID'
+        required: true
+        type: string
+      gcp_region:
+        description: 'GCP Region'
+        required: false
+        default: 'us-west1'
+        type: string
+      gcp_wif_provider:
+        description: 'GCP Workload Identity Provider (for OIDC auth)'
+        required: true
+        type: string
+      gcp_sa_email:
+        description: 'GCP Service Account Email (for OIDC auth)'
+        required: true
+        type: string
+      job_id:
+        description: 'Quetzal Job ID (optional, for status updates)'
+        required: false
+        type: string
+      api_key:
+        description: 'Quetzal API Key (optional, for status updates)'
+        required: false
+        type: string
+
+jobs:
+  extract-swift-strings:
+    runs-on: macos-latest
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      GCP_PROJECT_ID: ${{ inputs.gcp_project_id }}
+      GCP_REGION: ${{ inputs.gcp_region }}
+      GCS_BUCKET: ${{ inputs.gcs_bucket }}
+      GCS_PATH: ${{ inputs.gcs_path }}
+      PROJECT_ID: ${{ inputs.project_id }}
+      INTEGRATION_ID: ${{ inputs.integration_id }}
+      BRANCH: ${{ inputs.branch }}
+      JOB_ID: ${{ inputs.job_id }}
+      API_KEY: ${{ inputs.api_key }}
+      API_BASE_URL: https://api.getquetzal.com
+
+    steps:
+      - name: Send workflow started status
+        if: env.JOB_ID != '' && env.API_KEY != ''
+        run: |
+          curl -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
+            -H "Content-Type: application/json" \
+            -H "api-key: ${{ env.API_KEY }}" \
+            -d "{
+              \"jobId\": \"${{ env.JOB_ID }}\",
+              \"status\": \"workflow_started\",
+              \"extractionStatus\": \"extracting\",
+              \"progress\": \"{\\\"message\\\": \\\"Workflow started\\\", \\\"step\\\": \\\"initialization\\\"}\"
+            }" || echo "⚠️  Failed to send status update (workflow started)"
+
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch }}
+
+      - name: Send checkout completed status
+        if: env.JOB_ID != '' && env.API_KEY != ''
+        run: |
+          curl -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
+            -H "Content-Type: application/json" \
+            -H "api-key: ${{ env.API_KEY }}" \
+            -d "{
+              \"jobId\": \"${{ env.JOB_ID }}\",
+              \"status\": \"workflow_started\",
+              \"extractionStatus\": \"extracting\",
+              \"progress\": \"{\\\"message\\\": \\\"Repository checked out\\\", \\\"step\\\": \\\"checkout\\\"}\"
+            }" || echo "⚠️  Failed to send status update (checkout completed)"
+
+      - name: Select Xcode version
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: "latest"
+
+      - name: Send setup started status
+        if: env.JOB_ID != '' && env.API_KEY != ''
+        run: |
+          curl -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
+            -H "Content-Type: application/json" \
+            -H "api-key: ${{ env.API_KEY }}" \
+            -d "{
+              \"jobId\": \"${{ env.JOB_ID }}\",
+              \"status\": \"workflow_started\",
+              \"extractionStatus\": \"extracting\",
+              \"progress\": \"{\\\"message\\\": \\\"Setting up Xcode environment\\\", \\\"step\\\": \\\"setup\\\"}\"
+            }" || echo "⚠️  Failed to send status update (setup started)"
+
+      - name: Find Xcode project or workspace
+        id: find-xcode-project
+        run: |
+          # Prefer workspace over project (workspace includes package dependencies and proper build graph)
+          XCODE_WORKSPACE=$(find . -name "*.xcworkspace" -type d | head -n 1)
+          XCODE_PROJECT=$(find . -name "*.xcodeproj" -type d | head -n 1)
+          
+          if [ -n "$XCODE_WORKSPACE" ]; then
+            echo "✅ Found workspace: $XCODE_WORKSPACE"
+            echo "project_path=$XCODE_WORKSPACE" >> $GITHUB_OUTPUT
+            echo "project_type=workspace" >> $GITHUB_OUTPUT
+            
+            # Extract project name from workspace
+            PROJECT_NAME=$(basename "$XCODE_WORKSPACE" .xcworkspace)
+            echo "project_name=$PROJECT_NAME" >> $GITHUB_OUTPUT
+            
+            # Try to find scheme from workspace
+            SCHEME=$(xcodebuild -list -workspace "$XCODE_WORKSPACE" 2>/dev/null | grep -A 100 "Schemes:" | grep -v "Schemes:" | head -n 1 | xargs || echo "$PROJECT_NAME")
+            echo "scheme=$SCHEME" >> $GITHUB_OUTPUT
+            
+            echo "Using workspace: $XCODE_WORKSPACE"
+            echo "Project name: $PROJECT_NAME"
+            echo "Scheme: $SCHEME"
+          elif [ -n "$XCODE_PROJECT" ]; then
+            echo "✅ Found project: $XCODE_PROJECT"
+            echo "⚠️  No workspace found - using project directly"
+            echo "project_path=$XCODE_PROJECT" >> $GITHUB_OUTPUT
+            echo "project_type=project" >> $GITHUB_OUTPUT
+            
+            # Extract project name (without .xcodeproj extension)
+            PROJECT_NAME=$(basename "$XCODE_PROJECT" .xcodeproj)
+            echo "project_name=$PROJECT_NAME" >> $GITHUB_OUTPUT
+            
+            # Try to find scheme (usually same as project name, or first scheme found)
+            SCHEME=$(xcodebuild -list -project "$XCODE_PROJECT" 2>/dev/null | grep -A 100 "Schemes:" | grep -v "Schemes:" | head -n 1 | xargs || echo "$PROJECT_NAME")
+            echo "scheme=$SCHEME" >> $GITHUB_OUTPUT
+            
+            echo "Using project: $XCODE_PROJECT"
+            echo "Project name: $PROJECT_NAME"
+            echo "Scheme: $SCHEME"
+          else
+            echo "❌ No .xcodeproj or .xcworkspace found"
+            exit 1
+          fi
+          
+          # Also check for project.xcworkspace inside .xcodeproj (common pattern)
+          if [ -n "$XCODE_PROJECT" ] && [ -d "$XCODE_PROJECT/project.xcworkspace" ]; then
+            echo "💡 Found project.xcworkspace inside .xcodeproj"
+            echo "   This workspace will be used for building"
+            echo "workspace_path=$XCODE_PROJECT/project.xcworkspace" >> $GITHUB_OUTPUT
+            # Use workspace for builds, but project for Ruby scripts
+            echo "project_path=$XCODE_PROJECT/project.xcworkspace" >> $GITHUB_OUTPUT
+            echo "project_type=workspace" >> $GITHUB_OUTPUT
+          fi
+          
+          # Always output the actual .xcodeproj path for Ruby scripts (xcodeproj gem needs project, not workspace)
+          if [ -n "$XCODE_PROJECT" ]; then
+            echo "xcodeproj_path=$XCODE_PROJECT" >> $GITHUB_OUTPUT
+            echo "💡 xcodeproj_path set to: $XCODE_PROJECT (for Ruby scripts)"
+          fi
+
+
+      - name: Resolve Swift packages (if any)
+        run: |
+          xcodebuild -project "${{ steps.find-xcode-project.outputs.project_path }}" -resolvePackageDependencies || true
+
+      - name: Create merge script if needed
+        run: |
+          mkdir -p Scripts
+          if [ ! -f "Scripts/merge_emitted_strings.py" ]; then
+            echo "IyEvdXNyL2Jpbi9lbnYgcHl0aG9uMwoiIiIKTWVyZ2UgZW1pdHRlZCAuc3RyaW5ncyBmaWxlcyBmcm9tIFhjb2RlIGJ1aWxkIGludG8gLnhjc3RyaW5ncyBjYXRhbG9nLgpUaGlzIGlzIG5lZWRlZCB3aGVuIHRoZSBidWlsZCBmYWlscywgYXMgWGNvZGUgb25seSBtZXJnZXMgc3RyaW5ncyBvbiBzdWNjZXNzZnVsIGJ1aWxkcy4KIiIiCgppbXBvcnQganNvbgppbXBvcnQgc3lzCmltcG9ydCByZQppbXBvcnQgcGxpc3RsaWIKZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCmZyb20gY29sbGVjdGlvbnMgaW1wb3J0IGRlZmF1bHRkaWN0CgpkZWYgcGFyc2Vfc3RyaW5nc19maWxlKHBhdGgpOgogICAgIiIiUGFyc2UgYSAuc3RyaW5ncyBmaWxlIGFuZCByZXR1cm4gYSBkaWN0IG9mIGtleSAtPiB2YWx1ZS4KICAgIFN1cHBvcnRzIGJvdGggWE1MIHBsaXN0IGZvcm1hdCBhbmQgdHJhZGl0aW9uYWwga2V5ID0gInZhbHVlIjsgZm9ybWF0LgogICAgU2tpcHMgYmluYXJ5IGZpbGVzIHNpbGVudGx5LgogICAgIiIiCiAgICBzdHJpbmdzID0ge30KICAgIHRyeToKICAgICAgICAjIENoZWNrIGlmIGZpbGUgaXMgYmluYXJ5IChjb21tb24gZm9yIGZyYW1ld29yayAuc3RyaW5ncyBmaWxlcykKICAgICAgICAjIEJpbmFyeSBzdHJpbmdzIGZpbGVzIHR5cGljYWxseSBzdGFydCB3aXRoIDB4ZmYgMHhmZSAoVVRGLTE2IEJPTSkgb3Igb3RoZXIgYmluYXJ5IG1hcmtlcnMKICAgICAgICB3aXRoIG9wZW4ocGF0aCwgJ3JiJykgYXMgZjoKICAgICAgICAgICAgZmlyc3RfYnl0ZXMgPSBmLnJlYWQoMikKICAgICAgICAgICAgIyBTa2lwIGJpbmFyeSBmaWxlcyAoVVRGLTE2IEJPTSwgb3Igb3RoZXIgYmluYXJ5IGluZGljYXRvcnMpCiAgICAgICAgICAgIGlmIGZpcnN0X2J5dGVzID09IGInXHhmZlx4ZmUnIG9yIGZpcnN0X2J5dGVzID09IGInXHhmZVx4ZmYnOgogICAgICAgICAgICAgICAgcmV0dXJuIHN0cmluZ3MgICMgU2tpcCBiaW5hcnkgZmlsZXMgc2lsZW50bHkKICAgICAgICAgICAgIyBSZXNldCB0byBiZWdpbm5pbmcKICAgICAgICAgICAgZi5zZWVrKDApCiAgICAgICAgCiAgICAgICAgIyBUcnkgdG8gcmVhZCBhcyBVVEYtOAogICAgICAgIHRyeToKICAgICAgICAgICAgY29udGVudCA9IHBhdGgucmVhZF90ZXh0KGVuY29kaW5nPSd1dGYtOCcpCiAgICAgICAgZXhjZXB0IFVuaWNvZGVEZWNvZGVFcnJvcjoKICAgICAgICAgICAgIyBJZiBVVEYtOCBmYWlscywgaXQncyBsaWtlbHkgYmluYXJ5IC0gc2tpcCBzaWxlbnRseQogICAgICAgICAgICByZXR1cm4gc3RyaW5ncwogICAgICAgIAogICAgICAgICMgVHJ5IFhNTCBwbGlzdCBmb3JtYXQgZmlyc3QgKG1vc3QgY29tbW9uIGZvciBlbWl0dGVkIHN0cmluZ3MpCiAgICAgICAgaWYgY29udGVudC5zdHJpcCgpLnN0YXJ0c3dpdGgoJzw/eG1sJykgb3IgY29udGVudC5zdHJpcCgpLnN0YXJ0c3dpdGgoJzxwbGlzdCcpOgogICAgICAgICAgICB0cnk6CiAgICAgICAgICAgICAgICBwbGlzdF9kYXRhID0gcGxpc3RsaWIubG9hZHMoY29udGVudC5lbmNvZGUoJ3V0Zi04JykpCiAgICAgICAgICAgICAgICBpZiBpc2luc3RhbmNlKHBsaXN0X2RhdGEsIGRpY3QpOgogICAgICAgICAgICAgICAgICAgIHN0cmluZ3MudXBkYXRlKHBsaXN0X2RhdGEpCiAgICAgICAgICAgICAgICAgICAgcmV0dXJuIHN0cmluZ3MKICAgICAgICAgICAgZXhjZXB0IEV4Y2VwdGlvbjoKICAgICAgICAgICAgICAgIHBhc3MgICMgRmFsbCB0aHJvdWdoIHRvIHRyYWRpdGlvbmFsIGZvcm1hdCBwYXJzZXIKICAgICAgICAKICAgICAgICAjIFRyeSB0cmFkaXRpb25hbCAuc3RyaW5ncyBmb3JtYXQgKGtleSA9ICJ2YWx1ZSI7KQogICAgICAgIHBhdHRlcm4gPSByJyIoW14iXSspIlxzKj1ccyoiKFteIl0rKSI7JwogICAgICAgIGZvciBtYXRjaCBpbiByZS5maW5kaXRlcihwYXR0ZXJuLCBjb250ZW50LCByZS5NVUxUSUxJTkUpOgogICAgICAgICAgICBrZXkgPSBtYXRjaC5ncm91cCgxKQogICAgICAgICAgICB2YWx1ZSA9IG1hdGNoLmdyb3VwKDIpCiAgICAgICAgICAgIHN0cmluZ3Nba2V5XSA9IHZhbHVlCiAgICBleGNlcHQgRXhjZXB0aW9uIGFzIGU6CiAgICAgICAgIyBPbmx5IHByaW50IGVycm9yIGZvciBub24tYmluYXJ5IGZpbGVzIChVVEYtOCBkZWNvZGUgZXJyb3JzIGFyZSBoYW5kbGVkIGFib3ZlKQogICAgICAgIGlmICJjb2RlYyBjYW4ndCBkZWNvZGUiIG5vdCBpbiBzdHIoZSk6CiAgICAgICAgICAgIHByaW50KGYi4pqg77iPICBGYWlsZWQgdG8gcGFyc2Uge3BhdGh9OiB7ZX0iLCBmaWxlPXN5cy5zdGRlcnIpCiAgICByZXR1cm4gc3RyaW5ncwoKZGVmIG1lcmdlX3N0cmluZ3NfaW50b194Y3N0cmluZ3Moc3RyaW5nc19kaWN0LCB4Y3N0cmluZ3NfcGF0aCk6CiAgICAiIiJNZXJnZSBzdHJpbmdzIGZyb20gZGljdCBpbnRvIC54Y3N0cmluZ3MgY2F0YWxvZy4iIiIKICAgIHRyeToKICAgICAgICAjIExvYWQgZXhpc3RpbmcgY2F0YWxvZwogICAgICAgIGlmIHhjc3RyaW5nc19wYXRoLmV4aXN0cygpOgogICAgICAgICAgICBjYXRhbG9nID0ganNvbi5sb2Fkcyh4Y3N0cmluZ3NfcGF0aC5yZWFkX3RleHQoZW5jb2Rpbmc9J3V0Zi04JykpCiAgICAgICAgZWxzZToKICAgICAgICAgICAgY2F0YWxvZyA9IHsKICAgICAgICAgICAgICAgICJzb3VyY2VMYW5ndWFnZSI6ICJlbiIsCiAgICAgICAgICAgICAgICAic3RyaW5ncyI6IHt9LAogICAgICAgICAgICAgICAgInZlcnNpb24iOiAiMS4wIgogICAgICAgICAgICB9CiAgICAgICAgCiAgICAgICAgaWYgInN0cmluZ3MiIG5vdCBpbiBjYXRhbG9nOgogICAgICAgICAgICBjYXRhbG9nWyJzdHJpbmdzIl0gPSB7fQogICAgICAgIAogICAgICAgICMgTWVyZ2Ugc3RyaW5ncyBpbnRvIGNhdGFsb2cKICAgICAgICBtZXJnZWRfY291bnQgPSAwCiAgICAgICAgZm9yIGtleSwgdmFsdWUgaW4gc3RyaW5nc19kaWN0Lml0ZW1zKCk6CiAgICAgICAgICAgIGlmIGtleSBub3QgaW4gY2F0YWxvZ1sic3RyaW5ncyJdOgogICAgICAgICAgICAgICAgY2F0YWxvZ1sic3RyaW5ncyJdW2tleV0gPSB7CiAgICAgICAgICAgICAgICAgICAgImV4dHJhY3Rpb25TdGF0ZSI6ICJtYW51YWwiLAogICAgICAgICAgICAgICAgICAgICJsb2NhbGl6YXRpb25zIjogewogICAgICAgICAgICAgICAgICAgICAgICBjYXRhbG9nLmdldCgic291cmNlTGFuZ3VhZ2UiLCAiZW4iKTogewogICAgICAgICAgICAgICAgICAgICAgICAgICAgInN0cmluZ1VuaXQiOiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgInN0YXRlIjogIm5ldyIsCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgInZhbHVlIjogdmFsdWUKICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgIG1lcmdlZF9jb3VudCArPSAxCiAgICAgICAgICAgIGVsc2U6CiAgICAgICAgICAgICAgICAjIFVwZGF0ZSBleGlzdGluZyBlbnRyeSBpZiBuZWVkZWQKICAgICAgICAgICAgICAgIGV4aXN0aW5nID0gY2F0YWxvZ1sic3RyaW5ncyJdW2tleV0KICAgICAgICAgICAgICAgIHNvdXJjZV9sYW5nID0gY2F0YWxvZy5nZXQoInNvdXJjZUxhbmd1YWdlIiwgImVuIikKICAgICAgICAgICAgICAgIGlmICJsb2NhbGl6YXRpb25zIiBub3QgaW4gZXhpc3Rpbmc6CiAgICAgICAgICAgICAgICAgICAgZXhpc3RpbmdbImxvY2FsaXphdGlvbnMiXSA9IHt9CiAgICAgICAgICAgICAgICBpZiBzb3VyY2VfbGFuZyBub3QgaW4gZXhpc3RpbmdbImxvY2FsaXphdGlvbnMiXToKICAgICAgICAgICAgICAgICAgICBleGlzdGluZ1sibG9jYWxpemF0aW9ucyJdW3NvdXJjZV9sYW5nXSA9IHsKICAgICAgICAgICAgICAgICAgICAgICAgInN0cmluZ1VuaXQiOiB7CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAic3RhdGUiOiAibmV3IiwKICAgICAgICAgICAgICAgICAgICAgICAgICAgICJ2YWx1ZSI6IHZhbHVlCiAgICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICAgICAgbWVyZ2VkX2NvdW50ICs9IDEKICAgICAgICAKICAgICAgICAjIFdyaXRlIHVwZGF0ZWQgY2F0YWxvZwogICAgICAgIHhjc3RyaW5nc19wYXRoLndyaXRlX3RleHQoCiAgICAgICAgICAgIGpzb24uZHVtcHMoY2F0YWxvZywgZW5zdXJlX2FzY2lpPUZhbHNlLCBpbmRlbnQ9MiksCiAgICAgICAgICAgIGVuY29kaW5nPSd1dGYtOCcKICAgICAgICApCiAgICAgICAgCiAgICAgICAgcmV0dXJuIG1lcmdlZF9jb3VudAogICAgZXhjZXB0IEV4Y2VwdGlvbiBhcyBlOgogICAgICAgIHByaW50KGYi4pqg77iPICBGYWlsZWQgdG8gbWVyZ2Ugc3RyaW5ncyBpbnRvIGNhdGFsb2c6IHtlfSIsIGZpbGU9c3lzLnN0ZGVycikKICAgICAgICByZXR1cm4gMAoKZGVmIG1haW4oKToKICAgIGlmIGxlbihzeXMuYXJndikgPCAzOgogICAgICAgIHByaW50KCJVc2FnZTogbWVyZ2VfZW1pdHRlZF9zdHJpbmdzLnB5IDx4Y3N0cmluZ3NfcGF0aD4gPHN0cmluZ3NfZmlsZTE+IFtzdHJpbmdzX2ZpbGUyXSAuLi4iLCBmaWxlPXN5cy5zdGRlcnIpCiAgICAgICAgcHJpbnQoIiAgICAgICBvcjogbWVyZ2VfZW1pdHRlZF9zdHJpbmdzLnB5IDx4Y3N0cmluZ3NfcGF0aD4gPHN0cmluZ3NfZGlyMT4gW3N0cmluZ3NfZGlyMl0gLi4uIiwgZmlsZT1zeXMuc3RkZXJyKQogICAgICAgIHN5cy5leGl0KDEpCiAgICAKICAgIHhjc3RyaW5nc19wYXRoID0gUGF0aChzeXMuYXJndlsxXSkKICAgIHN0cmluZ3NfcGF0aHMgPSBbUGF0aChwKSBmb3IgcCBpbiBzeXMuYXJndlsyOl1dCiAgICAKICAgICMgQ29sbGVjdCBhbGwgc3RyaW5ncyBmcm9tIGFsbCAuc3RyaW5ncyBmaWxlcwogICAgYWxsX3N0cmluZ3MgPSB7fQogICAgdG90YWxfZmlsZXMgPSAwCiAgICAKICAgIGZvciBzdHJpbmdzX3BhdGggaW4gc3RyaW5nc19wYXRoczoKICAgICAgICBpZiBub3Qgc3RyaW5nc19wYXRoLmV4aXN0cygpOgogICAgICAgICAgICBjb250aW51ZQogICAgICAgIAogICAgICAgICMgSWYgaXQncyBhIGRpcmVjdG9yeSwgc2VhcmNoIGZvciAuc3RyaW5ncyBmaWxlcyByZWN1cnNpdmVseQogICAgICAgIGlmIHN0cmluZ3NfcGF0aC5pc19kaXIoKToKICAgICAgICAgICAgZm9yIHN0cmluZ3NfZmlsZSBpbiBzdHJpbmdzX3BhdGgucmdsb2IoIiouc3RyaW5ncyIpOgogICAgICAgICAgICAgICAgdG90YWxfZmlsZXMgKz0gMQogICAgICAgICAgICAgICAgcGFyc2VkID0gcGFyc2Vfc3RyaW5nc19maWxlKHN0cmluZ3NfZmlsZSkKICAgICAgICAgICAgICAgICMgTWVyZ2UgaW50byBhbGxfc3RyaW5ncyAobGF0ZXIgZmlsZXMgb3ZlcnJpZGUgZWFybGllciBvbmVzKQogICAgICAgICAgICAgICAgYWxsX3N0cmluZ3MudXBkYXRlKHBhcnNlZCkKICAgICAgICAjIElmIGl0J3MgYSBmaWxlLCBwYXJzZSBpdCBkaXJlY3RseQogICAgICAgIGVsaWYgc3RyaW5nc19wYXRoLmlzX2ZpbGUoKSBhbmQgc3RyaW5nc19wYXRoLnN1ZmZpeCA9PSAiLnN0cmluZ3MiOgogICAgICAgICAgICB0b3RhbF9maWxlcyArPSAxCiAgICAgICAgICAgIHBhcnNlZCA9IHBhcnNlX3N0cmluZ3NfZmlsZShzdHJpbmdzX3BhdGgpCiAgICAgICAgICAgIGFsbF9zdHJpbmdzLnVwZGF0ZShwYXJzZWQpCiAgICAKICAgIGlmIG5vdCBhbGxfc3RyaW5nczoKICAgICAgICBwcmludChmIuKaoO+4jyAgTm8gc3RyaW5ncyBmb3VuZCBpbiB7dG90YWxfZmlsZXN9IC5zdHJpbmdzIGZpbGVzIiwgZmlsZT1zeXMuc3RkZXJyKQogICAgICAgIHN5cy5leGl0KDApCiAgICAKICAgIHByaW50KGYi8J+TnSBGb3VuZCB7bGVuKGFsbF9zdHJpbmdzKX0gdW5pcXVlIHN0cmluZ3MgZnJvbSB7dG90YWxfZmlsZXN9IC5zdHJpbmdzIGZpbGVzIikKICAgIAogICAgIyBNZXJnZSBpbnRvIGNhdGFsb2cKICAgIG1lcmdlZF9jb3VudCA9IG1lcmdlX3N0cmluZ3NfaW50b194Y3N0cmluZ3MoYWxsX3N0cmluZ3MsIHhjc3RyaW5nc19wYXRoKQogICAgCiAgICBpZiBtZXJnZWRfY291bnQgPiAwOgogICAgICAgIHByaW50KGYi4pyFIE1lcmdlZCB7bWVyZ2VkX2NvdW50fSBzdHJpbmdzIGludG8ge3hjc3RyaW5nc19wYXRofSIpCiAgICBlbHNlOgogICAgICAgIHByaW50KGYi4oS577iPICBObyBuZXcgc3RyaW5ncyB0byBtZXJnZSAoY2F0YWxvZyBtYXkgYWxyZWFkeSBjb250YWluIHRoZW0pIikKCmlmIF9fbmFtZV9fID09ICJfX21haW5fXyI6CiAgICBtYWluKCkKCg==" | base64 -d > Scripts/merge_emitted_strings.py
+            chmod +x Scripts/merge_emitted_strings.py
+          fi
+
+      - name: Make scripts executable
+        run: |
+          chmod +x Scripts/*.sh Scripts/*.py || true
+
+      - name: Ensure String Catalog exists
+        run: |
+          # Use xcodeproj_path for Ruby scripts (workspace path won't work with xcodeproj gem)
+          XCODEPROJ_PATH="${{ steps.find-xcode-project.outputs.xcodeproj_path }}"
+          if [ -z "$XCODEPROJ_PATH" ]; then
+            # Fallback: extract project path from workspace if needed
+            PROJECT_PATH="${{ steps.find-xcode-project.outputs.project_path }}"
+            if echo "$PROJECT_PATH" | grep -q "\.xcworkspace$"; then
+              # If workspace is standalone, try to find associated project
+              XCODEPROJ_PATH=$(find . -name "*.xcodeproj" -type d | head -n 1)
+            elif echo "$PROJECT_PATH" | grep -q "project\.xcworkspace"; then
+              # If it's project.xcworkspace, extract the parent .xcodeproj
+              XCODEPROJ_PATH=$(echo "$PROJECT_PATH" | sed 's|/project\.xcworkspace$||')
+            else
+              XCODEPROJ_PATH="$PROJECT_PATH"
+            fi
+          fi
+          ./Scripts/ensure_string_catalog.sh "$XCODEPROJ_PATH" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Failed to ensure string catalog, continuing anyway..."
+
+      - name: Install xcodeproj gem
+        run: |
+          # No sudo needed in GitHub Actions - gem install works directly
+          gem install xcodeproj || {
+            echo "⚠️  Failed to install xcodeproj gem, will try to continue..."
+            exit 0
+          }
+
+      - name: Add String Catalog to Xcode project
+        continue-on-error: true
+        run: |
+          # Find the .xcstrings file that was created
+          XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
+          if [ -n "$XCSTRINGS_FILE" ]; then
+            echo "📦 Adding $XCSTRINGS_FILE to Xcode project..."
+            # Create the Ruby script if it doesn't exist
+            if [ ! -f "Scripts/add_xcstrings_to_project.rb" ]; then
+              mkdir -p Scripts
+              # Use printf to write the script without base64 encoding
+              printf '%s\n' \
+                '#!/usr/bin/env ruby' \
+                '# frozen_string_literal: true' \
+                '' \
+                '# Add .xcstrings file to Xcode project AND to resources build phase' \
+                '# Xcode requires the file to be in resources build phase to automatically merge strings during compilation' \
+                '# The file should be in JSON format (as Xcode creates them) - matching Xcode'\''s template format' \
+                '# Usage: ruby add_xcstrings_to_project.rb <project_path> <xcstrings_file_path> [target_name]' \
+                '' \
+                "require 'xcodeproj'" \
+                "require 'pathname'" \
+                '' \
+                'if ARGV.length < 2' \
+                '  puts "Usage: #{$0} <project_path> <xcstrings_file_path> [target_name]"' \
+                '  exit 1' \
+                'end' \
+                '' \
+                'project_path = ARGV[0]' \
+                'xcstrings_path = ARGV[1]' \
+                'target_name = ARGV[2]' \
+                '' \
+                '# Validate paths' \
+                'unless File.exist?(project_path)' \
+                '  puts "❌ Project not found: #{project_path}"' \
+                '  exit 1' \
+                'end' \
+                '' \
+                'unless File.exist?(xcstrings_path)' \
+                '  puts "❌ String catalog not found: #{xcstrings_path}"' \
+                '  exit 1' \
+                'end' \
+                '' \
+                '# Open project' \
+                'project = Xcodeproj::Project.open(project_path)' \
+                '' \
+                '# Find target (if specified)' \
+                'target = nil' \
+                'if target_name' \
+                '  target = project.targets.find { |t| t.name == target_name }' \
+                '  unless target' \
+                "    puts \"⚠️  Target '#{target_name}' not found, will add to first target\"" \
+                '  end' \
+                'end' \
+                '' \
+                '# Use first target if not found' \
+                'target ||= project.targets.first' \
+                'unless target' \
+                '  puts "❌ No targets found in project"' \
+                '  exit 1' \
+                'end' \
+                '' \
+                "puts \"📦 Adding #{xcstrings_path} to project and resources build phase\"" \
+                '' \
+                '# Get relative path from project directory' \
+                'project_dir = File.dirname(project_path)' \
+                'xcstrings_relative = Pathname.new(xcstrings_path).relative_path_from(Pathname.new(project_dir)).to_s' \
+                '' \
+                '# Check if file is already in project' \
+                'existing_file = project.files.find { |f| f.path == xcstrings_relative }' \
+                'if existing_file' \
+                "  puts \"ℹ️  File already in project: #{xcstrings_relative}\"" \
+                '  ' \
+                '  # Ensure file type is NOT set to '\''text.plist.strings'\'' (wrong type for string catalogs)' \
+                '  # Let Xcode infer the correct type from the .xcstrings extension' \
+                "  if existing_file.explicit_file_type == 'text.plist.strings'" \
+                '    existing_file.explicit_file_type = nil' \
+                '    puts "   Removed incorrect file type '\''text.plist.strings'\'', letting Xcode infer from extension"' \
+                '  elsif existing_file.explicit_file_type' \
+                "    puts \"   File type is set to '#{existing_file.explicit_file_type}'\"" \
+                '  else' \
+                '    puts "   File type not explicitly set (Xcode will infer from .xcstrings extension)"' \
+                '  end' \
+                '  ' \
+                '  # Ensure it'\''s in resources build phase (required for Xcode to merge strings)' \
+                '  in_build_phase = target.resources_build_phase.files.any? { |f| f.file_ref == existing_file }' \
+                '  unless in_build_phase' \
+                '    target.add_file_references([existing_file])' \
+                '    puts "✅ Added existing file reference to resources build phase"' \
+                '  else' \
+                '    puts "✅ File already in resources build phase"' \
+                '  end' \
+                'else' \
+                '  # Find or create Resources group' \
+                "  resources_group = project.main_group['Resources'] || project.main_group.new_group('Resources')" \
+                '  ' \
+                '  # Add file to project' \
+                '  file_ref = resources_group.new_file(xcstrings_relative)' \
+                '  ' \
+                '  # Don'\''t set explicit_file_type - let Xcode infer the correct type from .xcstrings extension' \
+                '  # Setting it to '\''text.plist.strings'\'' causes builtin-copyStrings to process it incorrectly' \
+                '  file_ref.explicit_file_type = nil' \
+                '  # Optionally set last_known_file_type if supported (but not required)' \
+                '  begin' \
+                "    file_ref.last_known_file_type = 'text.json.xcstrings'" \
+                '  rescue' \
+                '    # If last_known_file_type is read-only or not supported, that'\''s fine' \
+                '  end' \
+                '  ' \
+                '  # Add to target'\''s resources build phase (required for Xcode to merge strings automatically)' \
+                '  target.add_file_references([file_ref])' \
+                '  ' \
+                "  puts \"✅ Added #{xcstrings_relative} to project and resources build phase\"" \
+                'end' \
+                '' \
+                '# Remove any existing Localizable.strings files from the project' \
+                '# (Xcode won'\''t emit to .xcstrings if .strings files exist)' \
+                'project.files.each do |file|' \
+                "  if file.path && file.path.end_with?('Localizable.strings')" \
+                "    puts \"⚠️  Found existing Localizable.strings in project: #{file.path}\"" \
+                '    puts "   Removing from project (Xcode won'\''t emit to .xcstrings when .strings exists)"' \
+                '    file.remove_from_project' \
+                '  end' \
+                'end' \
+                '' \
+                '# Save project' \
+                'project.save' \
+                'puts "✅ Project saved"' \
+                > Scripts/add_xcstrings_to_project.rb
+              chmod +x Scripts/add_xcstrings_to_project.rb
+            fi
+            # Run the script (use xcodeproj_path for Ruby scripts)
+            XCODEPROJ_PATH="${{ steps.find-xcode-project.outputs.xcodeproj_path }}"
+            if [ -z "$XCODEPROJ_PATH" ]; then
+              # Fallback: extract project path from workspace if needed
+              PROJECT_PATH="${{ steps.find-xcode-project.outputs.project_path }}"
+              if echo "$PROJECT_PATH" | grep -q "\.xcworkspace$"; then
+                XCODEPROJ_PATH=$(find . -name "*.xcodeproj" -type d | head -n 1)
+              elif echo "$PROJECT_PATH" | grep -q "project\.xcworkspace"; then
+                XCODEPROJ_PATH=$(echo "$PROJECT_PATH" | sed 's|/project\.xcworkspace$||')
+              else
+                XCODEPROJ_PATH="$PROJECT_PATH"
+              fi
+            fi
+            ruby Scripts/add_xcstrings_to_project.rb "$XCODEPROJ_PATH" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Failed to add file to project, continuing anyway..."
+            
+            # Ensure file type is correct and file is in resources build phase
+            ruby -e "
+            require 'xcodeproj'
+            require 'pathname'
+            
+            project_path = '${{ steps.find-xcode-project.outputs.project_path }}'
+            xcstrings_file = '$XCSTRINGS_FILE'
+            scheme = '${{ steps.find-xcode-project.outputs.scheme }}'
+            
+            project = Xcodeproj::Project.open(project_path)
+            target = project.targets.find { |t| t.name == scheme } || project.targets.first
+            xcstrings_relative = Pathname.new(xcstrings_file).relative_path_from(Pathname.new(File.dirname(project_path))).to_s
+            
+            file_ref = project.files.find { |f| f.path == xcstrings_relative }
+            if file_ref
+              # Fix file type if needed
+              if file_ref.explicit_file_type == 'text.plist.strings'
+                file_ref.explicit_file_type = nil
+                project.save
+              end
+              
+              # Ensure it's in resources build phase
+              in_resources = target.resources_build_phase.files.any? { |f| f.file_ref == file_ref }
+              unless in_resources
+                target.add_file_references([file_ref])
+                project.save
+              end
+            end
+            " 2>/dev/null || true
+          else
+            echo "⚠️  No Localizable.xcstrings file found to add to project"
+          fi
+
+      - name: Export existing localizations (before removing strings files)
+        continue-on-error: true
+        run: |
+          
+          EXPORT_DIR="./LocalizationsExport"
+          mkdir -p "$EXPORT_DIR"
+          
+          # Run exportLocalizations to capture existing strings
+          # This will export what exists in .strings files and .xcstrings catalogs
+          EXPORT_CMD="xcodebuild -exportLocalizations"
+          EXPORT_CMD="$EXPORT_CMD -project \"${{ steps.find-xcode-project.outputs.project_path }}\""
+          EXPORT_CMD="$EXPORT_CMD -scheme \"${{ steps.find-xcode-project.outputs.scheme }}\""
+          EXPORT_CMD="$EXPORT_CMD -localizationPath \"$EXPORT_DIR\""
+          EXPORT_CMD="$EXPORT_CMD -exportLanguage en"
+          EXPORT_CMD="$EXPORT_CMD -skipPackagePluginValidation"
+          
+          if eval "$EXPORT_CMD" 2>&1 | tee export_localizations.log; then
+            
+            # Find the exported .xcloc file
+            XCLOC_FILE=$(find "$EXPORT_DIR" -name "*.xcloc" -type d | head -1)
+            if [ -n "$XCLOC_FILE" ] && [ -d "$XCLOC_FILE" ]; then
+              # Check for .xcstrings file first (preferred)
+              XCSTRINGS_IN_XCLOC=$(find "$XCLOC_FILE" -name "*.xcstrings" -type f | head -1)
+              if [ -n "$XCSTRINGS_IN_XCLOC" ] && [ -f "$XCSTRINGS_IN_XCLOC" ]; then
+                # Backup existing catalog and copy exported one
+                EXISTING_CATALOG=$(find . -name "Localizable.xcstrings" -type f | head -1)
+                if [ -n "$EXISTING_CATALOG" ] && [ -f "$EXISTING_CATALOG" ]; then
+                  cp "$EXISTING_CATALOG" "${EXISTING_CATALOG}.pre-build-backup"
+                fi
+                # Copy exported catalog (contains existing strings)
+                cp "$XCSTRINGS_IN_XCLOC" "$EXISTING_CATALOG"
+              fi
+            fi
+          else
+            echo "⚠️  exportLocalizations failed (this is OK if no existing strings exist)"
+          fi
+
+      - name: Check for existing .strings files that might prevent emission
+        run: |
+          STRINGS_FILES=$(find . -name "Localizable.strings" -type f 2>/dev/null | grep -v "/.build/" | grep -v "/DerivedData/" | grep -v "/.git/" || echo "")
+          if [ -n "$STRINGS_FILES" ]; then
+            mkdir -p .strings-backup
+            echo "$STRINGS_FILES" | while read f; do
+              if [ -f "$f" ]; then
+                BACKUP_NAME=".strings-backup/$(basename "$f").backup"
+                mv "$f" "$BACKUP_NAME"
+              fi
+            done
+          fi
+          # Use xcodeproj_path for accessing project.pbxproj
+          XCODEPROJ_PATH="${{ steps.find-xcode-project.outputs.xcodeproj_path }}"
+          if [ -z "$XCODEPROJ_PATH" ]; then
+            PROJECT_PATH="${{ steps.find-xcode-project.outputs.project_path }}"
+            if echo "$PROJECT_PATH" | grep -q "\.xcworkspace$"; then
+              XCODEPROJ_PATH=$(find . -name "*.xcodeproj" -type d | head -n 1)
+            elif echo "$PROJECT_PATH" | grep -q "project\.xcworkspace"; then
+              XCODEPROJ_PATH=$(echo "$PROJECT_PATH" | sed 's|/project\.xcworkspace$||')
+            else
+              XCODEPROJ_PATH="$PROJECT_PATH"
+            fi
+          fi
+          # Check if project file still references .strings files (including backups)
+          if grep -r "Localizable.strings" "$XCODEPROJ_PATH/project.pbxproj" 2>/dev/null | grep -v "Localizable.xcstrings" | grep -v "\.backup"; then
+            # Use Ruby to remove any remaining .strings file references
+            ruby -e "
+            require 'xcodeproj'
+            project_path = '$XCODEPROJ_PATH'
+            project = Xcodeproj::Project.open(project_path)
+            
+            project.files.each do |file|
+              if file.path && (file.path.end_with?('Localizable.strings') || file.path.end_with?('Localizable.strings.backup'))
+                file.remove_from_project
+              end
+            end
+            
+            project.save
+            " 2>/dev/null || true
+          fi
+
+      - name: Ensure .xcstrings file exists and is in project and resources build phase
+        run: |
+          XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
+          
+          # Use xcodeproj_path for Ruby scripts
+          XCODEPROJ_PATH="${{ steps.find-xcode-project.outputs.xcodeproj_path }}"
+          if [ -z "$XCODEPROJ_PATH" ]; then
+            PROJECT_PATH="${{ steps.find-xcode-project.outputs.project_path }}"
+            if echo "$PROJECT_PATH" | grep -q "\.xcworkspace$"; then
+              XCODEPROJ_PATH=$(find . -name "*.xcodeproj" -type d | head -n 1)
+            elif echo "$PROJECT_PATH" | grep -q "project\.xcworkspace"; then
+              XCODEPROJ_PATH=$(echo "$PROJECT_PATH" | sed 's|/project\.xcworkspace$||')
+            else
+              XCODEPROJ_PATH="$PROJECT_PATH"
+            fi
+          fi
+          
+          if [ -z "$XCSTRINGS_FILE" ]; then
+            ./Scripts/ensure_string_catalog.sh "$XCODEPROJ_PATH" "${{ steps.find-xcode-project.outputs.scheme }}" || true
+            XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
+          fi
+          
+          if [ -n "$XCSTRINGS_FILE" ] && [ -f "$XCSTRINGS_FILE" ]; then
+            # Verify it's valid JSON, recreate if not
+            if ! python3 -c "import json; json.load(open('$XCSTRINGS_FILE'))" 2>/dev/null; then
+              ./Scripts/ensure_string_catalog.sh "$XCODEPROJ_PATH" "${{ steps.find-xcode-project.outputs.scheme }}" || true
+              XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
+            fi
+            
+            # Ensure it's added to project and resources build phase
+            if [ -n "$XCSTRINGS_FILE" ] && [ -f "Scripts/add_xcstrings_to_project.rb" ]; then
+              ruby Scripts/add_xcstrings_to_project.rb "$XCODEPROJ_PATH" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || true
+            fi
+          else
+            echo "❌ Could not find or create Localizable.xcstrings"
+            exit 1
+          fi
+
+      - name: Bash syntax check
+        run: |
+          echo "🔍 Checking bash syntax of build script..."
+          bash -n ./Scripts/build_with_compiler_extraction.sh || {
+            echo "❌ Bash syntax check failed!"
+            exit 1
+          }
+          echo "✅ Bash syntax check passed"
+          # Ensure script is executable
+          chmod +x ./Scripts/build_with_compiler_extraction.sh
+
+      - name: Verify String Catalog exists before build
+        run: |
+          XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
+          
+          # Use xcodeproj_path for Ruby scripts
+          XCODEPROJ_PATH="${{ steps.find-xcode-project.outputs.xcodeproj_path }}"
+          if [ -z "$XCODEPROJ_PATH" ]; then
+            PROJECT_PATH="${{ steps.find-xcode-project.outputs.project_path }}"
+            if echo "$PROJECT_PATH" | grep -q "\.xcworkspace$"; then
+              XCODEPROJ_PATH=$(find . -name "*.xcodeproj" -type d | head -n 1)
+            elif echo "$PROJECT_PATH" | grep -q "project\.xcworkspace"; then
+              XCODEPROJ_PATH=$(echo "$PROJECT_PATH" | sed 's|/project\.xcworkspace$||')
+            else
+              XCODEPROJ_PATH="$PROJECT_PATH"
+            fi
+          fi
+          
+          if [ -z "$XCSTRINGS_FILE" ]; then
+            ./Scripts/ensure_string_catalog.sh "$XCODEPROJ_PATH" "${{ steps.find-xcode-project.outputs.scheme }}" || {
+              echo "❌ Failed to create string catalog!"
+              exit 1
+            }
+            XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
+          fi
+          
+          if [ -z "$XCSTRINGS_FILE" ] || [ ! -f "$XCSTRINGS_FILE" ]; then
+            echo "❌ CRITICAL: String Catalog file does not exist and could not be created!"
+            exit 1
+          fi
+          
+          # Ensure it's added to the project
+          if [ -f "./Scripts/add_xcstrings_to_project.rb" ]; then
+            ruby ./Scripts/add_xcstrings_to_project.rb "$XCODEPROJ_PATH" "$XCSTRINGS_FILE" "${{ steps.find-xcode-project.outputs.scheme }}" || true
+          fi
+
+      - name: Setup isolated DerivedData (prevent corruption)
+        run: |
+          export DERIVED_DATA_PATH="$RUNNER_TEMP/deriveddata-${{ github.run_id }}"
+          
+          # Remove any existing DerivedData from previous runs to prevent corruption
+          if [ -d "$DERIVED_DATA_PATH" ]; then
+            rm -rf "$DERIVED_DATA_PATH"
+          fi
+          
+          # Create fresh DerivedData directory
+          mkdir -p "$DERIVED_DATA_PATH"
+          echo "DERIVED_DATA_PATH=$DERIVED_DATA_PATH" >> $GITHUB_ENV
+
+      - name: Send build started status
+        if: env.JOB_ID != '' && env.API_KEY != ''
+        run: |
+          curl -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
+            -H "Content-Type: application/json" \
+            -H "api-key: ${{ env.API_KEY }}" \
+            -d "{
+              \"jobId\": \"${{ env.JOB_ID }}\",
+              \"status\": \"workflow_build_started\",
+              \"extractionStatus\": \"extracting\",
+              \"progress\": \"{\\\"message\\\": \\\"Starting Xcode build with string extraction\\\", \\\"step\\\": \\\"build\\\"}\"
+            }" || echo "⚠️  Failed to send status update (build started)"
+
+      - name: Run unsigned build with compiler string extraction
+        continue-on-error: true
+        shell: bash
+        run: |
+          # Use isolated DerivedData from previous step
+          export DERIVED_DATA_PATH="${{ env.DERIVED_DATA_PATH }}"
+          
+          # Get paths: BUILD_PATH for xcodebuild, XCODEPROJ_PATH for Ruby scripts
+          BUILD_PATH="${{ steps.find-xcode-project.outputs.project_path }}"
+          XCODEPROJ_PATH="${{ steps.find-xcode-project.outputs.xcodeproj_path }}"
+          
+          # If XCODEPROJ_PATH not set, derive it from BUILD_PATH
+          if [ -z "$XCODEPROJ_PATH" ]; then
+            if echo "$BUILD_PATH" | grep -q "\.xcworkspace$"; then
+              # Standalone workspace - try to find associated .xcodeproj
+              XCODEPROJ_PATH=$(find . -name "*.xcodeproj" -type d | head -n 1)
+            elif echo "$BUILD_PATH" | grep -q "project\.xcworkspace"; then
+              # Workspace inside .xcodeproj - extract parent
+              XCODEPROJ_PATH=$(echo "$BUILD_PATH" | sed 's|/project\.xcworkspace$||')
+            else
+              # Already a project
+              XCODEPROJ_PATH="$BUILD_PATH"
+            fi
+          fi
+          
+          # Pass both paths to build script
+          bash ./Scripts/build_with_compiler_extraction.sh "$BUILD_PATH" "${{ steps.find-xcode-project.outputs.scheme }}" "Debug" "$XCODEPROJ_PATH" || echo "⚠️  Build failed, but continuing to generate skip list (may be empty)"
+
+      - name: Send build completed status
+        if: env.JOB_ID != '' && env.API_KEY != ''
+        run: |
+          curl -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
+            -H "Content-Type: application/json" \
+            -H "api-key: ${{ env.API_KEY }}" \
+            -d "{
+              \"jobId\": \"${{ env.JOB_ID }}\",
+              \"status\": \"workflow_build_completed\",
+              \"extractionStatus\": \"extracting\",
+              \"progress\": \"{\\\"message\\\": \\\"Build completed, generating skip list\\\", \\\"step\\\": \\\"skip-list\\\"}\"
+            }" || echo "⚠️  Failed to send status update (build completed)"
+
+      - name: Build skip list from all String Catalogs
+        run: |
+          # Search repo + DerivedData for .stringsdata (DERIVED_DATA_PATH has file/line info from the build)
+          python3 Scripts/build_skip_list.py skip-list.json "${{ env.DERIVED_DATA_PATH }}" || echo "[]" > skip-list.json
+          # Ensure file exists
+          if [ ! -f skip-list.json ]; then
+            echo "[]" > skip-list.json
+          fi
+          
+          # Show skip list entry count and file count
+          if command -v jq >/dev/null 2>&1; then
+            ENTRY_COUNT=$(jq '.count' skip-list.json 2>/dev/null || echo "0")
+            FILE_COUNT=$(jq '.files | length' skip-list.json 2>/dev/null || echo "0")
+            echo "Skip list contains $ENTRY_COUNT entries from $FILE_COUNT source files"
+          fi
+          
+          # Send skip list completion status
+          if [ -n "$JOB_ID" ] && [ -n "$API_KEY" ]; then
+            curl -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
+              -H "Content-Type: application/json" \
+              -H "api-key: $API_KEY" \
+              -d "{
+                \"jobId\": \"$JOB_ID\",
+                \"status\": \"workflow_build_completed\",
+                \"extractionStatus\": \"extracting\",
+                \"progress\": \"{\\\"message\\\": \\\"Skip list generated with $ENTRY_COUNT entries\\\", \\\"step\\\": \\\"skip-list-complete\\\"}\"
+              }" || echo "⚠️  Failed to send status update (skip list completed)"
+          fi
+
+      - name: Set up gcloud auth
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ inputs.gcp_wif_provider }}
+          service_account: ${{ inputs.gcp_sa_email }}
+        continue-on-error: true
+
+      - name: Install gcloud
+        uses: google-github-actions/setup-gcloud@v2
+        continue-on-error: true
+
+      - name: Upload skip list to GCS
+        run: |
+          # Check if gcloud auth worked, if not, try using gsutil with service account key if available
+          if command -v gsutil &> /dev/null; then
+            gsutil cp skip-list.json "gs://$GCS_BUCKET/$GCS_PATH" || {
+              echo "⚠️  Failed to upload skip list using gsutil. This may be due to missing GCP authentication secrets."
+              echo "⚠️  Skip list will not be available, but workflow will continue."
+              exit 0
+            }
+            echo "Skip list uploaded to: gs://$GCS_BUCKET/$GCS_PATH"
+            
+            # Send upload status
+            if [ -n "$JOB_ID" ] && [ -n "$API_KEY" ]; then
+              curl -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
+                -H "Content-Type: application/json" \
+                -H "api-key: $API_KEY" \
+                -d "{
+                  \"jobId\": \"$JOB_ID\",
+                  \"status\": \"workflow_build_completed\",
+                  \"extractionStatus\": \"extracting\",
+                  \"progress\": \"{\\\"message\\\": \\\"Skip list uploaded to GCS\\\", \\\"step\\\": \\\"upload\\\"}\"
+                }" || echo "⚠️  Failed to send status update (upload completed)"
+            fi
+          else
+            echo "⚠️  gsutil not available. Skip list upload skipped."
+          fi
+
+      - name: Notify completion
+        if: always()
+        run: |
+          echo "✅ Xcode string extraction completed"
+          echo "Skip list available at: gs://$GCS_BUCKET/$GCS_PATH"
+          echo "Project ID: $PROJECT_ID"
+          echo "Integration ID: $INTEGRATION_ID"
+          
+          # Send final status update
+          if [ -n "$JOB_ID" ] && [ -n "$API_KEY" ]; then
+            # Determine status based on whether skip list was created and uploaded
+            if [ -f "skip-list.json" ] && [ -s "skip-list.json" ]; then
+              STATUS="workflow_finished"
+              EXTRACTION_STATUS="extracting"
+              MESSAGE="Build complete, SwiftStringExtractor starting..."
+            else
+              STATUS="workflow_finished"
+              EXTRACTION_STATUS="error"
+              MESSAGE="Workflow completed but skip list may be missing or empty"
+            fi
+            
+            curl -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
+              -H "Content-Type: application/json" \
+              -H "api-key: $API_KEY" \
+              -d "{
+                \"jobId\": \"$JOB_ID\",
+                \"status\": \"$STATUS\",
+                \"extractionStatus\": \"$EXTRACTION_STATUS\",
+                \"progress\": \"{\\\"message\\\": \\\"$MESSAGE\\\", \\\"step\\\": \\\"complete\\\"}\"
+              }" || echo "⚠️  Failed to send final status update"
+          fi
+
