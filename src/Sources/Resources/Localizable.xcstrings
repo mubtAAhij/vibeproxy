@@ -17,6 +17,12 @@
             "state": "translated",
             "value": "无效请求"
           }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Requête invalide"
+          }
         }
       }
     },
@@ -40,6 +46,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "无效的请求行"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ligne de requête invalide"
           }
         }
       }
@@ -100,6 +112,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bad Gateway - Could not connect to ampcode.com"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passerelle incorrecte - Impossible de se connecter à ampcode.com"
           }
         }
       }
@@ -179,6 +197,18 @@
             "state": "translated",
             "value": "Cloudflared Not Installed"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cloudflared No Instalado"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cloudflared non installé"
+          }
         }
       }
     },
@@ -251,6 +281,18 @@
             "state": "translated",
             "value": "Cancel"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annuler"
+          }
         }
       }
     },
@@ -274,6 +316,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Impossible de trouver le chemin de la ressource"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "找不到资源路径"
           }
         }
       }
@@ -347,6 +395,18 @@
             "state": "translated",
             "value": "🌐 Browser opened for GitHub authentication.\\n\\nCheck your terminal or the opened browser for the device code.\\n\\nThe app will automatically detect when you're authenticated."
           }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 已打开浏览器进行 GitHub 身份验证。\\n\\n请在终端或已打开的浏览器中查看设备代码。\\n\\n应用将自动检测您的身份验证状态。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navigateur ouvert pour l'authentification GitHub.\\n\\nVérifiez votre terminal ou le navigateur ouvert pour le code de l'appareil.\\n\\nL'application détectera automatiquement lorsque vous serez authentifié."
+          }
         }
       }
     },
@@ -376,6 +436,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "身份验证过程意外失败"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échec inattendu du processus d'authentification"
           }
         }
       }
@@ -509,6 +575,12 @@
             "state": "translated",
             "value": "(expired)"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(vencido)"
+          }
         }
       }
     },
@@ -520,6 +592,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Remove"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar"
           }
         }
       }
@@ -569,6 +647,12 @@
             "state": "translated",
             "value": "Acheminez les requêtes Claude via Vercel AI Gateway pour un accès plus sûr à votre abonnement Claude Max"
           }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "通过 Vercel AI Gateway 路由 Claude 请求，更安全地访问您的 Claude Max 订阅"
+          }
         }
       }
     },
@@ -611,6 +695,18 @@
             "state": "translated",
             "value": "已保存"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardado"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistré"
+          }
         }
       }
     },
@@ -629,6 +725,18 @@
             "state": "translated",
             "value": "Guardar"
           }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保存"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrer"
+          }
         }
       }
     },
@@ -641,6 +749,24 @@
             "state": "translated",
             "value": "Disable this provider"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desactivar este proveedor"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "禁用此提供程序"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Désactiver ce fournisseur"
+          }
         }
       }
     },
@@ -652,6 +778,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Enable this provider"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "启用此提供程序"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activer ce fournisseur"
           }
         }
       }
@@ -801,6 +939,12 @@
             "state": "translated",
             "value": "• 轮询与自动故障转移"
           }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Round-robin avec basculement automatique"
+          }
         }
       }
     },
@@ -818,6 +962,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Aucun compte connecté"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无关联账户"
           }
         }
       }
@@ -884,6 +1034,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Eliminar"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer"
           }
         }
       }
@@ -957,6 +1113,12 @@
             "state": "translated",
             "value": "En cours"
           }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "运行中"
+          }
         }
       }
     },
@@ -975,6 +1137,18 @@
             "state": "translated",
             "value": "Detenido"
           }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已停止"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arrêté"
+          }
         }
       }
     },
@@ -992,6 +1166,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Lancer à la connexion"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "登录时启动"
           }
         }
       }
@@ -1046,6 +1226,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ouvrir le dossier"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Carpeta"
           }
         }
       }
@@ -1131,6 +1317,12 @@
             "state": "translated",
             "value": "⚠️ Note: If you're an existing Gemini user with multiple projects, authentication will use your default project. Set your desired project as default in Google AI Studio before connecting."
           }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Remarque : Si vous êtes un utilisateur Gemini existant avec plusieurs projets, l'authentification utilisera votre projet par défaut. Définissez votre projet souhaité comme défaut dans Google AI Studio avant de vous connecter."
+          }
         }
       }
     },
@@ -1172,6 +1364,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Z.AI GLM fournit un accès à GLM-4.7 et d'autres modèles via clé API. Obtenez votre clé sur https://z.ai/manage-apikey/apikey-list"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z.AI GLM proporciona acceso a GLM-4.7 y otros modelos mediante clave API. Obtén tu clave en https://z.ai/manage-apikey/apikey-list"
           }
         }
       }
@@ -1215,6 +1413,18 @@
             "state": "translated",
             "value": "All rights reserved."
           }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "版权所有"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tous droits réservés."
+          }
         }
       }
     },
@@ -1233,6 +1443,12 @@
             "state": "translated",
             "value": "Signaler un problème"
           }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "报告问题"
+          }
         }
       }
     },
@@ -1250,6 +1466,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "E-mail du compte Qwen"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qwen账号邮箱"
           }
         }
       }
@@ -1287,6 +1509,12 @@
             "state": "translated",
             "value": "your.email@example.com"
           }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "votre.email@example.com"
+          }
         }
       }
     },
@@ -1323,6 +1551,12 @@
             "state": "translated",
             "value": "继续"
           }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuer"
+          }
         }
       }
     },
@@ -1334,6 +1568,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Z.AI API Key"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clave API de Z.AI"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z.AI API 密钥"
           }
         }
       }
@@ -1377,6 +1623,12 @@
             "state": "translated",
             "value": "Cancel"
           }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消"
+          }
         }
       }
     },
@@ -1400,6 +1652,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ajouter une clé"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加密钥"
           }
         }
       }
@@ -1539,6 +1797,12 @@
             "state": "translated",
             "value": "🌐 Navigateur ouvert pour l'authentification Claude Code.\\n\\nVeuillez compléter la connexion dans votre navigateur.\\n\\nL'application détectera automatiquement vos identifiants."
           }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 已打开浏览器进行 Claude Code 身份验证。\\n\\n请在浏览器中完成登录。\\n\\n应用将自动检测您的凭据。"
+          }
         }
       }
     },
@@ -1556,6 +1820,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "🌐 已打开浏览器进行 Codex 身份验证。\\n\\n请在浏览器中完成登录。\\n\\n应用程序将自动检测您的凭据。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Le navigateur s'est ouvert pour l'authentification Codex.\\n\\nVeuillez terminer la connexion dans votre navigateur.\\n\\nL'application détectera automatiquement vos identifiants."
           }
         }
       }
@@ -1622,6 +1892,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "🌐 Navigateur ouvert pour l'authentification Qwen.\\n\\nVeuillez terminer la connexion dans votre navigateur."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 已打开浏览器进行 Qwen 身份验证。\\n\\n请在浏览器中完成登录。"
           }
         }
       }
@@ -1700,6 +1976,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "No output"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无输出"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune sortie"
           }
         }
       }
@@ -1869,6 +2157,12 @@
             "state": "translated",
             "value": "Edit"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar"
+          }
         }
       }
     },
@@ -1880,6 +2174,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Undo"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deshacer"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "撤销"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annuler"
           }
         }
       }
@@ -1893,6 +2205,12 @@
             "state": "translated",
             "value": "Redo"
           }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rétablir"
+          }
         }
       }
     },
@@ -1904,6 +2222,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cut"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couper"
           }
         }
       }
@@ -1928,6 +2252,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Paste"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pegar"
           }
         }
       }
