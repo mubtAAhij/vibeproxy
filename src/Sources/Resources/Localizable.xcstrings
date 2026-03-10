@@ -11,6 +11,12 @@
             "state": "translated",
             "value": "Invalid request"
           }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无效请求"
+          }
         }
       }
     },
@@ -22,6 +28,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Invalid request line"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Línea de solicitud inválida"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无效的请求行"
           }
         }
       }
@@ -35,6 +53,18 @@
             "state": "translated",
             "value": "Invalid request format"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Formato de solicitud inválido"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Format de requête invalide"
+          }
         }
       }
     },
@@ -46,6 +76,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Invalid request format - no body separator"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无效的请求格式 - 缺少正文分隔符"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Format de requête invalide - pas de séparateur de corps"
           }
         }
       }
@@ -71,6 +113,18 @@
             "state": "translated",
             "value": "Bad Gateway - Could not connect to Vercel AI Gateway"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error de puerta de enlace - No se pudo conectar a Vercel AI Gateway"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erreur de passerelle - Impossible de se connecter à Vercel AI Gateway"
+          }
         }
       }
     },
@@ -83,6 +137,18 @@
             "state": "translated",
             "value": "Internal Server Error"
           }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "内部服务器错误"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erreur interne du serveur"
+          }
         }
       }
     },
@@ -94,6 +160,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bad Gateway"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "网关错误"
           }
         }
       }
@@ -119,6 +191,24 @@
             "state": "translated",
             "value": "To expose your server to the internet, you need to install cloudflared.\n\nInstall via Homebrew:\nbrew install cloudflared\n\nOr download from:\nhttps://github.com/cloudflare/cloudflared/releases"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para exponer tu servidor a internet, necesitas instalar cloudflared.\n\nInstalar vía Homebrew:\nbrew install cloudflared\n\nO descargar desde:\nhttps://github.com/cloudflare/cloudflared/releases"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "要将您的服务器暴露到互联网，您需要安装 cloudflared。\n\n通过 Homebrew 安装：\nbrew install cloudflared\n\n或从以下地址下载：\nhttps://github.com/cloudflare/cloudflared/releases"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pour exposer votre serveur sur Internet, vous devez installer cloudflared.\n\nInstallation via Homebrew :\nbrew install cloudflared\n\nOu téléchargez depuis :\nhttps://github.com/cloudflare/cloudflared/releases"
+          }
         }
       }
     },
@@ -130,6 +220,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Copy Install Command"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar Comando de Instalación"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "复制安装命令"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copier commande d'installation"
           }
         }
       }
@@ -155,6 +263,18 @@
             "state": "translated",
             "value": "Could not find resource path"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se encontró la ruta del recurso"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de trouver le chemin de la ressource"
+          }
         }
       }
     },
@@ -167,6 +287,24 @@
             "state": "translated",
             "value": "Binary not found at %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binario no encontrado en %@"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 %@ 找不到二进制文件"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binaire introuvable dans %@"
+          }
         }
       }
     },
@@ -178,6 +316,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "🌐 Browser opened for GitHub authentication.\\n\\n📋 Code copied to clipboard:\\n\\n%@\\n\\nJust paste it in the browser!\\n\\nThe app will automatically detect when you're authenticated."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Se abrió el navegador para autenticación de GitHub.\\n\\n📋 Código copiado al portapapeles:\\n\\n%@\\n\\n¡Solo pégalo en el navegador!\\n\\nLa app detectará automáticamente cuando estés autenticado."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 已打开浏览器进行 GitHub 身份验证。\\n\\n📋 验证码已复制到剪贴板：\\n\\n%@\\n\\n请在浏览器中粘贴此验证码！\\n\\n应用会自动检测您的验证状态。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navigateur ouvert pour l'authentification GitHub.\\n\\n📋 Code copié dans le presse-papiers :\\n\\n%@\\n\\nCollez-le simplement dans le navigateur !\\n\\nL'application détectera automatiquement votre authentification."
           }
         }
       }
@@ -215,6 +371,12 @@
             "state": "translated",
             "value": "Authentication process failed unexpectedly"
           }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "身份验证过程意外失败"
+          }
         }
       }
     },
@@ -226,6 +388,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Failed to start auth process: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al iniciar el proceso de autenticación: %@"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法启动身份验证过程：%@"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de démarrer le processus d'authentification : %@"
           }
         }
       }
@@ -239,6 +419,24 @@
             "state": "translated",
             "value": "Failed to create auth directory: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al crear el directorio de autenticación: %@"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "创建认证目录失败：%@"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de créer le répertoire d'authentification : %@"
+          }
         }
       }
     },
@@ -251,6 +449,24 @@
             "state": "translated",
             "value": "API key saved successfully"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clave API guardada correctamente"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API密钥保存成功"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clé API enregistrée avec succès"
+          }
         }
       }
     },
@@ -262,6 +478,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Failed to save API key: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al guardar la clave API: %@"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法保存 API 密钥：%@"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible d'enregistrer la clé API : %@"
           }
         }
       }
@@ -299,6 +533,18 @@
             "state": "translated",
             "value": "Use Vercel AI Gateway"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar Vercel AI Gateway"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用 Vercel AI 网关"
+          }
         }
       }
     },
@@ -310,6 +556,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Route Claude requests through Vercel AI Gateway for safer access to your Claude Max subscription"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enruta las solicitudes de Claude a través de Vercel AI Gateway para un acceso más seguro a tu suscripción de Claude Max"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acheminez les requêtes Claude via Vercel AI Gateway pour un accès plus sûr à votre abonnement Claude Max"
           }
         }
       }
@@ -323,6 +581,18 @@
             "state": "translated",
             "value": "Vercel API key"
           }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vercel API 密钥"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clé API Vercel"
+          }
         }
       }
     },
@@ -335,6 +605,12 @@
             "state": "translated",
             "value": "Saved"
           }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已保存"
+          }
         }
       }
     },
@@ -346,6 +622,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Save"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar"
           }
         }
       }
@@ -383,6 +665,24 @@
             "state": "translated",
             "value": "Add Account"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar Cuenta"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加账号"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter un compte"
+          }
         }
       }
     },
@@ -411,6 +711,72 @@
               }
             }
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d cuenta%@ conectada%@"
+          },
+          "variations": {
+            "quantity": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%d cuenta%@ conectada%@"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%d cuenta%@ conectada%@"
+                }
+              }
+            }
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d 个已连接账户%@"
+          },
+          "variations": {
+            "quantity": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%d 个已连接账户%@"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%d 个已连接账户%@"
+                }
+              }
+            }
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d compte%@ connecté%@"
+          },
+          "variations": {
+            "quantity": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%d compte%@ connecté%@"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%d compte%@ connecté%@"
+                }
+              }
+            }
+          }
         }
       }
     },
@@ -422,6 +788,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "• Round-robin w/ auto-failover"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Round-robin con conmutación automática"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• 轮询与自动故障转移"
           }
         }
       }
@@ -435,6 +813,12 @@
             "state": "translated",
             "value": "No connected accounts"
           }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun compte connecté"
+          }
         }
       }
     },
@@ -446,6 +830,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Remove Account"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar cuenta"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "删除账户"
           }
         }
       }
@@ -459,6 +855,18 @@
             "state": "translated",
             "value": "Cancel"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annuler"
+          }
         }
       }
     },
@@ -470,6 +878,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Remove"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar"
           }
         }
       }
@@ -483,6 +897,24 @@
             "state": "translated",
             "value": "Are you sure you want to remove %@ from %@?"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Está seguro de que desea eliminar %@ de %@?"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您确定要从%@中移除%@吗？"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voulez-vous vraiment supprimer %@ de %@ ?"
+          }
         }
       }
     },
@@ -494,6 +926,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Server status"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estado del servidor"
           }
         }
       }
@@ -507,6 +945,18 @@
             "state": "translated",
             "value": "Running"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ejecutando"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En cours"
+          }
         }
       }
     },
@@ -518,6 +968,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Stopped"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detenido"
           }
         }
       }
@@ -531,6 +987,12 @@
             "state": "translated",
             "value": "Launch at login"
           }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lancer à la connexion"
+          }
         }
       }
     },
@@ -542,6 +1004,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Auth files"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archivos de autenticación"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "认证文件"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fichiers d'authentification"
           }
         }
       }
@@ -555,6 +1035,18 @@
             "state": "translated",
             "value": "Open Folder"
           }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开文件夹"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir le dossier"
+          }
         }
       }
     },
@@ -566,6 +1058,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Services"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servicios"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "服务"
           }
         }
       }
@@ -579,6 +1083,24 @@
             "state": "translated",
             "value": "Antigravity provides OAuth-based access to various AI models including Gemini and Claude. One login gives you access to multiple AI services."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antigravity proporciona acceso basado en OAuth a varios modelos de IA incluyendo Gemini y Claude. Un solo inicio de sesión te da acceso a múltiples servicios de IA."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antigravity 提供基于 OAuth 的访问方式，可使用包括 Gemini 和 Claude 在内的各种 AI 模型。一次登录即可访问多个 AI 服务。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antigravity fournit un accès basé sur OAuth à divers modèles d'IA incluant Gemini et Claude. Une seule connexion vous donne accès à plusieurs services d'IA."
+          }
         }
       }
     },
@@ -590,6 +1112,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Claude Code (via Vercel)"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claude Code (通过 Vercel)"
           }
         }
       }
@@ -615,6 +1143,18 @@
             "state": "translated",
             "value": "GitHub Copilot provides access to Claude, GPT, Gemini and other models via your Copilot subscription."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub Copilot proporciona acceso a Claude, GPT, Gemini y otros modelos a través de tu suscripción de Copilot."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub Copilot 通过您的 Copilot 订阅提供对 Claude、GPT、Gemini 和其他模型的访问。"
+          }
         }
       }
     },
@@ -627,6 +1167,12 @@
             "state": "translated",
             "value": "Z.AI GLM provides access to GLM-4.7 and other models via API key. Get your key at https://z.ai/manage-apikey/apikey-list"
           }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z.AI GLM fournit un accès à GLM-4.7 et d'autres modèles via clé API. Obtenez votre clé sur https://z.ai/manage-apikey/apikey-list"
+          }
         }
       }
     },
@@ -638,6 +1184,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "VibeProxy %@ was made possible thanks to"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy %@ fue posible gracias a"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy %@ 的实现得益于"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy %@ a été rendu possible grâce à"
           }
         }
       }
@@ -663,6 +1227,12 @@
             "state": "translated",
             "value": "Report an issue"
           }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signaler un problème"
+          }
         }
       }
     },
@@ -675,6 +1245,12 @@
             "state": "translated",
             "value": "Qwen Account Email"
           }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "E-mail du compte Qwen"
+          }
         }
       }
     },
@@ -686,6 +1262,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "Enter your Qwen account email address"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingresa el correo electrónico de tu cuenta de Qwen"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "输入您的Qwen账号邮箱地址"
           }
         }
       }
@@ -711,6 +1299,12 @@
             "state": "translated",
             "value": "Cancel"
           }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消"
+          }
         }
       }
     },
@@ -722,6 +1316,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Continue"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "继续"
           }
         }
       }
@@ -747,6 +1347,24 @@
             "state": "translated",
             "value": "Enter your Z.AI API key from https://z.ai/manage-apikey/apikey-list"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingrese su clave API de Z.AI desde https://z.ai/manage-apikey/apikey-list"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "输入您从 https://z.ai/manage-apikey/apikey-list 获取的 Z.AI API 密钥"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entrez votre clé API Z.AI depuis https://z.ai/manage-apikey/apikey-list"
+          }
         }
       }
     },
@@ -771,6 +1389,18 @@
             "state": "translated",
             "value": "Add Key"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar Clave"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter une clé"
+          }
         }
       }
     },
@@ -783,6 +1413,24 @@
             "state": "translated",
             "value": "Authentication Result"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resultado de Autenticación"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "认证结果"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Résultat d'authentification"
+          }
         }
       }
     },
@@ -791,6 +1439,24 @@
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "确定"
+          }
+        },
+        "fr-FR": {
           "stringUnit": {
             "state": "translated",
             "value": "OK"
@@ -807,6 +1473,24 @@
             "state": "translated",
             "value": "Authentication failed. Please check if the browser opened and try again.\\n\\nDetails: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error de autenticación. Verifica si se abrió el navegador e intenta nuevamente.\\n\\nDetalles: %@"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "身份验证失败。请检查浏览器是否已打开并重试。\\n\\n详情：%@"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'authentification a échoué. Veuillez vérifier si le navigateur s'est ouvert et réessayer.\\n\\nDétails : %@"
+          }
         }
       }
     },
@@ -818,6 +1502,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "No output from authentication process"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "身份验证过程无输出"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune sortie du processus d'authentification"
           }
         }
       }
@@ -831,6 +1527,18 @@
             "state": "translated",
             "value": "🌐 Browser opened for Claude Code authentication.\\n\\nPlease complete the login in your browser.\\n\\nThe app will automatically detect your credentials."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Se abrió el navegador para la autenticación de Claude Code.\\n\\nPor favor, complete el inicio de sesión en su navegador.\\n\\nLa aplicación detectará automáticamente sus credenciales."
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navigateur ouvert pour l'authentification Claude Code.\\n\\nVeuillez compléter la connexion dans votre navigateur.\\n\\nL'application détectera automatiquement vos identifiants."
+          }
         }
       }
     },
@@ -842,6 +1550,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "🌐 Browser opened for Codex authentication.\\n\\nPlease complete the login in your browser.\\n\\nThe app will automatically detect your credentials."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 已打开浏览器进行 Codex 身份验证。\\n\\n请在浏览器中完成登录。\\n\\n应用程序将自动检测您的凭据。"
           }
         }
       }
@@ -855,6 +1569,18 @@
             "state": "translated",
             "value": "🌐 GitHub Copilot authentication started!\\n\\nPlease visit github.com/login/device and enter the code shown.\\n\\nThe app will automatically detect your credentials."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 ¡Autenticación de GitHub Copilot iniciada!\\n\\nPor favor, visita github.com/login/device e ingresa el código mostrado.\\n\\nLa aplicación detectará automáticamente tus credenciales."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 GitHub Copilot 身份验证已开始！\\n\\n请访问 github.com/login/device 并输入显示的验证码。\\n\\n应用将自动检测您的凭据。"
+          }
         }
       }
     },
@@ -866,6 +1592,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "🌐 Browser opened for Gemini authentication.\\n\\nPlease complete the login in your browser.\\n\\n⚠️ Note: If you have multiple projects, the default project will be used."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 已打开浏览器进行 Gemini 身份验证。\\n\\n请在浏览器中完成登录。\\n\\n⚠️ 注意：如果您有多个项目，将使用默认项目。"
           }
         }
       }
@@ -879,6 +1611,18 @@
             "state": "translated",
             "value": "🌐 Browser opened for Qwen authentication.\\n\\nPlease complete the login in your browser."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Se abrió el navegador para la autenticación de Qwen.\\n\\nPor favor, completa el inicio de sesión en tu navegador."
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navigateur ouvert pour l'authentification Qwen.\\n\\nVeuillez terminer la connexion dans votre navigateur."
+          }
         }
       }
     },
@@ -890,6 +1634,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "🌐 Browser opened for Antigravity authentication.\\n\\nPlease complete the login in your browser."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 已打开浏览器进行 Antigravity 身份验证。\\n\\n请在浏览器中完成登录。"
           }
         }
       }
@@ -903,6 +1653,12 @@
             "state": "translated",
             "value": "✓ Z.AI API key added successfully.\\n\\nYou can now use GLM models through the proxy."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Clave API de Z.AI agregada exitosamente.\\n\\nAhora puedes usar los modelos GLM a través del proxy."
+          }
         }
       }
     },
@@ -914,6 +1670,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Authentication failed.\\n\\nDetails: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error de autenticación.\\n\\nDetalles: %@"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "身份验证失败。\\n\\n详情：%@"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échec de l'authentification.\\n\\nDétails : %@"
           }
         }
       }
@@ -939,6 +1713,24 @@
             "state": "translated",
             "value": "Failed to save API key.\\n\\nDetails: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al guardar la clave API.\\n\\nDetalles: %@"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保存 API 密钥失败。\\n\\n详情：%@"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible d'enregistrer la clé API.\\n\\nDétails : %@"
+          }
         }
       }
     },
@@ -950,6 +1742,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Unknown error"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未知错误"
           }
         }
       }
@@ -963,6 +1761,24 @@
             "state": "translated",
             "value": "✓ Removed %@ from %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Se eliminó %@ de %@"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ 已从 %2$@ 中移除 %1$@"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ %@ supprimé de %@"
+          }
         }
       }
     },
@@ -974,6 +1790,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "Failed to remove account"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al eliminar la cuenta"
           }
         }
       }
@@ -987,6 +1809,24 @@
             "state": "translated",
             "value": "About VibeProxy"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acerca de VibeProxy"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "关于 VibeProxy"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À propos de VibeProxy"
+          }
         }
       }
     },
@@ -998,6 +1838,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Quit VibeProxy"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salir de VibeProxy"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "退出 VibeProxy"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quitter VibeProxy"
           }
         }
       }
