@@ -160,6 +160,18 @@ jobs:
             echo "Scheme: $SCHEME"
           else
             echo "❌ No .xcodeproj or .xcworkspace found"
+            # Report workflow failure immediately so SwiftStringExtractor can stop waiting for skip list
+            if [ -n "${{ env.JOB_ID }}" ] && [ -n "${{ env.API_KEY }}" ]; then
+              curl -s -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
+                -H "Content-Type: application/json" \
+                -H "api-key: ${{ env.API_KEY }}" \
+                -d "{
+                  \"jobId\": \"${{ env.JOB_ID }}\",
+                  \"status\": \"workflow_failed\",
+                  \"errorMessage\": \"No .xcodeproj or .xcworkspace found. Check GitHub Actions logs for details.\",
+                  \"workflowRunId\": \"${{ github.run_id }}\"
+                }" || echo "⚠️  Failed to send workflow_failed status"
+            fi
             exit 1
           fi
           
@@ -179,6 +191,21 @@ jobs:
             echo "💡 xcodeproj_path set to: $XCODE_PROJECT (for Ruby scripts)"
           fi
 
+      # Report workflow failure when ANY previous step fails (e.g. find-xcode-project, checkout, build)
+      # This lets SwiftStringExtractor stop waiting for skip list immediately instead of timing out
+      - name: Report workflow failure
+        if: failure() && env.JOB_ID != '' && env.API_KEY != ''
+        run: |
+          echo "Reporting workflow_failed to backend so SwiftStringExtractor can proceed without skip list..."
+          curl -s -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
+            -H "Content-Type: application/json" \
+            -H "api-key: ${{ env.API_KEY }}" \
+            -d "{
+              \"jobId\": \"${{ env.JOB_ID }}\",
+              \"status\": \"workflow_failed\",
+              \"errorMessage\": \"GitHub Actions workflow failed. Check the workflow logs for details. Proceeding without skip list.\",
+              \"workflowRunId\": \"${{ github.run_id }}\"
+            }" || echo "⚠️  Failed to send workflow_failed status"
 
       - name: Resolve Swift packages (if any)
         run: |
@@ -733,7 +760,8 @@ jobs:
               --arg extractionStatus "$EXTRACTION_STATUS" \
               --arg errorMessage "$ERROR_MSG" \
               --arg message "$MESSAGE" \
-              '{jobId: $jobId, status: $status, extractionStatus: $extractionStatus, errorMessage: $errorMessage, progress: ({"message": $message, "step": "complete"} | tostring)}')
+              --arg workflowRunId "${{ github.run_id }}" \
+              '{jobId: $jobId, status: $status, extractionStatus: $extractionStatus, errorMessage: $errorMessage, workflowRunId: $workflowRunId, progress: ({"message": $message, "step": "complete"} | tostring)}')
             curl -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
               -H "Content-Type: application/json" \
               -H "api-key: $API_KEY" \
