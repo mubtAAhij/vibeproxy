@@ -1,0 +1,2962 @@
+{
+  "version": "1.0",
+  "sourceLanguage": "en",
+  "strings": {
+    "http.error.invalid-request": {
+      "comment": "HTTP 400 error when request data cannot be decoded as UTF-8",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid request"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solicitud inválida"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无效请求"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Requête invalide"
+          }
+        }
+      }
+    },
+    "http.error.invalid-request-line": {
+      "comment": "HTTP 400 error when the request line is missing or malformed",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid request line"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Línea de solicitud inválida"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请求行无效"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ligne de requête invalide"
+          }
+        }
+      }
+    },
+    "http.error.invalid-request-format": {
+      "comment": "HTTP 400 error when the request line doesn't have the required three parts",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid request format"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Formato de solicitud inválido"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请求格式无效"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Format de requête invalide"
+          }
+        }
+      }
+    },
+    "http.error.no-body-separator": {
+      "comment": "HTTP 400 error when the request is missing the header/body separator",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid request format - no body separator"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Formato de solicitud inválido - sin separador de cuerpo"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请求格式无效 - 缺少正文分隔符"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Format de requête invalide - pas de séparateur de corps"
+          }
+        }
+      }
+    },
+    "http.error.ampcode-gateway": {
+      "comment": "HTTP 502 error when the proxy cannot connect to ampcode.com",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bad Gateway - Could not connect to ampcode.com"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puerta de enlace incorrecta - No se pudo conectar a ampcode.com"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "网关错误 - 无法连接到 ampcode.com"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passerelle incorrecte - Impossible de se connecter à ampcode.com"
+          }
+        }
+      }
+    },
+    "http.error.vercel-gateway": {
+      "comment": "HTTP 502 error when the proxy cannot connect to Vercel AI Gateway",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bad Gateway - Could not connect to Vercel AI Gateway"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puerta de enlace incorrecta - No se pudo conectar con Vercel AI Gateway"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "错误网关 - 无法连接到 Vercel AI Gateway"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passerelle incorrecte - Impossible de se connecter à Vercel AI Gateway"
+          }
+        }
+      }
+    },
+    "http.error.internal-server-error": {
+      "comment": "HTTP 500 error for generic internal server errors",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Internal Server Error"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error Interno del Servidor"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "内部服务器错误"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erreur interne du serveur"
+          }
+        }
+      }
+    },
+    "http.error.bad-gateway": {
+      "comment": "HTTP 502 error when the proxy cannot connect to the target server",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bad Gateway"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puerta de enlace incorrecta"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "错误网关"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Passerelle incorrecte"
+          }
+        }
+      }
+    },
+    "tunnel.cloudflared-not-installed.title": {
+      "comment": "Alert title when cloudflared is not installed on the system",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cloudflared Not Installed"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cloudflared No Instalado"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cloudflared 未安装"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cloudflared non installé"
+          }
+        }
+      }
+    },
+    "tunnel.cloudflared-not-installed.message": {
+      "comment": "Instructions for installing cloudflared via Homebrew or from GitHub releases",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To expose your server to the internet, you need to install cloudflared.\n\nInstall via Homebrew:\nbrew install cloudflared\n\nOr download from:\nhttps://github.com/cloudflare/cloudflared/releases"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "        Para exponer tu servidor a internet, necesitas instalar cloudflared.\n        \n        Instalar vía Homebrew:\n        brew install cloudflared\n        \n        O descargar desde:\n        https://github.com/cloudflare/cloudflared/releases\n"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "        要将您的服务器暴露到互联网，您需要安装 cloudflared。\n        \n        通过 Homebrew 安装：\n        brew install cloudflared\n        \n        或从以下地址下载：\n        https://github.com/cloudflare/cloudflared/releases\n"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "        Pour exposer votre serveur à Internet, vous devez installer cloudflared.\n        \n        Installer via Homebrew :\n        brew install cloudflared\n        \n        Ou télécharger depuis :\n        https://github.com/cloudflare/cloudflared/releases\n"
+          }
+        }
+      }
+    },
+    "tunnel.cloudflared-not-installed.copy-button": {
+      "comment": "Button to copy the brew install command to clipboard",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy Install Command"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar Comando de Instalación"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "复制安装命令"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copier la commande d'installation"
+          }
+        }
+      }
+    },
+    "tunnel.cloudflared-not-installed.cancel-button": {
+      "comment": "Button to dismiss the cloudflared installation instructions alert",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "server.error.no-resource-path": {
+      "comment": "Error when the app bundle's resource path cannot be determined",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not find resource path"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo encontrar la ruta del recurso"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "找不到资源路径"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de trouver le chemin de la ressource"
+          }
+        }
+      }
+    },
+    "server.error.binary-not-found": {
+      "comment": "Error when the CLI binary is not found at the expected path",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binary not found at %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binario no encontrado en \\(bundledPath)"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 \\(bundledPath) 未找到二进制文件"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binaire introuvable à \\(bundledPath)"
+          }
+        }
+      }
+    },
+    "auth.copilot.code-extracted": {
+      "comment": "Success message when GitHub Copilot device code is extracted and copied to clipboard",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for GitHub authentication.\\n\\n📋 Code copied to clipboard:\\n\\n%@\\n\\nJust paste it in the browser!\\n\\nThe app will automatically detect when you're authenticated."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navegador abierto para autenticación de GitHub.\\n\\n📋 Código copiado al portapapeles:\\n\\n\\(code)\\n\\n¡Solo pégalo en el navegador!\\n\\nLa aplicación detectará automáticamente cuando te hayas autenticado."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 已打开浏览器进行 GitHub 身份验证。\\n\\n📋 代码已复制到剪贴板：\\n\\n\\(code)\\n\\n只需将其粘贴到浏览器中即可！\\n\\n应用将自动检测您的身份验证状态。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navigateur ouvert pour l'authentification GitHub.\\n\\n📋 Code copié dans le presse-papiers :\\n\\n\\(code)\\n\\nCollez-le simplement dans le navigateur !\\n\\nL'application détectera automatiquement votre authentification."
+          }
+        }
+      }
+    },
+    "auth.copilot.code-not-extracted": {
+      "comment": "Fallback message when GitHub Copilot device code cannot be extracted automatically",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for GitHub authentication.\\n\\nCheck your terminal or the opened browser for the device code.\\n\\nThe app will automatically detect when you're authenticated."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navegador abierto para autenticación de GitHub.\\n\\nRevisa tu terminal o el navegador abierto para ver el código de dispositivo.\\n\\nLa aplicación detectará automáticamente cuando te hayas autenticado."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 已打开浏览器进行 GitHub 身份验证。\\n\\n请在终端或已打开的浏览器中查看设备代码。\\n\\n应用将在您完成身份验证后自动检测。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navigateur ouvert pour l'authentification GitHub.\\n\\nConsultez votre terminal ou le navigateur ouvert pour le code de l'appareil.\\n\\nL'application détectera automatiquement votre authentification."
+          }
+        }
+      }
+    },
+    "auth.generic.browser-opened": {
+      "comment": "Generic authentication success message when browser is opened",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for authentication.\\n\\nPlease complete the login in your browser.\\n\\nThe app will automatically detect when you're authenticated."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navegador abierto para autenticación.\\n\\nPor favor completa el inicio de sesión en tu navegador.\\n\\nLa aplicación detectará automáticamente cuando estés autenticado."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 已打开浏览器进行身份验证。\\n\\n请在浏览器中完成登录。\\n\\n应用将自动检测您的登录状态。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navigateur ouvert pour l'authentification.\\n\\nVeuillez compléter la connexion dans votre navigateur.\\n\\nL'application détectera automatiquement lorsque vous serez authentifié."
+          }
+        }
+      }
+    },
+    "auth.error.process-failed": {
+      "comment": "Error when authentication process fails without specific error details",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Authentication process failed unexpectedly"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El proceso de autenticación falló inesperadamente"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "身份验证过程意外失败"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le processus d'authentification a échoué de manière inattendue"
+          }
+        }
+      }
+    },
+    "auth.error.failed-to-start": {
+      "comment": "Error when authentication process cannot be started",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to start auth process: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo iniciar el proceso de autenticación: \\(error.localizedDescription)"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法启动认证流程：\\(error.localizedDescription)"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échec du démarrage du processus d'authentification : \\(error.localizedDescription)"
+          }
+        }
+      }
+    },
+    "auth.error.failed-to-create-auth-dir": {
+      "comment": "Error when the authentication directory cannot be created",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to create auth directory: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo crear el directorio de autenticación: \\(error.localizedDescription)"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "创建身份验证目录失败：\\(error.localizedDescription)"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de créer le dossier d'authentification : \\(error.localizedDescription)"
+          }
+        }
+      }
+    },
+    "auth.zai.api-key-saved": {
+      "comment": "Success message when Z.AI API key is saved successfully",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API key saved successfully"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clave de API guardada exitosamente"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API 密钥保存成功"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clé API enregistrée avec succès"
+          }
+        }
+      }
+    },
+    "auth.zai.api-key-save-failed": {
+      "comment": "Error when Z.AI API key cannot be saved",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to save API key: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al guardar la clave de API: \\(error.localizedDescription)"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保存 API 密钥失败：\\(error.localizedDescription)"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échec de l'enregistrement de la clé API : \\(error.localizedDescription)"
+          }
+        }
+      }
+    },
+    "settings.account.expired": {
+      "comment": "Label indicating an account's authentication has expired",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(expired)"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(expirado)"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(已过期)"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(expiré)"
+          }
+        }
+      }
+    },
+    "settings.account.remove-button": {
+      "comment": "Button to remove an account from the service",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove"
+          }
+        }
+      }
+    },
+    "settings.vercel.toggle": {
+      "comment": "Toggle to enable Vercel AI Gateway for Claude requests",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Vercel AI Gateway"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar Vercel AI Gateway"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用 Vercel AI 网关"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utiliser Vercel AI Gateway"
+          }
+        }
+      }
+    },
+    "settings.vercel.help": {
+      "comment": "Help text explaining the Vercel AI Gateway feature",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route Claude requests through Vercel AI Gateway for safer access to your Claude Max subscription"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enruta las solicitudes de Claude a través de Vercel AI Gateway para un acceso más seguro a tu suscripción de Claude Max"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "通过 Vercel AI Gateway 路由 Claude 请求，以更安全地访问您的 Claude Max 订阅"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acheminez les requêtes Claude via Vercel AI Gateway pour un accès plus sécurisé à votre abonnement Claude Max"
+          }
+        }
+      }
+    },
+    "settings.vercel.api-key-label": {
+      "comment": "Label for the Vercel API key input field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vercel API key"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clave de API de Vercel"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vercel API 密钥"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clé API Vercel"
+          }
+        }
+      }
+    },
+    "settings.vercel.saved": {
+      "comment": "Confirmation message when Vercel API key is saved",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardado"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已保存"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistré"
+          }
+        }
+      }
+    },
+    "settings.vercel.save-button": {
+      "comment": "Button to save the Vercel API key",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保存"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enregistrer"
+          }
+        }
+      }
+    },
+    "settings.provider.disable-help": {
+      "comment": "Tooltip for toggle to disable a provider",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disable this provider"
+          }
+        }
+      }
+    },
+    "settings.provider.enable-help": {
+      "comment": "Tooltip for toggle to enable a provider",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable this provider"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habilitar este proveedor"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "启用此提供商"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activer ce fournisseur"
+          }
+        }
+      }
+    },
+    "settings.provider.add-account-button": {
+      "comment": "Button to add a new account to a provider",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Account"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar Cuenta"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加账户"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter un compte"
+          }
+        }
+      }
+    },
+    "settings.provider.account-count": {
+      "comment": "Count of connected accounts for a provider",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d connected account(s)"
+          },
+          "variations": {
+            "quantity": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%d connected account"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%d connected accounts"
+                }
+              }
+            }
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\\(accounts.count) cuenta\\(accounts.count == 1 ? \\\"\\\" : \\\"s\\\") conectada\\(accounts.count == 1 ? \\\"\\\" : \\\"s\\\")"
+          },
+          "variations": {
+            "quantity": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "\\(accounts.count) cuenta\\(accounts.count == 1 ? \\\"\\\" : \\\"s\\\") conectada\\(accounts.count == 1 ? \\\"\\\" : \\\"s\\\")"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "\\(accounts.count) cuenta\\(accounts.count == 1 ? \\\"\\\" : \\\"s\\\") conectada\\(accounts.count == 1 ? \\\"\\\" : \\\"s\\\")"
+                }
+              }
+            }
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\\(accounts.count) 个已连接账户"
+          },
+          "variations": {
+            "quantity": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "\\(accounts.count) 个已连接账户"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "\\(accounts.count) 个已连接账户"
+                }
+              }
+            }
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "\\(accounts.count) compte\\(accounts.count == 1 ? \\\" connecté\\\" : \\\"s connectés\\\")"
+          },
+          "variations": {
+            "quantity": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "\\(accounts.count) compte\\(accounts.count == 1 ? \\\" connecté\\\" : \\\"s connectés\\\")"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "\\(accounts.count) compte\\(accounts.count == 1 ? \\\" connecté\\\" : \\\"s connectés\\\")"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "settings.provider.round-robin-info": {
+      "comment": "Information about load balancing strategy when multiple accounts are connected",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Round-robin w/ auto-failover"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Round-robin c/ failover automático"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• 轮询与自动故障转移"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Round-robin avec basculement automatique"
+          }
+        }
+      }
+    },
+    "settings.provider.no-accounts": {
+      "comment": "Message shown when no accounts are connected to a provider",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No connected accounts"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay cuentas conectadas"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无已连接账户"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucun compte connecté"
+          }
+        }
+      }
+    },
+    "settings.remove-account.title": {
+      "comment": "Alert title when confirming account removal",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove Account"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar Cuenta"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移除账户"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer le compte"
+          }
+        }
+      }
+    },
+    "settings.remove-account.cancel-button": {
+      "comment": "Button to cancel account removal",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "settings.remove-account.remove-button": {
+      "comment": "Button to confirm account removal",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移除"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer"
+          }
+        }
+      }
+    },
+    "settings.remove-account.message": {
+      "comment": "Confirmation message when removing an account from a service",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Are you sure you want to remove %@ from %@?"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Estás seguro de que quieres eliminar \\(account.displayName) de \\(serviceType.displayName)?"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "确定要从 \\(serviceType.displayName) 中移除 \\(account.displayName) 吗?"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voulez-vous vraiment supprimer \\(account.displayName) de \\(serviceType.displayName) ?"
+          }
+        }
+      }
+    },
+    "settings.server-status.label": {
+      "comment": "Label for the server status section",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server status"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estado del servidor"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "服务器状态"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "État du serveur"
+          }
+        }
+      }
+    },
+    "settings.server-status.running": {
+      "comment": "Server status indicator when running",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running"
+          }
+        }
+      }
+    },
+    "settings.server-status.stopped": {
+      "comment": "Server status indicator when stopped",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stopped"
+          }
+        }
+      }
+    },
+    "settings.launch-at-login": {
+      "comment": "Toggle to enable launching the app at login",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Launch at login"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar al iniciar sesión"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "登录时启动"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lancer à la connexion"
+          }
+        }
+      }
+    },
+    "settings.auth-files.label": {
+      "comment": "Label for the authentication files section",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auth files"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archivos de autenticación"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "认证文件"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fichiers d'authentification"
+          }
+        }
+      }
+    },
+    "settings.auth-files.open-button": {
+      "comment": "Button to open the authentication files folder",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Folder"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Carpeta"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开文件夹"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir le dossier"
+          }
+        }
+      }
+    },
+    "settings.services.section-title": {
+      "comment": "Section title for the services list",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Services"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servicios"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "服务"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Services"
+          }
+        }
+      }
+    },
+    "settings.antigravity.help": {
+      "comment": "Help text explaining the Antigravity service",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antigravity provides OAuth-based access to various AI models including Gemini and Claude. One login gives you access to multiple AI services."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antigravity proporciona acceso basado en OAuth a varios modelos de IA, incluyendo Gemini y Claude. Un solo inicio de sesión te da acceso a múltiples servicios de IA."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antigravity 提供基于 OAuth 的访问方式，支持包括 Gemini 和 Claude 在内的多种 AI 模型。一次登录即可访问多个 AI 服务。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antigravity fournit un accès OAuth à différents modèles d'IA, notamment Gemini et Claude. Une seule connexion vous donne accès à plusieurs services d'IA."
+          }
+        }
+      }
+    },
+    "settings.claude.title-via-vercel": {
+      "comment": "Custom title for Claude service when using Vercel AI Gateway",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claude Code (via Vercel)"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claude Code (vía Vercel)"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claude Code (通过 Vercel)"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claude Code (via Vercel)"
+          }
+        }
+      }
+    },
+    "settings.gemini.help": {
+      "comment": "Help text explaining Gemini project selection",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Note: If you're an existing Gemini user with multiple projects, authentication will use your default project. Set your desired project as default in Google AI Studio before connecting."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Nota: Si eres un usuario existente de Gemini con múltiples proyectos, la autenticación usará tu proyecto predeterminado. Establece tu proyecto deseado como predeterminado en Google AI Studio antes de conectarte."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ 注意：如果您是拥有多个项目的现有 Gemini 用户,身份验证将使用您的默认项目。请在连接前于 Google AI Studio 中将所需项目设置为默认项目。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Remarque : Si vous êtes un utilisateur Gemini existant avec plusieurs projets, l'authentification utilisera votre projet par défaut. Définissez le projet souhaité comme projet par défaut dans Google AI Studio avant de vous connecter."
+          }
+        }
+      }
+    },
+    "settings.copilot.help": {
+      "comment": "Help text explaining the GitHub Copilot service",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub Copilot provides access to Claude, GPT, Gemini and other models via your Copilot subscription."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub Copilot proporciona acceso a Claude, GPT, Gemini y otros modelos a través de tu suscripción de Copilot."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub Copilot 通过您的 Copilot 订阅提供对 Claude、GPT、Gemini 及其他模型的访问。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub Copilot fournit un accès à Claude, GPT, Gemini et d'autres modèles via votre abonnement Copilot."
+          }
+        }
+      }
+    },
+    "settings.zai.help": {
+      "comment": "Help text explaining the Z.AI service and where to get API keys",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z.AI GLM provides access to GLM-4.7 and other models via API key. Get your key at https://z.ai/manage-apikey/apikey-list"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z.AI GLM proporciona acceso a GLM-4.7 y otros modelos mediante clave API. Obtén tu clave en https://z.ai/manage-apikey/apikey-list"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z.AI GLM 通过 API 密钥提供 GLM-4.7 及其他模型的访问。请在 https://z.ai/manage-apikey/apikey-list 获取您的密钥"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z.AI GLM fournit un accès à GLM-4.7 et d'autres modèles via une clé API. Obtenez votre clé sur https://z.ai/manage-apikey/apikey-list"
+          }
+        }
+      }
+    },
+    "settings.footer.attribution": {
+      "comment": "Attribution text for the app footer",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy %@ was made possible thanks to"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy \\(appVersion) fue posible gracias a"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy \\(appVersion) 的开发离不开以下贡献者"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy \\(appVersion) a été rendu possible grâce à"
+          }
+        }
+      }
+    },
+    "settings.footer.rights": {
+      "comment": "Copyright rights statement in footer",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All rights reserved."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos los derechos reservados."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保留所有权利。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tous droits réservés."
+          }
+        }
+      }
+    },
+    "settings.footer.report-issue": {
+      "comment": "Link text to report an issue on GitHub",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Report an issue"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reportar un problema"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "报告问题"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Signaler un problème"
+          }
+        }
+      }
+    },
+    "settings.qwen.prompt-title": {
+      "comment": "Title for the Qwen email prompt dialog",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qwen Account Email"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correo electrónico de cuenta Qwen"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qwen 账号邮箱"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "E-mail du compte Qwen"
+          }
+        }
+      }
+    },
+    "settings.qwen.prompt-message": {
+      "comment": "Instructions for entering Qwen account email",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter your Qwen account email address"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingresa la dirección de correo electrónico de tu cuenta de Qwen"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请输入您的 Qwen 账户邮箱地址"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saisissez l'adresse e-mail de votre compte Qwen"
+          }
+        }
+      }
+    },
+    "settings.qwen.email-placeholder": {
+      "comment": "Placeholder text for the Qwen email input field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "your.email@example.com"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tu.email@ejemplo.com"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "你的邮箱@example.com"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "votre.email@exemple.com"
+          }
+        }
+      }
+    },
+    "settings.qwen.cancel-button": {
+      "comment": "Button to cancel the Qwen email prompt",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "settings.qwen.continue-button": {
+      "comment": "Button to continue with Qwen authentication after entering email",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuar"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "继续"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuer"
+          }
+        }
+      }
+    },
+    "settings.zai.prompt-title": {
+      "comment": "Title for the Z.AI API key prompt dialog",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z.AI API Key"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clave de API de Z.AI"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z.AI API 密钥"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clé API Z.AI"
+          }
+        }
+      }
+    },
+    "settings.zai.prompt-message": {
+      "comment": "Instructions for entering Z.AI API key with URL",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter your Z.AI API key from https://z.ai/manage-apikey/apikey-list"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingresa tu clave API de Z.AI desde https://z.ai/manage-apikey/apikey-list"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "请从 https://z.ai/manage-apikey/apikey-list 输入您的 Z.AI API 密钥"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saisissez votre clé API Z.AI depuis https://z.ai/manage-apikey/apikey-list"
+          }
+        }
+      }
+    },
+    "settings.zai.cancel-button": {
+      "comment": "Button to cancel the Z.AI API key prompt",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "取消"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annuler"
+          }
+        }
+      }
+    },
+    "settings.zai.add-key-button": {
+      "comment": "Button to add the Z.AI API key",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Key"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar Clave"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "添加密钥"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajouter une clé"
+          }
+        }
+      }
+    },
+    "settings.auth-result.title": {
+      "comment": "Title for the authentication result alert dialog",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Authentication Result"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resultado de Autenticación"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "认证结果"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Résultat de l'authentification"
+          }
+        }
+      }
+    },
+    "settings.auth-result.ok-button": {
+      "comment": "Button to dismiss the authentication result alert",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "确定"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        }
+      }
+    },
+    "settings.auth-result.auth-failed": {
+      "comment": "Generic authentication failure message with details",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Authentication failed. Please check if the browser opened and try again.\\n\\nDetails: %@"
+          }
+        }
+      }
+    },
+    "settings.auth-result.no-output": {
+      "comment": "Fallback message when authentication fails with no output",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No output from authentication process"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Falló la autenticación. Por favor, verifica si se abrió el navegador e intenta de nuevo.\\n\\nDetalles: \\(output.isEmpty ? \\\"No hay información del proceso de autenticación\\\" : output)"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "身份验证失败。请检查浏览器是否已打开，然后重试。\\n\\n详细信息：\\(output.isEmpty ? \\\"身份验证过程无输出\\\" : output)"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'authentification a échoué. Veuillez vérifier que le navigateur s'est ouvert et réessayer.\\n\\nDétails : \\(output.isEmpty ? \\\"Aucune sortie du processus d'authentification\\\" : output)"
+          }
+        }
+      }
+    },
+    "settings.auth-result.claude-success": {
+      "comment": "Success message for Claude Code authentication",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for Claude Code authentication.\\n\\nPlease complete the login in your browser.\\n\\nThe app will automatically detect your credentials."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navegador abierto para autenticación de Claude Code.\\n\\nPor favor, completa el inicio de sesión en tu navegador.\\n\\nLa aplicación detectará automáticamente tus credenciales."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 已打开浏览器进行 Claude Code 身份验证。\n\n请在浏览器中完成登录。\n\n应用将自动检测您的凭据。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navigateur ouvert pour l'authentification Claude Code.\\n\\nVeuillez vous connecter dans votre navigateur.\\n\\nL'application détectera automatiquement vos identifiants."
+          }
+        }
+      }
+    },
+    "settings.auth-result.codex-success": {
+      "comment": "Success message for Codex authentication",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for Codex authentication.\\n\\nPlease complete the login in your browser.\\n\\nThe app will automatically detect your credentials."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navegador abierto para autenticación de Codex.\\n\\nPor favor, completa el inicio de sesión en tu navegador.\\n\\nLa aplicación detectará tus credenciales automáticamente."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 已为 Codex 身份验证打开浏览器。\\n\\n请在浏览器中完成登录。\\n\\n应用程序将自动检测您的凭据。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navigateur ouvert pour l'authentification Codex.\\n\\nVeuillez compléter la connexion dans votre navigateur.\\n\\nL'application détectera automatiquement vos identifiants."
+          }
+        }
+      }
+    },
+    "settings.auth-result.copilot-success": {
+      "comment": "Success message for GitHub Copilot authentication",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 GitHub Copilot authentication started!\\n\\nPlease visit github.com/login/device and enter the code shown.\\n\\nThe app will automatically detect your credentials."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 ¡Autenticación de GitHub Copilot iniciada!\\n\\nPor favor visita github.com/login/device e ingresa el código que se muestra.\\n\\nLa aplicación detectará automáticamente tus credenciales."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 GitHub Copilot 身份验证已开始！\\n\\n请访问 github.com/login/device 并输入显示的代码。\\n\\n应用将自动检测您的凭据。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Authentification GitHub Copilot démarrée !\\n\\nVeuillez visiter github.com/login/device et saisir le code affiché.\\n\\nL'application détectera automatiquement vos identifiants."
+          }
+        }
+      }
+    },
+    "settings.auth-result.gemini-success": {
+      "comment": "Success message for Gemini authentication",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for Gemini authentication.\\n\\nPlease complete the login in your browser.\\n\\n⚠️ Note: If you have multiple projects, the default project will be used."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navegador abierto para autenticación de Gemini.\\n\\nPor favor completa el inicio de sesión en tu navegador.\\n\\n⚠️ Nota: Si tienes múltiples proyectos, se utilizará el proyecto predeterminado."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 已打开浏览器进行 Gemini 身份验证。\\n\\n请在浏览器中完成登录。\\n\\n⚠️ 注意：如果您有多个项目,将使用默认项目。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navigateur ouvert pour l'authentification Gemini.\\n\\nVeuillez finaliser la connexion dans votre navigateur.\\n\\n⚠️ Remarque : Si vous avez plusieurs projets, le projet par défaut sera utilisé."
+          }
+        }
+      }
+    },
+    "settings.auth-result.qwen-success": {
+      "comment": "Success message for Qwen authentication",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for Qwen authentication.\\n\\nPlease complete the login in your browser."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navegador abierto para autenticación de Qwen.\\n\\nPor favor completa el inicio de sesión en tu navegador."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 已打开浏览器进行 Qwen 身份验证。\\n\\n请在浏览器中完成登录。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navigateur ouvert pour l'authentification Qwen.\\n\\nVeuillez finaliser la connexion dans votre navigateur."
+          }
+        }
+      }
+    },
+    "settings.auth-result.antigravity-success": {
+      "comment": "Success message for Antigravity authentication",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for Antigravity authentication.\\n\\nPlease complete the login in your browser."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navegador abierto para autenticación de Antigravity.\\n\\nPor favor completa el inicio de sesión en tu navegador."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 已打开浏览器进行 Antigravity 身份验证。\\n\\n请在浏览器中完成登录。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navigateur ouvert pour l'authentification Antigravity.\\n\\nVeuillez finaliser la connexion dans votre navigateur."
+          }
+        }
+      }
+    },
+    "settings.auth-result.zai-success": {
+      "comment": "Success message for Z.AI API key addition",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Z.AI API key added successfully.\\n\\nYou can now use GLM models through the proxy."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Clave API de Z.AI agregada exitosamente.\\n\\nAhora puedes usar los modelos GLM a través del proxy."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Z.AI API 密钥添加成功。\\n\\n您现在可以通过代理使用 GLM 模型。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Clé API Z.AI ajoutée avec succès.\\n\\nVous pouvez maintenant utiliser les modèles GLM via le proxy."
+          }
+        }
+      }
+    },
+    "settings.auth-result.qwen-no-output": {
+      "comment": "Fallback message when Qwen authentication fails with no output",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No output"
+          }
+        }
+      }
+    },
+    "settings.auth-result.qwen-failed": {
+      "comment": "Qwen authentication failure message with details",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Authentication failed.\\n\\nDetails: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin salida"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无输出"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aucune sortie"
+          }
+        }
+      }
+    },
+    "settings.auth-result.zai-unknown-error": {
+      "comment": "Fallback message when Z.AI API key save fails with no details",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown error"
+          }
+        }
+      }
+    },
+    "settings.auth-result.zai-failed": {
+      "comment": "Z.AI API key save failure message with details",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to save API key.\\n\\nDetails: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error desconocido"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未知错误"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erreur inconnue"
+          }
+        }
+      }
+    },
+    "settings.account.removed-success": {
+      "comment": "Success message when an account is removed from a service",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Removed %@ from %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Se eliminó \\(account.displayName) de \\(account.type.displayName)"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ 已从 \\(account.type.displayName) 中移除 \\(account.displayName)"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ \\(account.displayName) supprimé de \\(account.type.displayName)"
+          }
+        }
+      }
+    },
+    "settings.account.removed-failed": {
+      "comment": "Error message when account removal fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to remove account"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al eliminar la cuenta"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移除账户失败"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échec de la suppression du compte"
+          }
+        }
+      }
+    },
+    "menu.about": {
+      "comment": "Menu item to show the About dialog",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About VibeProxy"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acerca de VibeProxy"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "关于 VibeProxy"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À propos de VibeProxy"
+          }
+        }
+      }
+    },
+    "menu.quit": {
+      "comment": "Menu item to quit the application",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quit VibeProxy"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salir de VibeProxy"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "退出 VibeProxy"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quitter VibeProxy"
+          }
+        }
+      }
+    },
+    "menu.edit": {
+      "comment": "Edit menu title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "编辑"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifier"
+          }
+        }
+      }
+    },
+    "menu.undo": {
+      "comment": "Undo menu item",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Undo"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deshacer"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "撤销"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annuler"
+          }
+        }
+      }
+    },
+    "menu.redo": {
+      "comment": "Redo menu item",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Redo"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rehacer"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重做"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refaire"
+          }
+        }
+      }
+    },
+    "menu.cut": {
+      "comment": "Cut menu item",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cut"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cortar"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "剪切"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couper"
+          }
+        }
+      }
+    },
+    "menu.copy": {
+      "comment": "Copy menu item",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "复制"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copier"
+          }
+        }
+      }
+    },
+    "menu.paste": {
+      "comment": "Paste menu item",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pegar"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "粘贴"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coller"
+          }
+        }
+      }
+    },
+    "menu.select-all": {
+      "comment": "Select All menu item",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select All"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seleccionar todo"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全选"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tout sélectionner"
+          }
+        }
+      }
+    },
+    "menubar.server-stopped": {
+      "comment": "Menu bar status when server is stopped",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server: Stopped"
+          }
+        }
+      }
+    },
+    "menubar.open-settings": {
+      "comment": "Menu item to open the settings window",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Settings"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Configuración"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开设置"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir les paramètres"
+          }
+        }
+      }
+    },
+    "menubar.start-server": {
+      "comment": "Menu item to start the server",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start Server"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detener Servidor"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "停止服务器"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arrêter le serveur"
+          }
+        }
+      }
+    },
+    "menubar.copy-server-url": {
+      "comment": "Menu item to copy the server URL to clipboard",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy Server URL"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar URL del servidor"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "复制服务器 URL"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copier l'URL du serveur"
+          }
+        }
+      }
+    },
+    "menubar.check-for-updates": {
+      "comment": "Menu item to check for app updates",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check for Updates..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar actualizaciones..."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "检查更新..."
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechercher des mises à jour..."
+          }
+        }
+      }
+    },
+    "menubar.quit": {
+      "comment": "Menu item to quit the application",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quit"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salir"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "退出"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quitter"
+          }
+        }
+      }
+    },
+    "notification.server-started.body": {
+      "comment": "Notification body when server starts successfully",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy is now running"
+          }
+        }
+      }
+    },
+    "notification.server-started.title": {
+      "comment": "Notification title when server starts successfully",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server Started"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy está en ejecución"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy 正在运行"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy est maintenant actif"
+          }
+        }
+      }
+    },
+    "notification.server-failed.backend-body": {
+      "comment": "Notification body when backend server fails to start",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not start backend server on port 8318"
+          }
+        }
+      }
+    },
+    "notification.server-failed.title": {
+      "comment": "Notification title when server fails to start",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server Failed"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo iniciar el servidor backend en el puerto 8318"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法在端口 8318 上启动后端服务器"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de démarrer le serveur backend sur le port 8318"
+          }
+        }
+      }
+    },
+    "notification.server-failed.proxy-body": {
+      "comment": "Notification body when thinking proxy fails to start due to timeout",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not start thinking proxy on port 8317 (timeout)"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo iniciar el proxy de procesamiento en el puerto 8317 (timeout)"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法在端口 8317 上启动思考代理（超时）"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de démarrer le proxy de réflexion sur le port 8317 (timeout)"
+          }
+        }
+      }
+    },
+    "notification.copied.title": {
+      "comment": "Notification title when content is copied to clipboard",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copied"
+          }
+        }
+      }
+    },
+    "notification.copied.server-url-body": {
+      "comment": "Notification body when server URL is copied to clipboard",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server URL copied to clipboard"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiado"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已复制"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copié"
+          }
+        }
+      }
+    },
+    "menubar.server-running": {
+      "comment": "Menu bar status when server is running with port number",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server: Running (port %d)"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servidor: Detenido"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "服务器: 已停止"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serveur : Arrêté"
+          }
+        }
+      }
+    },
+    "menubar.stop-server": {
+      "comment": "Menu item to stop the server",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop Server"
+          }
+        }
+      }
+    },
+    "menubar.icon.running": {
+      "comment": "Accessibility description for menu bar icon when server is running",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running"
+          }
+        }
+      }
+    },
+    "menubar.icon.stopped": {
+      "comment": "Accessibility description for menu bar icon when server is stopped",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stopped"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ejecutando"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "运行中"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En cours d'exécution"
+          }
+        }
+      }
+    }
+  }
+}

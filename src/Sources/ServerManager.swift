@@ -265,13 +265,13 @@ class ServerManager: ObservableObject {
     func runAuthCommand(_ command: AuthCommand, completion: @escaping (Bool, String) -> Void) {
         // Use bundled binary from app bundle
         guard let resourcePath = Bundle.main.resourcePath else {
-            completion(false, "Could not find resource path")
+            completion(false, String(localized: "server.error.no-resource-path", defaultValue: "Could not find resource path", comment: "Error when the app bundle's resource path cannot be determined"))
             return
         }
-        
+
         let bundledPath = (resourcePath as NSString).appendingPathComponent("cli-proxy-api-plus")
         guard FileManager.default.fileExists(atPath: bundledPath) else {
-            completion(false, "Binary not found at \(bundledPath)")
+            completion(false, String(format: NSLocalizedString("server.error.binary-not-found", comment: "Error when the CLI binary is not found at the expected path"), bundledPath))
             return
         }
         
@@ -402,7 +402,7 @@ class ServerManager: ObservableObject {
                             // Copy code to clipboard
                             NSPasteboard.general.clearContents()
                             NSPasteboard.general.setString(code, forType: .string)
-                            completion(true, "🌐 Browser opened for GitHub authentication.\n\n📋 Code copied to clipboard:\n\n\(code)\n\nJust paste it in the browser!\n\nThe app will automatically detect when you're authenticated.")
+                            completion(true, String(format: NSLocalizedString("auth.copilot.code-extracted", comment: "Success message when GitHub Copilot device code is extracted and copied to clipboard"), code))
                             return
                         } else if capture.text.contains("enter the code:") {
                             // Try simpler extraction
@@ -415,18 +415,18 @@ class ServerManager: ObservableObject {
                                         // Copy code to clipboard
                                         NSPasteboard.general.clearContents()
                                         NSPasteboard.general.setString(code, forType: .string)
-                                        completion(true, "🌐 Browser opened for GitHub authentication.\n\n📋 Code copied to clipboard:\n\n\(code)\n\nJust paste it in the browser!\n\nThe app will automatically detect when you're authenticated.")
+                                        completion(true, String(format: NSLocalizedString("auth.copilot.code-extracted", comment: "Success message when GitHub Copilot device code is extracted and copied to clipboard"), code))
                                         return
                                     }
                                 }
                             }
                         }
                         // Fallback if we couldn't extract the code
-                        completion(true, "🌐 Browser opened for GitHub authentication.\n\nCheck your terminal or the opened browser for the device code.\n\nThe app will automatically detect when you're authenticated.")
+                        completion(true, String(localized: "auth.copilot.code-not-extracted", defaultValue: "🌐 Browser opened for GitHub authentication.\n\nCheck your terminal or the opened browser for the device code.\n\nThe app will automatically detect when you're authenticated.", comment: "Fallback message when GitHub Copilot device code cannot be extracted automatically"))
                         return
                     }
-                    
-                    completion(true, "🌐 Browser opened for authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect when you're authenticated.")
+
+                    completion(true, String(localized: "auth.generic.browser-opened", defaultValue: "🌐 Browser opened for authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect when you're authenticated.", comment: "Generic authentication success message when browser is opened"))
                 } else {
                     // Process died quickly - check for error
                     let outputData = try? outputPipe.fileHandleForReading.readDataToEndOfFile()
@@ -441,18 +441,18 @@ class ServerManager: ObservableObject {
                     if output.contains("Opening browser") || output.contains("Attempting to open URL") {
                         // Browser opened but process finished (probably success)
                         NSLog("[Auth] Browser opened, process completed")
-                        completion(true, "🌐 Browser opened for authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect when you're authenticated.")
+                        completion(true, String(localized: "auth.generic.browser-opened", defaultValue: "🌐 Browser opened for authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect when you're authenticated.", comment: "Generic authentication success message when browser is opened"))
                     } else {
                         // Real error
                         NSLog("[Auth] Process failed")
-                        let message = error.isEmpty ? (output.isEmpty ? "Authentication process failed unexpectedly" : output) : error
+                        let message = error.isEmpty ? (output.isEmpty ? String(localized: "auth.error.process-failed", defaultValue: "Authentication process failed unexpectedly", comment: "Error when authentication process fails without specific error details") : output) : error
                         completion(false, message)
                     }
                 }
             }
         } catch {
             NSLog("[Auth] Failed to start: %@", error.localizedDescription)
-            completion(false, "Failed to start auth process: \(error.localizedDescription)")
+            completion(false, String(format: NSLocalizedString("auth.error.failed-to-start", comment: "Error when authentication process cannot be started"), error.localizedDescription))
         }
     }
     
@@ -476,7 +476,7 @@ class ServerManager: ObservableObject {
         do {
             try FileManager.default.createDirectory(at: authDir, withIntermediateDirectories: true)
         } catch {
-            completion(false, "Failed to create auth directory: \(error.localizedDescription)")
+            completion(false, String(format: NSLocalizedString("auth.error.failed-to-create-auth-dir", comment: "Error when the authentication directory cannot be created"), error.localizedDescription))
             return
         }
         
@@ -511,9 +511,9 @@ class ServerManager: ObservableObject {
                 }
             }
             
-            completion(true, "API key saved successfully")
+            completion(true, String(localized: "auth.zai.api-key-saved", defaultValue: "API key saved successfully", comment: "Success message when Z.AI API key is saved successfully"))
         } catch {
-            completion(false, "Failed to save API key: \(error.localizedDescription)")
+            completion(false, String(format: NSLocalizedString("auth.zai.api-key-save-failed", comment: "Error when Z.AI API key cannot be saved"), error.localizedDescription))
         }
     }
     
