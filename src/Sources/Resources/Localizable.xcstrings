@@ -155,6 +155,24 @@
             "state": "translated",
             "value": "Could not find resource path"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo encontrar la ruta del recurso"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "找不到资源路径"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de trouver le chemin de la ressource"
+          }
         }
       }
     },
@@ -166,6 +184,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Binary not found at %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binario no encontrado en %@"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未在 %@ 找到二进制文件"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binaire introuvable à %@"
           }
         }
       }
@@ -179,6 +215,24 @@
             "state": "translated",
             "value": "🌐 Browser opened for GitHub authentication.\n\n📋 Code copied to clipboard:\n\n%@\n\nJust paste it in the browser!\n\nThe app will automatically detect when you're authenticated."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navegador abierto para autenticación de GitHub.\n\n📋 Código copiado al portapapeles:\n\n%@\n\n¡Solo pégalo en el navegador!\n\nLa aplicación detectará automáticamente cuando estés autenticado."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 已打开浏览器进行 GitHub 身份验证。\n\n📋 代码已复制到剪贴板：\n\n%@\n\n只需将其粘贴到浏览器中即可！\n\n应用程序将在您完成身份验证后自动检测。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navigateur ouvert pour l'authentification GitHub.\n\n📋 Code copié dans le presse-papiers :\n\n%@\n\nCollez-le simplement dans le navigateur !\n\nL'application détectera automatiquement votre authentification."
+          }
         }
       }
     },
@@ -190,6 +244,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "🌐 Browser opened for GitHub authentication.\n\nCheck your terminal or the opened browser for the device code.\n\nThe app will automatically detect when you're authenticated."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navegador abierto para autenticación de GitHub.\n\nRevisa tu terminal o el navegador abierto para ver el código del dispositivo.\n\nLa aplicación detectará automáticamente cuando te hayas autenticado."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 已打开浏览器进行 GitHub 身份验证。\n\n请在终端或已打开的浏览器中查看设备代码。\n\n应用将在您完成身份验证后自动检测。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navigateur ouvert pour l'authentification GitHub.\n\nVérifiez votre terminal ou le navigateur ouvert pour le code de l'appareil.\n\nL'application détectera automatiquement lorsque vous serez authentifié."
           }
         }
       }
@@ -203,6 +275,24 @@
             "state": "translated",
             "value": "🌐 Browser opened for authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect when you're authenticated."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Se abrió el navegador para autenticación.\n\nPor favor, completa el inicio de sesión en tu navegador.\n\nLa aplicación detectará automáticamente cuando te hayas autenticado."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 已打开浏览器进行身份验证。\n\n请在浏览器中完成登录。\n\n应用会自动检测您的登录状态。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navigateur ouvert pour l'authentification.\n\nVeuillez terminer la connexion dans votre navigateur.\n\nL'application détectera automatiquement lorsque vous serez authentifié."
+          }
         }
       }
     },
@@ -214,6 +304,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Authentication process failed unexpectedly"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El proceso de autenticación falló inesperadamente"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "身份验证过程意外失败"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Le processus d'authentification a échoué de manière inattendue"
           }
         }
       }
@@ -227,6 +335,24 @@
             "state": "translated",
             "value": "Failed to start auth process: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo iniciar el proceso de autenticación: %@"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "启动认证过程失败：%@"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échec du démarrage du processus d'authentification : %@"
+          }
         }
       }
     },
@@ -238,6 +364,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Failed to create auth directory: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo crear el directorio de autenticación: %@"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "创建认证目录失败：%@"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de créer le répertoire d'authentification : %@"
           }
         }
       }
@@ -251,6 +395,24 @@
             "state": "translated",
             "value": "API key saved successfully"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clave de API guardada exitosamente"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API 密钥保存成功"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clé API enregistrée avec succès"
+          }
         }
       }
     },
@@ -262,6 +424,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Failed to save API key: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al guardar la clave API: %@"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保存 API 密钥失败：%@"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible d'enregistrer la clé API : %@"
           }
         }
       }
@@ -275,6 +455,24 @@
             "state": "translated",
             "value": "(expired)"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(vencido)"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(已过期)"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(expiré)"
+          }
         }
       }
     },
@@ -286,6 +484,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Remove"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "移除"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supprimer"
           }
         }
       }
@@ -299,6 +515,24 @@
             "state": "translated",
             "value": "Use Vercel AI Gateway"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar Vercel AI Gateway"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用 Vercel AI Gateway"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Utiliser Vercel AI Gateway"
+          }
         }
       }
     },
@@ -310,6 +544,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Route Claude requests through Vercel AI Gateway for safer access to your Claude Max subscription"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enruta las solicitudes de Claude a través de Vercel AI Gateway para un acceso más seguro a tu suscripción de Claude Max"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "通过 Vercel AI Gateway 路由 Claude 请求，以更安全地访问您的 Claude Max 订阅"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acheminez les requêtes Claude via Vercel AI Gateway pour un accès plus sécurisé à votre abonnement Claude Max"
           }
         }
       }
@@ -483,6 +735,24 @@
             "state": "translated",
             "value": "Running"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En ejecución"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "运行中"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En cours d'exécution"
+          }
         }
       }
     },
@@ -494,6 +764,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Stopped"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detenido"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已停止"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arrêté"
           }
         }
       }
@@ -939,6 +1227,24 @@
             "state": "translated",
             "value": "About VibeProxy"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acerca de VibeProxy"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "关于 VibeProxy"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "À propos de VibeProxy"
+          }
         }
       }
     },
@@ -950,6 +1256,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Quit VibeProxy"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salir de VibeProxy"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "退出 VibeProxy"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quitter VibeProxy"
           }
         }
       }
@@ -963,6 +1287,24 @@
             "state": "translated",
             "value": "Edit"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "编辑"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modifier"
+          }
         }
       }
     },
@@ -974,6 +1316,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Undo"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deshacer"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "撤销"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annuler"
           }
         }
       }
@@ -987,6 +1347,24 @@
             "state": "translated",
             "value": "Redo"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rehacer"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重做"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rétablir"
+          }
         }
       }
     },
@@ -998,6 +1376,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Cut"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cortar"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "剪切"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couper"
           }
         }
       }
@@ -1011,6 +1407,24 @@
             "state": "translated",
             "value": "Copy"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "拷贝"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copier"
+          }
         }
       }
     },
@@ -1022,6 +1436,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Paste"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pegar"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "粘贴"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Coller"
           }
         }
       }
@@ -1035,6 +1467,24 @@
             "state": "translated",
             "value": "Select All"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seleccionar todo"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "全选"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tout sélectionner"
+          }
         }
       }
     },
@@ -1046,6 +1496,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Server: Stopped"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servidor: Detenido"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "服务器：已停止"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serveur : Arrêté"
           }
         }
       }
@@ -1059,6 +1527,24 @@
             "state": "translated",
             "value": "Open Settings"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Configuración"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "打开设置"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrir les réglages"
+          }
         }
       }
     },
@@ -1070,6 +1556,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Start Server"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar Servidor"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "启动服务器"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Démarrer le serveur"
           }
         }
       }
@@ -1083,6 +1587,24 @@
             "state": "translated",
             "value": "Copy Server URL"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar URL del servidor"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "复制服务器URL"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copier l'URL du serveur"
+          }
         }
       }
     },
@@ -1094,6 +1616,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Check for Updates..."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar actualizaciones..."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "检查更新..."
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rechercher des mises à jour..."
           }
         }
       }
@@ -1107,6 +1647,24 @@
             "state": "translated",
             "value": "Quit"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salir"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "退出"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quitter"
+          }
         }
       }
     },
@@ -1118,6 +1676,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Server Started"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servidor iniciado"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "服务器已启动"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serveur démarré"
           }
         }
       }
@@ -1131,6 +1707,24 @@
             "state": "translated",
             "value": "VibeProxy is now running"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy está ejecutándose"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy 正在运行"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy est maintenant en cours d'exécution"
+          }
         }
       }
     },
@@ -1142,6 +1736,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Server Failed"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error del Servidor"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "服务器失败"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échec du serveur"
           }
         }
       }
@@ -1155,6 +1767,24 @@
             "state": "translated",
             "value": "Could not start backend server on port 8318"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo iniciar el servidor backend en el puerto 8318"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法在端口 8318 上启动后端服务器"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de démarrer le serveur backend sur le port 8318"
+          }
         }
       }
     },
@@ -1166,6 +1796,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Could not start thinking proxy on port 8317 (timeout)"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo iniciar el proxy de pensamiento en el puerto 8317 (tiempo de espera agotado)"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "无法在端口 8317 上启动思考代理(超时)"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de démarrer le proxy thinking sur le port 8317 (délai d'attente dépassé)"
           }
         }
       }
@@ -1179,6 +1827,24 @@
             "state": "translated",
             "value": "Copied"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiado"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已复制"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copié"
+          }
         }
       }
     },
@@ -1190,6 +1856,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Server URL copied to clipboard"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "URL del servidor copiada al portapapeles"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "服务器 URL 已复制到剪贴板"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "URL du serveur copiée dans le presse-papiers"
           }
         }
       }
@@ -1203,6 +1887,24 @@
             "state": "translated",
             "value": "Server: Running (port %d)"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servidor: En ejecución (puerto %d)"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "服务器：运行中（端口 %d）"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serveur : Actif (port %d)"
+          }
         }
       }
     },
@@ -1214,6 +1916,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Stop Server"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detener Servidor"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "停止服务器"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arrêter le serveur"
           }
         }
       }
@@ -1227,6 +1947,24 @@
             "state": "translated",
             "value": "Running"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En ejecución"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "运行中"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En cours d'exécution"
+          }
         }
       }
     },
@@ -1238,6 +1976,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Stopped"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detenido"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已停止"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arrêté"
           }
         }
       }
