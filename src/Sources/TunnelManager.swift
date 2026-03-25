@@ -158,19 +158,19 @@ class TunnelManager {
     
     private func showCloudflaredInstallInstructions() {
         let alert = NSAlert()
-        alert.messageText = "Cloudflared Not Installed"
-        alert.informativeText = """
+        alert.messageText = String(localized: "tunnel-manager.cloudflared-not-installed", defaultValue: "Cloudflared Not Installed", bundle: .main, comment: "Alert title when cloudflared is not found")
+        alert.informativeText = String(localized: "tunnel-manager.cloudflared-install-instructions", defaultValue: """
         To expose your server to the internet, you need to install cloudflared.
-        
+
         Install via Homebrew:
         brew install cloudflared
-        
+
         Or download from:
         https://github.com/cloudflare/cloudflared/releases
-        """
+        """, bundle: .main, comment: "Alert message with cloudflared installation instructions")
         alert.alertStyle = .informational
-        alert.addButton(withTitle: "Copy Install Command")
-        alert.addButton(withTitle: "Cancel")
+        alert.addButton(withTitle: String(localized: "tunnel-manager.copy-install-command", defaultValue: "Copy Install Command", bundle: .main, comment: "Button to copy cloudflared install command"))
+        alert.addButton(withTitle: String(localized: "tunnel-manager.cancel", defaultValue: "Cancel", bundle: .main, comment: "Cancel button"))
         
         let response = alert.runModal()
         if response == .alertFirstButtonReturn {
