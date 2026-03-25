@@ -13,7 +13,7 @@ build: ## Build the Swift executable (debug)
 
 release: ## Build the Swift executable (release)
 	@echo "🔨 Building Swift executable (release)..."
-	@./build.sh
+	@cd src && swift build -c release
 	@echo "✅ Build complete: src/.build/release/CLIProxyMenuBar"
 
 app: ## Create the .app bundle
