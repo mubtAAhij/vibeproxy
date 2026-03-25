@@ -50,14 +50,39 @@ echo -e "${BLUE}Copying resources...${NC}"
 echo "Resources to copy:"
 ls -lh "$SRC_DIR/Sources/Resources/"
 
+# Compile String Catalog to .lproj folders for runtime localization
+echo -e "${BLUE}Compiling String Catalog...${NC}"
+if [ -f "$SRC_DIR/Sources/Resources/Localizable.xcstrings" ]; then
+    # Compile .xcstrings to .lproj/Localizable.strings for runtime lookup
+    # String(localized:bundle:.main) requires compiled .lproj folders, not raw JSON
+    # xcstringstool will create en.lproj and any other locale folders automatically
+    xcrun xcstringstool compile \
+        "$SRC_DIR/Sources/Resources/Localizable.xcstrings" \
+        --output-directory "$APP_DIR/Contents/Resources" \
+        2>&1 | grep -v "note:" || echo -e "${YELLOW}⚠️ xcstringstool compile failed; localization may not work at runtime${NC}"
+
+    # Verify compiled strings file was created for base locale
+    if [ -f "$APP_DIR/Contents/Resources/en.lproj/Localizable.strings" ] || \
+       [ -f "$APP_DIR/Contents/Resources/Base.lproj/Localizable.strings" ]; then
+        echo -e "${GREEN}✅ String Catalog compiled to .lproj/Localizable.strings${NC}"
+        ls -la "$APP_DIR/Contents/Resources/"*.lproj/ 2>/dev/null || true
+    else
+        echo -e "${YELLOW}⚠️ Compiled Localizable.strings not found; runtime localization will fail${NC}"
+        echo "Checking for .lproj directories:"
+        ls -la "$APP_DIR/Contents/Resources/" | grep lproj || echo "No .lproj directories found"
+    fi
+else
+    echo -e "${YELLOW}⚠️ Localizable.xcstrings not found; skipping string catalog compilation${NC}"
+fi
+
 # Copy each file/directory from Resources/* directly to Contents/Resources/
-# Exclude .swift files and other build artifacts
+# Exclude .swift files, .xcstrings (already compiled above), and other build artifacts
 if [ -d "$SRC_DIR/Sources/Resources" ]; then
     # Use a loop to copy each item to avoid nested Resources folder
     for item in "$SRC_DIR/Sources/Resources/"*; do
         if [ -e "$item" ]; then
-            # Skip if it's a Swift file or Package.swift
-            if [[ "$item" != *.swift ]]; then
+            # Skip Swift files and .xcstrings (already compiled to .lproj)
+            if [[ "$item" != *.swift && "$item" != *.xcstrings ]]; then
                 cp -r "$item" "$APP_DIR/Contents/Resources/"
             fi
         fi
