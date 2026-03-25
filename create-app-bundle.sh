@@ -76,6 +76,24 @@ if [ ! -f "$APP_DIR/Contents/Resources/cli-proxy-api-plus" ]; then
 fi
 echo -e "${GREEN}✅ cli-proxy-api-plus bundled: $(ls -lh "$APP_DIR/Contents/Resources/cli-proxy-api-plus" | awk '{print $5}')${NC}"
 
+# Compile String Catalog into .lproj directories for runtime localization
+echo -e "${BLUE}Compiling String Catalog...${NC}"
+if [ -f "$APP_DIR/Contents/Resources/Localizable.xcstrings" ]; then
+    # Compile the .xcstrings file into .lproj directories (required for Bundle.main to load localizations)
+    # This produces en.lproj/Localizable.strings (and other locales if added to the catalog)
+    if xcrun xcstringstool compile "$APP_DIR/Contents/Resources/Localizable.xcstrings" \
+        --output-directory "$APP_DIR/Contents/Resources" 2>/dev/null; then
+        echo -e "${GREEN}✅ String Catalog compiled successfully${NC}"
+        # The .xcstrings source file is no longer needed at runtime (only the compiled .lproj tables are used)
+        rm -f "$APP_DIR/Contents/Resources/Localizable.xcstrings"
+    else
+        echo -e "${YELLOW}⚠️ Failed to compile String Catalog (xcstringstool not available or catalog is empty)${NC}"
+        echo -e "${YELLOW}   Localizations may not work at runtime. Ensure Xcode Command Line Tools are installed.${NC}"
+    fi
+else
+    echo -e "${YELLOW}⚠️ No String Catalog found - app will use hardcoded English strings only${NC}"
+fi
+
 # Copy app icon
 if [ -f "$SRC_DIR/Sources/Resources/AppIcon.icns" ]; then
     cp "$SRC_DIR/Sources/Resources/AppIcon.icns" "$APP_DIR/Contents/Resources/"
