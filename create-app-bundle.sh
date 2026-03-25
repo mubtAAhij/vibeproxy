@@ -51,17 +51,41 @@ echo "Resources to copy:"
 ls -lh "$SRC_DIR/Sources/Resources/"
 
 # Copy each file/directory from Resources/* directly to Contents/Resources/
-# Exclude .swift files and other build artifacts
+# Exclude .swift files, .xcstrings (will compile separately), and other build artifacts
 if [ -d "$SRC_DIR/Sources/Resources" ]; then
     # Use a loop to copy each item to avoid nested Resources folder
     for item in "$SRC_DIR/Sources/Resources/"*; do
         if [ -e "$item" ]; then
-            # Skip if it's a Swift file or Package.swift
-            if [[ "$item" != *.swift ]]; then
+            # Skip Swift files and xcstrings (compiled below)
+            if [[ "$item" != *.swift && "$item" != *.xcstrings ]]; then
                 cp -r "$item" "$APP_DIR/Contents/Resources/"
             fi
         fi
     done
+fi
+
+# Compile String Catalog into .lproj folders for runtime localization
+# String(localized:bundle:.main) requires compiled .strings/.stringsdict in .lproj,
+# not the raw .xcstrings JSON that SPM copies. Without this, UI stays in English.
+XCSTRINGS_SRC="$SRC_DIR/Sources/Resources/Localizable.xcstrings"
+if [ -f "$XCSTRINGS_SRC" ]; then
+    echo -e "${BLUE}Compiling string catalog for localization...${NC}"
+    if xcrun xcstringstool compile "$XCSTRINGS_SRC" --output-directory "$APP_DIR/Contents/Resources" 2>/dev/null; then
+        echo -e "${GREEN}✅ String catalog compiled successfully${NC}"
+        # Create locale aliases for Chinese variants (zh-CN → zh-Hans, zh_CN, etc.)
+        if [ -d "$APP_DIR/Contents/Resources/zh-CN.lproj" ]; then
+            for VARIANT in zh-Hans zh-Hans-CN zh_CN; do
+                rm -rf "$APP_DIR/Contents/Resources/${VARIANT}.lproj"
+                cp -R "$APP_DIR/Contents/Resources/zh-CN.lproj" "$APP_DIR/Contents/Resources/${VARIANT}.lproj"
+            done
+            echo -e "${GREEN}✅ Created Chinese locale aliases${NC}"
+        fi
+    else
+        echo -e "${YELLOW}⚠️ xcstringstool not available or compilation failed — UI will stay in English${NC}"
+        echo "   String catalog compilation requires macOS with Xcode command line tools."
+    fi
+else
+    echo -e "${YELLOW}⚠️ Localizable.xcstrings not found — UI will stay in English${NC}"
 fi
 
 # Verify critical files were copied
