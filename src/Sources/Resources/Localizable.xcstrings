@@ -383,6 +383,24 @@
             "state": "translated",
             "value": "Binary not found at %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binario no encontrado en %@"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "未在 %@ 找到二进制文件"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binaire introuvable à %@"
+          }
         }
       }
     },
@@ -394,6 +412,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "🌐 Browser opened for GitHub authentication.\n\n📋 Code copied to clipboard:\n\n%@\n\nJust paste it in the browser!\n\nThe app will automatically detect when you're authenticated."
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navegador abierto para autenticación de GitHub.\n\n📋 Código copiado al portapapeles:\n\n%@\n\n¡Solo pégalo en el navegador!\n\nLa aplicación detectará automáticamente cuando te hayas autenticado."
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 已打开浏览器进行 GitHub 身份验证。\n\n📋 代码已复制到剪贴板：\n\n%@\n\n请在浏览器中粘贴即可！\n\n应用将自动检测您的身份验证状态。"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navigateur ouvert pour l'authentification GitHub.\n\n📋 Code copié dans le presse-papiers :\n\n%@\n\nCollez-le simplement dans le navigateur !\n\nL'application détectera automatiquement votre authentification."
           }
         }
       }
@@ -503,6 +539,18 @@
             "state": "translated",
             "value": "Error al iniciar el proceso de autenticación: %@"
           }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "启动认证流程失败：%@"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de démarrer le processus d'authentification : %@"
+          }
         }
       }
     },
@@ -514,6 +562,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Failed to create auth directory: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo crear el directorio de autenticación: %@"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "创建认证目录失败：%@"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Impossible de créer le répertoire d'authentification : %@"
           }
         }
       }
@@ -556,6 +622,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Failed to save API key: %@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al guardar la clave de API: %@"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "保存 API 密钥失败：%@"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Échec de l'enregistrement de la clé API : %@"
           }
         }
       }
@@ -1017,6 +1101,24 @@
             "state": "translated",
             "value": "Are you sure you want to remove %@ from %@?"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Está seguro de que desea eliminar %@ de %@?"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "您确定要从 %2$@ 中移除 %1$@ 吗？"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voulez-vous vraiment supprimer %@ de %@ ?"
+          }
         }
       }
     },
@@ -1352,6 +1454,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "VibeProxy %@ was made possible thanks to"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy %@ fue posible gracias a"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy %@ 的开发离不开以下支持"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy %@ a été rendu possible grâce à"
           }
         }
       }
@@ -1700,6 +1820,18 @@
           "stringUnit": {
             "state": "translated",
             "value": "身份验证失败。请检查浏览器是否已打开，然后重试。\n\n详细信息：%@"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La autenticación falló. Por favor, verifica si se abrió el navegador e intenta nuevamente.\n\nDetalles: %@"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "L'authentification a échoué. Veuillez vérifier que le navigateur s'est ouvert et réessayer.\n\nDétails : %@"
           }
         }
       }
@@ -2792,6 +2924,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Server: Running (port %d)"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servidor: En ejecución (puerto %d)"
+          }
+        },
+        "zh-CN": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "服务器：运行中（端口 %d）"
+          }
+        },
+        "fr-FR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Serveur : En cours d'exécution (port %d)"
           }
         }
       }
