@@ -64,6 +64,31 @@ if [ -d "$SRC_DIR/Sources/Resources" ]; then
     done
 fi
 
+# Compile String Catalog to .lproj tables for runtime localization
+echo -e "${BLUE}Compiling String Catalog...${NC}"
+if [ -f "$APP_DIR/Contents/Resources/Localizable.xcstrings" ]; then
+    # Compile .xcstrings to .lproj/Localizable.strings for each language
+    # This is required because SPM only copies raw JSON, but Bundle.main needs compiled tables
+    if command -v xcrun >/dev/null 2>&1; then
+        xcrun xcstringstool compile \
+            "$APP_DIR/Contents/Resources/Localizable.xcstrings" \
+            --output-directory "$APP_DIR/Contents/Resources" 2>&1 | grep -v "note:" || true
+
+        # Verify compiled tables exist
+        if [ -d "$APP_DIR/Contents/Resources/en.lproj" ]; then
+            echo -e "${GREEN}✅ String Catalog compiled to .lproj tables${NC}"
+            ls -lh "$APP_DIR/Contents/Resources/"*.lproj/Localizable.strings 2>/dev/null || true
+        else
+            echo -e "${YELLOW}⚠️ Warning: xcstringstool did not produce .lproj output${NC}"
+        fi
+    else
+        echo -e "${YELLOW}⚠️ Warning: xcrun not available, skipping String Catalog compilation${NC}"
+        echo "  Localized strings will not work at runtime without compiled .lproj tables"
+    fi
+else
+    echo -e "${YELLOW}⚠️ No Localizable.xcstrings found in bundle${NC}"
+fi
+
 # Verify critical files were copied
 echo "Checking bundled resources:"
 ls -lh "$APP_DIR/Contents/Resources/"
