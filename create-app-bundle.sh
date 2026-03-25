@@ -64,6 +64,30 @@ if [ -d "$SRC_DIR/Sources/Resources" ]; then
     done
 fi
 
+# Compile String Catalogs (.xcstrings) to .lproj directories for runtime localization
+echo -e "${BLUE}Compiling String Catalogs for runtime...${NC}"
+if [ -f "$APP_DIR/Contents/Resources/Localizable.xcstrings" ]; then
+    # xcstringstool compile requires macOS toolchain
+    if command -v xcrun >/dev/null 2>&1; then
+        xcrun xcstringstool compile \
+            "$APP_DIR/Contents/Resources/Localizable.xcstrings" \
+            --output-directory "$APP_DIR/Contents/Resources"
+
+        # Verify .lproj directories were created
+        if [ -d "$APP_DIR/Contents/Resources/en.lproj" ]; then
+            echo -e "${GREEN}✅ String Catalogs compiled to .lproj directories${NC}"
+            ls -lh "$APP_DIR/Contents/Resources/"*.lproj 2>/dev/null || true
+        else
+            echo -e "${YELLOW}⚠️ WARNING: String Catalog compilation produced no .lproj directories${NC}"
+        fi
+    else
+        echo -e "${YELLOW}⚠️ WARNING: xcrun not available - String Catalogs will not be compiled${NC}"
+        echo -e "${YELLOW}   Runtime localization will fail. This is expected on non-macOS CI runners.${NC}"
+    fi
+else
+    echo -e "${YELLOW}⚠️ No Localizable.xcstrings found in Resources${NC}"
+fi
+
 # Verify critical files were copied
 echo "Checking bundled resources:"
 ls -lh "$APP_DIR/Contents/Resources/"
