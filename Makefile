@@ -20,6 +20,7 @@ app: ## Create the .app bundle
 	@echo "📦 Creating .app bundle..."
 	@./create-app-bundle.sh
 	@echo "✅ App bundle created: VibeProxy.app"
+	@echo "    (String Catalog compiled into .lproj for runtime localization)"
 
 install: app ## Build and install to /Applications
 	@echo "📲 Installing to /Applications..."
