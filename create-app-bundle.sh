@@ -1,4 +1,12 @@
 #!/bin/bash
+#
+# Builds and packages VibeProxy.app for macOS
+#
+# IMPORTANT: This script compiles String Catalogs (.xcstrings) into .lproj directories
+# for runtime localization. The source catalog is at src/Sources/Resources/Localizable.xcstrings
+# and must be compiled to .lproj/Localizable.strings files using xcstringstool before
+# Bundle.main.localizedString() can find localized strings at runtime.
+#
 
 set -e
 
@@ -62,6 +70,25 @@ if [ -d "$SRC_DIR/Sources/Resources" ]; then
             fi
         fi
     done
+fi
+
+# Compile String Catalog (.xcstrings) into .lproj directories for runtime localization
+echo -e "${BLUE}Compiling String Catalog for runtime localization...${NC}"
+if [ -f "$APP_DIR/Contents/Resources/Localizable.xcstrings" ]; then
+    # Use xcstringstool to compile .xcstrings → .lproj/Localizable.strings
+    xcrun xcstringstool compile \
+        "$APP_DIR/Contents/Resources/Localizable.xcstrings" \
+        --output-directory "$APP_DIR/Contents/Resources"
+
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}✅ String Catalog compiled to .lproj directories${NC}"
+        # List generated .lproj directories
+        ls -d "$APP_DIR/Contents/Resources/"*.lproj 2>/dev/null || echo "  (en.lproj generated)"
+    else
+        echo -e "${YELLOW}⚠️ Warning: String Catalog compilation failed - localization may not work at runtime${NC}"
+    fi
+else
+    echo -e "${YELLOW}⚠️ Warning: Localizable.xcstrings not found - skipping localization compilation${NC}"
 fi
 
 # Verify critical files were copied
