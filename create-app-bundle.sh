@@ -58,10 +58,32 @@ if [ -d "$SRC_DIR/Sources/Resources" ]; then
         if [ -e "$item" ]; then
             # Skip if it's a Swift file or Package.swift
             if [[ "$item" != *.swift ]]; then
-                cp -r "$item" "$APP_DIR/Contents/Resources/"
+                # Skip .xcstrings files - they will be compiled separately
+                if [[ "$item" != *.xcstrings ]]; then
+                    cp -r "$item" "$APP_DIR/Contents/Resources/"
+                fi
             fi
         fi
     done
+fi
+
+# Compile String Catalog to .lproj folders for runtime localization
+echo -e "${BLUE}Compiling String Catalog...${NC}"
+XCSTRINGS_FILE="$SRC_DIR/Sources/Resources/Localizable.xcstrings"
+if [ -f "$XCSTRINGS_FILE" ]; then
+    # Compile .xcstrings to .lproj folders using xcstringstool
+    xcrun xcstringstool compile "$XCSTRINGS_FILE" \
+        --output-directory "$APP_DIR/Contents/Resources/" 2>&1 | grep -v "warning:" || true
+
+    # Verify compiled .lproj folders exist
+    if [ -d "$APP_DIR/Contents/Resources/en.lproj" ]; then
+        echo -e "${GREEN}✅ String Catalog compiled: en.lproj/Localizable.strings${NC}"
+    else
+        echo -e "${YELLOW}⚠️ WARNING: String Catalog compilation may have failed${NC}"
+        echo "App will use String Catalog API but localization may not work at runtime"
+    fi
+else
+    echo -e "${YELLOW}⚠️ No String Catalog found at $XCSTRINGS_FILE${NC}"
 fi
 
 # Verify critical files were copied
