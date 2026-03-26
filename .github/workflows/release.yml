@@ -119,6 +119,8 @@ jobs:
           APP_VERSION: ${{ steps.get_version.outputs.VERSION }}
           TARGET_ARCH: ${{ matrix.swift_arch }}
         run: |
+          # create-app-bundle.sh compiles Localizable.xcstrings to .lproj folders via xcstringstool
+          # This is required for runtime localization with String(localized:bundle:.main) to work
           chmod +x create-app-bundle.sh
           ./create-app-bundle.sh
 
