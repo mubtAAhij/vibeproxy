@@ -2,6 +2,16 @@
 
 set -e
 
+# VibeProxy .app Bundle Creation Script
+#
+# This script packages the Swift executable and resources into a macOS .app bundle.
+#
+# LOCALIZATION:
+# - Source: src/Sources/Resources/Localizable.xcstrings (String Catalog)
+# - Runtime: Compiled to *.lproj/Localizable.strings via xcstringstool
+# - Swift code uses: String(localized: "key", defaultValue: "...", bundle: .main, comment: "...")
+# - Requires: macOS with Xcode Command Line Tools (xcrun xcstringstool)
+
 echo "📦 Creating .app bundle..."
 
 # Colors
@@ -64,6 +74,29 @@ if [ -d "$SRC_DIR/Sources/Resources" ]; then
     done
 fi
 
+# Compile String Catalog (.xcstrings) to .lproj for runtime localization
+# String(localized:bundle:.main) requires compiled .lproj/Localizable.strings, not raw .xcstrings
+echo -e "${BLUE}Compiling String Catalog for localization...${NC}"
+XCSTRINGS_FILE="$APP_DIR/Contents/Resources/Localizable.xcstrings"
+if [ -f "$XCSTRINGS_FILE" ]; then
+    if command -v xcrun >/dev/null 2>&1; then
+        # Compile .xcstrings → en.lproj/Localizable.strings (and other locales if defined)
+        xcrun xcstringstool compile "$XCSTRINGS_FILE" --output-directory "$APP_DIR/Contents/Resources/" 2>&1 || {
+            echo -e "${YELLOW}⚠️  WARNING: xcstringstool compile failed. Localization may not work at runtime.${NC}"
+            echo "    This is expected on non-macOS systems or if Xcode Command Line Tools are missing."
+        }
+        # Remove the raw .xcstrings from the bundle (no longer needed; compiled .lproj tables are sufficient)
+        rm -f "$XCSTRINGS_FILE"
+        echo -e "${GREEN}✅ String Catalog compiled to .lproj directories${NC}"
+        ls -la "$APP_DIR/Contents/Resources/"*.lproj 2>/dev/null || echo "    (No .lproj directories found; localization will fall back to defaultValue)"
+    else
+        echo -e "${YELLOW}⚠️  WARNING: xcrun not found. String Catalog will remain as raw JSON.${NC}"
+        echo "    Localization will NOT work at runtime unless you run this on macOS with Xcode Command Line Tools."
+    fi
+else
+    echo -e "${YELLOW}⚠️  No Localizable.xcstrings found in bundle (expected at $XCSTRINGS_FILE)${NC}"
+fi
+
 # Verify critical files were copied
 echo "Checking bundled resources:"
 ls -lh "$APP_DIR/Contents/Resources/"
@@ -94,6 +127,11 @@ fi
 # Copy Info.plist and inject version
 echo -e "${BLUE}Copying Info.plist...${NC}"
 cp "$SRC_DIR/Info.plist" "$APP_DIR/Contents/"
+
+# Note: For additional locales beyond English, ensure Info.plist contains:
+# - CFBundleDevelopmentRegion = "en"
+# - CFBundleLocalizations array with locale codes (e.g., ["en", "es", "fr"])
+# Then compile Localizable.xcstrings with those locales defined in the catalog.
 
 # Inject version from git tag or environment variable
 VERSION="${APP_VERSION:-}"
