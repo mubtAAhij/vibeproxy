@@ -64,6 +64,25 @@ if [ -d "$SRC_DIR/Sources/Resources" ]; then
     done
 fi
 
+# Compile String Catalogs (.xcstrings) to .lproj tables for runtime
+if [ -f "$APP_DIR/Contents/Resources/Localizable.xcstrings" ]; then
+    echo -e "${BLUE}Compiling String Catalogs...${NC}"
+    if command -v xcstringstool >/dev/null 2>&1; then
+        xcstringstool compile "$APP_DIR/Contents/Resources/Localizable.xcstrings" \
+            --output-directory "$APP_DIR/Contents/Resources/"
+        if [ $? -eq 0 ]; then
+            echo -e "${GREEN}✅ String Catalogs compiled to .lproj tables${NC}"
+        else
+            echo -e "${YELLOW}⚠️ WARNING: xcstringstool compilation failed${NC}"
+            echo "Runtime localization may not work correctly."
+        fi
+    else
+        echo -e "${YELLOW}⚠️ WARNING: xcstringstool not found (requires Xcode Command Line Tools)${NC}"
+        echo "String Catalogs will remain in raw JSON format."
+        echo "Runtime localization may not work correctly."
+    fi
+fi
+
 # Verify critical files were copied
 echo "Checking bundled resources:"
 ls -lh "$APP_DIR/Contents/Resources/"
