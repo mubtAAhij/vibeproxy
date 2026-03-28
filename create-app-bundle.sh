@@ -64,6 +64,31 @@ if [ -d "$SRC_DIR/Sources/Resources" ]; then
     done
 fi
 
+# Compile String Catalog to .lproj for runtime localization
+echo -e "${BLUE}Compiling String Catalog for runtime...${NC}"
+if [ -f "$SRC_DIR/Sources/Resources/Localizable.xcstrings" ]; then
+    # Create base localization directory
+    mkdir -p "$APP_DIR/Contents/Resources/en.lproj"
+
+    # Compile .xcstrings to .strings using xcrun xcstringstool
+    if command -v xcrun >/dev/null 2>&1; then
+        xcrun xcstringstool compile \
+            "$SRC_DIR/Sources/Resources/Localizable.xcstrings" \
+            --output-directory "$APP_DIR/Contents/Resources"
+
+        if [ -f "$APP_DIR/Contents/Resources/en.lproj/Localizable.strings" ]; then
+            echo -e "${GREEN}✅ String Catalog compiled to en.lproj/Localizable.strings${NC}"
+        else
+            echo -e "${YELLOW}⚠️ WARNING: xcstringstool compile did not produce expected output${NC}"
+        fi
+    else
+        echo -e "${YELLOW}⚠️ WARNING: xcrun not available - localized strings will not work at runtime!${NC}"
+        echo "String Catalog (.xcstrings) must be compiled to .lproj/Localizable.strings for Bundle.main lookups"
+    fi
+else
+    echo -e "${YELLOW}⚠️ Localizable.xcstrings not found - skipping localization compilation${NC}"
+fi
+
 # Verify critical files were copied
 echo "Checking bundled resources:"
 ls -lh "$APP_DIR/Contents/Resources/"
@@ -112,6 +137,11 @@ echo -e "${BLUE}Setting version to: ${VERSION} (build ${BUILD_NUMBER})${NC}"
 # Update Info.plist with version
 /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString ${VERSION}" "$APP_DIR/Contents/Info.plist"
 /usr/libexec/PlistBuddy -c "Set :CFBundleVersion ${BUILD_NUMBER}" "$APP_DIR/Contents/Info.plist"
+
+# Ensure localization keys are set (required for String(localized:bundle:.main) lookups)
+# CFBundleDevelopmentRegion should be "en" and CFBundleLocalizations should list supported locales
+/usr/libexec/PlistBuddy -c "Set :CFBundleDevelopmentRegion en" "$APP_DIR/Contents/Info.plist" 2>/dev/null || \
+    /usr/libexec/PlistBuddy -c "Add :CFBundleDevelopmentRegion string en" "$APP_DIR/Contents/Info.plist"
 
 # Update SUFeedURL based on architecture (for Sparkle auto-updates)
 TARGET_ARCH="${TARGET_ARCH:-arm64}"
