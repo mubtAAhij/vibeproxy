@@ -64,6 +64,24 @@ if [ -d "$SRC_DIR/Sources/Resources" ]; then
     done
 fi
 
+# Compile String Catalog to .lproj tables for runtime (CRITICAL for localization)
+echo -e "${BLUE}Compiling String Catalog...${NC}"
+XCSTRINGS_FILE="$APP_DIR/Contents/Resources/Localizable.xcstrings"
+if [ -f "$XCSTRINGS_FILE" ]; then
+    # Compile .xcstrings → en.lproj/Localizable.strings for bundle: .main lookup
+    xcrun xcstringstool compile "$XCSTRINGS_FILE" --output-directory "$APP_DIR/Contents/Resources"
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}✅ String Catalog compiled to .lproj tables${NC}"
+        # List compiled locales
+        ls -d "$APP_DIR/Contents/Resources/"*.lproj 2>/dev/null && echo "Locales available:"
+        ls -d "$APP_DIR/Contents/Resources/"*.lproj 2>/dev/null | xargs -n1 basename
+    else
+        echo -e "${YELLOW}⚠️ WARNING: xcstringstool compile failed. Localized strings may not load at runtime.${NC}"
+    fi
+else
+    echo -e "${YELLOW}⚠️ WARNING: Localizable.xcstrings not found. Localization will not work.${NC}"
+fi
+
 # Verify critical files were copied
 echo "Checking bundled resources:"
 ls -lh "$APP_DIR/Contents/Resources/"
