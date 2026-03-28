@@ -1,0 +1,1258 @@
+{
+  "version": "1.0",
+  "sourceLanguage": "en",
+  "strings": {
+    "thinking-proxy.error.invalid-request": {
+      "comment": "Error when request data cannot be decoded as UTF-8",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid request"
+          }
+        }
+      }
+    },
+    "thinking-proxy.error.invalid-request-line": {
+      "comment": "Error when HTTP request line is missing",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid request line"
+          }
+        }
+      }
+    },
+    "thinking-proxy.error.invalid-request-format": {
+      "comment": "Error when HTTP request line doesn't have enough parts",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid request format"
+          }
+        }
+      }
+    },
+    "thinking-proxy.error.no-body-separator": {
+      "comment": "Error when HTTP request is missing the header/body separator",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid request format - no body separator"
+          }
+        }
+      }
+    },
+    "thinking-proxy.error.ampcode-gateway": {
+      "comment": "Error when connection to ampcode.com fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bad Gateway - Could not connect to ampcode.com"
+          }
+        }
+      }
+    },
+    "thinking-proxy.error.vercel-gateway": {
+      "comment": "Error when connection to Vercel AI Gateway fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bad Gateway - Could not connect to Vercel AI Gateway"
+          }
+        }
+      }
+    },
+    "thinking-proxy.error.internal-server-error": {
+      "comment": "Generic internal server error",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "thinking-proxy.error.bad-gateway": {
+      "comment": "Error when connection to target server fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bad Gateway"
+          }
+        }
+      }
+    },
+    "tunnel.cloudflared.not-installed": {
+      "comment": "Alert title when cloudflared is not installed",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cloudflared Not Installed"
+          }
+        }
+      }
+    },
+    "tunnel.cloudflared.install-instructions": {
+      "comment": "Instructions for installing cloudflared",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To expose your server to the internet, you need to install cloudflared.\n\nInstall via Homebrew:\nbrew install cloudflared\n\nOr download from:\nhttps://github.com/cloudflare/cloudflared/releases"
+          }
+        }
+      }
+    },
+    "tunnel.cloudflared.copy-command": {
+      "comment": "Button to copy installation command to clipboard",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy Install Command"
+          }
+        }
+      }
+    },
+    "common.cancel": {
+      "comment": "Cancel button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "server.error.resource-path-not-found": {
+      "comment": "Error when app resource path cannot be located",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not find resource path"
+          }
+        }
+      }
+    },
+    "server.error.binary-not-found": {
+      "comment": "Error when binary is missing from expected location",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binary not found at %@"
+          }
+        }
+      }
+    },
+    "auth.copilot.code-copied": {
+      "comment": "Success message when GitHub Copilot device code is copied to clipboard",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for GitHub authentication.\n\n📋 Code copied to clipboard:\n\n%@\n\nJust paste it in the browser!\n\nThe app will automatically detect when you're authenticated."
+          }
+        }
+      }
+    },
+    "auth.copilot.browser-opened": {
+      "comment": "Success message when GitHub Copilot browser opens but device code not extracted",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for GitHub authentication.\n\nCheck your terminal or the opened browser for the device code.\n\nThe app will automatically detect when you're authenticated."
+          }
+        }
+      }
+    },
+    "auth.generic.browser-opened": {
+      "comment": "Generic success message when browser opens for authentication",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect when you're authenticated."
+          }
+        }
+      }
+    },
+    "auth.error.process-failed": {
+      "comment": "Error when authentication process fails without output",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Authentication process failed unexpectedly"
+          }
+        }
+      }
+    },
+    "auth.error.failed-to-start": {
+      "comment": "Error when authentication process fails to start",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to start auth process: %@"
+          }
+        }
+      }
+    },
+    "auth.error.failed-create-directory": {
+      "comment": "Error when auth directory cannot be created",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to create auth directory: %@"
+          }
+        }
+      }
+    },
+    "auth.zai.api-key-saved": {
+      "comment": "Success message when Z.AI API key is saved",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API key saved successfully"
+          }
+        }
+      }
+    },
+    "auth.error.failed-save-api-key": {
+      "comment": "Error when API key cannot be saved",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to save API key: %@"
+          }
+        }
+      }
+    },
+    "settings.account.expired": {
+      "comment": "Label shown next to expired account",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(expired)"
+          }
+        }
+      }
+    },
+    "settings.account.remove": {
+      "comment": "Button to remove an account",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove"
+          }
+        }
+      }
+    },
+    "settings.vercel.use-gateway": {
+      "comment": "Toggle to enable Vercel AI Gateway",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Vercel AI Gateway"
+          }
+        }
+      }
+    },
+    "settings.vercel.gateway-help": {
+      "comment": "Tooltip explaining Vercel AI Gateway",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route Claude requests through Vercel AI Gateway for safer access to your Claude Max subscription"
+          }
+        }
+      }
+    },
+    "settings.vercel.api-key-label": {
+      "comment": "Label for Vercel API key input field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vercel API key"
+          }
+        }
+      }
+    },
+    "settings.vercel.saved": {
+      "comment": "Confirmation that API key was saved",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Saved"
+          }
+        }
+      }
+    },
+    "settings.vercel.save": {
+      "comment": "Button to save Vercel API key",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
+          }
+        }
+      }
+    },
+    "settings.provider.enable": {
+      "comment": "Tooltip to enable a provider",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable this provider"
+          }
+        }
+      }
+    },
+    "settings.provider.disable": {
+      "comment": "Tooltip to disable a provider",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disable this provider"
+          }
+        }
+      }
+    },
+    "settings.provider.add-account": {
+      "comment": "Button to add a new account for a provider",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Account"
+          }
+        }
+      }
+    },
+    "settings.provider.connected-accounts": {
+      "comment": "Number of connected accounts for a provider",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d connected account"
+          },
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%d connected account"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%d connected accounts"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "settings.provider.round-robin": {
+      "comment": "Load balancing strategy description",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Round-robin w/ auto-failover"
+          }
+        }
+      }
+    },
+    "settings.provider.no-accounts": {
+      "comment": "Message when no accounts are connected",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No connected accounts"
+          }
+        }
+      }
+    },
+    "settings.alert.remove-account-title": {
+      "comment": "Alert title when removing an account",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove Account"
+          }
+        }
+      }
+    },
+    "settings.alert.remove-button": {
+      "comment": "Destructive button to confirm account removal",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove"
+          }
+        }
+      }
+    },
+    "settings.alert.remove-account-message": {
+      "comment": "Confirmation message when removing an account",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Are you sure you want to remove %@ from %@?"
+          }
+        }
+      }
+    },
+    "settings.server.status-label": {
+      "comment": "Label for server status",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server status"
+          }
+        }
+      }
+    },
+    "settings.server.stopped": {
+      "comment": "Server is stopped status",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stopped"
+          }
+        }
+      }
+    },
+    "settings.server.running": {
+      "comment": "Server is running status",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running"
+          }
+        }
+      }
+    },
+    "settings.launch-at-login": {
+      "comment": "Toggle to launch app at login",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Launch at login"
+          }
+        }
+      }
+    },
+    "settings.auth-files-label": {
+      "comment": "Label for auth files section",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auth files"
+          }
+        }
+      }
+    },
+    "settings.open-folder": {
+      "comment": "Button to open auth files folder",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Folder"
+          }
+        }
+      }
+    },
+    "settings.services-section": {
+      "comment": "Section header for services",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Services"
+          }
+        }
+      }
+    },
+    "settings.antigravity.help": {
+      "comment": "Help text describing Antigravity service",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antigravity provides OAuth-based access to various AI models including Gemini and Claude. One login gives you access to multiple AI services."
+          }
+        }
+      }
+    },
+    "settings.claude.vercel-title": {
+      "comment": "Title when Claude is using Vercel gateway",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claude Code (via Vercel)"
+          }
+        }
+      }
+    },
+    "settings.gemini.help": {
+      "comment": "Help text about Gemini project selection",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Note: If you're an existing Gemini user with multiple projects, authentication will use your default project. Set your desired project as default in Google AI Studio before connecting."
+          }
+        }
+      }
+    },
+    "settings.copilot.help": {
+      "comment": "Help text describing GitHub Copilot service",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub Copilot provides access to Claude, GPT, Gemini and other models via your Copilot subscription."
+          }
+        }
+      }
+    },
+    "settings.zai.help": {
+      "comment": "Help text describing Z.AI service",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z.AI GLM provides access to GLM-4.7 and other models via API key. Get your key at https://z.ai/manage-apikey/apikey-list"
+          }
+        }
+      }
+    },
+    "settings.footer.credits": {
+      "comment": "Footer credits text",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy %@ was made possible thanks to"
+          }
+        }
+      }
+    },
+    "settings.footer.rights-reserved": {
+      "comment": "Copyright rights reserved text",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All rights reserved."
+          }
+        }
+      }
+    },
+    "settings.footer.report-issue": {
+      "comment": "Link to report an issue",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Report an issue"
+          }
+        }
+      }
+    },
+    "settings.qwen.email-prompt-title": {
+      "comment": "Title for Qwen email prompt",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qwen Account Email"
+          }
+        }
+      }
+    },
+    "settings.qwen.email-prompt-message": {
+      "comment": "Message for Qwen email prompt",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter your Qwen account email address"
+          }
+        }
+      }
+    },
+    "settings.qwen.email-placeholder": {
+      "comment": "Placeholder for Qwen email input",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "your.email@example.com"
+          }
+        }
+      }
+    },
+    "settings.qwen.continue": {
+      "comment": "Continue button for Qwen authentication",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue"
+          }
+        }
+      }
+    },
+    "settings.zai.api-key-prompt-title": {
+      "comment": "Title for Z.AI API key prompt",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z.AI API Key"
+          }
+        }
+      }
+    },
+    "settings.zai.api-key-prompt-message": {
+      "comment": "Message for Z.AI API key prompt",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter your Z.AI API key from https://z.ai/manage-apikey/apikey-list"
+          }
+        }
+      }
+    },
+    "settings.zai.add-key": {
+      "comment": "Button to add Z.AI API key",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Key"
+          }
+        }
+      }
+    },
+    "settings.auth.result-title": {
+      "comment": "Title for authentication result alert",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Authentication Result"
+          }
+        }
+      }
+    },
+    "common.ok": {
+      "comment": "OK button",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        }
+      }
+    },
+    "settings.auth.failed-generic": {
+      "comment": "Generic authentication failure message",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Authentication failed. Please check if the browser opened and try again.\n\nDetails: %@"
+          }
+        }
+      }
+    },
+    "settings.auth.no-output": {
+      "comment": "Message when auth process produces no output",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No output from authentication process"
+          }
+        }
+      }
+    },
+    "settings.auth.claude-success": {
+      "comment": "Success message for Claude authentication",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for Claude Code authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect your credentials."
+          }
+        }
+      }
+    },
+    "settings.auth.codex-success": {
+      "comment": "Success message for Codex authentication",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for Codex authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect your credentials."
+          }
+        }
+      }
+    },
+    "settings.auth.copilot-success": {
+      "comment": "Success message for GitHub Copilot authentication",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 GitHub Copilot authentication started!\n\nPlease visit github.com/login/device and enter the code shown.\n\nThe app will automatically detect your credentials."
+          }
+        }
+      }
+    },
+    "settings.auth.gemini-success": {
+      "comment": "Success message for Gemini authentication",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for Gemini authentication.\n\nPlease complete the login in your browser.\n\n⚠️ Note: If you have multiple projects, the default project will be used."
+          }
+        }
+      }
+    },
+    "settings.auth.qwen-success": {
+      "comment": "Success message for Qwen authentication",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for Qwen authentication.\n\nPlease complete the login in your browser."
+          }
+        }
+      }
+    },
+    "settings.auth.antigravity-success": {
+      "comment": "Success message for Antigravity authentication",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for Antigravity authentication.\n\nPlease complete the login in your browser."
+          }
+        }
+      }
+    },
+    "settings.auth.zai-success": {
+      "comment": "Success message for Z.AI API key addition",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Z.AI API key added successfully.\n\nYou can now use GLM models through the proxy."
+          }
+        }
+      }
+    },
+    "settings.auth.no-output-qwen": {
+      "comment": "Message when Qwen auth produces no output",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No output"
+          }
+        }
+      }
+    },
+    "settings.auth.failed-qwen": {
+      "comment": "Qwen authentication failure message",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Authentication failed.\n\nDetails: %@"
+          }
+        }
+      }
+    },
+    "settings.auth.failed-save-key": {
+      "comment": "Error when API key save fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to save API key.\n\nDetails: %@"
+          }
+        }
+      }
+    },
+    "settings.auth.unknown-error": {
+      "comment": "Message for unknown error",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown error"
+          }
+        }
+      }
+    },
+    "settings.auth.account-removed": {
+      "comment": "Success message when account is removed",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Removed %@ from %@"
+          }
+        }
+      }
+    },
+    "settings.auth.failed-remove-account": {
+      "comment": "Error when account removal fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to remove account"
+          }
+        }
+      }
+    },
+    "menu.about": {
+      "comment": "About menu item",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About VibeProxy"
+          }
+        }
+      }
+    },
+    "menu.quit-app": {
+      "comment": "Quit application menu item",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quit VibeProxy"
+          }
+        }
+      }
+    },
+    "menu.edit": {
+      "comment": "Edit menu title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit"
+          }
+        }
+      }
+    },
+    "menu.undo": {
+      "comment": "Undo menu item",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Undo"
+          }
+        }
+      }
+    },
+    "menu.redo": {
+      "comment": "Redo menu item",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Redo"
+          }
+        }
+      }
+    },
+    "menu.cut": {
+      "comment": "Cut menu item",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cut"
+          }
+        }
+      }
+    },
+    "menu.copy": {
+      "comment": "Copy menu item",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy"
+          }
+        }
+      }
+    },
+    "menu.paste": {
+      "comment": "Paste menu item",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste"
+          }
+        }
+      }
+    },
+    "menu.select-all": {
+      "comment": "Select All menu item",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select All"
+          }
+        }
+      }
+    },
+    "menu.server-stopped": {
+      "comment": "Menu item showing server is stopped",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server: Stopped"
+          }
+        }
+      }
+    },
+    "menu.open-settings": {
+      "comment": "Menu item to open settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Settings"
+          }
+        }
+      }
+    },
+    "menu.start-server": {
+      "comment": "Menu item to start server",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start Server"
+          }
+        }
+      }
+    },
+    "menu.copy-server-url": {
+      "comment": "Menu item to copy server URL",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy Server URL"
+          }
+        }
+      }
+    },
+    "menu.check-updates": {
+      "comment": "Menu item to check for updates",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check for Updates..."
+          }
+        }
+      }
+    },
+    "menu.quit": {
+      "comment": "Menu item to quit application",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quit"
+          }
+        }
+      }
+    },
+    "notification.server-started-body": {
+      "comment": "Notification body when server starts",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy is now running"
+          }
+        }
+      }
+    },
+    "notification.server-started-title": {
+      "comment": "Notification title when server starts",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server Started"
+          }
+        }
+      }
+    },
+    "notification.server-failed-title": {
+      "comment": "Notification title when server fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server Failed"
+          }
+        }
+      }
+    },
+    "notification.backend-failed-body": {
+      "comment": "Notification body when backend server fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not start backend server on port 8318"
+          }
+        }
+      }
+    },
+    "notification.proxy-timeout-body": {
+      "comment": "Notification body when thinking proxy times out",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not start thinking proxy on port 8317 (timeout)"
+          }
+        }
+      }
+    },
+    "notification.url-copied-body": {
+      "comment": "Notification body when server URL is copied",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server URL copied to clipboard"
+          }
+        }
+      }
+    },
+    "notification.copied-title": {
+      "comment": "Notification title when URL is copied",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copied"
+          }
+        }
+      }
+    },
+    "menu.server-running": {
+      "comment": "Menu item showing server is running with port",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server: Running (port %d)"
+          }
+        }
+      }
+    },
+    "menu.stop-server": {
+      "comment": "Menu item to stop server",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop Server"
+          }
+        }
+      }
+    },
+    "menu.icon.running": {
+      "comment": "Accessibility description for running icon",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running"
+          }
+        }
+      }
+    },
+    "menu.icon.stopped": {
+      "comment": "Accessibility description for stopped icon",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stopped"
+          }
+        }
+      }
+    }
+  }
+}
