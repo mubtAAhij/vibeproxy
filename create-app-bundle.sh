@@ -64,6 +64,36 @@ if [ -d "$SRC_DIR/Sources/Resources" ]; then
     done
 fi
 
+# Compile String Catalog to .lproj for runtime localization
+# String(localized:bundle:.main) requires compiled .strings tables, not raw .xcstrings JSON
+echo -e "${BLUE}Compiling String Catalog for runtime...${NC}"
+XCSTRINGS_FILE="$APP_DIR/Contents/Resources/Localizable.xcstrings"
+if [ -f "$XCSTRINGS_FILE" ]; then
+    if command -v xcstringstool &> /dev/null; then
+        # Compile to en.lproj (source language) - runtime will use this
+        mkdir -p "$APP_DIR/Contents/Resources/en.lproj"
+        xcstringstool compile "$XCSTRINGS_FILE" \
+            --output-directory "$APP_DIR/Contents/Resources/en.lproj" \
+            --development-language en 2>/dev/null || {
+            echo -e "${YELLOW}⚠️ WARNING: String Catalog compilation failed. Localization may not work at runtime.${NC}"
+            echo "   Ensure Xcode 15+ is installed for xcstringstool support."
+        }
+
+        # Verify compiled output exists
+        if [ -f "$APP_DIR/Contents/Resources/en.lproj/Localizable.strings" ]; then
+            echo -e "${GREEN}✅ String Catalog compiled to en.lproj/Localizable.strings${NC}"
+            # Keep the .xcstrings source for reference but runtime uses .strings
+        else
+            echo -e "${YELLOW}⚠️ Compiled .strings file not found - localization may not work${NC}"
+        fi
+    else
+        echo -e "${YELLOW}⚠️ WARNING: xcstringstool not found. String Catalog will not be compiled.${NC}"
+        echo "   Install Xcode 15+ for String Catalog support. Runtime localization will fail."
+    fi
+else
+    echo -e "${YELLOW}⚠️ No String Catalog found at $XCSTRINGS_FILE${NC}"
+fi
+
 # Verify critical files were copied
 echo "Checking bundled resources:"
 ls -lh "$APP_DIR/Contents/Resources/"
