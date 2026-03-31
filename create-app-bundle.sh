@@ -2,6 +2,21 @@
 
 set -e
 
+# VibeProxy App Bundle Builder
+#
+# This script builds a macOS .app bundle from the Swift Package Manager output.
+# It handles:
+# - Copying the compiled executable
+# - Bundling resources (icons, config, binaries)
+# - Compiling String Catalogs (.xcstrings → .lproj) for runtime localization
+# - Code signing with Developer ID
+# - Notarization preparation
+#
+# String Catalog Compilation:
+# Swift Package Manager copies .xcstrings as raw JSON, but String(localized:bundle:.main)
+# requires compiled .lproj tables in the app bundle. We use xcrun xcstringstool to compile
+# Localizable.xcstrings into en.lproj/Localizable.strings (and other locales when added).
+
 echo "📦 Creating .app bundle..."
 
 # Colors
@@ -62,6 +77,32 @@ if [ -d "$SRC_DIR/Sources/Resources" ]; then
             fi
         fi
     done
+fi
+
+# Compile String Catalogs (.xcstrings) to .lproj for runtime localization
+# Swift Package Manager copies .xcstrings as raw JSON, but String(localized:bundle:.main)
+# requires compiled .lproj tables in the app bundle for proper localization at runtime
+echo -e "${BLUE}Compiling String Catalogs...${NC}"
+if [ -f "$APP_DIR/Contents/Resources/Localizable.xcstrings" ]; then
+    echo "Found Localizable.xcstrings, compiling to .lproj tables..."
+    xcrun xcstringstool compile \
+        "$APP_DIR/Contents/Resources/Localizable.xcstrings" \
+        --output-directory "$APP_DIR/Contents/Resources" \
+        2>&1 | tee /tmp/xcstrings-compile.log || {
+        echo -e "${YELLOW}⚠️ Warning: xcstringstool compile failed. Localization may not work at runtime.${NC}"
+        echo "See /tmp/xcstrings-compile.log for details"
+        # Non-fatal: allow build to continue for development builds
+    }
+
+    # Verify .lproj directories were created
+    if ls "$APP_DIR/Contents/Resources/"*.lproj >/dev/null 2>&1; then
+        echo -e "${GREEN}✅ String catalogs compiled successfully:${NC}"
+        ls -d "$APP_DIR/Contents/Resources/"*.lproj
+    else
+        echo -e "${YELLOW}⚠️ Warning: No .lproj directories found after compilation${NC}"
+    fi
+else
+    echo "No Localizable.xcstrings found, skipping localization compilation"
 fi
 
 # Verify critical files were copied
