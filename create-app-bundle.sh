@@ -51,17 +51,34 @@ echo "Resources to copy:"
 ls -lh "$SRC_DIR/Sources/Resources/"
 
 # Copy each file/directory from Resources/* directly to Contents/Resources/
-# Exclude .swift files and other build artifacts
+# Exclude .swift files, .xcstrings (compiled separately), and other build artifacts
 if [ -d "$SRC_DIR/Sources/Resources" ]; then
     # Use a loop to copy each item to avoid nested Resources folder
     for item in "$SRC_DIR/Sources/Resources/"*; do
         if [ -e "$item" ]; then
-            # Skip if it's a Swift file or Package.swift
-            if [[ "$item" != *.swift ]]; then
+            # Skip Swift files and .xcstrings (compiled separately below)
+            if [[ "$item" != *.swift && "$item" != *.xcstrings ]]; then
                 cp -r "$item" "$APP_DIR/Contents/Resources/"
             fi
         fi
     done
+fi
+
+# Compile String Catalog (.xcstrings) into .lproj bundles for runtime localization
+echo -e "${BLUE}Compiling String Catalog for localization...${NC}"
+XCSTRINGS_FILE="$SRC_DIR/Sources/Resources/Localizable.xcstrings"
+if [ -f "$XCSTRINGS_FILE" ]; then
+    echo "Compiling Localizable.xcstrings → .lproj bundles..."
+    xcrun xcstringstool compile "$XCSTRINGS_FILE" --output-directory "$APP_DIR/Contents/Resources/"
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}✅ String Catalog compiled successfully${NC}"
+        # List generated .lproj directories
+        ls -ld "$APP_DIR/Contents/Resources/"*.lproj 2>/dev/null || echo "  (no .lproj directories found - check xcstrings content)"
+    else
+        echo -e "${YELLOW}⚠️ Warning: xcstringstool compile failed - localization may not work at runtime${NC}"
+    fi
+else
+    echo -e "${YELLOW}⚠️ Warning: Localizable.xcstrings not found - skipping localization compilation${NC}"
 fi
 
 # Verify critical files were copied
