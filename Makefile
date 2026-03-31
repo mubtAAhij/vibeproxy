@@ -16,10 +16,11 @@ release: ## Build the Swift executable (release)
 	@./build.sh
 	@echo "✅ Build complete: src/.build/release/CLIProxyMenuBar"
 
-app: ## Create the .app bundle
+app: ## Create the .app bundle (includes String Catalog compilation for localization)
 	@echo "📦 Creating .app bundle..."
 	@./create-app-bundle.sh
 	@echo "✅ App bundle created: VibeProxy.app"
+	@echo "Note: String Catalog compiled to en.lproj/Localizable.strings for runtime localization"
 
 install: app ## Build and install to /Applications
 	@echo "📲 Installing to /Applications..."
