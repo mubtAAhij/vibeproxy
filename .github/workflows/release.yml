@@ -120,6 +120,8 @@ jobs:
           TARGET_ARCH: ${{ matrix.swift_arch }}
         run: |
           chmod +x create-app-bundle.sh
+          # create-app-bundle.sh compiles Localizable.xcstrings to .lproj/Localizable.strings via xcstringstool
+          # This is required because String(localized:bundle:.main) needs compiled .lproj tables at runtime
           ./create-app-bundle.sh
 
       - name: Verify Code Signature
