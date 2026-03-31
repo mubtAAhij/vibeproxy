@@ -122,6 +122,14 @@ jobs:
           chmod +x create-app-bundle.sh
           ./create-app-bundle.sh
 
+          # Verify localization was compiled
+          if [ -d "VibeProxy.app/Contents/Resources/en.lproj" ]; then
+            echo "✅ Localization compiled successfully"
+            ls -la VibeProxy.app/Contents/Resources/*.lproj/
+          else
+            echo "⚠️ Warning: No .lproj directories found - localization may not work"
+          fi
+
       - name: Verify Code Signature
         run: |
           codesign --verify --deep --strict --verbose=2 VibeProxy.app
