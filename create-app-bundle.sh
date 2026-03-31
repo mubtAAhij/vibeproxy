@@ -64,6 +64,26 @@ if [ -d "$SRC_DIR/Sources/Resources" ]; then
     done
 fi
 
+# Compile String Catalog to .lproj tables for runtime (String(localized:) needs compiled .strings, not raw .xcstrings)
+echo -e "${BLUE}Compiling String Catalog for runtime...${NC}"
+if [ -f "$APP_DIR/Contents/Resources/Localizable.xcstrings" ]; then
+    # xcstringstool compile creates Base.lproj/Localizable.strings from the .xcstrings JSON
+    # This is required because String(localized:bundle:.main) looks for compiled .lproj tables, not raw .xcstrings
+    xcrun xcstringstool compile "$APP_DIR/Contents/Resources/Localizable.xcstrings" \
+        --output-directory "$APP_DIR/Contents/Resources/"
+
+    if [ -d "$APP_DIR/Contents/Resources/Base.lproj" ]; then
+        echo -e "${GREEN}✅ String Catalog compiled to Base.lproj/Localizable.strings${NC}"
+        ls -lh "$APP_DIR/Contents/Resources/Base.lproj/"
+    else
+        echo -e "${YELLOW}⚠️ WARNING: xcstringstool did not generate .lproj tables (localization may not work at runtime)${NC}"
+    fi
+
+    # Keep the .xcstrings for reference, but the compiled .lproj is what String(localized:) actually uses
+else
+    echo -e "${YELLOW}⚠️ No Localizable.xcstrings found; skipping String Catalog compilation${NC}"
+fi
+
 # Verify critical files were copied
 echo "Checking bundled resources:"
 ls -lh "$APP_DIR/Contents/Resources/"
