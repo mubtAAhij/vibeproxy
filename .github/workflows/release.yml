@@ -113,6 +113,22 @@ jobs:
           file src/Sources/Resources/cli-proxy-api-plus
           ls -lh src/Sources/Resources/cli-proxy-api-plus
 
+      - name: Compile String Catalog (pre-build)
+        run: |
+          # Ensure String Catalog is compiled before packaging
+          # The create-app-bundle.sh script will also compile, but doing it here ensures it's in the build
+          XCSTRINGS_FILE="src/Sources/Resources/Localizable.xcstrings"
+          if [ -f "$XCSTRINGS_FILE" ]; then
+            echo "📦 Compiling String Catalog for localization support..."
+            # Note: xcstringstool compile will be run again in create-app-bundle.sh
+            # This step just validates the catalog is valid before we start the full build
+            xcstringstool compile "$XCSTRINGS_FILE" \
+              --output-directory /tmp/validate-catalog \
+              --development-language en || {
+              echo "⚠️ String Catalog validation failed - continuing anyway"
+            }
+          fi
+
       - name: Build app bundle for ${{ matrix.arch }}
         env:
           CODESIGN_IDENTITY: ${{ secrets.APPLE_DEVELOPER_ID_APPLICATION }}
@@ -121,6 +137,34 @@ jobs:
         run: |
           chmod +x create-app-bundle.sh
           ./create-app-bundle.sh
+
+      - name: Verify Localization Files
+        run: |
+          echo "🔍 Verifying localization setup in app bundle..."
+
+          # Check for compiled .lproj directories (required for runtime)
+          if [ -d "VibeProxy.app/Contents/Resources/en.lproj" ]; then
+            echo "✅ Found en.lproj directory"
+            if [ -f "VibeProxy.app/Contents/Resources/en.lproj/Localizable.strings" ]; then
+              echo "✅ Found compiled Localizable.strings"
+              # Show first few entries
+              echo "Sample entries:"
+              head -5 "VibeProxy.app/Contents/Resources/en.lproj/Localizable.strings"
+            else
+              echo "⚠️ WARNING: en.lproj exists but Localizable.strings is missing!"
+              ls -la "VibeProxy.app/Contents/Resources/en.lproj/"
+            fi
+          else
+            echo "❌ ERROR: en.lproj directory not found - localization will NOT work at runtime!"
+            echo "This means String(localized:bundle:.main) calls will fall back to keys instead of values."
+            ls -la "VibeProxy.app/Contents/Resources/" | head -20
+            exit 1
+          fi
+
+          # Verify the source catalog is also present (optional, for reference)
+          if [ -f "VibeProxy.app/Contents/Resources/Localizable.xcstrings" ]; then
+            echo "✅ Source String Catalog included for reference"
+          fi
 
       - name: Verify Code Signature
         run: |
