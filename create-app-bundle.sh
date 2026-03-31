@@ -50,14 +50,36 @@ echo -e "${BLUE}Copying resources...${NC}"
 echo "Resources to copy:"
 ls -lh "$SRC_DIR/Sources/Resources/"
 
+# Compile String Catalog (.xcstrings) into localized .lproj directories
+if [ -f "$SRC_DIR/Sources/Resources/Localizable.xcstrings" ]; then
+    echo -e "${BLUE}Compiling String Catalog for localization...${NC}"
+
+    # Compile the xcstrings file to the app bundle (creates .lproj directories)
+    # --platform macos is required for macOS apps
+    if xcrun xcstringstool compile \
+        "$SRC_DIR/Sources/Resources/Localizable.xcstrings" \
+        --output-directory "$APP_DIR/Contents/Resources" \
+        --platform macos 2>&1; then
+        echo -e "${GREEN}✅ String Catalog compiled successfully${NC}"
+        echo "Localized .lproj directories created:"
+        ls -d "$APP_DIR/Contents/Resources/"*.lproj 2>/dev/null || echo "  (Base locale only)"
+    else
+        echo -e "${YELLOW}⚠️ Warning: xcstringstool failed - localization may not work at runtime${NC}"
+        echo "Copying raw .xcstrings as fallback (will not work for String(localized:)):"
+        cp "$SRC_DIR/Sources/Resources/Localizable.xcstrings" "$APP_DIR/Contents/Resources/"
+    fi
+else
+    echo -e "${YELLOW}⚠️ No Localizable.xcstrings found - app will use hardcoded English strings${NC}"
+fi
+
 # Copy each file/directory from Resources/* directly to Contents/Resources/
-# Exclude .swift files and other build artifacts
+# Exclude .swift files, .xcstrings (already compiled above), and other build artifacts
 if [ -d "$SRC_DIR/Sources/Resources" ]; then
     # Use a loop to copy each item to avoid nested Resources folder
     for item in "$SRC_DIR/Sources/Resources/"*; do
         if [ -e "$item" ]; then
-            # Skip if it's a Swift file or Package.swift
-            if [[ "$item" != *.swift ]]; then
+            # Skip Swift files and .xcstrings (already handled above)
+            if [[ "$item" != *.swift && "$item" != *.xcstrings ]]; then
                 cp -r "$item" "$APP_DIR/Contents/Resources/"
             fi
         fi
@@ -93,6 +115,8 @@ fi
 
 # Copy Info.plist and inject version
 echo -e "${BLUE}Copying Info.plist...${NC}"
+# Note: Info.plist must include CFBundleDevelopmentRegion (e.g., "en") for proper locale fallback
+# and CFBundleLocalizations array for supported languages (if adding non-English locales)
 cp "$SRC_DIR/Info.plist" "$APP_DIR/Contents/"
 
 # Inject version from git tag or environment variable
