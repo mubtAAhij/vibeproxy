@@ -58,10 +58,35 @@ if [ -d "$SRC_DIR/Sources/Resources" ]; then
         if [ -e "$item" ]; then
             # Skip if it's a Swift file or Package.swift
             if [[ "$item" != *.swift ]]; then
-                cp -r "$item" "$APP_DIR/Contents/Resources/"
+                # Skip .xcstrings files - they will be compiled separately
+                if [[ "$item" != *.xcstrings ]]; then
+                    cp -r "$item" "$APP_DIR/Contents/Resources/"
+                fi
             fi
         fi
     done
+fi
+
+# Compile String Catalog (.xcstrings) to .lproj folders for runtime localization
+echo -e "${BLUE}Compiling String Catalogs...${NC}"
+if [ -f "$SRC_DIR/Sources/Resources/Localizable.xcstrings" ]; then
+    # xcstringstool compile generates .lproj folders (e.g., en.lproj/Localizable.strings)
+    # These are required for String(localized:bundle:.main) to work at runtime
+    xcstringstool compile "$SRC_DIR/Sources/Resources/Localizable.xcstrings" \
+        --output-directory "$APP_DIR/Contents/Resources"
+
+    if [ $? -eq 0 ]; then
+        echo -e "${GREEN}✅ String Catalog compiled${NC}"
+        echo "Generated localization files:"
+        find "$APP_DIR/Contents/Resources" -name "*.lproj" -type d | while read lproj; do
+            echo "  - $lproj"
+            ls -lh "$lproj/"*.strings 2>/dev/null || true
+        done
+    else
+        echo -e "${YELLOW}⚠️ WARNING: String Catalog compilation failed - localization may not work${NC}"
+    fi
+else
+    echo -e "${YELLOW}⚠️ No Localizable.xcstrings found - skipping localization compilation${NC}"
 fi
 
 # Verify critical files were copied
