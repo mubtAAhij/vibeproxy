@@ -119,6 +119,11 @@ jobs:
           APP_VERSION: ${{ steps.get_version.outputs.VERSION }}
           TARGET_ARCH: ${{ matrix.swift_arch }}
         run: |
+          # Verify xcstringstool is available (required for String Catalog compilation)
+          if ! command -v xcstringstool &> /dev/null; then
+            echo "⚠️ WARNING: xcstringstool not found - localization may not work"
+            echo "This should be available on macOS 13+ with Xcode command line tools"
+          fi
           chmod +x create-app-bundle.sh
           ./create-app-bundle.sh
 
