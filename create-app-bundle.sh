@@ -50,14 +50,43 @@ echo -e "${BLUE}Copying resources...${NC}"
 echo "Resources to copy:"
 ls -lh "$SRC_DIR/Sources/Resources/"
 
+# Compile String Catalog to .lproj tables for runtime localization
+# CRITICAL: String(localized:bundle:.main) requires compiled .lproj/Localizable.strings at runtime.
+# SPM's `swift build` only copies .xcstrings as raw JSON—it does NOT compile it.
+# We must run xcstringstool here to generate .lproj tables that Bundle.main can load.
+if [ -f "$SRC_DIR/Sources/Resources/Localizable.xcstrings" ]; then
+    echo -e "${BLUE}Compiling String Catalog to .lproj tables...${NC}"
+    # Compile for English (base language)
+    # To add more languages: mkdir zh-Hans.lproj && xcstringstool compile ... --output-directory zh-Hans.lproj
+    # Note: xcstringstool compile outputs Localizable.strings and (optionally) Localizable.stringsdict
+    mkdir -p "$APP_DIR/Contents/Resources/en.lproj"
+    xcrun xcstringstool compile \
+        "$SRC_DIR/Sources/Resources/Localizable.xcstrings" \
+        --output-directory "$APP_DIR/Contents/Resources/en.lproj"
+
+    if [ -f "$APP_DIR/Contents/Resources/en.lproj/Localizable.strings" ]; then
+        echo -e "${GREEN}✅ String Catalog compiled to en.lproj/Localizable.strings${NC}"
+        echo "Preview of compiled strings:"
+        head -5 "$APP_DIR/Contents/Resources/en.lproj/Localizable.strings"
+    elif [ -f "$APP_DIR/Contents/Resources/en.lproj/Localizable.stringsdict" ]; then
+        echo -e "${GREEN}✅ String Catalog compiled to en.lproj/Localizable.stringsdict (plural rules)${NC}"
+    else
+        echo -e "${YELLOW}⚠️ WARNING: String Catalog compilation produced no output${NC}"
+        echo "Checking what was created in en.lproj:"
+        ls -la "$APP_DIR/Contents/Resources/en.lproj/" || echo "Directory is empty"
+    fi
+else
+    echo -e "${YELLOW}⚠️ WARNING: Localizable.xcstrings not found at $SRC_DIR/Sources/Resources/Localizable.xcstrings${NC}"
+fi
+
 # Copy each file/directory from Resources/* directly to Contents/Resources/
 # Exclude .swift files and other build artifacts
 if [ -d "$SRC_DIR/Sources/Resources" ]; then
     # Use a loop to copy each item to avoid nested Resources folder
     for item in "$SRC_DIR/Sources/Resources/"*; do
         if [ -e "$item" ]; then
-            # Skip if it's a Swift file or Package.swift
-            if [[ "$item" != *.swift ]]; then
+            # Skip if it's a Swift file, Package.swift, or .xcstrings (already compiled above)
+            if [[ "$item" != *.swift && "$item" != *.xcstrings ]]; then
                 cp -r "$item" "$APP_DIR/Contents/Resources/"
             fi
         fi
