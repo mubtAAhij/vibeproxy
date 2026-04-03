@@ -119,6 +119,11 @@ jobs:
           APP_VERSION: ${{ steps.get_version.outputs.VERSION }}
           TARGET_ARCH: ${{ matrix.swift_arch }}
         run: |
+          # Ensure xcstringstool is available (part of Xcode Command Line Tools)
+          if ! command -v xcrun xcstringstool &> /dev/null; then
+            echo "⚠️ xcstringstool not found. String Catalog compilation will be skipped."
+            echo "   This may cause localized strings to fail at runtime."
+          fi
           chmod +x create-app-bundle.sh
           ./create-app-bundle.sh
 
