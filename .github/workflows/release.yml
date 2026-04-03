@@ -119,6 +119,11 @@ jobs:
           APP_VERSION: ${{ steps.get_version.outputs.VERSION }}
           TARGET_ARCH: ${{ matrix.swift_arch }}
         run: |
+          # Verify xcstringstool is available (required for String Catalog compilation)
+          if ! command -v xcrun &> /dev/null || ! xcrun xcstringstool --version &> /dev/null; then
+            echo "❌ Error: xcstringstool not found. Requires Xcode 15+ on macOS runner."
+            exit 1
+          fi
           chmod +x create-app-bundle.sh
           ./create-app-bundle.sh
 
