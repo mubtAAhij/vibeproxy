@@ -44,6 +44,21 @@ chmod +x "$APP_DIR/Contents/MacOS/CLIProxyMenuBar"
 # Add rpath for Frameworks directory (needed for Sparkle)
 install_name_tool -add_rpath "@loader_path/../Frameworks" "$APP_DIR/Contents/MacOS/CLIProxyMenuBar" 2>/dev/null || true
 
+# Compile String Catalog for runtime localization
+echo -e "${BLUE}Compiling String Catalog to .lproj directories...${NC}"
+XCSTRINGS_FILE="$SRC_DIR/Sources/Resources/Localizable.xcstrings"
+if [ -f "$XCSTRINGS_FILE" ]; then
+    # Compile .xcstrings to .lproj/Localizable.strings for Bundle.main runtime lookup
+    # The .xcstrings JSON is for Xcode build-time; Bundle.main needs compiled .strings tables
+    xcrun xcstringstool compile "$XCSTRINGS_FILE" --output-directory "$APP_DIR/Contents/Resources/" 2>&1 || {
+        echo -e "${YELLOW}⚠️ xcstringstool compile failed or not available. Localization may not work at runtime.${NC}"
+        echo "   Falling back to raw .xcstrings copy (runtime lookups will fail)."
+    }
+    echo -e "${GREEN}✅ String Catalog compiled to .lproj directories${NC}"
+else
+    echo -e "${YELLOW}⚠️ No String Catalog found at $XCSTRINGS_FILE${NC}"
+fi
+
 # Copy resources (copy contents, not the folder itself)
 echo -e "${BLUE}Copying resources...${NC}"
 # List what we're about to copy
@@ -51,13 +66,13 @@ echo "Resources to copy:"
 ls -lh "$SRC_DIR/Sources/Resources/"
 
 # Copy each file/directory from Resources/* directly to Contents/Resources/
-# Exclude .swift files and other build artifacts
+# Exclude .swift files, .xcstrings (already compiled above), and other build artifacts
 if [ -d "$SRC_DIR/Sources/Resources" ]; then
     # Use a loop to copy each item to avoid nested Resources folder
     for item in "$SRC_DIR/Sources/Resources/"*; do
         if [ -e "$item" ]; then
-            # Skip if it's a Swift file or Package.swift
-            if [[ "$item" != *.swift ]]; then
+            # Skip Swift files and .xcstrings (xcstrings already compiled above)
+            if [[ "$item" != *.swift ]] && [[ "$item" != *.xcstrings ]]; then
                 cp -r "$item" "$APP_DIR/Contents/Resources/"
             fi
         fi
