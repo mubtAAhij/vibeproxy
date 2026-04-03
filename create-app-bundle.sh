@@ -51,17 +51,43 @@ echo "Resources to copy:"
 ls -lh "$SRC_DIR/Sources/Resources/"
 
 # Copy each file/directory from Resources/* directly to Contents/Resources/
-# Exclude .swift files and other build artifacts
+# Exclude .swift files, .xcstrings (will be compiled separately), and build artifacts
 if [ -d "$SRC_DIR/Sources/Resources" ]; then
     # Use a loop to copy each item to avoid nested Resources folder
     for item in "$SRC_DIR/Sources/Resources/"*; do
         if [ -e "$item" ]; then
-            # Skip if it's a Swift file or Package.swift
-            if [[ "$item" != *.swift ]]; then
+            # Skip Swift files, .xcstrings (compiled separately), and Package.swift
+            if [[ "$item" != *.swift ]] && [[ "$item" != *.xcstrings ]]; then
                 cp -r "$item" "$APP_DIR/Contents/Resources/"
             fi
         fi
     done
+fi
+
+# Compile String Catalogs (.xcstrings) to .lproj directories for runtime
+echo -e "${BLUE}Compiling String Catalogs...${NC}"
+if [ -f "$SRC_DIR/Sources/Resources/Localizable.xcstrings" ]; then
+    # Compile the .xcstrings to .lproj directories directly in Contents/Resources/
+    # This makes String(localized:bundle:.main) work at runtime
+    xcrun xcstringstool compile "$SRC_DIR/Sources/Resources/Localizable.xcstrings" \
+        --output-directory "$APP_DIR/Contents/Resources/"
+
+    # Verify compilation succeeded
+    if [ -d "$APP_DIR/Contents/Resources/en.lproj" ]; then
+        echo -e "${GREEN}✅ String Catalog compiled to .lproj directories${NC}"
+        ls -lh "$APP_DIR/Contents/Resources/"*.lproj 2>/dev/null || true
+        # Verify .strings files exist inside .lproj
+        if [ -f "$APP_DIR/Contents/Resources/en.lproj/Localizable.strings" ]; then
+            echo -e "${GREEN}   └─ Localizable.strings found in en.lproj${NC}"
+        else
+            echo -e "${YELLOW}   └─ Warning: Localizable.strings missing in en.lproj${NC}"
+        fi
+    else
+        echo -e "${YELLOW}⚠️ Warning: String Catalog compilation did not produce en.lproj${NC}"
+        echo -e "${YELLOW}   Runtime localization will fail. Verify xcstringstool is available.${NC}"
+    fi
+else
+    echo -e "${YELLOW}⚠️ No Localizable.xcstrings found to compile${NC}"
 fi
 
 # Verify critical files were copied
