@@ -70,7 +70,11 @@ enum ConfigComposer {
             return []
         }
         guard let entries = rawOpenAICompatibility as? [Any] else {
-            return [String(localized: "config-composer.validation.openai-compatibility.must-be-array-of-provider-mappings", defaultValue: "openai-compatibility must be an array of provider mappings.", comment: "Validation error when openai-compatibility config value is not an array")]
+            return [String(
+                localized: "config-composer.validation.openai-compatibility.must-be-array-of-provider-mappings",
+                defaultValue: "openai-compatibility must be an array of provider mappings.",
+                comment: "Validation error when openai-compatibility config value is not an array"
+            )]
         }
 
         var errors: [String] = []
@@ -80,33 +84,57 @@ enum ConfigComposer {
             let path = "openai-compatibility[\(index)]"
 
             guard let entry = stringKeyedDictionary(rawEntry) else {
-                errors.append(String(format: String(localized: "config-composer.validation.path.must-be-mapping", defaultValue: "%@ must be a mapping.", comment: "Validation error when a config path does not contain a mapping"), "\(path)"))
+                errors.append(String(format: String(
+                    localized: "config-composer.validation.path.must-be-mapping",
+                    defaultValue: "%@ must be a mapping.",
+                    comment: "Validation error when a config path does not contain a mapping"
+                ), "\(path)"))
                 continue
             }
 
             guard let rawProviderName = entry["name"] as? String else {
-                errors.append(String(format: String(localized: "config-composer.validation.path.must-define-string-name", defaultValue: "%@ must define a string name.", comment: "Validation error when provider entry is missing string name"), "\(path)"))
+                errors.append(String(format: String(
+                    localized: "config-composer.validation.path.must-define-string-name",
+                    defaultValue: "%@ must define a string name.",
+                    comment: "Validation error when provider entry is missing string name"
+                ), "\(path)"))
                 continue
             }
 
             guard let providerID = normalizedString(rawProviderName) else {
-                errors.append(String(format: String(localized: "config-composer.validation.path.must-define-non-empty-name", defaultValue: "%@ must define a non-empty name.", comment: "Validation error when provider entry name is empty"), "\(path)"))
+                errors.append(String(format: String(
+                    localized: "config-composer.validation.path.must-define-non-empty-name",
+                    defaultValue: "%@ must define a non-empty name.",
+                    comment: "Validation error when provider entry name is empty"
+                ), "\(path)"))
                 continue
             }
 
             guard rawProviderName == providerID else {
-                errors.append(String(format: String(localized: "config-composer.validation.provider-name.must-not-include-edge-whitespace", defaultValue: "Provider name '%@' must not include leading or trailing whitespace.", comment: "Validation error when provider name has leading or trailing whitespace"), "\(rawProviderName)"))
+                errors.append(String(format: String(
+                    localized: "config-composer.validation.provider-name.must-not-include-edge-whitespace",
+                    defaultValue: "Provider name '%@' must not include leading or trailing whitespace.",
+                    comment: "Validation error when provider name has leading or trailing whitespace"
+                ), "\(rawProviderName)"))
                 continue
             }
 
             if seenProviderIDs.contains(providerID) {
-                errors.append(String(format: String(localized: "config-composer.validation.duplicate-openai-compatibility-provider", defaultValue: "Duplicate openai-compatibility provider '%@' is not allowed.", comment: "Validation error when duplicate openai-compatibility provider is declared"), "\(providerID)"))
+                errors.append(String(format: String(
+                    localized: "config-composer.validation.duplicate-openai-compatibility-provider",
+                    defaultValue: "Duplicate openai-compatibility provider '%@' is not allowed.",
+                    comment: "Validation error when duplicate openai-compatibility provider is declared"
+                ), "\(providerID)"))
             } else {
                 seenProviderIDs.insert(providerID)
             }
 
             if reservedProviderIDs.contains(providerID), providerID != ProviderCatalog.managedZAIProviderName {
-                errors.append(String(format: String(localized: "config-composer.validation.provider.reserved-cannot-be-declared-under-openai-compatibility", defaultValue: "Provider '%@' is reserved and cannot be declared under openai-compatibility.", comment: "Validation error when reserved provider is declared in openai-compatibility"), "\(providerID)"))
+                errors.append(String(format: String(
+                    localized: "config-composer.validation.provider.reserved-cannot-be-declared-under-openai-compatibility",
+                    defaultValue: "Provider '%@' is reserved and cannot be declared under openai-compatibility.",
+                    comment: "Validation error when reserved provider is declared in openai-compatibility"
+                ), "\(providerID)"))
                 continue
             }
 
@@ -119,16 +147,28 @@ enum ConfigComposer {
                     for (apiKeyIndex, rawAPIKeyEntry) in apiKeyEntries.enumerated() {
                         let apiKeyPath = "\(path).api-key-entries[\(apiKeyIndex)]"
                         guard let apiKeyEntry = stringKeyedDictionary(rawAPIKeyEntry) else {
-                            errors.append(String(format: String(localized: "config-composer.validation.api-key-path.must-be-mapping", defaultValue: "%@ must be a mapping.", comment: "Validation error when api-key entry is not a mapping"), "\(apiKeyPath)"))
+                            errors.append(String(format: String(
+                                localized: "config-composer.validation.api-key-path.must-be-mapping",
+                                defaultValue: "%@ must be a mapping.",
+                                comment: "Validation error when api-key entry is not a mapping"
+                            ), "\(apiKeyPath)"))
                             continue
                         }
                         guard normalizedString(apiKeyEntry["api-key"]) != nil else {
-                            errors.append(String(format: String(localized: "config-composer.validation.api-key-path.must-define-non-empty-api-key", defaultValue: "%@ must define a non-empty api-key.", comment: "Validation error when api-key entry is missing or empty"), "\(apiKeyPath)"))
+                            errors.append(String(format: String(
+                                localized: "config-composer.validation.api-key-path.must-define-non-empty-api-key",
+                                defaultValue: "%@ must define a non-empty api-key.",
+                                comment: "Validation error when api-key entry is missing or empty"
+                            ), "\(apiKeyPath)"))
                             continue
                         }
                     }
                 } else {
-                    errors.append(String(format: String(localized: "config-composer.validation.path.api-key-entries.must-be-array-of-mappings", defaultValue: "%@.api-key-entries must be an array of mappings.", comment: "Validation error when api-key-entries is not an array of mappings"), "\(path)"))
+                    errors.append(String(format: String(
+                        localized: "config-composer.validation.path.api-key-entries.must-be-array-of-mappings",
+                        defaultValue: "%@.api-key-entries must be an array of mappings.",
+                        comment: "Validation error when api-key-entries is not an array of mappings"
+                    ), "\(path)"))
                 }
             }
 
@@ -137,7 +177,11 @@ enum ConfigComposer {
             }
 
             guard normalizedString(entry["base-url"]) != nil else {
-                errors.append(String(format: String(localized: "config-composer.validation.custom-provider.must-define-non-empty-base-url", defaultValue: "Custom provider '%@' must define a non-empty base-url.", comment: "Validation error when custom provider base-url is missing or empty"), "\(providerID)"))
+                errors.append(String(format: String(
+                    localized: "config-composer.validation.custom-provider.must-define-non-empty-base-url",
+                    defaultValue: "Custom provider '%@' must define a non-empty base-url.",
+                    comment: "Validation error when custom provider base-url is missing or empty"
+                ), "\(providerID)"))
                 continue
             }
         }
@@ -414,12 +458,20 @@ enum ConfigComposer {
 
     private static func validateMappingArray(_ value: Any, path: String) -> [String] {
         guard let array = value as? [Any] else {
-            return [String(format: String(localized: "config-composer.validation.path.must-be-array-of-mappings", defaultValue: "%@ must be an array of mappings.", comment: "Validation error when config path is not an array of mappings"), "\(path)")]
+            return [String(format: String(
+                localized: "config-composer.validation.path.must-be-array-of-mappings",
+                defaultValue: "%@ must be an array of mappings.",
+                comment: "Validation error when config path is not an array of mappings"
+            ), "\(path)")]
         }
 
         var errors: [String] = []
         for (index, rawEntry) in array.enumerated() where stringKeyedDictionary(rawEntry) == nil {
-            errors.append(String(format: String(localized: "config-composer.validation.path-index.must-be-mapping", defaultValue: "%@[%d] must be a mapping.", comment: "Validation error when array item at path index is not a mapping"), "\(path)", index))
+            errors.append(String(format: String(
+                localized: "config-composer.validation.path-index.must-be-mapping",
+                defaultValue: "%@[%d] must be a mapping.",
+                comment: "Validation error when array item at path index is not a mapping"
+            ), "\(path)", index))
         }
         return errors
     }
