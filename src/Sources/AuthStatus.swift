@@ -12,14 +12,54 @@ enum ServiceType: String, CaseIterable {
     
     var displayName: String {
         switch self {
-        case .claude: return "Claude Code"
-        case .codex: return "Codex"
-        case .copilot: return "GitHub Copilot"
-        case .gemini: return "Gemini"
-        case .kimi: return "Kimi"
-        case .qwen: return "Qwen"
-        case .antigravity: return "Antigravity"
-        case .zai: return "Z.AI GLM"
+        case .claude: return String(
+            localized: "auth.service.display-name.claude",
+            defaultValue: "Claude Code",
+            bundle: .main,
+            comment: "Display name for Claude authentication service"
+        )
+        case .codex: return String(
+            localized: "auth.service.display-name.codex",
+            defaultValue: "Codex",
+            bundle: .main,
+            comment: "Display name for Codex authentication service"
+        )
+        case .copilot: return String(
+            localized: "auth.service.display-name.github-copilot",
+            defaultValue: "GitHub Copilot",
+            bundle: .main,
+            comment: "Display name for GitHub Copilot authentication service"
+        )
+        case .gemini: return String(
+            localized: "auth.service.display-name.gemini",
+            defaultValue: "Gemini",
+            bundle: .main,
+            comment: "Display name for Gemini authentication service"
+        )
+        case .kimi: return String(
+            localized: "auth.service.display-name.kimi",
+            defaultValue: "Kimi",
+            bundle: .main,
+            comment: "Display name for Kimi authentication service"
+        )
+        case .qwen: return String(
+            localized: "auth.service.display-name.qwen",
+            defaultValue: "Qwen",
+            bundle: .main,
+            comment: "Display name for Qwen authentication service"
+        )
+        case .antigravity: return String(
+            localized: "auth.service.display-name.antigravity",
+            defaultValue: "Antigravity",
+            bundle: .main,
+            comment: "Display name for Antigravity authentication service"
+        )
+        case .zai: return String(
+            localized: "auth.service.display-name.zai-glm",
+            defaultValue: "Z.AI GLM",
+            bundle: .main,
+            comment: "Display name for Z.AI GLM authentication service"
+        )
         }
     }
 }
