@@ -20,12 +20,27 @@ struct CustomProviderDefinition: Identifiable, Equatable {
         
         let modelSummary: String
         if modelAliases.isEmpty {
-            modelSummary = String(localized: "custom-provider.help.model-aliases.none-configured", defaultValue: "No model aliases configured yet.", bundle: .main, comment: "Summary text when no model aliases are configured for a custom provider")
+            modelSummary = String(
+                localized: "custom-provider.help.model-aliases.none-configured",
+                defaultValue: "No model aliases configured yet.",
+                bundle: .main,
+                comment: "Summary text when no model aliases are configured for a custom provider"
+            )
         } else {
-            modelSummary = String(format: String(localized: "custom-provider.help.model-aliases.list", defaultValue: "Models: %@.", bundle: .main, comment: "Summary text listing model aliases for a custom provider"), modelAliases.joined(separator: ", "))
+            modelSummary = String(format: String(
+                localized: "custom-provider.help.model-aliases.list",
+                defaultValue: "Models: %@.",
+                bundle: .main,
+                comment: "Summary text listing model aliases for a custom provider"
+            ), modelAliases.joined(separator: ", "))
         }
         
-        return String(format: String(localized: "custom-provider.help.base-url-and-model-summary", defaultValue: "OpenAI-compatible provider at %@. %@", bundle: .main, comment: "Help text describing provider base URL followed by model summary"), baseURL, modelSummary)
+        return String(format: String(
+            localized: "custom-provider.help.base-url-and-model-summary",
+            defaultValue: "OpenAI-compatible provider at %@. %@",
+            bundle: .main,
+            comment: "Help text describing provider base URL followed by model summary"
+        ), baseURL, modelSummary)
     }
     
     var effectiveIconSystemName: String {
