@@ -1,0 +1,182 @@
+name: Swift Post-Localization Build Verify (Quetzal)
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Branch to verify (localized changes branch)"
+        required: true
+        type: string
+      job_id:
+        description: "Apply job id (for traceability)"
+        required: false
+        default: ""
+        type: string
+      project_id:
+        description: "Project id (for traceability)"
+        required: false
+        default: ""
+        type: string
+      integration_id:
+        description: "Integration id (for traceability)"
+        required: false
+        default: ""
+        type: string
+      xcode_version:
+        description: "Xcode version (e.g. 16.4, latest, latest-stable)"
+        required: false
+        default: "latest"
+        type: string
+      scheme:
+        description: "Explicit xcodebuild scheme (optional)"
+        required: false
+        default: ""
+        type: string
+      xcode_workspace_or_project:
+        description: "Optional path to .xcworkspace or .xcodeproj from repo root"
+        required: false
+        default: ""
+        type: string
+
+jobs:
+  verify-swift-build:
+    runs-on: macos-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout target branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch }}
+
+      - name: Select Xcode version
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: ${{ inputs.xcode_version }}
+
+      - name: Find Xcode project/workspace and scheme
+        id: find-xcode-project
+        run: |
+          set -euo pipefail
+          echo "[verify] Starting Xcode project/workspace discovery"
+          echo "[verify] GitHub ref: ${GITHUB_REF:-unknown}"
+          echo "[verify] Inputs: branch='${{ inputs.branch }}' xcode_workspace_or_project='${{ inputs.xcode_workspace_or_project }}' scheme='${{ inputs.scheme }}'"
+          echo "[verify] Working directory: $(pwd)"
+
+          PATH_OVERRIDE='${{ inputs.xcode_workspace_or_project }}'
+          PATH_OVERRIDE="${PATH_OVERRIDE#"${PATH_OVERRIDE%%[![:space:]]*}"}"
+          PATH_OVERRIDE="${PATH_OVERRIDE%"${PATH_OVERRIDE##*[![:space:]]}"}"
+
+          XCODE_WORKSPACE=""
+          XCODE_PROJECT=""
+
+          if [ -n "$PATH_OVERRIDE" ]; then
+            echo "[verify] Using explicit path override: $PATH_OVERRIDE"
+            if [ ! -e "$PATH_OVERRIDE" ]; then
+              echo "::error::Path does not exist: $PATH_OVERRIDE"
+              exit 1
+            fi
+            case "$PATH_OVERRIDE" in
+              *.xcworkspace)
+                XCODE_WORKSPACE="$PATH_OVERRIDE"
+                if [[ "$XCODE_WORKSPACE" == *.xcodeproj/project.xcworkspace ]]; then
+                  XCODE_PROJECT="$(dirname "$XCODE_WORKSPACE")"
+                else
+                  XCODE_PROJECT=$(find . -name "*.xcodeproj" -type d | head -n 1)
+                  if [ -z "$XCODE_PROJECT" ]; then
+                    echo "::error::Could not find a .xcodeproj for workspace $XCODE_WORKSPACE"
+                    exit 1
+                  fi
+                fi
+                ;;
+              *.xcodeproj)
+                XCODE_PROJECT="$PATH_OVERRIDE"
+                if [ -d "$XCODE_PROJECT/project.xcworkspace" ]; then
+                  XCODE_WORKSPACE="$XCODE_PROJECT/project.xcworkspace"
+                fi
+                ;;
+              *)
+                echo "::error::xcode_workspace_or_project must end with .xcworkspace or .xcodeproj"
+                exit 1
+                ;;
+            esac
+          else
+            echo "[verify] No explicit path override; discovering via find (same as strings extraction workflow)"
+            XCODE_WORKSPACE=$(find . -name "*.xcworkspace" -type d | head -n 1 || true)
+            XCODE_PROJECT=$(find . -name "*.xcodeproj" -type d | head -n 1 || true)
+          fi
+
+          if [ -n "$XCODE_WORKSPACE" ]; then
+            echo "[verify] Resolved workspace: $XCODE_WORKSPACE"
+            echo "project_path=$XCODE_WORKSPACE" >> "$GITHUB_OUTPUT"
+            echo "project_type=workspace" >> "$GITHUB_OUTPUT"
+          elif [ -n "$XCODE_PROJECT" ]; then
+            echo "[verify] Resolved project: $XCODE_PROJECT"
+            echo "project_path=$XCODE_PROJECT" >> "$GITHUB_OUTPUT"
+            echo "project_type=project" >> "$GITHUB_OUTPUT"
+          else
+            echo "::error::No .xcodeproj or .xcworkspace found"
+            exit 1
+          fi
+
+          # Prefer embedded project.xcworkspace for xcodebuild (matches swift-strings-extraction.yml)
+          if [ -n "$XCODE_PROJECT" ] && [ -d "$XCODE_PROJECT/project.xcworkspace" ]; then
+            if [ -z "$PATH_OVERRIDE" ] || [[ "$PATH_OVERRIDE" == *.xcodeproj ]]; then
+              XCODE_WORKSPACE="$XCODE_PROJECT/project.xcworkspace"
+              echo "[verify] Using project.xcworkspace inside .xcodeproj: $XCODE_WORKSPACE"
+              echo "project_path=$XCODE_WORKSPACE" >> "$GITHUB_OUTPUT"
+              echo "project_type=workspace" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+
+          # Scheme: explicit input wins; else first scheme from xcodebuild -list; fallback to .xcodeproj name
+          if [ -n "${{ inputs.scheme }}" ]; then
+            SCHEME="${{ inputs.scheme }}"
+            echo "[verify] Using explicit scheme input: $SCHEME"
+          elif [ -n "$XCODE_WORKSPACE" ]; then
+            SCHEME=$(xcodebuild -list -workspace "$XCODE_WORKSPACE" 2>/dev/null | grep -A 100 "Schemes:" | grep -v "Schemes:" | head -n 1 | xargs || true)
+            if [ -z "$SCHEME" ] && [ -n "$XCODE_PROJECT" ]; then
+              SCHEME=$(basename "$XCODE_PROJECT" .xcodeproj)
+            fi
+          else
+            SCHEME=$(xcodebuild -list -project "$XCODE_PROJECT" 2>/dev/null | grep -A 100 "Schemes:" | grep -v "Schemes:" | head -n 1 | xargs || true)
+            if [ -z "$SCHEME" ]; then
+              SCHEME=$(basename "$XCODE_PROJECT" .xcodeproj)
+            fi
+          fi
+
+          if [ -z "$SCHEME" ]; then
+            echo "::error::Failed to determine Xcode scheme"
+            exit 1
+          fi
+          echo "[verify] Final selected scheme: $SCHEME"
+          echo "scheme=$SCHEME" >> "$GITHUB_OUTPUT"
+
+      - name: Make build script available
+        run: |
+          set -euo pipefail
+          mkdir -p .quetzal/scripts
+          if [ ! -f ".quetzal/scripts/build_post_localization_verify.sh" ]; then
+            echo "::error::.quetzal/scripts/build_post_localization_verify.sh is missing on branch ${{ inputs.branch }}. Ensure the Quetzal workflow bootstrap ran on the default branch, then merge or cherry-pick that commit."
+            exit 1
+          fi
+          chmod +x .quetzal/scripts/build_post_localization_verify.sh
+
+      - name: Run full build verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash ./.quetzal/scripts/build_post_localization_verify.sh \
+            "${{ steps.find-xcode-project.outputs.project_path }}" \
+            "${{ steps.find-xcode-project.outputs.scheme }}" \
+            "Debug"
+
+      - name: Upload build logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: post-localization-build-verify-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            build_output_post_localization.log
+          retention-days: 30
+          if-no-files-found: warn
