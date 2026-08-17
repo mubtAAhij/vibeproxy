@@ -321,6 +321,28 @@ def parse_xcstrings(path):
         traceback.print_exc(file=sys.stderr)
         return []
 
+# Dependency / derived trees. SwiftPM checks dependencies out inside the repo
+# (.build/checkouts), and `swift build -emit-localized-strings` emits .stringsdata
+# for those sources too — none of which the extractor ever scans.
+DEPENDENCY_PATH_SEGMENTS = {
+    ".build",
+    "checkouts",
+    "SourcePackages",
+    "DerivedData",
+    ".git",
+    "Pods",
+    "Carthage",
+    "node_modules",
+    ".swiftpm",
+}
+
+def is_dependency_path(path_value):
+    """True when a path lives in a dependency or derived-artifact tree."""
+    if not path_value:
+        return False
+    text = str(path_value).replace("\\", "/")
+    return any(segment in text.split("/") for segment in DEPENDENCY_PATH_SEGMENTS)
+
 # 1. Find all .xcstrings, .xliff, and .stringsdata files
 root = Path(".").resolve()
 xcstrings_files = list(root.rglob("*.xcstrings"))
@@ -341,9 +363,9 @@ if derived_data_path:
     else:
         print(f"⚠️  DERIVED_DATA_PATH not a directory: {derived_data_path}", file=sys.stderr)
 
-# Exclude DerivedData and .git directories for .xcstrings and .xliff
-xcstrings_files = [f for f in xcstrings_files if "DerivedData" not in str(f) and ".git" not in str(f)]
-xliff_files = [f for f in xliff_files if "DerivedData" not in str(f) and ".git" not in str(f)]
+# Exclude DerivedData, .git, and dependency checkouts for .xcstrings and .xliff
+xcstrings_files = [f for f in xcstrings_files if not is_dependency_path(f)]
+xliff_files = [f for f in xliff_files if not is_dependency_path(f)]
 
 # For .stringsdata, we want to include DerivedData (that's where they're generated)
 # But exclude .git and SourcePackages
@@ -418,6 +440,7 @@ for path in xliff_files:
 # Structure: files_dict[source_file_path] = [list of entries with key, value, and location]
 files_dict = {}
 stringsdata_skipped_no_source = []
+stringsdata_skipped_dependency = 0
 
 # Process all stringsdata entries and enrich with values from .xcstrings/.xliff
 for key, stringsdata_info in stringsdata_map.items():
@@ -427,6 +450,11 @@ for key, stringsdata_info in stringsdata_map.items():
     # Skip entries without a valid source file path
     if not source_file or source_file == "":
         stringsdata_skipped_no_source.append(key)
+        continue
+
+    # Strings owned by a dependency are not ours to skip or localize.
+    if is_dependency_path(source_file):
+        stringsdata_skipped_dependency += 1
         continue
     
     # Get value from value_map, or use key as fallback
@@ -446,6 +474,12 @@ for key, stringsdata_info in stringsdata_map.items():
     if source_file not in files_dict:
         files_dict[source_file] = []
     files_dict[source_file].append(entry)
+
+if stringsdata_skipped_dependency:
+    print(
+        f"📦 Ignored {stringsdata_skipped_dependency} key(s) emitted from dependency sources",
+        file=sys.stderr,
+    )
 
 # Fallback: when no .stringsdata files were found (e.g. build failed or DerivedData not in repo),
 # populate the skip list from .xcstrings keys so the extractor can still skip known-localized strings.
