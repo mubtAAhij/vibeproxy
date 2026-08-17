@@ -57,7 +57,11 @@ final class ZAIAPIKeyStore {
                 try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true)
             } catch {
                 throw ZAIAPIKeyStoreError.failedToCreateDirectory(
-                    String(format: String(localized: "zai-api-key-store.error.create-auth-directory-failed", defaultValue: "Failed to create auth directory at %@: %@", comment: "Error when creating auth directory for API key storage"), "\(directoryURL.path)", "\(error.localizedDescription)")
+                    String(format: String(
+                        localized: "zai-api-key-store.error.create-auth-directory-failed",
+                        defaultValue: "Failed to create auth directory at %@: %@",
+                        comment: "Error when creating auth directory for API key storage"
+                    ), "\(directoryURL.path)", "\(error.localizedDescription)")
                 )
             }
 
@@ -75,7 +79,11 @@ final class ZAIAPIKeyStore {
                 jsonData = try JSONSerialization.data(withJSONObject: authData, options: .prettyPrinted)
             } catch {
                 throw ZAIAPIKeyStoreError.failedToSerializeKey(
-                    String(format: String(localized: "zai-api-key-store.error.serialize-api-key-failed", defaultValue: "Failed to serialize Z.AI API key: %@", comment: "Error when serializing Z.AI API key JSON payload"), "\(error.localizedDescription)")
+                    String(format: String(
+                        localized: "zai-api-key-store.error.serialize-api-key-failed",
+                        defaultValue: "Failed to serialize Z.AI API key: %@",
+                        comment: "Error when serializing Z.AI API key JSON payload"
+                    ), "\(error.localizedDescription)")
                 )
             }
 
@@ -84,7 +92,11 @@ final class ZAIAPIKeyStore {
                 try fileManager.setAttributes([.posixPermissions: 0o600], ofItemAtPath: filePath.path)
             } catch {
                 throw ZAIAPIKeyStoreError.failedToWriteKey(
-                    String(format: String(localized: "zai-api-key-store.error.write-api-key-file-failed", defaultValue: "Failed to write Z.AI API key file at %@: %@", comment: "Error when writing Z.AI API key file to disk"), "\(filePath.path)", "\(error.localizedDescription)")
+                    String(format: String(
+                        localized: "zai-api-key-store.error.write-api-key-file-failed",
+                        defaultValue: "Failed to write Z.AI API key file at %@: %@",
+                        comment: "Error when writing Z.AI API key file to disk"
+                    ), "\(filePath.path)", "\(error.localizedDescription)")
                 )
             }
 
@@ -120,7 +132,11 @@ final class ZAIAPIKeyStore {
                     issues.append(
                         ZAIAPIKeyLoadIssue(
                             filePath: file,
-                            message: String(format: String(localized: "zai-api-key-store.error.unexpected-load-error", defaultValue: "Unexpected error while loading %@: %@", comment: "Unexpected error while loading API key file"), "\(file.path)", "\(error.localizedDescription)")
+                            message: String(format: String(
+                                localized: "zai-api-key-store.error.unexpected-load-error",
+                                defaultValue: "Unexpected error while loading %@: %@",
+                                comment: "Unexpected error while loading API key file"
+                            ), "\(file.path)", "\(error.localizedDescription)")
                         )
                     )
                 }
@@ -136,7 +152,11 @@ final class ZAIAPIKeyStore {
             data = try Data(contentsOf: filePath)
         } catch {
             throw ZAIAPIKeyStoreError.failedToReadKey(
-                String(format: String(localized: "zai-api-key-store.error.read-api-key-file-failed", defaultValue: "Failed to read Z.AI API key file at %@: %@", comment: "Error when reading Z.AI API key file from disk"), "\(filePath.path)", "\(error.localizedDescription)")
+                String(format: String(
+                    localized: "zai-api-key-store.error.read-api-key-file-failed",
+                    defaultValue: "Failed to read Z.AI API key file at %@: %@",
+                    comment: "Error when reading Z.AI API key file from disk"
+                ), "\(filePath.path)", "\(error.localizedDescription)")
             )
         }
 
@@ -145,23 +165,39 @@ final class ZAIAPIKeyStore {
             jsonObject = try JSONSerialization.jsonObject(with: data)
         } catch {
             throw ZAIAPIKeyStoreError.invalidKeyJSON(
-                String(format: String(localized: "zai-api-key-store.error.invalid-json-in-api-key-file", defaultValue: "Z.AI API key file at %@ contains invalid JSON: %@", comment: "Error when API key file JSON is malformed"), "\(filePath.path)", "\(error.localizedDescription)")
+                String(format: String(
+                    localized: "zai-api-key-store.error.invalid-json-in-api-key-file",
+                    defaultValue: "Z.AI API key file at %@ contains invalid JSON: %@",
+                    comment: "Error when API key file JSON is malformed"
+                ), "\(filePath.path)", "\(error.localizedDescription)")
             )
         }
 
         guard let json = ConfigComposer.stringKeyedDictionary(jsonObject) else {
             throw ZAIAPIKeyStoreError.malformedKey(
-                String(format: String(localized: "zai-api-key-store.error-api-key-file-must-be-json-object", defaultValue: "Z.AI API key file at %@ must contain a JSON object.", comment: "Error when API key file root JSON type is not an object"), "\(filePath.path)")
+                String(format: String(
+                    localized: "zai-api-key-store.error-api-key-file-must-be-json-object",
+                    defaultValue: "Z.AI API key file at %@ must contain a JSON object.",
+                    comment: "Error when API key file root JSON type is not an object"
+                ), "\(filePath.path)")
             )
         }
         guard (json["type"] as? String) == Self.authType else {
             throw ZAIAPIKeyStoreError.malformedKey(
-                String(format: String(localized: "zai-api-key-store.error.unexpected-api-key-file-type", defaultValue: "Z.AI API key file at %@ has an unexpected type.", comment: "Error when parsed API key value has an unexpected type"), "\(filePath.path)")
+                String(format: String(
+                    localized: "zai-api-key-store.error.unexpected-api-key-file-type",
+                    defaultValue: "Z.AI API key file at %@ has an unexpected type.",
+                    comment: "Error when parsed API key value has an unexpected type"
+                ), "\(filePath.path)")
             )
         }
         guard let apiKey = json["api_key"] as? String, !apiKey.isEmpty else {
             throw ZAIAPIKeyStoreError.malformedKey(
-                String(format: String(localized: "zai-api-key-store.error.missing-api-key-field", defaultValue: "Z.AI API key file at %@ is missing an api_key.", comment: "Error when api_key field is missing from API key file"), "\(filePath.path)")
+                String(format: String(
+                    localized: "zai-api-key-store.error.missing-api-key-field",
+                    defaultValue: "Z.AI API key file at %@ is missing an api_key.",
+                    comment: "Error when api_key field is missing from API key file"
+                ), "\(filePath.path)")
             )
         }
         guard json["disabled"] as? Bool != true else {
