@@ -1309,11 +1309,11 @@ struct SettingsView: View {
                         localized: "settings.authentication.failure.browser-check-with-details",
                         defaultValue: "Authentication failed. Please check if the browser opened and try again.\n\nDetails: %@",
                         comment: "Authentication failure message with process output details"
-                    ), "\(output.isEmpty ? String(
+                    ), output.isEmpty ? String(
                         localized: "settings.authentication.failure.no-output-from-process",
                         defaultValue: "No output from authentication process",
                         comment: "Fallback detail text when authentication process produced no output"
-                    ) : output)")
+                    ) : output)
                     self.showingAuthResult = true
                 }
             }
@@ -1393,11 +1393,11 @@ struct SettingsView: View {
                         localized: "settings.authentication.failure.with-details",
                         defaultValue: "Authentication failed.\n\nDetails: %@",
                         comment: "Authentication failure message with details output"
-                    ), "\(output.isEmpty ? String(
+                    ), output.isEmpty ? String(
                         localized: "settings.authentication.failure.no-output",
                         defaultValue: "No output",
                         comment: "Fallback detail text when authentication output is empty"
-                    ) : output)")
+                    ) : output)
                     self.showingAuthResult = true
                 }
             }
@@ -1425,11 +1425,11 @@ struct SettingsView: View {
                         localized: "settings.api-key.save-failed.with-details",
                         defaultValue: "Failed to save API key.\n\nDetails: %@",
                         comment: "Error message shown when saving API key fails with details"
-                    ), "\(output.isEmpty ? String(
+                    ), output.isEmpty ? String(
                         localized: "settings.api-key.save-failed.unknown-error",
                         defaultValue: "Unknown error",
                         comment: "Fallback detail text when API key save failure has no output"
-                    ) : output)")
+                    ) : output)
                     self.showingAuthResult = true
                 }
             }
@@ -1498,11 +1498,11 @@ struct SettingsView: View {
                         localized: "settings.api-key.save-failed.for-provider-with-details",
                         defaultValue: "Failed to save API key for %@.\n\nDetails: %@",
                         comment: "Error shown when saving provider API key fails with details"
-                    ), "\(provider.title)", "\(output.isEmpty ? String(
+                    ), provider.title, output.isEmpty ? String(
                         localized: "settings.api-key.save-failed.unknown-error",
                         defaultValue: "Unknown error",
                         comment: "Fallback details text when provider API key save fails without output"
-                    ) : output)")
+                    ) : output)
                     self.showingAuthResult = true
                 }
             }
