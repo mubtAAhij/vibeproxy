@@ -264,11 +264,11 @@ class ServerManager: ObservableObject {
                 localized: "server-manager.start.error.config-path-resolution",
                 defaultValue: "❌ Error: %@",
                 comment: "Error message when active config path resolution fails"
-            ), "\(configErrorMessage ?? String(
+            ), configErrorMessage ?? String(
                 localized: "server-manager.start.error.could-not-resolve-active-config-path",
                 defaultValue: "Could not resolve active config path",
                 comment: "Fallback error text when active config path cannot be resolved"
-            ))"))
+            )))
             completion(false)
             return
         }
