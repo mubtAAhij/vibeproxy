@@ -54,7 +54,7 @@ struct ConfigComposerSpec {
                     [
                         "name": "nvidia",
                         "base-url": "https://old.example.com/v1",
-                        "help-text": "Bundled help",
+                        "help-text": String(localized: "verification.config-composer.bundled-help", defaultValue: "Bundled help", comment: "Verification spec label for bundled help source"),
                         "models": [
                             ["name": "old/model", "alias": "old-model"]
                         ]
@@ -79,7 +79,7 @@ struct ConfigComposerSpec {
 
             expectEqual(nvidia?["base-url"] as? String, "https://integrate.api.nvidia.com/v1", "user provider base-url should override", recorder: recorder)
             expectEqual(nvidia?["display-name"] as? String, "NVIDIA", "user display-name should overlay", recorder: recorder)
-            expectEqual(nvidia?["help-text"] as? String, "Bundled help", "bundled help-text should remain", recorder: recorder)
+            expectEqual(nvidia?["help-text"] as? String, String(localized: "verification.config-composer.bundled-help", defaultValue: "Bundled help", comment: "Verification spec label for bundled help source"), "bundled help-text should remain", recorder: recorder)
             expectEqual(providerEntries(in: merged).count, 1, "provider entries should merge by name", recorder: recorder)
         }
 
@@ -92,7 +92,7 @@ struct ConfigComposerSpec {
             ]
             let userRoot: [String: Any] = [
                 "openai-compatibility": [
-                    ["name": "beta", "display-name": "Beta Override"],
+                    ["name": "beta", "display-name": String(localized: "verification.config-composer.beta-override", defaultValue: "Beta Override", comment: "Verification spec label for beta override source")],
                     ["name": "gamma", "base-url": "https://gamma.example.com/v1"]
                 ]
             ]
@@ -111,7 +111,7 @@ struct ConfigComposerSpec {
             )
             expectEqual(
                 provider(named: "beta", in: merged)?["display-name"] as? String,
-                "Beta Override",
+                String(localized: "verification.config-composer.beta-override", defaultValue: "Beta Override", comment: "Verification spec label for beta override source"),
                 "overlay updates should apply in place without reordering bundled providers",
                 recorder: recorder
             )
@@ -151,7 +151,7 @@ struct ConfigComposerSpec {
                     [
                         "name": "nvidia",
                         "display-name": "NVIDIA",
-                        "help-text": "OpenAI-compatible NVIDIA endpoint",
+                        "help-text": String(localized: "verification.config-composer.openai-compatible-nvidia-endpoint", defaultValue: "OpenAI-compatible NVIDIA endpoint", comment: "Verification spec label for OpenAI-compatible NVIDIA endpoint source"),
                         "icon-system": "bolt.fill",
                         "base-url": "https://integrate.api.nvidia.com/v1",
                         "api-key-entries": [
@@ -173,7 +173,7 @@ struct ConfigComposerSpec {
             expectEqual(providers.count, 1, "reserved providers should be excluded from custom provider list", recorder: recorder)
             expectEqual(providers.first?.id, "nvidia", "nvidia should be exposed as custom provider", recorder: recorder)
             expectEqual(providers.first?.title, "NVIDIA", "display-name should drive provider title", recorder: recorder)
-            expectEqual(providers.first?.helpText, "OpenAI-compatible NVIDIA endpoint", "help text should be preserved for UI", recorder: recorder)
+            expectEqual(providers.first?.helpText, String(localized: "verification.config-composer.openai-compatible-nvidia-endpoint", defaultValue: "OpenAI-compatible NVIDIA endpoint", comment: "Verification spec label for OpenAI-compatible NVIDIA endpoint source"), "help text should be preserved for UI", recorder: recorder)
             expectEqual(providers.first?.iconSystemName, "bolt.fill", "icon metadata should be preserved for UI", recorder: recorder)
             expectEqual(providers.first?.modelAliases, ["glm5"], "model aliases should be extracted", recorder: recorder)
             expectEqual(providers.first?.inlineKeyCount, 1, "inline key count should deduplicate repeated config keys", recorder: recorder)
