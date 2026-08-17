@@ -127,7 +127,7 @@ jobs:
               \"progress\": \"{\\\"message\\\": \\\"Setting up Xcode environment\\\", \\\"step\\\": \\\"setup\\\"}\"
             }" || echo "⚠️  Failed to send status update (setup started)"
 
-      - name: Find Xcode project or workspace
+      - name: Resolve build system (Xcode vs Swift package)
         id: find-xcode-project
         run: |
           set -euo pipefail
@@ -135,6 +135,24 @@ jobs:
           # Trim leading/trailing whitespace
           PATH_OVERRIDE="${PATH_OVERRIDE#"${PATH_OVERRIDE%%[![:space:]]*}"}"
           PATH_OVERRIDE="${PATH_OVERRIDE%"${PATH_OVERRIDE##*[![:space:]]}"}"
+
+          # Prune dependency / derived trees so SPM checkouts (Sparkle, Yams, …)
+          # are never mistaken for the app's own project.
+          find_repo_xcodeproj() {
+            find . \( -name .git -o -name .build -o -name build -o -name DerivedData -o -name checkouts -o -name Pods -o -name Carthage -o -name node_modules -o -name .swiftpm \) -prune -o -name "*.xcodeproj" -type d -print 2>/dev/null | head -n 1 || true
+          }
+          find_repo_xcworkspace() {
+            find . \( -name .git -o -name .build -o -name build -o -name DerivedData -o -name checkouts -o -name Pods -o -name Carthage -o -name node_modules -o -name .swiftpm \) -prune -o -name "*.xcworkspace" -type d -print 2>/dev/null \
+              | grep -v '\.xcodeproj/project\.xcworkspace$' \
+              | head -n 1 || true
+          }
+          find_repo_package_swift() {
+            find . \( -name .git -o -name .build -o -name build -o -name DerivedData -o -name checkouts -o -name Pods -o -name Carthage -o -name node_modules -o -name .swiftpm \) -prune -o -name "Package.swift" -type f -print 2>/dev/null \
+              | awk '{ depth = gsub(/\//, "/", $0); print depth "\t" $0 }' \
+              | sort -n \
+              | head -n 1 \
+              | cut -f2- || true
+          }
 
           XCODE_WORKSPACE=""
           XCODE_PROJECT=""
@@ -151,7 +169,7 @@ jobs:
                 if [[ "$XCODE_WORKSPACE" == *.xcodeproj/project.xcworkspace ]]; then
                   XCODE_PROJECT="$(dirname "$XCODE_WORKSPACE")"
                 else
-                  XCODE_PROJECT=$(find . -name "*.xcodeproj" -type d | head -n 1)
+                  XCODE_PROJECT=$(find_repo_xcodeproj)
                   if [ -z "$XCODE_PROJECT" ]; then
                     echo "::error::Could not find a .xcodeproj for workspace $XCODE_WORKSPACE"
                     exit 1
@@ -171,9 +189,30 @@ jobs:
             esac
           else
             # Prefer workspace over project (workspace includes SPM and full build graph)
-            XCODE_WORKSPACE=$(find . -name "*.xcworkspace" -type d | head -n 1)
-            XCODE_PROJECT=$(find . -name "*.xcodeproj" -type d | head -n 1)
+            XCODE_WORKSPACE=$(find_repo_xcworkspace)
+            XCODE_PROJECT=$(find_repo_xcodeproj)
           fi
+
+          # Swift-package-only repos (no .xcodeproj/.xcworkspace) build with `swift build`.
+          # Emitting compiler strings there needs no pbxproj surgery, so the Xcode-only
+          # steps below are skipped via build_system.
+          if [ -z "$XCODE_WORKSPACE" ] && [ -z "$XCODE_PROJECT" ]; then
+            PACKAGE_SWIFT=$(find_repo_package_swift)
+            if [ -n "$PACKAGE_SWIFT" ]; then
+              PACKAGE_PATH="$(dirname "$PACKAGE_SWIFT")"
+              PACKAGE_PATH="${PACKAGE_PATH#./}"
+              if [ -z "$PACKAGE_PATH" ]; then PACKAGE_PATH="."; fi
+              echo "✅ No Xcode project; using Swift package at $PACKAGE_PATH ($PACKAGE_SWIFT)"
+              echo "build_system=spm" >> $GITHUB_OUTPUT
+              echo "package_path=$PACKAGE_PATH" >> $GITHUB_OUTPUT
+              echo "project_type=spm" >> $GITHUB_OUTPUT
+              echo "project_name=$(basename "$(cd "$PACKAGE_PATH" && pwd)")" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+          fi
+
+          echo "build_system=xcode" >> $GITHUB_OUTPUT
+          echo "package_path=" >> $GITHUB_OUTPUT
 
           if [ -n "$XCODE_WORKSPACE" ]; then
             echo "✅ Using workspace: $XCODE_WORKSPACE"
@@ -188,7 +227,7 @@ jobs:
             PROJECT_NAME=$(basename "$XCODE_PROJECT" .xcodeproj)
             echo "project_name=$PROJECT_NAME" >> $GITHUB_OUTPUT
           else
-            echo "❌ No .xcodeproj or .xcworkspace found"
+            echo "❌ No .xcodeproj, .xcworkspace, or Package.swift found"
             if [ -n "${{ env.JOB_ID }}" ] && [ -n "${{ env.API_KEY }}" ]; then
               curl -s -X POST "${{ env.API_BASE_URL }}/api/strings/extract-strings/job/update-status" \
                 -H "Content-Type: application/json" \
@@ -196,7 +235,7 @@ jobs:
                 -d "{
                   \"jobId\": \"${{ env.JOB_ID }}\",
                   \"status\": \"workflow_failed\",
-                  \"errorMessage\": \"No .xcodeproj or .xcworkspace found. Check GitHub Actions logs for details.\",
+                  \"errorMessage\": \"No .xcodeproj, .xcworkspace, or Package.swift found. Check GitHub Actions logs for details.\",
                   \"workflowRunId\": \"${{ github.run_id }}\"
                 }" || echo "⚠️  Failed to send workflow_failed status"
             fi
@@ -250,6 +289,7 @@ jobs:
             }" || echo "⚠️  Failed to send workflow_failed status"
 
       - name: Resolve Swift packages (if any)
+        if: steps.find-xcode-project.outputs.build_system == 'xcode'
         run: |
           PP="${{ steps.find-xcode-project.outputs.project_path }}"
           if [ "${{ steps.find-xcode-project.outputs.project_type }}" = "workspace" ]; then
@@ -259,6 +299,7 @@ jobs:
           fi
 
       - name: Create merge script if needed
+        if: steps.find-xcode-project.outputs.build_system == 'xcode'
         run: |
           mkdir -p Scripts
           if [ ! -f "Scripts/merge_emitted_strings.py" ]; then
@@ -271,6 +312,7 @@ jobs:
           chmod +x .quetzal/scripts/*.sh .quetzal/scripts/*.py Scripts/*.sh Scripts/*.py || true
 
       - name: Ensure String Catalog exists
+        if: steps.find-xcode-project.outputs.build_system == 'xcode'
         run: |
           # Use xcodeproj_path for Ruby scripts (workspace path won't work with xcodeproj gem)
           XCODEPROJ_PATH="${{ steps.find-xcode-project.outputs.xcodeproj_path }}"
@@ -290,6 +332,7 @@ jobs:
           ./.quetzal/scripts/ensure_string_catalog.sh "$XCODEPROJ_PATH" "${{ steps.find-xcode-project.outputs.scheme }}" || echo "⚠️  Failed to ensure string catalog, continuing anyway..."
 
       - name: Install xcodeproj gem
+        if: steps.find-xcode-project.outputs.build_system == 'xcode'
         run: |
           # No sudo needed in GitHub Actions - gem install works directly
           gem install xcodeproj || {
@@ -298,6 +341,7 @@ jobs:
           }
 
       - name: Add String Catalog to Xcode project
+        if: steps.find-xcode-project.outputs.build_system == 'xcode'
         continue-on-error: true
         run: |
           # Find the .xcstrings file that was created
@@ -477,6 +521,7 @@ jobs:
           fi
 
       - name: Export existing localizations (before removing strings files)
+        if: steps.find-xcode-project.outputs.build_system == 'xcode'
         continue-on-error: true
         run: |
           
@@ -514,6 +559,7 @@ jobs:
           fi
 
       - name: Check for existing .strings files that might prevent emission
+        if: steps.find-xcode-project.outputs.build_system == 'xcode'
         run: |
           STRINGS_FILES=$(find . -name "Localizable.strings" -type f 2>/dev/null | grep -v "/.build/" | grep -v "/DerivedData/" | grep -v "/.git/" || echo "")
           if [ -n "$STRINGS_FILES" ]; then
@@ -556,6 +602,7 @@ jobs:
           fi
 
       - name: Ensure .xcstrings file exists and is in project and resources build phase
+        if: steps.find-xcode-project.outputs.build_system == 'xcode'
         run: |
           XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
           
@@ -594,6 +641,7 @@ jobs:
           fi
 
       - name: Bash syntax check
+        if: steps.find-xcode-project.outputs.build_system == 'xcode'
         run: |
           echo "🔍 Checking bash syntax of build script..."
           bash -n ./.quetzal/scripts/build_with_compiler_extraction.sh || {
@@ -605,6 +653,7 @@ jobs:
           chmod +x ./.quetzal/scripts/build_with_compiler_extraction.sh
 
       - name: Verify String Catalog exists before build
+        if: steps.find-xcode-project.outputs.build_system == 'xcode'
         run: |
           XCSTRINGS_FILE=$(find . -name "Localizable.xcstrings" -type f | head -n 1)
           
@@ -640,6 +689,7 @@ jobs:
           fi
 
       - name: Setup isolated DerivedData (prevent corruption)
+        if: steps.find-xcode-project.outputs.build_system == 'xcode'
         run: |
           export DERIVED_DATA_PATH="$RUNNER_TEMP/deriveddata-${{ github.run_id }}"
           
@@ -666,6 +716,7 @@ jobs:
             }" || echo "⚠️  Failed to send status update (build started)"
 
       - name: Run unsigned build with compiler string extraction
+        if: steps.find-xcode-project.outputs.build_system == 'xcode'
         continue-on-error: true
         shell: bash
         run: |
@@ -692,6 +743,46 @@ jobs:
           
           # Pass both paths to build script
           bash ./.quetzal/scripts/build_with_compiler_extraction.sh "$BUILD_PATH" "${{ steps.find-xcode-project.outputs.scheme }}" "Debug" "$XCODEPROJ_PATH" || echo "⚠️  Build failed, but continuing to generate skip list (may be empty)"
+
+      - name: Run Swift package build with compiler string extraction
+        if: steps.find-xcode-project.outputs.build_system == 'spm'
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -uo pipefail
+          PACKAGE_PATH="${{ steps.find-xcode-project.outputs.package_path }}"
+          if [ -z "$PACKAGE_PATH" ]; then PACKAGE_PATH="."; fi
+
+          STRINGSDATA_DIR="$RUNNER_TEMP/stringsdata-${{ github.run_id }}"
+          rm -rf "$STRINGSDATA_DIR"
+          mkdir -p "$STRINGSDATA_DIR"
+          # build_skip_list.py picks up out-of-repo .stringsdata via DERIVED_DATA_PATH.
+          echo "DERIVED_DATA_PATH=$STRINGSDATA_DIR" >> $GITHUB_ENV
+
+          # Style plugins can abort the build before any Swift file compiles, which
+          # would leave us with zero emitted strings.
+          export SWIFTLINT_DISABLE=YES
+          export SWIFTLINT_SKIP_BUILD_PHASE=YES
+          export DISABLE_SWIFTLINT=YES
+
+          echo "🔨 swift build --package-path $PACKAGE_PATH (localized strings -> $STRINGSDATA_DIR)"
+
+          # -emit-localized-strings writes one .stringsdata per source file, which is
+          # all the skip list needs. A failing build still emits data for the files
+          # that did compile, so keep going and use whatever we get.
+          swift build \
+            --package-path "$PACKAGE_PATH" \
+            -Xswiftc -emit-localized-strings \
+            -Xswiftc -emit-localized-strings-path \
+            -Xswiftc "$STRINGSDATA_DIR" \
+            2>&1 | tee swift_build_string_extraction.log
+          BUILD_EXIT=${PIPESTATUS[0]}
+
+          EMITTED=$(find "$STRINGSDATA_DIR" -name "*.stringsdata" | wc -l | xargs)
+          echo "📋 Emitted $EMITTED .stringsdata file(s) (swift build exit=$BUILD_EXIT)"
+          if [ "$EMITTED" = "0" ]; then
+            echo "⚠️  No .stringsdata emitted; skip list falls back to String Catalog keys"
+          fi
 
       - name: Send build completed status
         if: env.JOB_ID != '' && env.API_KEY != ''
