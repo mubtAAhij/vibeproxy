@@ -3,91 +3,158 @@
 set -euo pipefail
 
 # Usage:
+#   build_post_localization_verify.sh xcode <build_path> <scheme> [configuration]
+#   build_post_localization_verify.sh spm <package_path> [configuration]
 #   build_post_localization_verify.sh <build_path> <scheme> [configuration]
-# where build_path is either .xcworkspace or .xcodeproj
+#     (legacy Xcode-only form; build_path is .xcworkspace or .xcodeproj)
 
-BUILD_PATH="${1:-}"
-SCHEME="${2:-}"
-CONFIGURATION="${3:-Debug}"
+MODE="${1:-}"
+CONFIGURATION="Debug"
 
-if [ -z "$BUILD_PATH" ] || [ -z "$SCHEME" ]; then
-    echo "Usage: build_post_localization_verify.sh <build_path> <scheme> [configuration]"
-    exit 1
-fi
+run_spm_build() {
+    local package_path="${1:-.}"
+    local configuration="${2:-Debug}"
 
-BUILD_TYPE="project"
-if [[ "$BUILD_PATH" == *.xcworkspace ]]; then
-    BUILD_TYPE="workspace"
-fi
-
-xcodebuild_cmd() {
-    local cmd_args=()
-    if [ "$BUILD_TYPE" = "workspace" ]; then
-        cmd_args+=(-workspace "$BUILD_PATH")
-    else
-        cmd_args+=(-project "$BUILD_PATH")
+    if [ ! -f "$package_path/Package.swift" ]; then
+        echo "::error::No Package.swift found at package_path='$package_path'"
+        exit 1
     fi
-    cmd_args+=(-scheme "$SCHEME")
-    cmd_args+=("$@")
-    xcodebuild "${cmd_args[@]}"
-}
 
-AVAILABLE_DESTINATIONS=$(xcodebuild_cmd -showdestinations 2>/dev/null || true)
-DESTINATION=""
-if echo "$AVAILABLE_DESTINATIONS" | grep -q "platform:macOS"; then
-    DESTINATION="generic/platform=macOS"
-elif echo "$AVAILABLE_DESTINATIONS" | grep -q "platform:iOS Simulator"; then
-    DESTINATION="generic/platform=iOS Simulator"
-elif echo "$AVAILABLE_DESTINATIONS" | grep -q "platform:iOS"; then
-    DESTINATION="generic/platform=iOS"
-else
-    DESTINATION="generic/platform=macOS"
-fi
+    echo "Using build system: spm"
+    echo "Using package path: $package_path"
+    echo "Using configuration: $configuration"
 
-echo "Using build path: $BUILD_PATH"
-echo "Using scheme: $SCHEME"
-echo "Using destination: $DESTINATION"
+    # Compile/type-safety gate only — skip style plugins that can mask regressions.
+    export SWIFTLINT_DISABLE=YES
+    export SWIFTLINT_SKIP_BUILD_PHASE=YES
+    export DISABLE_SWIFTLINT=YES
+    export SWIFTLINT_DISABLE=1
 
-# This workflow is a compile/type safety gate for post-localization changes.
-# Disable SwiftLint plugin enforcement so style violations don't mask true build regressions.
-export SWIFTLINT_DISABLE=YES
-export SWIFTLINT_SKIP_BUILD_PHASE=YES
-export DISABLE_SWIFTLINT=YES
-export SWIFTLINT_DISABLE=1
+    local config_flag="debug"
+    case "$(echo "$configuration" | tr '[:upper:]' '[:lower:]')" in
+        release) config_flag="release" ;;
+        *) config_flag="debug" ;;
+    esac
 
-if [ "$BUILD_TYPE" = "workspace" ]; then
-    xcodebuild -workspace "$BUILD_PATH" -scheme "$SCHEME" -resolvePackageDependencies || true
-else
-    xcodebuild -project "$BUILD_PATH" -scheme "$SCHEME" -resolvePackageDependencies || true
-fi
+    # Run from repo root so build_output_post_localization.log lands where the
+    # workflow artifact upload expects it.
+    swift build --package-path "$package_path" -c "$config_flag" 2>&1 \
+        | tee build_output_post_localization.log
+    local build_exit=${PIPESTATUS[0]}
 
-xcodebuild_cmd \
-    -configuration "$CONFIGURATION" \
-    -destination "$DESTINATION" \
-    CODE_SIGNING_ALLOWED=NO \
-    -skipPackagePluginValidation \
-    build 2>&1 | tee build_output_post_localization.log
-
-BUILD_EXIT_CODE=${PIPESTATUS[0]}
-if [ "$BUILD_EXIT_CODE" -eq 0 ]; then
-    exit 0
-fi
-
-echo "xcodebuild exited with code $BUILD_EXIT_CODE; checking whether failures are SwiftLint-plugin-only..."
-
-FAILED_CMDS=$(awk '
-    /The following build commands failed:/ { in_block=1; next }
-    in_block && /^\(/ { in_block=0; next }
-    in_block && $0 ~ /^[[:space:]]+\S/ { gsub(/^[[:space:]]+/, "", $0); print }
-' build_output_post_localization.log || true)
-
-if [ -n "$FAILED_CMDS" ]; then
-    NON_SWIFTLINT_FAILED=$(printf "%s\n" "$FAILED_CMDS" | grep -Ev "SwiftLint|Running SwiftLint" || true)
-    if [ -z "$NON_SWIFTLINT_FAILED" ]; then
-        echo "Only SwiftLint build-tool plugin failures detected; treating verification as pass."
+    if [ "$build_exit" -eq 0 ]; then
         exit 0
     fi
-fi
+    echo "swift build exited with code $build_exit; verification failed."
+    exit "$build_exit"
+}
 
-echo "Non-SwiftLint build failures detected; verification failed."
-exit "$BUILD_EXIT_CODE"
+run_xcode_build() {
+    local build_path="${1:-}"
+    local scheme="${2:-}"
+    local configuration="${3:-Debug}"
+
+    if [ -z "$build_path" ] || [ -z "$scheme" ]; then
+        echo "Usage: build_post_localization_verify.sh xcode <build_path> <scheme> [configuration]"
+        exit 1
+    fi
+
+    local build_type="project"
+    if [[ "$build_path" == *.xcworkspace ]]; then
+        build_type="workspace"
+    fi
+
+    xcodebuild_cmd() {
+        local cmd_args=()
+        if [ "$build_type" = "workspace" ]; then
+            cmd_args+=(-workspace "$build_path")
+        else
+            cmd_args+=(-project "$build_path")
+        fi
+        cmd_args+=(-scheme "$scheme")
+        cmd_args+=("$@")
+        xcodebuild "${cmd_args[@]}"
+    }
+
+    local available_destinations
+    available_destinations=$(xcodebuild_cmd -showdestinations 2>/dev/null || true)
+    local destination=""
+    if echo "$available_destinations" | grep -q "platform:macOS"; then
+        destination="generic/platform=macOS"
+    elif echo "$available_destinations" | grep -q "platform:iOS Simulator"; then
+        destination="generic/platform=iOS Simulator"
+    elif echo "$available_destinations" | grep -q "platform:iOS"; then
+        destination="generic/platform=iOS"
+    else
+        destination="generic/platform=macOS"
+    fi
+
+    echo "Using build system: xcode"
+    echo "Using build path: $build_path"
+    echo "Using scheme: $scheme"
+    echo "Using destination: $destination"
+
+    export SWIFTLINT_DISABLE=YES
+    export SWIFTLINT_SKIP_BUILD_PHASE=YES
+    export DISABLE_SWIFTLINT=YES
+    export SWIFTLINT_DISABLE=1
+
+    if [ "$build_type" = "workspace" ]; then
+        xcodebuild -workspace "$build_path" -scheme "$scheme" -resolvePackageDependencies || true
+    else
+        xcodebuild -project "$build_path" -scheme "$scheme" -resolvePackageDependencies || true
+    fi
+
+    xcodebuild_cmd \
+        -configuration "$configuration" \
+        -destination "$destination" \
+        CODE_SIGNING_ALLOWED=NO \
+        -skipPackagePluginValidation \
+        build 2>&1 | tee build_output_post_localization.log
+
+    local build_exit_code=${PIPESTATUS[0]}
+    if [ "$build_exit_code" -eq 0 ]; then
+        exit 0
+    fi
+
+    echo "xcodebuild exited with code $build_exit_code; checking whether failures are SwiftLint-plugin-only..."
+
+    local failed_cmds
+    failed_cmds=$(awk '
+        /The following build commands failed:/ { in_block=1; next }
+        in_block && /^\(/ { in_block=0; next }
+        in_block && $0 ~ /^[[:space:]]+\S/ { gsub(/^[[:space:]]+/, "", $0); print }
+    ' build_output_post_localization.log || true)
+
+    if [ -n "$failed_cmds" ]; then
+        local non_swiftlint_failed
+        non_swiftlint_failed=$(printf "%s\n" "$failed_cmds" | grep -Ev "SwiftLint|Running SwiftLint" || true)
+        if [ -z "$non_swiftlint_failed" ]; then
+            echo "Only SwiftLint build-tool plugin failures detected; treating verification as pass."
+            exit 0
+        fi
+    fi
+
+    echo "Non-SwiftLint build failures detected; verification failed."
+    exit "$build_exit_code"
+}
+
+case "$MODE" in
+    spm)
+        run_spm_build "${2:-.}" "${3:-Debug}"
+        ;;
+    xcode)
+        run_xcode_build "${2:-}" "${3:-}" "${4:-Debug}"
+        ;;
+    *.xcworkspace|*.xcodeproj)
+        # Legacy positional form: <build_path> <scheme> [configuration]
+        run_xcode_build "$MODE" "${2:-}" "${3:-Debug}"
+        ;;
+    *)
+        echo "Usage:"
+        echo "  build_post_localization_verify.sh xcode <build_path> <scheme> [configuration]"
+        echo "  build_post_localization_verify.sh spm <package_path> [configuration]"
+        echo "  build_post_localization_verify.sh <build_path> <scheme> [configuration]"
+        exit 1
+        ;;
+esac
