@@ -107,22 +107,22 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, UNUserNoti
         // App menu
         let appMenuItem = NSMenuItem()
         let appMenu = NSMenu()
-        appMenu.addItem(NSMenuItem(title: "About VibeProxy", action: #selector(NSApplication.orderFrontStandardAboutPanel(_:)), keyEquivalent: ""))
+        appMenu.addItem(NSMenuItem(title: String(localized: "app.menu.about-vibeproxy", defaultValue: "About VibeProxy", comment: "Application menu item title for About dialog"), action: #selector(NSApplication.orderFrontStandardAboutPanel(_:)), keyEquivalent: ""))
         appMenu.addItem(NSMenuItem.separator())
-        appMenu.addItem(NSMenuItem(title: "Quit VibeProxy", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+        appMenu.addItem(NSMenuItem(title: String(localized: "app.menu.quit-vibeproxy", defaultValue: "Quit VibeProxy", comment: "Application menu item title to quit app with app name"), action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
         appMenuItem.submenu = appMenu
         mainMenu.addItem(appMenuItem)
         
         // Edit menu (for Cmd+C/V/X/A to work)
         let editMenuItem = NSMenuItem()
-        let editMenu = NSMenu(title: "Edit")
-        editMenu.addItem(NSMenuItem(title: "Undo", action: Selector(("undo:")), keyEquivalent: "z"))
-        editMenu.addItem(NSMenuItem(title: "Redo", action: Selector(("redo:")), keyEquivalent: "Z"))
+        let editMenu = NSMenu(title: String(localized: "app.menu.edit", defaultValue: "Edit", comment: "Top-level Edit menu title"))
+        editMenu.addItem(NSMenuItem(title: String(localized: "app.menu.edit.undo", defaultValue: "Undo", comment: "Edit menu item title for Undo action"), action: Selector(("undo:")), keyEquivalent: "z"))
+        editMenu.addItem(NSMenuItem(title: String(localized: "app.menu.edit.redo", defaultValue: "Redo", comment: "Edit menu item title for Redo action"), action: Selector(("redo:")), keyEquivalent: "Z"))
         editMenu.addItem(NSMenuItem.separator())
-        editMenu.addItem(NSMenuItem(title: "Cut", action: #selector(NSText.cut(_:)), keyEquivalent: "x"))
-        editMenu.addItem(NSMenuItem(title: "Copy", action: #selector(NSText.copy(_:)), keyEquivalent: "c"))
-        editMenu.addItem(NSMenuItem(title: "Paste", action: #selector(NSText.paste(_:)), keyEquivalent: "v"))
-        editMenu.addItem(NSMenuItem(title: "Select All", action: #selector(NSText.selectAll(_:)), keyEquivalent: "a"))
+        editMenu.addItem(NSMenuItem(title: String(localized: "app.menu.edit.cut", defaultValue: "Cut", comment: "Edit menu item title for Cut action"), action: #selector(NSText.cut(_:)), keyEquivalent: "x"))
+        editMenu.addItem(NSMenuItem(title: String(localized: "app.menu.edit.copy", defaultValue: "Copy", comment: "Edit menu item title for Copy action"), action: #selector(NSText.copy(_:)), keyEquivalent: "c"))
+        editMenu.addItem(NSMenuItem(title: String(localized: "app.menu.edit.paste", defaultValue: "Paste", comment: "Edit menu item title for Paste action"), action: #selector(NSText.paste(_:)), keyEquivalent: "v"))
+        editMenu.addItem(NSMenuItem(title: String(localized: "app.menu.edit.select-all", defaultValue: "Select All", comment: "Edit menu item title for Select All action"), action: #selector(NSText.selectAll(_:)), keyEquivalent: "a"))
         editMenuItem.submenu = editMenu
         mainMenu.addItem(editMenuItem)
         
@@ -149,28 +149,28 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, UNUserNoti
         menu = NSMenu()
 
         // Server Status
-        menu.addItem(NSMenuItem(title: "Server: Stopped", action: nil, keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: String(localized: "app.status-item.server-stopped", defaultValue: "Server: Stopped", comment: "Status item title when server is stopped"), action: nil, keyEquivalent: ""))
         menu.addItem(NSMenuItem.separator())
 
         // Main Actions
-        menu.addItem(NSMenuItem(title: "Open Settings", action: #selector(openSettings), keyEquivalent: "s"))
+        menu.addItem(NSMenuItem(title: String(localized: "app.status-item.open-settings", defaultValue: "Open Settings", comment: "Status menu item title to open settings window"), action: #selector(openSettings), keyEquivalent: "s"))
         menu.addItem(NSMenuItem.separator())
 
         // Server Control
-        let startStopItem = NSMenuItem(title: "Start Server", action: #selector(toggleServer), keyEquivalent: "")
+        let startStopItem = NSMenuItem(title: String(localized: "app.status-item.start-server", defaultValue: "Start Server", comment: "Status menu item title to start backend server"), action: #selector(toggleServer), keyEquivalent: "")
         startStopItem.tag = 100
         menu.addItem(startStopItem)
 
         menu.addItem(NSMenuItem.separator())
 
         // Copy URL
-        let copyURLItem = NSMenuItem(title: "Copy Server URL", action: #selector(copyServerURL), keyEquivalent: "c")
+        let copyURLItem = NSMenuItem(title: String(localized: "app.status-item.copy-server-url", defaultValue: "Copy Server URL", comment: "Status menu item title to copy server URL to clipboard"), action: #selector(copyServerURL), keyEquivalent: "c")
         copyURLItem.isEnabled = false
         copyURLItem.tag = 102
         menu.addItem(copyURLItem)
 
         // Open Dashboard
-        let dashboardItem = NSMenuItem(title: "Open Dashboard", action: #selector(openDashboard), keyEquivalent: "d")
+        let dashboardItem = NSMenuItem(title: String(localized: "app.status-item.open-dashboard", defaultValue: "Open Dashboard", comment: "Status menu item title to open dashboard in browser"), action: #selector(openDashboard), keyEquivalent: "d")
         dashboardItem.isEnabled = false
         dashboardItem.tag = 103
         menu.addItem(dashboardItem)
@@ -178,14 +178,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, UNUserNoti
         menu.addItem(NSMenuItem.separator())
 
         // Check for Updates
-        let checkForUpdatesItem = NSMenuItem(title: "Check for Updates...", action: #selector(SPUStandardUpdaterController.checkForUpdates(_:)), keyEquivalent: "u")
+        let checkForUpdatesItem = NSMenuItem(title: String(localized: "app.status-item.check-for-updates", defaultValue: "Check for Updates...", comment: "Status menu item title to check for app updates"), action: #selector(SPUStandardUpdaterController.checkForUpdates(_:)), keyEquivalent: "u")
         checkForUpdatesItem.target = updaterController
         menu.addItem(checkForUpdatesItem)
 
         menu.addItem(NSMenuItem.separator())
 
         // Quit
-        menu.addItem(NSMenuItem(title: "Quit", action: #selector(quit), keyEquivalent: "q"))
+        menu.addItem(NSMenuItem(title: String(localized: "app.status-item.quit", defaultValue: "Quit", comment: "Status menu item title to quit app"), action: #selector(quit), keyEquivalent: "q"))
 
         statusItem.menu = menu
     }
@@ -249,11 +249,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, UNUserNoti
                     if success {
                         self?.updateMenuBarStatus()
                         // User always connects to 8317 (thinking proxy)
-                        self?.showNotification(title: "Server Started", body: "VibeProxy is now running")
+                        self?.showNotification(title: String(localized: "app.notification.server-started.title", defaultValue: "Server Started", comment: "Notification title shown when server starts successfully"), body: String(localized: "app.notification.server-started.body", defaultValue: "VibeProxy is now running", comment: "Notification body shown when server starts successfully"))
                     } else {
                         // Backend failed - stop the proxy to keep state consistent
                         self?.thinkingProxy.stop()
-                        self?.showNotification(title: "Server Failed", body: "Could not start backend server on port 8318")
+                        self?.showNotification(title: String(localized: "app.notification.server-failed.title", defaultValue: "Server Failed", comment: "Notification title shown when server fails to start"), body: String(localized: "app.notification.server-failed.body", defaultValue: "Could not start backend server on port 8318", comment: "Notification body shown when backend server fails to start on default port"))
                     }
                 }
             }
@@ -265,7 +265,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, UNUserNoti
             DispatchQueue.main.async { [weak self] in
                 // Clean up partially initialized proxy
                 self?.thinkingProxy.stop()
-                self?.showNotification(title: "Server Failed", body: "Could not start thinking proxy on port 8317 (timeout)")
+                self?.showNotification(title: String(localized: "app.notification.server-failed.title", defaultValue: "Server Failed", comment: "Notification title shown when server fails to start"), body: String(localized: "app.notification.server-failed-thinking-proxy-timeout.body", defaultValue: "Could not start thinking proxy on port 8317 (timeout)", comment: "Notification body shown when thinking proxy startup times out"))
             }
             return
         }
@@ -291,7 +291,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, UNUserNoti
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
         pasteboard.setString("http://localhost:\(thinkingProxy.proxyPort)", forType: .string)
-        showNotification(title: "Copied", body: "Server URL copied to clipboard")
+        showNotification(title: String(localized: "app.notification.copied.title", defaultValue: "Copied", comment: "Notification title shown after copying server URL"), body: String(localized: "app.notification.server-url-copied.body", defaultValue: "Server URL copied to clipboard", comment: "Notification body shown after copying server URL to clipboard"))
     }
 
     @objc func openDashboard() {
@@ -313,12 +313,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, UNUserNoti
     @objc func updateMenuBarStatus() {
         // Update status items
         if let serverStatus = menu.item(at: 0) {
-            serverStatus.title = serverManager.isRunning ? "Server: Running (port \(thinkingProxy.proxyPort))" : "Server: Stopped"
+            serverStatus.title = serverManager.isRunning ? String(format: String(localized: "app.status-item.server-running-port", defaultValue: "Server: Running (port %d)", comment: "Status item title when server is running with active port"), thinkingProxy.proxyPort) : String(localized: "app.status-item.server-stopped", defaultValue: "Server: Stopped", comment: "Status item title when server is stopped")
         }
 
         // Update button states
         if let startStopItem = menu.item(withTag: 100) {
-            startStopItem.title = serverManager.isRunning ? "Stop Server" : "Start Server"
+            startStopItem.title = serverManager.isRunning ? String(localized: "app.status-item.stop-server", defaultValue: "Stop Server", comment: "Status menu item title to stop backend server") : String(localized: "app.status-item.start-server", defaultValue: "Start Server", comment: "Status menu item title to start backend server")
         }
 
         if let copyURLItem = menu.item(withTag: 102) {
