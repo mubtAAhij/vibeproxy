@@ -187,21 +187,33 @@ class ThinkingProxy {
      */
     private func processRequest(data: Data, connection: NWConnection) {
         guard let requestString = String(data: data, encoding: .utf8) else {
-            sendError(to: connection, statusCode: 400, message: String(localized: "thinking-proxy.errors.invalid-request", defaultValue: "Invalid request", comment: "HTTP error message for malformed incoming request"))
+            sendError(to: connection, statusCode: 400, message: String(
+                localized: "thinking-proxy.errors.invalid-request",
+                defaultValue: "Invalid request",
+                comment: "HTTP error message for malformed incoming request"
+            ))
             return
         }
         
         // Parse HTTP request
         let lines = requestString.components(separatedBy: "\r\n")
         guard let requestLine = lines.first else {
-            sendError(to: connection, statusCode: 400, message: String(localized: "thinking-proxy.errors.invalid-request-line", defaultValue: "Invalid request line", comment: "HTTP error message for invalid request start line"))
+            sendError(to: connection, statusCode: 400, message: String(
+                localized: "thinking-proxy.errors.invalid-request-line",
+                defaultValue: "Invalid request line",
+                comment: "HTTP error message for invalid request start line"
+            ))
             return
         }
         
         // Extract method, path, and HTTP version
         let parts = requestLine.components(separatedBy: " ")
         guard parts.count >= 3 else {
-            sendError(to: connection, statusCode: 400, message: String(localized: "thinking-proxy.errors.invalid-request-format", defaultValue: "Invalid request format", comment: "HTTP error message for invalid request formatting"))
+            sendError(to: connection, statusCode: 400, message: String(
+                localized: "thinking-proxy.errors.invalid-request-format",
+                defaultValue: "Invalid request format",
+                comment: "HTTP error message for invalid request formatting"
+            ))
             return
         }
         
@@ -224,7 +236,11 @@ class ThinkingProxy {
         // Find the body start
         guard let bodyStartRange = requestString.range(of: "\r\n\r\n") else {
             NSLog("[ThinkingProxy] Error: Could not find body separator in request")
-            sendError(to: connection, statusCode: 400, message: String(localized: "thinking-proxy.errors.invalid-request-format-no-body-separator", defaultValue: "Invalid request format - no body separator", comment: "HTTP error message when request body separator is missing"))
+            sendError(to: connection, statusCode: 400, message: String(
+                localized: "thinking-proxy.errors.invalid-request-format-no-body-separator",
+                defaultValue: "Invalid request format - no body separator",
+                comment: "HTTP error message when request body separator is missing"
+            ))
             return
         }
         
@@ -507,7 +523,11 @@ class ThinkingProxy {
                 
             case .failed(let error):
                 NSLog("[ThinkingProxy] Connection to ampcode.com failed: \(error)")
-                self.sendError(to: originalConnection, statusCode: 502, message: String(localized: "thinking-proxy.errors.bad-gateway-ampcode-unreachable", defaultValue: "Bad Gateway - Could not connect to ampcode.com", comment: "Gateway error when upstream ampcode.com is unreachable"))
+                self.sendError(to: originalConnection, statusCode: 502, message: String(
+                    localized: "thinking-proxy.errors.bad-gateway-ampcode-unreachable",
+                    defaultValue: "Bad Gateway - Could not connect to ampcode.com",
+                    comment: "Gateway error when upstream ampcode.com is unreachable"
+                ))
                 targetConnection.cancel()
                 
             default:
@@ -681,7 +701,11 @@ class ThinkingProxy {
                 
             case .failed(let error):
                 NSLog("[ThinkingProxy] Vercel connection failed: \(error)")
-                self.sendError(to: originalConnection, statusCode: 502, message: String(localized: "thinking-proxy.errors.bad-gateway-vercel-ai-gateway-unreachable", defaultValue: "Bad Gateway - Could not connect to Vercel AI Gateway", comment: "Gateway error when Vercel AI Gateway is unreachable"))
+                self.sendError(to: originalConnection, statusCode: 502, message: String(
+                    localized: "thinking-proxy.errors.bad-gateway-vercel-ai-gateway-unreachable",
+                    defaultValue: "Bad Gateway - Could not connect to Vercel AI Gateway",
+                    comment: "Gateway error when Vercel AI Gateway is unreachable"
+                ))
                 targetConnection.cancel()
                 
             default:
@@ -703,7 +727,11 @@ class ThinkingProxy {
         // Create connection to CLIProxyAPI
         guard let port = NWEndpoint.Port(rawValue: targetPort) else {
             NSLog("[ThinkingProxy] Invalid target port: %d", targetPort)
-            sendError(to: originalConnection, statusCode: 500, message: String(localized: "thinking-proxy.errors.internal-server-error", defaultValue: "Internal Server Error", comment: "Generic internal server error response text"))
+            sendError(to: originalConnection, statusCode: 500, message: String(
+                localized: "thinking-proxy.errors.internal-server-error",
+                defaultValue: "Internal Server Error",
+                comment: "Generic internal server error response text"
+            ))
             return
         }
         let endpoint = NWEndpoint.hostPort(host: NWEndpoint.Host(targetHost), port: port)
@@ -781,7 +809,11 @@ class ThinkingProxy {
                 
             case .failed(let error):
                 NSLog("[ThinkingProxy] Target connection failed: \(error)")
-                self.sendError(to: originalConnection, statusCode: 502, message: String(localized: "thinking-proxy.errors.bad-gateway", defaultValue: "Bad Gateway", comment: "Generic bad gateway response text"))
+                self.sendError(to: originalConnection, statusCode: 502, message: String(
+                    localized: "thinking-proxy.errors.bad-gateway",
+                    defaultValue: "Bad Gateway",
+                    comment: "Generic bad gateway response text"
+                ))
                 targetConnection.cancel()
                 
             default:
