@@ -1,0 +1,2390 @@
+{
+  "version": "1.0",
+  "sourceLanguage": "en",
+  "strings": {
+    "custom-providers.help.no-model-aliases": {
+      "comment": "Help text shown when a custom provider has no model aliases",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No model aliases configured yet."
+          }
+        }
+      }
+    },
+    "custom-providers.help.models-list": {
+      "comment": "Help text listing model aliases for a custom provider",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Models: %@."
+          }
+        }
+      }
+    },
+    "custom-providers.help.provider-summary": {
+      "comment": "Help text summarizing custom provider URL and model aliases",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OpenAI-compatible provider at %@. %@"
+          }
+        }
+      }
+    },
+    "thinking-proxy.error.invalid-request": {
+      "comment": "HTTP 400 error message for malformed proxy request",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid request"
+          }
+        }
+      }
+    },
+    "thinking-proxy.error.invalid-request-line": {
+      "comment": "HTTP 400 error message when request line is missing",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid request line"
+          }
+        }
+      }
+    },
+    "thinking-proxy.error.invalid-request-format": {
+      "comment": "HTTP 400 error message for malformed request format",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid request format"
+          }
+        }
+      }
+    },
+    "thinking-proxy.error.invalid-request-no-body-separator": {
+      "comment": "HTTP 400 error message when request body separator is missing",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid request format - no body separator"
+          }
+        }
+      }
+    },
+    "thinking-proxy.error.bad-gateway-ampcode-unreachable": {
+      "comment": "HTTP 502 error message when ampcode.com is unreachable",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bad Gateway - Could not connect to ampcode.com"
+          }
+        }
+      }
+    },
+    "thinking-proxy.error.bad-gateway-vercel-unreachable": {
+      "comment": "HTTP 502 error message when Vercel AI Gateway is unreachable",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bad Gateway - Could not connect to Vercel AI Gateway"
+          }
+        }
+      }
+    },
+    "thinking-proxy.error.internal-server-error": {
+      "comment": "HTTP 500 error message for unexpected proxy failures",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "thinking-proxy.error.bad-gateway": {
+      "comment": "HTTP 502 error message for upstream connection failures",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bad Gateway"
+          }
+        }
+      }
+    },
+    "tunnel-manager.cloudflared.install-required.title": {
+      "comment": "Alert title when cloudflared is missing",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cloudflared Not Installed"
+          }
+        }
+      }
+    },
+    "tunnel-manager.cloudflared.install-required.message": {
+      "comment": "Alert body with cloudflared installation instructions",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To expose your server to the internet, you need to install cloudflared.\n\nInstall via Homebrew:\nbrew install cloudflared\n\nOr download from:\nhttps://github.com/cloudflare/cloudflared/releases"
+          }
+        }
+      }
+    },
+    "tunnel-manager.cloudflared.install-required.copy-command": {
+      "comment": "Primary button title to copy cloudflared install command",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy Install Command"
+          }
+        }
+      }
+    },
+    "common.button.cancel": {
+      "comment": "Cancel button title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "zai-api-key-store.error.create-auth-directory-failed": {
+      "comment": "Error message when creating the auth directory for Z.AI API key storage fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to create auth directory at %@: %@"
+          }
+        }
+      }
+    },
+    "zai-api-key-store.error.serialize-api-key-failed": {
+      "comment": "Error message when serializing the Z.AI API key fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to serialize Z.AI API key: %@"
+          }
+        }
+      }
+    },
+    "zai-api-key-store.error.write-api-key-file-failed": {
+      "comment": "Error message when writing the Z.AI API key file fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to write Z.AI API key file at %@: %@"
+          }
+        }
+      }
+    },
+    "zai-api-key-store.error.unexpected-load-error": {
+      "comment": "Error message for unexpected failure while loading a key file",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unexpected error while loading %@: %@"
+          }
+        }
+      }
+    },
+    "zai-api-key-store.error.read-api-key-file-failed": {
+      "comment": "Error message when reading the Z.AI API key file fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to read Z.AI API key file at %@: %@"
+          }
+        }
+      }
+    },
+    "zai-api-key-store.error.invalid-json-in-key-file": {
+      "comment": "Error message when the Z.AI API key file contains invalid JSON",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z.AI API key file at %@ contains invalid JSON: %@"
+          }
+        }
+      }
+    },
+    "zai-api-key-store.error.key-file-must-be-json-object": {
+      "comment": "Error message when the Z.AI API key file root is not a JSON object",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z.AI API key file at %@ must contain a JSON object."
+          }
+        }
+      }
+    },
+    "zai-api-key-store.error.key-file-unexpected-type": {
+      "comment": "Error message when parsed key file content has an unexpected type",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z.AI API key file at %@ has an unexpected type."
+          }
+        }
+      }
+    },
+    "zai-api-key-store.error.key-file-missing-api-key": {
+      "comment": "Error message when api_key field is missing in the Z.AI API key file",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z.AI API key file at %@ is missing an api_key."
+          }
+        }
+      }
+    },
+    "config-composer.validation.openai-compatibility-must-be-provider-mappings-array": {
+      "comment": "Validation error when openai-compatibility is not an array of provider mappings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "openai-compatibility must be an array of provider mappings."
+          }
+        }
+      }
+    },
+    "config-composer.validation.path-must-be-mapping": {
+      "comment": "Validation error when a configuration path is not a mapping",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ must be a mapping."
+          }
+        }
+      }
+    },
+    "config-composer.validation.path-must-define-string-name": {
+      "comment": "Validation error when a configuration path does not define a string name",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ must define a string name."
+          }
+        }
+      }
+    },
+    "config-composer.validation.path-must-define-non-empty-name": {
+      "comment": "Validation error when a configuration path does not define a non-empty name",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ must define a non-empty name."
+          }
+        }
+      }
+    },
+    "config-composer.validation.provider-name-no-edge-whitespace": {
+      "comment": "Validation error when provider name has leading or trailing whitespace",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Provider name '%@' must not include leading or trailing whitespace."
+          }
+        }
+      }
+    },
+    "config-composer.validation.duplicate-openai-compatibility-provider-not-allowed": {
+      "comment": "Validation error when duplicate openai-compatibility provider is declared",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duplicate openai-compatibility provider '%@' is not allowed."
+          }
+        }
+      }
+    },
+    "config-composer.validation.provider-reserved-for-openai-compatibility": {
+      "comment": "Validation error when a reserved provider is declared under openai-compatibility",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Provider '%@' is reserved and cannot be declared under openai-compatibility."
+          }
+        }
+      }
+    },
+    "config-composer.validation-api-key-path-must-be-mapping": {
+      "comment": "Validation error when an API key path is not a mapping",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ must be a mapping."
+          }
+        }
+      }
+    },
+    "config-composer.validation-api-key-path-must-define-non-empty-api-key": {
+      "comment": "Validation error when API key path does not define a non-empty api-key",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ must define a non-empty api-key."
+          }
+        }
+      }
+    },
+    "config-composer.validation-api-key-entries-must-be-mappings-array": {
+      "comment": "Validation error when api-key-entries is not an array of mappings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@.api-key-entries must be an array of mappings."
+          }
+        }
+      }
+    },
+    "config-composer.validation.custom-provider-must-define-base-url": {
+      "comment": "Validation error when custom provider does not define a non-empty base-url",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom provider '%@' must define a non-empty base-url."
+          }
+        }
+      }
+    },
+    "config-composer.validation.path-must-be-mappings-array": {
+      "comment": "Validation error when a configuration path is not an array of mappings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ must be an array of mappings."
+          }
+        }
+      }
+    },
+    "config-composer.validation.path-index-must-be-mapping": {
+      "comment": "Validation error when an item at a path index is not a mapping",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@[%d] must be a mapping."
+          }
+        }
+      }
+    },
+    "custom-provider-credential-store.error.no-stored-credential-for-provider": {
+      "comment": "Error when no stored credential exists for the requested provider",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No stored credential was found for provider %@."
+          }
+        }
+      }
+    },
+    "custom-provider-credential-store.error.delete-credential-file-failed": {
+      "comment": "Error when deleting a credential file fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to delete credential file at %@: %@"
+          }
+        }
+      }
+    },
+    "custom-provider-credential-store.error.read-credential-file-failed": {
+      "comment": "Error when reading a credential file fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to read credential file at %@: %@"
+          }
+        }
+      }
+    },
+    "custom-provider-credential-store.error.credential-file-invalid-json": {
+      "comment": "Error when a credential file contains invalid JSON",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Credential file at %@ contains invalid JSON: %@"
+          }
+        }
+      }
+    },
+    "custom-provider-credential-store.error.credential-file-must-be-json-object": {
+      "comment": "Error when a credential file JSON root is not an object",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Credential file at %@ must contain a JSON object."
+          }
+        }
+      }
+    },
+    "custom-provider-credential-store.error.credential-file-unexpected-type": {
+      "comment": "Error when a credential file value has an unexpected type",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Credential file at %@ has an unexpected type."
+          }
+        }
+      }
+    },
+    "custom-provider-credential-store.error.credential-file-missing-provider": {
+      "comment": "Error when a credential file is missing provider field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Credential file at %@ is missing a provider."
+          }
+        }
+      }
+    },
+    "custom-provider-credential-store.error.credential-file-missing-api-key": {
+      "comment": "Error when a credential file is missing api_key field",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Credential file at %@ is missing an api_key."
+          }
+        }
+      }
+    },
+    "custom-provider-credential-store.error.create-auth-directory-failed": {
+      "comment": "Error when creating auth directory for credential storage fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to create auth directory at %@: %@"
+          }
+        }
+      }
+    },
+    "custom-provider-credential-store.error.unexpected-load-error": {
+      "comment": "Error when an unexpected failure occurs while loading credential files",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unexpected error while loading %@: %@"
+          }
+        }
+      }
+    },
+    "custom-provider-credential-store.error.read-credential-record-file-failed": {
+      "comment": "Error when reading provider credential record file fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to read credential file at %@: %@"
+          }
+        }
+      }
+    },
+    "custom-provider-credential-store.error.credential-record-file-invalid-json": {
+      "comment": "Error when provider credential record file contains invalid JSON",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Credential file at %@ contains invalid JSON: %@"
+          }
+        }
+      }
+    },
+    "custom-provider-credential-store.error.credential-record-file-must-be-json-object": {
+      "comment": "Error when provider credential record JSON root is not an object",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Credential file at %@ must contain a JSON object."
+          }
+        }
+      }
+    },
+    "custom-provider-credential-store.error.serialize-credential-failed": {
+      "comment": "Error when serializing a provider credential fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to serialize credential for %@: %@"
+          }
+        }
+      }
+    },
+    "custom-provider-credential-store.error.write-credential-file-failed": {
+      "comment": "Error when writing a credential file fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to write credential file at %@: %@"
+          }
+        }
+      }
+    },
+    "settings.auth.expired-indicator": {
+      "comment": "Badge text indicating an authentication token is expired",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(expired)"
+          }
+        }
+      }
+    },
+    "settings.vercel-gateway.description": {
+      "comment": "Description text for routing Claude requests through Vercel AI Gateway",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route Claude requests through Vercel AI Gateway for safer access to your Claude Max subscription"
+          }
+        }
+      }
+    },
+    "settings.accounts.add-account-button": {
+      "comment": "Button title to add a new connected account",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Account"
+          }
+        }
+      }
+    },
+    "settings.accounts.connected-accounts-count": {
+      "comment": "Summary showing number of connected accounts",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d connected account(s)"
+          },
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%d connected account"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%d connected accounts"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "settings.accounts.round-robin-auto-failover": {
+      "comment": "Bullet point describing round-robin with auto-failover behavior",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Round-robin w/ auto-failover"
+          }
+        }
+      }
+    },
+    "settings.accounts.remove-account-confirmation": {
+      "comment": "Confirmation message when removing a connected account",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Are you sure you want to remove %@ from %@?"
+          }
+        }
+      }
+    },
+    "settings.custom-providers.add-api-key-button": {
+      "comment": "Button title to add an API key for a custom provider",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add API Key"
+          }
+        }
+      }
+    },
+    "settings.custom-providers.using-inline-api-keys": {
+      "comment": "Status text showing number of inline API keys from config file",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Using %d API key(s) from ~/.cli-proxy-api/config.yaml"
+          },
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Using %d API key from ~/.cli-proxy-api/config.yaml"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Using %d API keys from ~/.cli-proxy-api/config.yaml"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "settings.custom-providers.remove-api-key-button": {
+      "comment": "Button title to remove an API key from a custom provider",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove API Key"
+          }
+        }
+      }
+    },
+    "settings.custom-providers.remove-api-key-confirmation": {
+      "comment": "Confirmation message when removing an API key credential",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Are you sure you want to remove %@ from %@?"
+          }
+        }
+      }
+    },
+    "settings.server.status-title": {
+      "comment": "Section title for server status settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server status"
+          }
+        }
+      }
+    },
+    "settings.server.status-running": {
+      "comment": "Server state label when the server is running",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running"
+          }
+        }
+      }
+    },
+    "settings.server.status-stopped": {
+      "comment": "Server state label when the server is stopped",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stopped"
+          }
+        }
+      }
+    },
+    "settings.server.configuration-error": {
+      "comment": "Label shown when there is a server configuration error",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configuration Error"
+          }
+        }
+      }
+    },
+    "settings.server.launch-at-login": {
+      "comment": "Toggle label for launching app at login",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Launch at login"
+          }
+        }
+      }
+    },
+    "settings.auth-files.title": {
+      "comment": "Section title for authentication files actions",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auth files"
+          }
+        }
+      }
+    },
+    "settings.auth-files.open-folder-button": {
+      "comment": "Button title to open auth files folder",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Folder"
+          }
+        }
+      }
+    },
+    "settings.services.title": {
+      "comment": "Section title for service configuration",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Services"
+          }
+        }
+      }
+    },
+    "settings.services.gemini.default-project-note": {
+      "comment": "Informational note about Gemini default project selection during authentication",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Note: If you're an existing Gemini user with multiple projects, authentication will use your default project. Set your desired project as default in Google AI Studio before connecting."
+          }
+        }
+      }
+    },
+    "settings.services.kimi.browser-auth-description": {
+      "comment": "Description of Kimi browser-based account authentication behavior",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kimi uses browser-based account authentication so you can route requests through your Kimi subscription instead of an API key."
+          }
+        }
+      }
+    },
+    "settings.services.copilot.description": {
+      "comment": "Description for GitHub Copilot service in settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub Copilot provides access to Claude, GPT, Gemini and other models via your Copilot subscription."
+          }
+        }
+      }
+    },
+    "settings.services.zai-glm.description": {
+      "comment": "Description for Z.AI GLM service including API key URL",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z.AI GLM provides access to GLM-4.7 and other models via API key. Get your key at https://z.ai/manage-apikey/apikey-list"
+          }
+        }
+      }
+    },
+    "settings.custom-providers.section-title": {
+      "comment": "Section title for custom providers in settings",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom Providers"
+          }
+        }
+      }
+    },
+    "settings.about.credits-intro": {
+      "comment": "About section text introducing project acknowledgements with app version",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy %@ was made possible thanks to"
+          }
+        }
+      }
+    },
+    "settings.about.license-mit": {
+      "comment": "About section license label",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "License: MIT"
+          }
+        }
+      }
+    },
+    "settings.about.rights-reserved": {
+      "comment": "Copyright notice in about section",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All rights reserved."
+          }
+        }
+      }
+    },
+    "settings.about.report-issue-button": {
+      "comment": "Button title to report an issue",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Report an issue"
+          }
+        }
+      }
+    },
+    "settings.qwen.account-email-title": {
+      "comment": "Dialog title for entering Qwen account email",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qwen Account Email"
+          }
+        }
+      }
+    },
+    "settings.qwen.account-email-prompt": {
+      "comment": "Prompt asking user to enter Qwen account email",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter your Qwen account email address"
+          }
+        }
+      }
+    },
+    "settings.common.continue-button": {
+      "comment": "Continue button title in authentication dialogs",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continue"
+          }
+        }
+      }
+    },
+    "settings.zai.api-key-title": {
+      "comment": "Dialog title for entering Z.AI API key",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z.AI API Key"
+          }
+        }
+      }
+    },
+    "settings.zai.api-key-prompt": {
+      "comment": "Prompt asking user to enter Z.AI API key with reference URL",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter your Z.AI API key from https://z.ai/manage-apikey/apikey-list"
+          }
+        }
+      }
+    },
+    "settings.zai.add-key-button": {
+      "comment": "Button title to add Z.AI API key",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Key"
+          }
+        }
+      }
+    },
+    "settings.custom-provider.api-key-title": {
+      "comment": "Dialog title for entering API key for a custom provider",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ API Key"
+          }
+        }
+      }
+    },
+    "settings.custom-provider.api-key-prompt": {
+      "comment": "Prompt asking user to enter API key for a custom provider",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter an API key for %@"
+          }
+        }
+      }
+    },
+    "settings.custom-provider.add-key-button": {
+      "comment": "Button title to add API key for a custom provider",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Key"
+          }
+        }
+      }
+    },
+    "settings.authentication.result-title": {
+      "comment": "Title for authentication result alert",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Authentication Result"
+          }
+        }
+      }
+    },
+    "settings.common.ok-button": {
+      "comment": "OK button title in authentication result alert",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        }
+      }
+    },
+    "settings.accounts.enabled-status": {
+      "comment": "Status text indicating an account has been enabled",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Enabled %@"
+          }
+        }
+      }
+    },
+    "settings.accounts.disabled-status": {
+      "comment": "Status text indicating an account has been disabled",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Disabled %@"
+          }
+        }
+      }
+    },
+    "settings.accounts.update-failed": {
+      "comment": "Error message shown when updating an account fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to update %@. Please try again."
+          }
+        }
+      }
+    },
+    "settings.authentication.failed-with-browser-check-details": {
+      "comment": "Authentication failure message with browser hint and detail output",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Authentication failed. Please check if the browser opened and try again.\n\nDetails: %@"
+          }
+        }
+      }
+    },
+    "settings.authentication.no-output-from-process": {
+      "comment": "Fallback authentication detail when no output was returned",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No output from authentication process"
+          }
+        }
+      }
+    },
+    "settings.authentication.claude-code-browser-opened": {
+      "comment": "Instruction message after opening browser for Claude Code authentication",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for Claude Code authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect your credentials."
+          }
+        }
+      }
+    },
+    "settings.authentication.codex-browser-opened": {
+      "comment": "Instruction message after opening browser for Codex authentication",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for Codex authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect your credentials."
+          }
+        }
+      }
+    },
+    "settings.authentication.copilot-device-flow-started": {
+      "comment": "Instruction message when GitHub Copilot device authentication starts",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 GitHub Copilot authentication started!\n\nPlease visit github.com/login/device and enter the code shown.\n\nThe app will automatically detect your credentials."
+          }
+        }
+      }
+    },
+    "settings.authentication.gemini-browser-opened": {
+      "comment": "Instruction message after opening browser for Gemini authentication with default project note",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for Gemini authentication.\n\nPlease complete the login in your browser.\n\n⚠️ Note: If you have multiple projects, the default project will be used."
+          }
+        }
+      }
+    },
+    "settings.authentication.kimi-browser-opened": {
+      "comment": "Instruction message after opening browser for Kimi authentication",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for Kimi authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect your Kimi account."
+          }
+        }
+      }
+    },
+    "settings.authentication.qwen-browser-opened": {
+      "comment": "Instruction message after opening browser for Qwen authentication",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for Qwen authentication.\n\nPlease complete the login in your browser."
+          }
+        }
+      }
+    },
+    "settings.authentication.antigravity-browser-opened": {
+      "comment": "Instruction message after opening browser for Antigravity authentication",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Browser opened for Antigravity authentication.\n\nPlease complete the login in your browser."
+          }
+        }
+      }
+    },
+    "settings.zai.api-key-added-success": {
+      "comment": "Success message shown after adding Z.AI API key",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Z.AI API key added successfully.\n\nYou can now use GLM models through the proxy."
+          }
+        }
+      }
+    },
+    "settings.authentication.failed-with-details": {
+      "comment": "Authentication failure message with details",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Authentication failed.\n\nDetails: %@"
+          }
+        }
+      }
+    },
+    "settings.authentication.no-output": {
+      "comment": "Fallback detail text when command output is empty",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No output"
+          }
+        }
+      }
+    },
+    "settings.api-key.save-failed-with-details": {
+      "comment": "Error message shown when saving API key fails with details",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to save API key.\n\nDetails: %@"
+          }
+        }
+      }
+    },
+    "settings.common.unknown-error": {
+      "comment": "Fallback error detail when no specific error is available",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unknown error"
+          }
+        }
+      }
+    },
+    "settings.custom-provider.api-key-added-success": {
+      "comment": "Success message shown after adding custom provider API key",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ %@ API key added successfully.\n\nYou can now use this provider through the proxy."
+          }
+        }
+      }
+    },
+    "settings.custom-provider.api-key-already-in-config": {
+      "comment": "Message shown when API key already exists in config file for provider",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ %@ already has this API key in ~/.cli-proxy-api/config.yaml."
+          }
+        }
+      }
+    },
+    "settings.custom-provider.api-key-already-stored": {
+      "comment": "Message shown when API key is already stored for provider",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ %@ already has this API key stored."
+          }
+        }
+      }
+    },
+    "settings.custom-provider.api-key-reenabled": {
+      "comment": "Message shown when previously stored API key is re-enabled for provider",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ %@ already had this API key stored, and it has been re-enabled."
+          }
+        }
+      }
+    },
+    "settings.custom-provider.api-key-save-failed-with-details": {
+      "comment": "Error message shown when saving custom provider API key fails with details",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to save API key for %@.\n\nDetails: %@"
+          }
+        }
+      }
+    },
+    "settings.custom-provider.credential-enabled": {
+      "comment": "Success message when a provider credential is enabled",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Enabled %@ for %@"
+          }
+        }
+      }
+    },
+    "settings.custom-provider.credential-disabled": {
+      "comment": "Success message when a provider credential is disabled",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Disabled %@ for %@"
+          }
+        }
+      }
+    },
+    "settings.custom-provider.credential-update-failed": {
+      "comment": "Error message when updating a provider credential fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to update %@ for %@. Please try again."
+          }
+        }
+      }
+    },
+    "settings.custom-provider.credential-removed": {
+      "comment": "Success message when a provider credential is removed",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Removed %@ from %@"
+          }
+        }
+      }
+    },
+    "settings.custom-provider.credential-remove-failed": {
+      "comment": "Error message when removing a provider credential fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to remove %@ from %@"
+          }
+        }
+      }
+    },
+    "settings.accounts.account-removed": {
+      "comment": "Success message when an account is removed from a service",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Removed %@ from %@"
+          }
+        }
+      }
+    },
+    "settings.accounts.remove-account-failed": {
+      "comment": "Error message when account removal fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to remove account"
+          }
+        }
+      }
+    },
+    "server-manager.oauth-provider.disabled-by-config": {
+      "comment": "Message explaining OAuth provider remains disabled due to oauth-excluded-models config",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disabled in config via oauth-excluded-models. Remove the '*' exclusion for %@ to enable it here."
+          }
+        }
+      }
+    },
+    "server-manager.oauth-provider.remains-disabled": {
+      "comment": "Status message when provider remains disabled with lock reason",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ %@ remains disabled: %@"
+          }
+        }
+      }
+    },
+    "server-manager.oauth-provider.enabled": {
+      "comment": "Status message when provider is enabled",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Enabled provider: %@"
+          }
+        }
+      }
+    },
+    "server-manager.oauth-provider.disabled": {
+      "comment": "Status message when provider is disabled",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Disabled provider: %@"
+          }
+        }
+      }
+    },
+    "server-manager.error.resource-path-not-found": {
+      "comment": "Error message when bundled resource path cannot be found",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌ Error: Could not find resource path"
+          }
+        }
+      }
+    },
+    "server-manager.error.binary-not-found-at-path": {
+      "comment": "Error message when bundled cli-proxy-api-plus binary is missing",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌ Error: cli-proxy-api-plus binary not found at %@"
+          }
+        }
+      }
+    },
+    "server-manager.error.config-resolution-failed": {
+      "comment": "Error message prefix for config resolution failure details",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌ Error: %@"
+          }
+        }
+      }
+    },
+    "server-manager.error.active-config-path-not-resolved": {
+      "comment": "Fallback config error detail when active config path cannot be resolved",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not resolve active config path"
+          }
+        }
+      }
+    },
+    "server-manager.warning.output": {
+      "comment": "Warning log line showing server output content",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ %@"
+          }
+        }
+      }
+    },
+    "server-manager.status.server-stopped-with-code": {
+      "comment": "Status message when server process exits with termination code",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server stopped with code: %d"
+          }
+        }
+      }
+    },
+    "server-manager.status.server-started-on-port": {
+      "comment": "Status message when server starts successfully on a port",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Server started on port %d"
+          }
+        }
+      }
+    },
+    "server-manager.warning.server-exited-before-ready": {
+      "comment": "Warning when server exits before readiness check completes",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Server exited before becoming ready"
+          }
+        }
+      }
+    },
+    "server-manager.error.failed-to-start-server": {
+      "comment": "Error message when server start throws an error",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌ Failed to start server: %@"
+          }
+        }
+      }
+    },
+    "server-manager.status.stopping-server-with-pid": {
+      "comment": "Status message when stopping server process with PID",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stopping server (PID: %d)..."
+          }
+        }
+      }
+    },
+    "server-manager.warning.server-force-kill": {
+      "comment": "Warning message when server requires force kill",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Server didn't stop gracefully, force killing..."
+          }
+        }
+      }
+    },
+    "server-manager.status.server-stopped": {
+      "comment": "Status message when server stops successfully",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Server stopped"
+          }
+        }
+      }
+    },
+    "server-manager.error.resource-path-not-found-plain": {
+      "comment": "Plain error text when resource path cannot be found",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not find resource path"
+          }
+        }
+      }
+    },
+    "server-manager.error.binary-not-found": {
+      "comment": "Error text when binary path is missing",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binary not found at %@"
+          }
+        }
+      }
+    },
+    "server-manager.error.config-path-not-resolved": {
+      "comment": "Error text when config path cannot be resolved",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not resolve config path"
+          }
+        }
+      }
+    },
+    "server-manager.auth-process.started": {
+      "comment": "Status message when authentication process starts and browser is expected to open",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Authentication process started (PID: %d) - browser should open shortly"
+          }
+        }
+      }
+    },
+    "server-manager.auth-process.failed-unexpectedly": {
+      "comment": "Error message when authentication process exits unexpectedly",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Authentication process failed unexpectedly"
+          }
+        }
+      }
+    },
+    "server-manager.auth-process.start-failed": {
+      "comment": "Error message when starting authentication process fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to start auth process: %@"
+          }
+        }
+      }
+    },
+    "server-manager.auth-process.terminating-previous-before-retry": {
+      "comment": "Warning shown when terminating previous auth process before retry",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Terminating previous auth process (%d) before retry: %@"
+          }
+        }
+      }
+    },
+    "server-manager.auth-process.cleaned-stale-listener": {
+      "comment": "Warning shown when stale auth listener process is cleaned up",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Cleaned up stale auth listener process: %d"
+          }
+        }
+      }
+    },
+    "server-manager.zai.api-key-saved-to-file": {
+      "comment": "Success message when Z.AI API key is saved to a file",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Z.AI API key saved to %@"
+          }
+        }
+      }
+    },
+    "server-manager.api-key.saved-successfully": {
+      "comment": "Generic success message when API key is saved",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API key saved successfully"
+          }
+        }
+      }
+    },
+    "server-manager.custom-provider.not-defined-in-config": {
+      "comment": "Error message when custom provider ID is missing from config",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Custom provider '%@' is not defined in config.yaml."
+          }
+        }
+      }
+    },
+    "server-manager.custom-provider.api-key-already-exists-in-config": {
+      "comment": "Message when custom provider API key already exists in config",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ API key for custom provider %@ already exists in config"
+          }
+        }
+      }
+    },
+    "server-manager.api-key.already-exists-in-config": {
+      "comment": "Generic message when API key already exists in config",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API key already exists in config"
+          }
+        }
+      }
+    },
+    "server-manager.custom-provider.api-key-saved": {
+      "comment": "Success message when custom provider API key is saved",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Saved API key for custom provider: %@"
+          }
+        }
+      }
+    },
+    "server-manager.custom-provider.key-already-present": {
+      "comment": "Message when custom provider key is already present",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Custom provider key already present: %@"
+          }
+        }
+      }
+    },
+    "server-manager.custom-provider.key-reenabled": {
+      "comment": "Message when disabled custom provider key is re-enabled",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Re-enabled custom provider key: %@"
+          }
+        }
+      }
+    },
+    "server-manager.api-key.already-exists": {
+      "comment": "Generic message when API key already exists",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API key already exists"
+          }
+        }
+      }
+    },
+    "server-manager.api-key.reenabled-existing": {
+      "comment": "Message when stored API key is re-enabled",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "API key was already stored and has been re-enabled"
+          }
+        }
+      }
+    },
+    "server-manager.custom-provider.key-removed": {
+      "comment": "Success message when custom provider key is removed",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Removed custom provider key: %@"
+          }
+        }
+      }
+    },
+    "server-manager.custom-provider.duplicate-credential-files-removed": {
+      "comment": "Message showing number of duplicate credential files removed for provider",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Removed %d duplicate credential files for %@"
+          }
+        }
+      }
+    },
+    "server-manager.custom-provider.key-enabled": {
+      "comment": "Success message when custom provider key is enabled",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Enabled custom provider key: %@"
+          }
+        }
+      }
+    },
+    "server-manager.custom-provider.key-disabled": {
+      "comment": "Warning message when custom provider key is disabled",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Disabled custom provider key: %@"
+          }
+        }
+      }
+    },
+    "server-manager.error.bundled-config-not-found": {
+      "comment": "Error message when bundled config.yaml cannot be found in app bundle",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not locate the bundled config.yaml in the app bundle."
+          }
+        }
+      }
+    },
+    "server-manager.error.could-not-load-base-configuration": {
+      "comment": "Error shown when base configuration cannot be loaded",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not load the base configuration."
+          }
+        }
+      }
+    },
+    "server-manager.error.failed-to-write-merged-config": {
+      "comment": "Error shown when writing merged config file fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to write merged config to %@: %@"
+          }
+        }
+      }
+    },
+    "server-manager.warning.found-orphaned-processes": {
+      "comment": "Warning shown when orphaned server process IDs are detected",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Found orphaned server process(es): %@"
+          }
+        }
+      }
+    },
+    "server-manager.status.cleaned-orphaned-processes": {
+      "comment": "Status message shown after orphaned processes are cleaned up",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Cleaned up orphaned processes"
+          }
+        }
+      }
+    },
+    "server-manager.error.could-not-load-bundled-config-at-path": {
+      "comment": "Error shown when bundled config file cannot be loaded at path",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not load the bundled config at %@."
+          }
+        }
+      }
+    },
+    "server-manager.error.could-not-load-user-config-at-path": {
+      "comment": "Error shown when user config file cannot be loaded at path",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not load the user config at %@."
+          }
+        }
+      }
+    },
+    "server-manager.error.config-root-must-be-mapping": {
+      "comment": "Validation error when config root is not a YAML mapping",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Config at %@ must be a YAML mapping at the root."
+          }
+        }
+      }
+    },
+    "server-manager.error.failed-to-parse-yaml-at-path": {
+      "comment": "Error shown when YAML parsing fails for config path",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Failed to parse YAML at %@: %@"
+          }
+        }
+      }
+    },
+    "server-manager.error.invalid-custom-provider-configuration": {
+      "comment": "Error shown when custom provider configuration validation fails",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Invalid custom provider configuration. %@"
+          }
+        }
+      }
+    },
+    "server-manager.error.prefixed-message": {
+      "comment": "Generic error output prefix with message content",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌ %@"
+          }
+        }
+      }
+    },
+    "server-manager.status.config-path-changed-restarting": {
+      "comment": "Status message when config path change triggers server restart",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Config path changed; restarting server"
+          }
+        }
+      }
+    },
+    "server-manager.status.config-updated-hot-reload": {
+      "comment": "Status message when config is updated by hot reload",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Config updated (hot reload)"
+          }
+        }
+      }
+    },
+    "app.menu.about-vibeproxy": {
+      "comment": "Menu item title for About dialog",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About VibeProxy"
+          }
+        }
+      }
+    },
+    "app.menu.quit-vibeproxy": {
+      "comment": "Menu item title to quit VibeProxy",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quit VibeProxy"
+          }
+        }
+      }
+    },
+    "app.menu.edit": {
+      "comment": "Edit menu title",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit"
+          }
+        }
+      }
+    },
+    "app.menu.undo": {
+      "comment": "Menu item title for Undo action",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Undo"
+          }
+        }
+      }
+    },
+    "app.menu.redo": {
+      "comment": "Menu item title for Redo action",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Redo"
+          }
+        }
+      }
+    },
+    "app.menu.cut": {
+      "comment": "Menu item title for Cut action",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cut"
+          }
+        }
+      }
+    },
+    "app.menu.copy": {
+      "comment": "Menu item title for Copy action",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy"
+          }
+        }
+      }
+    },
+    "app.menu.paste": {
+      "comment": "Menu item title for Paste action",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste"
+          }
+        }
+      }
+    },
+    "app.menu.select-all": {
+      "comment": "Menu item title for Select All action",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select All"
+          }
+        }
+      }
+    },
+    "app.status.server-stopped": {
+      "comment": "Status menu text when server is stopped",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server: Stopped"
+          }
+        }
+      }
+    },
+    "app.menu.open-settings": {
+      "comment": "Menu item title to open settings window",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Settings"
+          }
+        }
+      }
+    },
+    "app.menu.start-server": {
+      "comment": "Menu item title to start backend server",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start Server"
+          }
+        }
+      }
+    },
+    "app.menu.copy-server-url": {
+      "comment": "Menu item title to copy server URL",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy Server URL"
+          }
+        }
+      }
+    },
+    "app.menu.open-dashboard": {
+      "comment": "Menu item title to open server dashboard",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Dashboard"
+          }
+        }
+      }
+    },
+    "app.menu.check-for-updates": {
+      "comment": "Menu item title to check for application updates",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check for Updates..."
+          }
+        }
+      }
+    },
+    "app.menu.quit": {
+      "comment": "Menu item title to quit application",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quit"
+          }
+        }
+      }
+    },
+    "app.notification.server-started.title": {
+      "comment": "Notification title when server starts successfully",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server Started"
+          }
+        }
+      }
+    },
+    "app.notification.server-started.body": {
+      "comment": "Notification body when server starts successfully",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy is now running"
+          }
+        }
+      }
+    },
+    "app.notification.server-failed.title": {
+      "comment": "Notification title when server fails to start",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server Failed"
+          }
+        }
+      }
+    },
+    "app.notification.server-failed.body": {
+      "comment": "Notification body when backend server fails to start on default port",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not start backend server on port 8318"
+          }
+        }
+      }
+    },
+    "app.notification.proxy-server-failed.title": {
+      "comment": "Notification title when thinking proxy server fails to start",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server Failed"
+          }
+        }
+      }
+    },
+    "app.notification.proxy-server-failed.body-timeout": {
+      "comment": "Notification body when thinking proxy fails to start due to timeout",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Could not start thinking proxy on port 8317 (timeout)"
+          }
+        }
+      }
+    },
+    "app.notification.server-url-copied.title": {
+      "comment": "Notification title after copying server URL to clipboard",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copied"
+          }
+        }
+      }
+    },
+    "app.notification.server-url-copied.body": {
+      "comment": "Notification body after copying server URL to clipboard",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server URL copied to clipboard"
+          }
+        }
+      }
+    },
+    "app.status.server-running-port": {
+      "comment": "Status menu text when server is running with port number",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Server: Running (port %d)"
+          }
+        }
+      }
+    },
+    "app.menu.stop-server": {
+      "comment": "Menu item title to stop backend server",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop Server"
+          }
+        }
+      }
+    }
+  }
+}
