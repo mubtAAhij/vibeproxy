@@ -1309,11 +1309,11 @@ struct SettingsView: View {
                         localized: "settings.authentication-result.failed-with-details",
                         defaultValue: "Authentication failed. Please check if the browser opened and try again.\n\nDetails: %@",
                         comment: "Authentication failure message with details from authentication process output"
-                    ), "\(output.isEmpty ? String(
+                    ), output.isEmpty ? String(
                         localized: "settings.authentication.no-output-from-process",
                         defaultValue: "No output from authentication process",
                         comment: "Fallback details text when authentication process emits no output"
-                    ) : output)")
+                    ) : output)
                     self.showingAuthResult = true
                 }
             }
@@ -1393,11 +1393,11 @@ struct SettingsView: View {
                         localized: "settings.authentication.failed-with-details",
                         defaultValue: "Authentication failed.\n\nDetails: %@",
                         comment: "Authentication failure message with output details"
-                    ), "\(output.isEmpty ? String(
+                    ), output.isEmpty ? String(
                         localized: "settings.authentication.no-output",
                         defaultValue: "No output",
                         comment: "Fallback details text when output is empty"
-                    ) : output)")
+                    ) : output)
                     self.showingAuthResult = true
                 }
             }
@@ -1425,11 +1425,11 @@ struct SettingsView: View {
                         localized: "settings.api-key-save.failed-with-details",
                         defaultValue: "Failed to save API key.\n\nDetails: %@",
                         comment: "API key save failure message with output details"
-                    ), "\(output.isEmpty ? String(
+                    ), output.isEmpty ? String(
                         localized: "settings.api-key-save.unknown-error",
                         defaultValue: "Unknown error",
                         comment: "Fallback error text when save output is empty"
-                    ) : output)")
+                    ) : output)
                     self.showingAuthResult = true
                 }
             }
@@ -1455,10 +1455,7 @@ struct SettingsView: View {
                             defaultValue: "✓ %@ API key added successfully.\n\nYou can now use this provider through the proxy.",
                             comment: "Success message when provider API key is added"
                         ), "\(provider.title)")
-                    case String(
-                        localized: "server-manager.api-key.already-exists-in-config",
-                        defaultValue: "API key already exists in config"
-                    ):
+                    case "API key already exists in config":
                         self.authResultMessage = String(format: String(
                             localized: "settings.provider-api-key.already-in-config-message",
                             defaultValue: "✓ %@ already has this API key in ~/.cli-proxy-api/config.yaml.",
@@ -1486,11 +1483,11 @@ struct SettingsView: View {
                         localized: "settings.provider-api-key.save-failed-with-details",
                         defaultValue: "Failed to save API key for %@.\n\nDetails: %@",
                         comment: "Failure message shown when saving provider API key fails with details"
-                    ), "\(provider.title)", "\(output.isEmpty ? String(
+                    ), provider.title, output.isEmpty ? String(
                         localized: "settings.provider-api-key.unknown-error",
                         defaultValue: "Unknown error",
                         comment: "Fallback error detail when provider API key save returns empty output"
-                    ) : output)")
+                    ) : output)
                     self.showingAuthResult = true
                 }
             }
