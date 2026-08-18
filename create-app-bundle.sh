@@ -36,6 +36,17 @@ mkdir -p "$APP_DIR/Contents/MacOS"
 mkdir -p "$APP_DIR/Contents/Resources"
 mkdir -p "$APP_DIR/Contents/Frameworks"
 
+# Compile string catalogs into runtime localization tables
+echo -e "${BLUE}Compiling string catalogs...${NC}"
+if command -v xcrun >/dev/null 2>&1 && [ -f "$SRC_DIR/Sources/Resources/Localizable.xcstrings" ]; then
+    xcrun xcstringstool compile \
+        --output-directory "$APP_DIR/Contents/Resources" \
+        "$SRC_DIR/Sources/Resources/Localizable.xcstrings"
+    echo -e "${GREEN}✅ Compiled Localizable.xcstrings into .lproj resources${NC}"
+else
+    echo -e "${YELLOW}⚠️ Skipping xcstringstool compile (xcrun or catalog not found)${NC}"
+fi
+
 # Copy executable
 echo -e "${BLUE}Copying executable...${NC}"
 cp "$BUILD_DIR/CLIProxyMenuBar" "$APP_DIR/Contents/MacOS/"
@@ -57,7 +68,7 @@ if [ -d "$SRC_DIR/Sources/Resources" ]; then
     for item in "$SRC_DIR/Sources/Resources/"*; do
         if [ -e "$item" ]; then
             # Skip if it's a Swift file or Package.swift
-            if [[ "$item" != *.swift ]]; then
+            if [[ "$item" != *.swift && "$item" != *.xcstrings ]]; then
                 cp -r "$item" "$APP_DIR/Contents/Resources/"
             fi
         fi
