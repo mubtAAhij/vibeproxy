@@ -3,7 +3,7 @@
   "sourceLanguage": "en",
   "strings": {
     "custom-provider.model-summary.none-configured": {
-      "comment": "Summary shown when no model aliases are configured",
+      "comment": "src/Sources/CustomProviders.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -11,11 +11,17 @@
             "state": "translated",
             "value": "No model aliases configured yet."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no hay alias de modelos configurados."
+          }
         }
       }
     },
     "custom-provider.model-summary.models-list": {
-      "comment": "Summary listing configured model aliases",
+      "comment": "src/Sources/CustomProviders.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -23,11 +29,17 @@
             "state": "translated",
             "value": "Models: %@."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modelos: %@."
+          }
         }
       }
     },
     "custom-provider.help-text.openai-compatible": {
-      "comment": "Help text describing custom provider endpoint and model summary",
+      "comment": "src/Sources/CustomProviders.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -35,11 +47,17 @@
             "state": "translated",
             "value": "OpenAI-compatible provider at %@. %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proveedor compatible con OpenAI en %@. %@"
+          }
         }
       }
     },
     "thinking-proxy.error.invalid-request": {
-      "comment": "Error message for malformed request data",
+      "comment": "src/Sources/ThinkingProxy.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -47,11 +65,17 @@
             "state": "translated",
             "value": "Invalid request"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solicitud inválida"
+          }
         }
       }
     },
     "thinking-proxy.error.invalid-request-line": {
-      "comment": "Error message when HTTP request line is missing",
+      "comment": "src/Sources/ThinkingProxy.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -59,11 +83,17 @@
             "state": "translated",
             "value": "Invalid request line"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Línea de solicitud inválida"
+          }
         }
       }
     },
     "thinking-proxy.error.invalid-request-format": {
-      "comment": "Error message when HTTP request format is invalid",
+      "comment": "src/Sources/ThinkingProxy.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -71,11 +101,17 @@
             "state": "translated",
             "value": "Invalid request format"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Formato de solicitud inválido"
+          }
         }
       }
     },
     "thinking-proxy.error.invalid-request-format-no-body-separator": {
-      "comment": "Error message when HTTP request has no header-body separator",
+      "comment": "src/Sources/ThinkingProxy.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -83,11 +119,17 @@
             "state": "translated",
             "value": "Invalid request format - no body separator"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Formato de solicitud inválido - sin separador de cuerpo"
+          }
         }
       }
     },
     "thinking-proxy.error.bad-gateway-ampcode-connect-failed": {
-      "comment": "Error message when proxy cannot reach ampcode service",
+      "comment": "src/Sources/ThinkingProxy.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -95,11 +137,17 @@
             "state": "translated",
             "value": "Bad Gateway - Could not connect to ampcode.com"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bad Gateway - No se pudo conectar a ampcode.com"
+          }
         }
       }
     },
     "thinking-proxy.error.bad-gateway-vercel-ai-gateway-connect-failed": {
-      "comment": "Error message when proxy cannot reach Vercel AI Gateway",
+      "comment": "src/Sources/ThinkingProxy.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -107,11 +155,17 @@
             "state": "translated",
             "value": "Bad Gateway - Could not connect to Vercel AI Gateway"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gateway incorrecto - No se pudo conectar a Vercel AI Gateway"
+          }
         }
       }
     },
     "thinking-proxy.error.internal-server": {
-      "comment": "Generic internal server error message",
+      "comment": "src/Sources/ThinkingProxy.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -119,11 +173,17 @@
             "state": "translated",
             "value": "Internal Server Error"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error Interno del Servidor"
+          }
         }
       }
     },
     "thinking-proxy.error.bad-gateway": {
-      "comment": "Generic bad gateway error message",
+      "comment": "src/Sources/ThinkingProxy.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -131,11 +191,17 @@
             "state": "translated",
             "value": "Bad Gateway"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puerta de enlace incorrecta"
+          }
         }
       }
     },
     "tunnel-manager.cloudflared-install-alert.title": {
-      "comment": "Alert title when cloudflared is missing",
+      "comment": "src/Sources/TunnelManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -143,11 +209,17 @@
             "state": "translated",
             "value": "Cloudflared Not Installed"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cloudflared no instalado"
+          }
         }
       }
     },
     "tunnel-manager.cloudflared-install-alert.message": {
-      "comment": "Instructions for installing cloudflared",
+      "comment": "src/Sources/TunnelManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -155,11 +227,17 @@
             "state": "translated",
             "value": "To expose your server to the internet, you need to install cloudflared.\n\nInstall via Homebrew:\nbrew install cloudflared\n\nOr download from:\nhttps://github.com/cloudflare/cloudflared/releases"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para exponer tu servidor a internet, necesitas instalar cloudflared.\n\nInstala mediante Homebrew:\nbrew install cloudflared\n\nO descarga desde:\nhttps://github.com/cloudflare/cloudflared/releases"
+          }
         }
       }
     },
     "tunnel-manager.cloudflared-install-alert.copy-install-command": {
-      "comment": "Button title to copy cloudflared install command",
+      "comment": "src/Sources/TunnelManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -167,11 +245,17 @@
             "state": "translated",
             "value": "Copy Install Command"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar Comando de Instalación"
+          }
         }
       }
     },
     "common.action.cancel": {
-      "comment": "Cancel button title",
+      "comment": "src/Sources/TunnelManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -179,11 +263,17 @@
             "state": "translated",
             "value": "Cancel"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
+          }
         }
       }
     },
     "zai-api-key-store.error.create-auth-directory-failed": {
-      "comment": "Error when creating auth directory for API key storage",
+      "comment": "src/Sources/CustomProviderCredentialStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -191,11 +281,17 @@
             "state": "translated",
             "value": "Failed to create auth directory at %@: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo crear el directorio de autenticación en %@: %@"
+          }
         }
       }
     },
     "zai-api-key-store.error.serialize-api-key-failed": {
-      "comment": "Error when serializing Z.AI API key JSON payload",
+      "comment": "src/Sources/ZAIAPIKeyStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -203,11 +299,17 @@
             "state": "translated",
             "value": "Failed to serialize Z.AI API key: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error al serializar la clave de API de Z.AI: %@"
+          }
         }
       }
     },
     "zai-api-key-store.error.write-api-key-file-failed": {
-      "comment": "Error when writing Z.AI API key file to disk",
+      "comment": "src/Sources/ZAIAPIKeyStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -215,11 +317,17 @@
             "state": "translated",
             "value": "Failed to write Z.AI API key file at %@: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo escribir el archivo de clave de API de Z.AI en %@: %@"
+          }
         }
       }
     },
     "zai-api-key-store.error.unexpected-load-error": {
-      "comment": "Unexpected error while loading API key file",
+      "comment": "src/Sources/CustomProviderCredentialStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -227,11 +335,17 @@
             "state": "translated",
             "value": "Unexpected error while loading %@: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error inesperado al cargar %@: %@"
+          }
         }
       }
     },
     "zai-api-key-store.error.read-api-key-file-failed": {
-      "comment": "Error when reading Z.AI API key file from disk",
+      "comment": "src/Sources/ZAIAPIKeyStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -239,11 +353,17 @@
             "state": "translated",
             "value": "Failed to read Z.AI API key file at %@: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo leer el archivo de clave de API de Z.AI en %@: %@"
+          }
         }
       }
     },
     "zai-api-key-store.error.invalid-json-in-api-key-file": {
-      "comment": "Error when API key file JSON is malformed",
+      "comment": "src/Sources/ZAIAPIKeyStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -251,11 +371,17 @@
             "state": "translated",
             "value": "Z.AI API key file at %@ contains invalid JSON: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El archivo de clave de API de Z.AI en %@ contiene JSON inválido: %@"
+          }
         }
       }
     },
     "zai-api-key-store.error-api-key-file-must-be-json-object": {
-      "comment": "Error when API key file root JSON type is not an object",
+      "comment": "src/Sources/ZAIAPIKeyStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -263,11 +389,17 @@
             "state": "translated",
             "value": "Z.AI API key file at %@ must contain a JSON object."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El archivo de clave de API de Z.AI en %@ debe contener un objeto JSON."
+          }
         }
       }
     },
     "zai-api-key-store.error.unexpected-api-key-file-type": {
-      "comment": "Error when parsed API key value has an unexpected type",
+      "comment": "src/Sources/ZAIAPIKeyStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -275,11 +407,17 @@
             "state": "translated",
             "value": "Z.AI API key file at %@ has an unexpected type."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El archivo de clave de API de Z.AI en %@ tiene un tipo inesperado."
+          }
         }
       }
     },
     "zai-api-key-store.error.missing-api-key-field": {
-      "comment": "Error when api_key field is missing from API key file",
+      "comment": "src/Sources/ZAIAPIKeyStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -287,11 +425,17 @@
             "state": "translated",
             "value": "Z.AI API key file at %@ is missing an api_key."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El archivo de clave de API de Z.AI en %@ no tiene un api_key."
+          }
         }
       }
     },
     "config-composer.error.openai-compatibility-must-be-provider-mappings-array": {
-      "comment": "Validation error when openai-compatibility is not an array of mappings",
+      "comment": "src/Sources/ConfigComposer.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -299,11 +443,17 @@
             "state": "translated",
             "value": "openai-compatibility must be an array of provider mappings."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "openai-compatibility debe ser un array de mapeos de proveedores."
+          }
         }
       }
     },
     "config-composer.error.path-must-be-mapping": {
-      "comment": "Validation error when a config path does not map to a dictionary object",
+      "comment": "src/Sources/ConfigComposer.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -311,11 +461,17 @@
             "state": "translated",
             "value": "%@ must be a mapping."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ debe ser un mapeo."
+          }
         }
       }
     },
     "config-composer.error.path-must-define-string-name": {
-      "comment": "Validation error when provider entry name is missing or not a string",
+      "comment": "src/Sources/ConfigComposer.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -323,11 +479,17 @@
             "state": "translated",
             "value": "%@ must define a string name."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ debe definir un nombre de tipo string."
+          }
         }
       }
     },
     "config-composer.error.path-must-define-non-empty-name": {
-      "comment": "Validation error when provider entry name is empty",
+      "comment": "src/Sources/ConfigComposer.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -335,11 +497,17 @@
             "state": "translated",
             "value": "%@ must define a non-empty name."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ debe definir un nombre no vacío."
+          }
         }
       }
     },
     "config-composer.error.provider-name-has-surrounding-whitespace": {
-      "comment": "Validation error when provider name includes leading or trailing whitespace",
+      "comment": "src/Sources/ConfigComposer.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -347,11 +515,17 @@
             "state": "translated",
             "value": "Provider name '%@' must not include leading or trailing whitespace."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El nombre del proveedor '%@' no debe incluir espacios en blanco al inicio o al final."
+          }
         }
       }
     },
     "config-composer.error.duplicate-openai-compatibility-provider": {
-      "comment": "Validation error when openai-compatibility contains duplicate provider IDs",
+      "comment": "src/Sources/ConfigComposer.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -359,11 +533,17 @@
             "state": "translated",
             "value": "Duplicate openai-compatibility provider '%@' is not allowed."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se permite duplicar el proveedor openai-compatibility '%@'."
+          }
         }
       }
     },
     "config-composer.error.provider-reserved-under-openai-compatibility": {
-      "comment": "Validation error when a reserved provider ID is declared in openai-compatibility",
+      "comment": "src/Sources/ConfigComposer.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -371,11 +551,17 @@
             "state": "translated",
             "value": "Provider '%@' is reserved and cannot be declared under openai-compatibility."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El proveedor '%@' está reservado y no puede declararse en openai-compatibility."
+          }
         }
       }
     },
     "config-composer.error.api-key-path-must-be-mapping": {
-      "comment": "Validation error when api-key entry is not a mapping object",
+      "comment": "src/Sources/ConfigComposer.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -383,11 +569,17 @@
             "state": "translated",
             "value": "%@ must be a mapping."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ debe ser un mapeo."
+          }
         }
       }
     },
     "config-composer.error.api-key-path-must-define-non-empty-api-key": {
-      "comment": "Validation error when api-key is missing or empty in provider entry",
+      "comment": "src/Sources/ConfigComposer.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -395,11 +587,17 @@
             "state": "translated",
             "value": "%@ must define a non-empty api-key."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ debe definir una clave de API no vacía."
+          }
         }
       }
     },
     "config-composer.error.api-key-entries-must-be-mappings-array": {
-      "comment": "Validation error when api-key-entries is not an array of mapping objects",
+      "comment": "src/Sources/ConfigComposer.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -407,11 +605,17 @@
             "state": "translated",
             "value": "%@.api-key-entries must be an array of mappings."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@.api-key-entries debe ser un arreglo de mapeos."
+          }
         }
       }
     },
     "config-composer.error.custom-provider-must-define-non-empty-base-url": {
-      "comment": "Validation error when custom provider base-url is missing or empty",
+      "comment": "src/Sources/ConfigComposer.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -419,11 +623,17 @@
             "state": "translated",
             "value": "Custom provider '%@' must define a non-empty base-url."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El proveedor personalizado '%@' debe definir una base-url no vacía."
+          }
         }
       }
     },
     "config-composer.error.path-must-be-mappings-array": {
-      "comment": "Validation error when configuration path is not an array of mapping objects",
+      "comment": "src/Sources/ConfigComposer.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -431,11 +641,17 @@
             "state": "translated",
             "value": "%@ must be an array of mappings."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ debe ser un arreglo de mapeos."
+          }
         }
       }
     },
     "config-composer.error.path-index-must-be-mapping": {
-      "comment": "Validation error when an array element at path index is not a mapping object",
+      "comment": "src/Sources/ConfigComposer.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -443,11 +659,17 @@
             "state": "translated",
             "value": "%@[%d] must be a mapping."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@[%d] debe ser un mapeo."
+          }
         }
       }
     },
     "custom-provider-credential-store.error.no-stored-credential-for-provider": {
-      "comment": "Error when no stored credential exists for requested provider",
+      "comment": "src/Sources/CustomProviderCredentialStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -455,11 +677,17 @@
             "state": "translated",
             "value": "No stored credential was found for provider %@."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se encontró ninguna credencial almacenada para el proveedor %@."
+          }
         }
       }
     },
     "custom-provider-credential-store.error.delete-credential-file-failed": {
-      "comment": "Error when deleting credential file from disk fails",
+      "comment": "src/Sources/CustomProviderCredentialStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -467,11 +695,17 @@
             "state": "translated",
             "value": "Failed to delete credential file at %@: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo eliminar el archivo de credenciales en %@: %@"
+          }
         }
       }
     },
     "custom-provider-credential-store.error.read-credential-file-failed": {
-      "comment": "Error when reading credential file from disk fails",
+      "comment": "src/Sources/CustomProviderCredentialStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -479,11 +713,17 @@
             "state": "translated",
             "value": "Failed to read credential file at %@: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo leer el archivo de credenciales en %@: %@"
+          }
         }
       }
     },
     "custom-provider-credential-store.error.invalid-json-in-credential-file": {
-      "comment": "Error when credential file contains invalid JSON",
+      "comment": "src/Sources/CustomProviderCredentialStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -491,11 +731,17 @@
             "state": "translated",
             "value": "Credential file at %@ contains invalid JSON: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El archivo de credenciales en %@ contiene JSON inválido: %@"
+          }
         }
       }
     },
     "custom-provider-credential-store.error.credential-file-must-contain-json-object": {
-      "comment": "Error when credential file root value is not a JSON object",
+      "comment": "src/Sources/CustomProviderCredentialStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -503,11 +749,17 @@
             "state": "translated",
             "value": "Credential file at %@ must contain a JSON object."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El archivo de credenciales en %@ debe contener un objeto JSON."
+          }
         }
       }
     },
     "custom-provider-credential-store.error.unexpected-credential-type": {
-      "comment": "Error when credential payload type in file is unexpected",
+      "comment": "src/Sources/CustomProviderCredentialStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -515,11 +767,17 @@
             "state": "translated",
             "value": "Credential file at %@ has an unexpected type."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El archivo de credenciales en %@ tiene un tipo inesperado."
+          }
         }
       }
     },
     "custom-provider-credential-store.error.missing-provider-in-credential-file": {
-      "comment": "Error when credential file is missing provider field",
+      "comment": "src/Sources/CustomProviderCredentialStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -527,11 +785,17 @@
             "state": "translated",
             "value": "Credential file at %@ is missing a provider."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El archivo de credenciales en %@ no tiene un proveedor."
+          }
         }
       }
     },
     "custom-provider-credential-store.error.missing-api-key-in-credential-file": {
-      "comment": "Error when credential file is missing api_key field",
+      "comment": "src/Sources/CustomProviderCredentialStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -539,11 +803,17 @@
             "state": "translated",
             "value": "Credential file at %@ is missing an api_key."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El archivo de credenciales en %@ no tiene un api_key."
+          }
         }
       }
     },
     "custom-provider-credential-store.error.create-auth-directory-failed": {
-      "comment": "Error when creating auth directory for credential storage fails",
+      "comment": "src/Sources/CustomProviderCredentialStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -551,11 +821,17 @@
             "state": "translated",
             "value": "Failed to create auth directory at %@: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo crear el directorio de autenticación en %@: %@"
+          }
         }
       }
     },
     "custom-provider-credential-store.error.unexpected-load-error": {
-      "comment": "Unexpected error while loading credential file from disk",
+      "comment": "src/Sources/CustomProviderCredentialStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -563,11 +839,17 @@
             "state": "translated",
             "value": "Unexpected error while loading %@: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error inesperado al cargar %@: %@"
+          }
         }
       }
     },
     "custom-provider-credential-store.error.read-credential-record-file-failed": {
-      "comment": "Error when reading a selected credential file record fails",
+      "comment": "src/Sources/CustomProviderCredentialStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -575,11 +857,17 @@
             "state": "translated",
             "value": "Failed to read credential file at %@: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo leer el archivo de credencial en %@: %@"
+          }
         }
       }
     },
     "custom-provider-credential-store.error.invalid-json-in-selected-credential-file": {
-      "comment": "Error when selected credential file contains invalid JSON",
+      "comment": "src/Sources/CustomProviderCredentialStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -587,11 +875,17 @@
             "state": "translated",
             "value": "Credential file at %@ contains invalid JSON: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El archivo de credenciales en %@ contiene JSON inválido: %@"
+          }
         }
       }
     },
     "custom-provider-credential-store.error.selected-credential-file-must-contain-json-object": {
-      "comment": "Error when selected credential file root value is not a JSON object",
+      "comment": "src/Sources/CustomProviderCredentialStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -599,11 +893,17 @@
             "state": "translated",
             "value": "Credential file at %@ must contain a JSON object."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El archivo de credencial en %@ debe contener un objeto JSON."
+          }
         }
       }
     },
     "custom-provider-credential-store.error.serialize-credential-failed": {
-      "comment": "Error when serializing provider credential payload fails",
+      "comment": "src/Sources/CustomProviderCredentialStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -611,11 +911,17 @@
             "state": "translated",
             "value": "Failed to serialize credential for %@: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo serializar la credencial para %@: %@"
+          }
         }
       }
     },
     "custom-provider-credential-store.error.write-credential-file-failed": {
-      "comment": "Error when writing credential file to disk fails",
+      "comment": "src/Sources/CustomProviderCredentialStore.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -623,11 +929,17 @@
             "state": "translated",
             "value": "Failed to write credential file at %@: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo escribir el archivo de credencial en %@: %@"
+          }
         }
       }
     },
     "settings.provider-status.expired": {
-      "comment": "Status suffix shown when provider credential is expired",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -635,11 +947,17 @@
             "state": "translated",
             "value": "(expired)"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(vencido)"
+          }
         }
       }
     },
     "settings.provider-status.disabled": {
-      "comment": "Status suffix shown when provider is disabled",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -647,11 +965,17 @@
             "state": "translated",
             "value": "(disabled)"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(deshabilitado)"
+          }
         }
       }
     },
     "settings.provider-action.enable": {
-      "comment": "Action title to enable a provider",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -659,11 +983,17 @@
             "state": "translated",
             "value": "Enable"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habilitar"
+          }
         }
       }
     },
     "settings.provider-action.disable": {
-      "comment": "Action title to disable a provider",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -671,11 +1001,17 @@
             "state": "translated",
             "value": "Disable"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desactivar"
+          }
         }
       }
     },
     "settings.provider-error.at-least-one-account-enabled": {
-      "comment": "Validation message when disabling the last enabled account",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -683,11 +1019,17 @@
             "state": "translated",
             "value": "At least one account must remain enabled"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Al menos una cuenta debe permanecer habilitada"
+          }
         }
       }
     },
     "settings.common.remove": {
-      "comment": "Destructive action title to remove an item",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -695,11 +1037,17 @@
             "state": "translated",
             "value": "Remove"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar"
+          }
         }
       }
     },
     "settings.vercel-gateway.use-toggle-title": {
-      "comment": "Toggle label to route requests through Vercel AI Gateway",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -707,11 +1055,17 @@
             "state": "translated",
             "value": "Use Vercel AI Gateway"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar Vercel AI Gateway"
+          }
         }
       }
     },
     "settings.vercel-gateway.description": {
-      "comment": "Description text for Vercel AI Gateway option",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -719,11 +1073,17 @@
             "state": "translated",
             "value": "Route Claude requests through Vercel AI Gateway for safer access to your Claude Max subscription"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enruta las solicitudes de Claude a través de Vercel AI Gateway para un acceso más seguro a tu suscripción de Claude Max"
+          }
         }
       }
     },
     "settings.vercel-gateway.api-key-label": {
-      "comment": "Label for Vercel API key input field",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -731,11 +1091,17 @@
             "state": "translated",
             "value": "Vercel API key"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clave de API de Vercel"
+          }
         }
       }
     },
     "settings.vercel-gateway.save-state.saved": {
-      "comment": "Status label shown after successfully saving Vercel API key",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -743,11 +1109,17 @@
             "state": "translated",
             "value": "Saved"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardado"
+          }
         }
       }
     },
     "settings.vercel-gateway.save-action": {
-      "comment": "Button title to save Vercel API key",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -755,11 +1127,17 @@
             "state": "translated",
             "value": "Save"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar"
+          }
         }
       }
     },
     "settings.provider-toggle.disable-help": {
-      "comment": "Help text for provider disable toggle action",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -767,11 +1145,17 @@
             "state": "translated",
             "value": "Disable this provider"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deshabilitar este proveedor"
+          }
         }
       }
     },
     "settings.provider-toggle.enable-help": {
-      "comment": "Help text for provider enable toggle action",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -779,11 +1163,17 @@
             "state": "translated",
             "value": "Enable this provider"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habilitar este proveedor"
+          }
         }
       }
     },
     "settings.accounts.add-account": {
-      "comment": "Button title to add a connected account",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -791,11 +1181,17 @@
             "state": "translated",
             "value": "Add Account"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar cuenta"
+          }
         }
       }
     },
     "settings.accounts.connected-account-count": {
-      "comment": "Summary showing number of connected accounts",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -803,11 +1199,17 @@
             "state": "translated",
             "value": "%d connected account%@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d cuenta%@ conectada"
+          }
         }
       }
     },
     "settings.accounts.behavior.round-robin-auto-failover": {
-      "comment": "Bullet description of account routing behavior",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -815,11 +1217,17 @@
             "state": "translated",
             "value": "• Round-robin w/ auto-failover"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Rotación con conmutación automática por fallo"
+          }
         }
       }
     },
     "settings.accounts.empty-state.no-connected-accounts": {
-      "comment": "Empty state message when no accounts are connected",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -827,11 +1235,17 @@
             "state": "translated",
             "value": "No connected accounts"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay cuentas conectadas"
+          }
         }
       }
     },
     "settings.accounts.remove-account-title": {
-      "comment": "Confirmation title for removing an account",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -839,11 +1253,17 @@
             "state": "translated",
             "value": "Remove Account"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar cuenta"
+          }
         }
       }
     },
     "settings.accounts.remove-confirmation.message": {
-      "comment": "Confirmation message for removing an account from a service type",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -851,11 +1271,17 @@
             "state": "translated",
             "value": "Are you sure you want to remove %@ from %@?"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Estás seguro de que quieres eliminar %@ de %@?"
+          }
         }
       }
     },
     "settings.api-key-status.disabled": {
-      "comment": "Status suffix shown when API key is disabled",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -863,11 +1289,17 @@
             "state": "translated",
             "value": "(disabled)"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "(deshabilitado)"
+          }
         }
       }
     },
     "settings.api-key-action.enable": {
-      "comment": "Action title to enable an API key",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -875,11 +1307,17 @@
             "state": "translated",
             "value": "Enable"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Habilitar"
+          }
         }
       }
     },
     "settings.api-key-action.disable": {
-      "comment": "Action title to disable an API key",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -887,11 +1325,17 @@
             "state": "translated",
             "value": "Disable"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deshabilitar"
+          }
         }
       }
     },
     "settings.api-key-error.at-least-one-key-enabled": {
-      "comment": "Validation message when trying to disable the last enabled API key",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -899,11 +1343,17 @@
             "state": "translated",
             "value": "At least one API key must remain enabled"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Al menos una clave de API debe permanecer habilitada"
+          }
         }
       }
     },
     "settings.api-keys.empty-state.no-configured-keys": {
-      "comment": "Empty state message when no API keys are configured",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -911,11 +1361,17 @@
             "state": "translated",
             "value": "No configured API keys"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay claves de API configuradas"
+          }
         }
       }
     },
     "settings.api-keys.summary.total-config-and-added": {
-      "comment": "Summary showing total API keys split between config and keys added in the app",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -923,11 +1379,17 @@
             "state": "translated",
             "value": "%d API keys • %d in config • %d added here"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d claves de API • %d en config • %d agregadas aquí"
+          }
         }
       }
     },
     "settings.api-keys.summary.from-config": {
-      "comment": "Summary showing configured API key count from config file",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -935,11 +1397,17 @@
             "state": "translated",
             "value": "%d API key%@ from config"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d clave%@ API del config"
+          }
         }
       }
     },
     "settings.api-keys.summary.added-here": {
-      "comment": "Summary showing API key count added in the app",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -947,11 +1415,17 @@
             "state": "translated",
             "value": "%d API key%@ added here"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d clave%@ de API agregadas aquí"
+          }
         }
       }
     },
     "settings.api-keys.behavior.pooled-across-available-keys": {
-      "comment": "Bullet description of API key pooling behavior",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -959,14 +1433,26 @@
             "state": "translated",
             "value": "• Pooled across available keys"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Distribuido entre las claves disponibles"
+          }
         }
       }
     },
     "settings.provider.endpoint": {
-      "comment": "Label showing provider endpoint URL",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Endpoint: %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "Endpoint: %@"
@@ -975,7 +1461,7 @@
       }
     },
     "settings.provider.models": {
-      "comment": "Label listing provider model aliases",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -983,11 +1469,17 @@
             "state": "translated",
             "value": "Models: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modelos: %@"
+          }
         }
       }
     },
     "settings.api-keys.add-api-key": {
-      "comment": "Button title to add a new API key",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -995,11 +1487,17 @@
             "state": "translated",
             "value": "Add API Key"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar clave de API"
+          }
         }
       }
     },
     "settings.api-keys.using-from-config-path": {
-      "comment": "Message showing number of API keys loaded from config file path",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1007,11 +1505,17 @@
             "state": "translated",
             "value": "Using %d API key%@ from ~/.cli-proxy-api/config.yaml"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usando %d API key%@ de ~/.cli-proxy-api/config.yaml"
+          }
         }
       }
     },
     "settings.api-keys.remove-api-key-title": {
-      "comment": "Confirmation title for removing an API key",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1019,11 +1523,17 @@
             "state": "translated",
             "value": "Remove API Key"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Eliminar clave de API"
+          }
         }
       }
     },
     "settings.api-keys.remove-confirmation.message": {
-      "comment": "Confirmation message for removing an API key from a provider",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1031,14 +1541,26 @@
             "state": "translated",
             "value": "Are you sure you want to remove %@ from %@?"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Estás seguro de que quieres eliminar %@ de %@?"
+          }
         }
       }
     },
     "settings.app-version.label": {
-      "comment": "Label showing app version string",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "v%@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "v%@"
@@ -1047,7 +1569,7 @@
       }
     },
     "settings.server-status.section-title": {
-      "comment": "Section title for server status controls",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1055,11 +1577,17 @@
             "state": "translated",
             "value": "Server status"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estado del servidor"
+          }
         }
       }
     },
     "settings.server-status.state.running": {
-      "comment": "Server status label when server is running",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1067,11 +1595,17 @@
             "state": "translated",
             "value": "Running"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En ejecución"
+          }
         }
       }
     },
     "settings.server-status.state.stopped": {
-      "comment": "Server status label when server is stopped",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1079,11 +1613,17 @@
             "state": "translated",
             "value": "Stopped"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detenido"
+          }
         }
       }
     },
     "settings.server-status.configuration-error": {
-      "comment": "Label shown when server has a configuration error",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1091,11 +1631,17 @@
             "state": "translated",
             "value": "Configuration Error"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error de configuración"
+          }
         }
       }
     },
     "settings.launch-at-login.toggle-title": {
-      "comment": "Toggle label for launching app at login",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1103,11 +1649,17 @@
             "state": "translated",
             "value": "Launch at login"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar al iniciar sesión"
+          }
         }
       }
     },
     "settings.auth-files.section-title": {
-      "comment": "Section title for auth file controls",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1115,11 +1667,17 @@
             "state": "translated",
             "value": "Auth files"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Archivos de autenticación"
+          }
         }
       }
     },
     "settings.auth-files.open-folder-button": {
-      "comment": "Button title to open auth files folder",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1127,11 +1685,17 @@
             "state": "translated",
             "value": "Open Folder"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir carpeta"
+          }
         }
       }
     },
     "settings.services.section-title": {
-      "comment": "Section title for service providers list",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1139,11 +1703,17 @@
             "state": "translated",
             "value": "Services"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servicios"
+          }
         }
       }
     },
     "settings.services.antigravity.description": {
-      "comment": "Description of Antigravity service and authentication model",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1151,11 +1721,17 @@
             "state": "translated",
             "value": "Antigravity provides OAuth-based access to various AI models including Gemini and Claude. One login gives you access to multiple AI services."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Antigravity proporciona acceso basado en OAuth a varios modelos de IA, incluyendo Gemini y Claude. Un solo inicio de sesión te da acceso a múltiples servicios de IA."
+          }
         }
       }
     },
     "settings.services.claude-code-via-vercel.title": {
-      "comment": "Service title for Claude Code routed through Vercel",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1163,11 +1739,17 @@
             "state": "translated",
             "value": "Claude Code (via Vercel)"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Claude Code (vía Vercel)"
+          }
         }
       }
     },
     "settings.services.gemini.multi-project-note": {
-      "comment": "Warning note for Gemini users with multiple projects during authentication",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1175,11 +1757,17 @@
             "state": "translated",
             "value": "⚠️ Note: If you're an existing Gemini user with multiple projects, authentication will use your default project. Set your desired project as default in Google AI Studio before connecting."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Nota: Si ya eres usuario de Gemini con varios proyectos, la autenticación usará tu proyecto predeterminado. Configura tu proyecto deseado como predeterminado en Google AI Studio antes de conectarte."
+          }
         }
       }
     },
     "settings.services.kimi.description": {
-      "comment": "Description of Kimi browser-based authentication behavior",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1187,11 +1775,17 @@
             "state": "translated",
             "value": "Kimi uses browser-based account authentication so you can route requests through your Kimi subscription instead of an API key."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kimi usa autenticación de cuenta basada en el navegador para que puedas enrutar las solicitudes a través de tu suscripción de Kimi en lugar de usar una clave de API."
+          }
         }
       }
     },
     "settings.services.github-copilot.description": {
-      "comment": "Description of models available through GitHub Copilot subscription",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1199,11 +1793,17 @@
             "state": "translated",
             "value": "GitHub Copilot provides access to Claude, GPT, Gemini and other models via your Copilot subscription."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub Copilot proporciona acceso a Claude, GPT, Gemini y otros modelos a través de tu suscripción de Copilot."
+          }
         }
       }
     },
     "settings.services.zai-glm.description": {
-      "comment": "Description of Z.AI GLM access and API key link",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1211,11 +1811,17 @@
             "state": "translated",
             "value": "Z.AI GLM provides access to GLM-4.7 and other models via API key. Get your key at https://z.ai/manage-apikey/apikey-list"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Z.AI GLM proporciona acceso a GLM-4.7 y otros modelos mediante clave de API. Obtén tu clave en https://z.ai/manage-apikey/apikey-list"
+          }
         }
       }
     },
     "settings.services.custom-providers.section-title": {
-      "comment": "Section title for custom providers list",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1223,11 +1829,17 @@
             "state": "translated",
             "value": "Custom Providers"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proveedores personalizados"
+          }
         }
       }
     },
     "settings.about.credits-intro": {
-      "comment": "Intro line for acknowledgements with app version",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1235,11 +1847,17 @@
             "state": "translated",
             "value": "VibeProxy %@ was made possible thanks to"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy %@ fue posible gracias a"
+          }
         }
       }
     },
     "settings.about.license.mit": {
-      "comment": "License label shown in about section",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1247,11 +1865,17 @@
             "state": "translated",
             "value": "License: MIT"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Licencia: MIT"
+          }
         }
       }
     },
     "settings.about.all-rights-reserved": {
-      "comment": "Footer copyright statement in about section",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1259,11 +1883,17 @@
             "state": "translated",
             "value": "All rights reserved."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos los derechos reservados."
+          }
         }
       }
     },
     "settings.about.report-issue": {
-      "comment": "Button title to report an issue",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1271,11 +1901,17 @@
             "state": "translated",
             "value": "Report an issue"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reportar un problema"
+          }
         }
       }
     },
     "settings.qwen-account-email.title": {
-      "comment": "Dialog title for entering Qwen account email",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1283,11 +1919,17 @@
             "state": "translated",
             "value": "Qwen Account Email"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correo electrónico de cuenta Qwen"
+          }
         }
       }
     },
     "settings.qwen-account-email.prompt": {
-      "comment": "Prompt text for Qwen account email input dialog",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1295,11 +1937,17 @@
             "state": "translated",
             "value": "Enter your Qwen account email address"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingresa la dirección de correo electrónico de tu cuenta de Qwen"
+          }
         }
       }
     },
     "settings.common.continue": {
-      "comment": "Action button title to continue dialog flow",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1307,11 +1955,17 @@
             "state": "translated",
             "value": "Continue"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuar"
+          }
         }
       }
     },
     "settings.zai-api-key.title": {
-      "comment": "Dialog title for entering Z.AI API key",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1319,11 +1973,17 @@
             "state": "translated",
             "value": "Z.AI API Key"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clave de API de Z.AI"
+          }
         }
       }
     },
     "settings.zai-api-key.prompt": {
-      "comment": "Prompt text for Z.AI API key input dialog with source URL",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1331,11 +1991,17 @@
             "state": "translated",
             "value": "Enter your Z.AI API key from https://z.ai/manage-apikey/apikey-list"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingresa tu clave de API de Z.AI desde https://z.ai/manage-apikey/apikey-list"
+          }
         }
       }
     },
     "settings.api-keys.add-key": {
-      "comment": "Button title to add an API key in dialog",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1343,11 +2009,17 @@
             "state": "translated",
             "value": "Add Key"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar clave"
+          }
         }
       }
     },
     "settings.provider-api-key.title": {
-      "comment": "Dialog title for entering API key for a specific provider",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1355,11 +2027,17 @@
             "state": "translated",
             "value": "%@ API Key"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clave de API %@"
+          }
         }
       }
     },
     "settings.provider-api-key.prompt": {
-      "comment": "Prompt text for provider API key input dialog",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1367,11 +2045,17 @@
             "state": "translated",
             "value": "Enter an API key for %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ingresa una clave de API para %@"
+          }
         }
       }
     },
     "settings.authentication-result.title": {
-      "comment": "Alert title for authentication result dialog",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1379,14 +2063,26 @@
             "state": "translated",
             "value": "Authentication Result"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Resultado de autenticación"
+          }
         }
       }
     },
     "common.action.ok": {
-      "comment": "Confirmation button title",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "OK"
@@ -1395,7 +2091,7 @@
       }
     },
     "settings.account-update.enabled": {
-      "comment": "Message shown when an account is enabled",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1403,11 +2099,17 @@
             "state": "translated",
             "value": "✓ Enabled %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Habilitado %@"
+          }
         }
       }
     },
     "settings.account-update.disabled": {
-      "comment": "Message shown when an account is disabled",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1415,11 +2117,17 @@
             "state": "translated",
             "value": "✓ Disabled %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Deshabilitado %@"
+          }
         }
       }
     },
     "settings.account-update.failed": {
-      "comment": "Error message when updating account status fails",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1427,11 +2135,17 @@
             "state": "translated",
             "value": "Failed to update %@. Please try again."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo actualizar %@. Intenta nuevamente."
+          }
         }
       }
     },
     "settings.authentication-process.no-output": {
-      "comment": "Error message when authentication process returns no output",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1439,11 +2153,17 @@
             "state": "translated",
             "value": "No output from authentication process"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay salida del proceso de autenticación"
+          }
         }
       }
     },
     "settings.authentication.failed-with-browser-check-details": {
-      "comment": "Authentication failure message with browser guidance and details output",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1451,11 +2171,17 @@
             "state": "translated",
             "value": "Authentication failed. Please check if the browser opened and try again.\n\nDetails: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La autenticación falló. Revisa si se abrió el navegador e intenta de nuevo.\n\nDetalles: %@"
+          }
         }
       }
     },
     "settings.authentication.browser-opened.claude-code": {
-      "comment": "Instruction message shown after opening browser for Claude Code authentication",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1463,11 +2189,17 @@
             "state": "translated",
             "value": "🌐 Browser opened for Claude Code authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect your credentials."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navegador abierto para la autenticación de Claude Code.\n\nCompleta el inicio de sesión en tu navegador.\n\nLa aplicación detectará automáticamente tus credenciales."
+          }
         }
       }
     },
     "settings.authentication.browser-opened.codex": {
-      "comment": "Instruction message shown after opening browser for Codex authentication",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1475,11 +2207,17 @@
             "state": "translated",
             "value": "🌐 Browser opened for Codex authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect your credentials."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Se abrió el navegador para la autenticación de Codex.\n\nCompleta el inicio de sesión en tu navegador.\n\nLa aplicación detectará automáticamente tus credenciales."
+          }
         }
       }
     },
     "settings.authentication.browser-opened.github-copilot-device-flow": {
-      "comment": "Instruction message for GitHub Copilot device authentication flow",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1487,11 +2225,17 @@
             "state": "translated",
             "value": "🌐 GitHub Copilot authentication started!\n\nPlease visit github.com/login/device and enter the code shown.\n\nThe app will automatically detect your credentials."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 ¡Autenticación de GitHub Copilot iniciada!\n\nVisita github.com/login/device e ingresa el código que se muestra.\n\nLa aplicación detectará automáticamente tus credenciales."
+          }
         }
       }
     },
     "settings.authentication.browser-opened.gemini": {
-      "comment": "Instruction message shown after opening browser for Gemini authentication with project note",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1499,11 +2243,17 @@
             "state": "translated",
             "value": "🌐 Browser opened for Gemini authentication.\n\nPlease complete the login in your browser.\n\n⚠️ Note: If you have multiple projects, the default project will be used."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Se abrió el navegador para la autenticación de Gemini.\n\nCompleta el inicio de sesión en tu navegador.\n\n⚠️ Nota: Si tienes varios proyectos, se usará el proyecto predeterminado."
+          }
         }
       }
     },
     "settings.authentication.browser-opened.kimi": {
-      "comment": "Instruction message shown after opening browser for Kimi authentication",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1511,11 +2261,17 @@
             "state": "translated",
             "value": "🌐 Browser opened for Kimi authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect your Kimi account."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Se abrió el navegador para la autenticación de Kimi.\n\nCompleta el inicio de sesión en tu navegador.\n\nLa aplicación detectará automáticamente tu cuenta de Kimi."
+          }
         }
       }
     },
     "settings.authentication.browser-opened.qwen": {
-      "comment": "Instruction message shown after opening browser for Qwen authentication",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1523,11 +2279,17 @@
             "state": "translated",
             "value": "🌐 Browser opened for Qwen authentication.\n\nPlease complete the login in your browser."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Se abrió el navegador para la autenticación de Qwen.\n\nCompleta el inicio de sesión en tu navegador."
+          }
         }
       }
     },
     "settings.authentication.browser-opened.antigravity": {
-      "comment": "Instruction message shown after opening browser for Antigravity authentication",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1535,11 +2297,17 @@
             "state": "translated",
             "value": "🌐 Browser opened for Antigravity authentication.\n\nPlease complete the login in your browser."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Se abrió el navegador para la autenticación de Antigravity.\n\nCompleta el inicio de sesión en tu navegador."
+          }
         }
       }
     },
     "settings.zai-api-key.added-successfully": {
-      "comment": "Success message shown after adding Z.AI API key",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1547,11 +2315,17 @@
             "state": "translated",
             "value": "✓ Z.AI API key added successfully.\n\nYou can now use GLM models through the proxy."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Clave de API de Z.AI agregada exitosamente.\n\nAhora puedes usar los modelos GLM a través del proxy."
+          }
         }
       }
     },
     "settings.authentication.failed-with-details": {
-      "comment": "Authentication failure message with details output",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1559,11 +2333,17 @@
             "state": "translated",
             "value": "Authentication failed.\n\nDetails: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La autenticación falló.\n\nDetalles: %@"
+          }
         }
       }
     },
     "settings.authentication.no-output": {
-      "comment": "Fallback details text when authentication process has no output",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1571,11 +2351,17 @@
             "state": "translated",
             "value": "No output"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin salida"
+          }
         }
       }
     },
     "settings.api-key.save-failed-with-details": {
-      "comment": "Failure message when saving API key with details output",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1583,11 +2369,17 @@
             "state": "translated",
             "value": "Failed to save API key.\n\nDetails: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo guardar la clave de API.\n\nDetalles: %@"
+          }
         }
       }
     },
     "settings.common.unknown-error": {
-      "comment": "Fallback error details text when no specific error output is available",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1595,11 +2387,17 @@
             "state": "translated",
             "value": "Unknown error"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Error desconocido"
+          }
         }
       }
     },
     "settings.api-key.saved-successfully": {
-      "comment": "Success message title after saving API key",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1607,11 +2405,17 @@
             "state": "translated",
             "value": "API key saved successfully"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clave de API guardada correctamente"
+          }
         }
       }
     },
     "settings.provider-api-key.added-successfully": {
-      "comment": "Success message after adding API key for a provider",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1619,11 +2423,17 @@
             "state": "translated",
             "value": "✓ %@ API key added successfully.\n\nYou can now use this provider through the proxy."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Clave de API de %@ agregada exitosamente.\n\nAhora puedes usar este proveedor a través del proxy."
+          }
         }
       }
     },
     "settings.provider-api-key.already-in-config": {
-      "comment": "Message shown when provider API key already exists in config file",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1631,11 +2441,17 @@
             "state": "translated",
             "value": "✓ %@ already has this API key in ~/.cli-proxy-api/config.yaml."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ %@ ya tiene esta clave de API en ~/.cli-proxy-api/config.yaml."
+          }
         }
       }
     },
     "settings.api-key.already-exists": {
-      "comment": "Message title shown when attempting to add a duplicate API key",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1643,11 +2459,17 @@
             "state": "translated",
             "value": "API key already exists"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La clave de API ya existe"
+          }
         }
       }
     },
     "settings.provider-api-key.already-stored": {
-      "comment": "Message shown when provider API key is already stored",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1655,11 +2477,17 @@
             "state": "translated",
             "value": "✓ %@ already has this API key stored."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ %@ ya tiene esta clave de API almacenada."
+          }
         }
       }
     },
     "settings.api-key.re-enabled": {
-      "comment": "Message shown when existing API key was re-enabled",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1667,11 +2495,17 @@
             "state": "translated",
             "value": "API key was already stored and has been re-enabled"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La clave de API ya estaba almacenada y se ha vuelto a habilitar"
+          }
         }
       }
     },
     "settings.provider-api-key.re-enabled": {
-      "comment": "Message shown when provider API key was previously stored and has been re-enabled",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1679,11 +2513,17 @@
             "state": "translated",
             "value": "✓ %@ already had this API key stored, and it has been re-enabled."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ %@ ya tenía esta clave de API almacenada y ha sido reactivada."
+          }
         }
       }
     },
     "settings.provider-api-key.save-failed-with-details": {
-      "comment": "Failure message when saving API key for provider with details output",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1691,11 +2531,17 @@
             "state": "translated",
             "value": "Failed to save API key for %@.\n\nDetails: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo guardar la clave de API para %@.\n\nDetalles: %@"
+          }
         }
       }
     },
     "settings.provider-api-key.enabled": {
-      "comment": "Success message when enabling a provider credential",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1703,11 +2549,17 @@
             "state": "translated",
             "value": "✓ Enabled %@ for %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Habilitado %@ para %@"
+          }
         }
       }
     },
     "settings.provider-api-key.disabled": {
-      "comment": "Success message when disabling a provider credential",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1715,11 +2567,17 @@
             "state": "translated",
             "value": "✓ Disabled %@ for %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Deshabilitado %@ para %@"
+          }
         }
       }
     },
     "settings.provider-api-key.update-failed": {
-      "comment": "Failure message when updating a provider credential status",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1727,11 +2585,17 @@
             "state": "translated",
             "value": "Failed to update %@ for %@. Please try again."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo actualizar %@ para %@. Intenta de nuevo."
+          }
         }
       }
     },
     "settings.provider-api-key.removed": {
-      "comment": "Success message when removing provider credential",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1739,11 +2603,17 @@
             "state": "translated",
             "value": "✓ Removed %@ from %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ %@ eliminado de %@"
+          }
         }
       }
     },
     "settings.provider-api-key.remove-failed": {
-      "comment": "Failure message when removing provider credential",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1751,11 +2621,17 @@
             "state": "translated",
             "value": "Failed to remove %@ from %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo eliminar %@ de %@"
+          }
         }
       }
     },
     "settings.account.removed": {
-      "comment": "Success message when removing connected account from service type",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1763,11 +2639,17 @@
             "state": "translated",
             "value": "✓ Removed %@ from %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Se eliminó %@ de %@"
+          }
         }
       }
     },
     "settings.account.remove-failed": {
-      "comment": "Failure message when removing connected account",
+      "comment": "src/Sources/SettingsView.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1775,11 +2657,17 @@
             "state": "translated",
             "value": "Failed to remove account"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo eliminar la cuenta"
+          }
         }
       }
     },
     "server-manager.provider-lock.disabled-in-config-oauth-excluded-models": {
-      "comment": "Reason shown when provider is disabled by oauth-excluded-models config",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1787,11 +2675,17 @@
             "state": "translated",
             "value": "Disabled in config via oauth-excluded-models. Remove the '*' exclusion for %@ to enable it here."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deshabilitado en la configuración mediante oauth-excluded-models. Elimina la exclusión '*' para %@ para habilitarlo aquí."
+          }
         }
       }
     },
     "server-manager.provider-status.remains-disabled": {
-      "comment": "Status line when provider remains disabled with lock reason",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1799,11 +2693,17 @@
             "state": "translated",
             "value": "⚠️ %@ remains disabled: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ %@ permanece deshabilitado: %@"
+          }
         }
       }
     },
     "server-manager.provider-status.enabled": {
-      "comment": "Status line when provider is enabled",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1811,11 +2711,17 @@
             "state": "translated",
             "value": "✓ Enabled provider: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Proveedor habilitado: %@"
+          }
         }
       }
     },
     "server-manager.provider-status.disabled": {
-      "comment": "Status line when provider is disabled",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1823,11 +2729,17 @@
             "state": "translated",
             "value": "⚠️ Disabled provider: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Proveedor deshabilitado: %@"
+          }
         }
       }
     },
     "server-manager.error.resource-path-not-found": {
-      "comment": "Error message when app resource path cannot be resolved",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1835,11 +2747,17 @@
             "state": "translated",
             "value": "❌ Error: Could not find resource path"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌ Error: No se pudo encontrar la ruta del recurso"
+          }
         }
       }
     },
     "server-manager.error.binary-not-found-at-path": {
-      "comment": "Error message when bundled cli-proxy-api-plus binary is missing",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1847,14 +2765,26 @@
             "state": "translated",
             "value": "❌ Error: cli-proxy-api-plus binary not found at %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌ Error: no se encontró el binario cli-proxy-api-plus en %@"
+          }
         }
       }
     },
     "server-manager.error.config-resolution": {
-      "comment": "Error message when resolving active config path fails",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌ Error: %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "❌ Error: %@"
@@ -1863,7 +2793,7 @@
       }
     },
     "server-manager.error.active-config-path-unresolved": {
-      "comment": "Fallback config error detail when active config path cannot be resolved",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1871,14 +2801,26 @@
             "state": "translated",
             "value": "Could not resolve active config path"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo resolver la ruta de configuración activa"
+          }
         }
       }
     },
     "server-manager.warning.output": {
-      "comment": "Warning line that prefixes server output",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "⚠️ %@"
@@ -1887,7 +2829,7 @@
       }
     },
     "server-manager.status.stopped-with-code": {
-      "comment": "Status message when server process exits with termination code",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1895,11 +2837,17 @@
             "state": "translated",
             "value": "Server stopped with code: %d"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servidor detenido con código: %d"
+          }
         }
       }
     },
     "server-manager.status.started-on-port": {
-      "comment": "Status message when server starts successfully on port",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1907,11 +2855,17 @@
             "state": "translated",
             "value": "✓ Server started on port %d"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Servidor iniciado en el puerto %d"
+          }
         }
       }
     },
     "server-manager.warning.exited-before-ready": {
-      "comment": "Warning message when server exits before ready state",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1919,11 +2873,17 @@
             "state": "translated",
             "value": "⚠️ Server exited before becoming ready"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ El servidor se cerró antes de estar listo"
+          }
         }
       }
     },
     "server-manager.error.failed-to-start": {
-      "comment": "Error message when server start fails with error details",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1931,11 +2891,17 @@
             "state": "translated",
             "value": "❌ Failed to start server: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌ No se pudo iniciar el servidor: %@"
+          }
         }
       }
     },
     "server-manager.status.stopping-with-pid": {
-      "comment": "Status message when stopping server process by PID",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1943,11 +2909,17 @@
             "state": "translated",
             "value": "Stopping server (PID: %d)..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deteniendo servidor (PID: %d)..."
+          }
         }
       }
     },
     "server-manager.warning.force-kill-server": {
-      "comment": "Warning message when server requires force kill",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1955,11 +2927,17 @@
             "state": "translated",
             "value": "⚠️ Server didn't stop gracefully, force killing..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ El servidor no se detuvo correctamente, forzando cierre..."
+          }
         }
       }
     },
     "server-manager.status.stopped": {
-      "comment": "Status message when server stops successfully",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1967,11 +2945,17 @@
             "state": "translated",
             "value": "✓ Server stopped"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Servidor detenido"
+          }
         }
       }
     },
     "server-manager.error.resource-path-not-found-plain": {
-      "comment": "Plain error message when app resource path cannot be resolved",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1979,11 +2963,17 @@
             "state": "translated",
             "value": "Could not find resource path"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo encontrar la ruta del recurso"
+          }
         }
       }
     },
     "server-manager.error.binary-not-found-at-path-plain": {
-      "comment": "Plain error message when bundled binary is missing at path",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -1991,11 +2981,17 @@
             "state": "translated",
             "value": "Binary not found at %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Binario no encontrado en %@"
+          }
         }
       }
     },
     "server-manager.error.config-path-unresolved": {
-      "comment": "Error message when config path resolution fails",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2003,11 +2999,17 @@
             "state": "translated",
             "value": "Could not resolve config path"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo resolver la ruta de configuración"
+          }
         }
       }
     },
     "server-manager.auth.status.process-started": {
-      "comment": "Status message when authentication helper process starts",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2015,11 +3017,17 @@
             "state": "translated",
             "value": "✓ Authentication process started (PID: %d) - browser should open shortly"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Proceso de autenticación iniciado (PID: %d) - el navegador debería abrirse pronto"
+          }
         }
       }
     },
     "server-manager.auth.github.browser-opened-code-copied": {
-      "comment": "Instruction message when GitHub authentication starts and device code is copied",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2027,11 +3035,17 @@
             "state": "translated",
             "value": "🌐 Browser opened for GitHub authentication.\n\n📋 Code copied to clipboard:\n\n%@\n\nJust paste it in the browser!\n\nThe app will automatically detect when you're authenticated."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Se abrió el navegador para autenticación de GitHub.\n\n📋 Código copiado al portapapeles:\n\n%@\n\n¡Solo pégalo en el navegador!\n\nLa aplicación detectará automáticamente cuando estés autenticado."
+          }
         }
       }
     },
     "server-manager.auth.github.browser-opened-check-device-code": {
-      "comment": "Instruction message for GitHub authentication when user must find device code",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2039,11 +3053,17 @@
             "state": "translated",
             "value": "🌐 Browser opened for GitHub authentication.\n\nCheck your terminal or the opened browser for the device code.\n\nThe app will automatically detect when you're authenticated."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Se abrió el navegador para autenticación de GitHub.\n\nRevisa tu terminal o el navegador que se abrió para ver el código de dispositivo.\n\nLa aplicación detectará automáticamente cuando estés autenticado."
+          }
         }
       }
     },
     "server-manager.auth.browser-opened.generic": {
-      "comment": "Generic instruction message shown after opening browser for authentication",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2051,11 +3071,17 @@
             "state": "translated",
             "value": "🌐 Browser opened for authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect when you're authenticated."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🌐 Navegador abierto para autenticación.\n\nCompleta el inicio de sesión en tu navegador.\n\nLa aplicación detectará automáticamente cuando te hayas autenticado."
+          }
         }
       }
     },
     "server-manager.auth.error.process-failed-unexpectedly": {
-      "comment": "Error message when authentication helper process fails unexpectedly",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2063,11 +3089,17 @@
             "state": "translated",
             "value": "Authentication process failed unexpectedly"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El proceso de autenticación falló inesperadamente"
+          }
         }
       }
     },
     "server-manager.auth.error.failed-to-start": {
-      "comment": "Error message when authentication process cannot be started",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2075,11 +3107,17 @@
             "state": "translated",
             "value": "Failed to start auth process: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo iniciar el proceso de autenticación: %@"
+          }
         }
       }
     },
     "server-manager.auth.warning.terminating-previous-process-before-retry": {
-      "comment": "Warning message when previous auth process is terminated before retry",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2087,11 +3125,17 @@
             "state": "translated",
             "value": "⚠️ Terminating previous auth process (%d) before retry: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Terminando proceso de autenticación previo (%d) antes de reintentar: %@"
+          }
         }
       }
     },
     "server-manager.auth.warning.cleaned-stale-listener-process": {
-      "comment": "Warning message when stale auth listener process is cleaned up",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2099,11 +3143,17 @@
             "state": "translated",
             "value": "⚠️ Cleaned up stale auth listener process: %d"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Se limpió proceso de escucha de autenticación obsoleto: %d"
+          }
         }
       }
     },
     "server-manager.zai-api-key.saved-to-file": {
-      "comment": "Success message when Z.AI API key is saved to file",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2111,11 +3161,17 @@
             "state": "translated",
             "value": "✓ Z.AI API key saved to %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Clave de API de Z.AI guardada en %@"
+          }
         }
       }
     },
     "server-manager.api-key.saved-successfully": {
-      "comment": "Success title message after saving API key",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2123,11 +3179,17 @@
             "state": "translated",
             "value": "API key saved successfully"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clave de API guardada correctamente"
+          }
         }
       }
     },
     "server-manager.custom-provider.not-defined-in-config": {
-      "comment": "Error message when custom provider ID is missing from config.yaml",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2135,11 +3197,17 @@
             "state": "translated",
             "value": "Custom provider '%@' is not defined in config.yaml."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El proveedor personalizado \"%@\" no está definido en config.yaml."
+          }
         }
       }
     },
     "server-manager.custom-provider.api-key-already-exists-in-config": {
-      "comment": "Status message when custom provider API key already exists in config",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2147,11 +3215,17 @@
             "state": "translated",
             "value": "✓ API key for custom provider %@ already exists in config"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ La clave de API para el proveedor personalizado %@ ya existe en la configuración"
+          }
         }
       }
     },
     "server-manager.api-key.already-exists-in-config": {
-      "comment": "Status title when API key already exists in config",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2159,11 +3233,17 @@
             "state": "translated",
             "value": "API key already exists in config"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La clave de API ya existe en la configuración"
+          }
         }
       }
     },
     "server-manager.custom-provider.api-key-saved": {
-      "comment": "Status message when custom provider API key is saved",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2171,11 +3251,17 @@
             "state": "translated",
             "value": "✓ Saved API key for custom provider: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Clave de API guardada para el proveedor personalizado: %@"
+          }
         }
       }
     },
     "server-manager.custom-provider.key-already-present": {
-      "comment": "Status message when custom provider key is already stored",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2183,11 +3269,17 @@
             "state": "translated",
             "value": "✓ Custom provider key already present: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Clave de proveedor personalizado ya presente: %@"
+          }
         }
       }
     },
     "server-manager.custom-provider.key-re-enabled": {
-      "comment": "Status message when existing custom provider key is re-enabled",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2195,11 +3287,17 @@
             "state": "translated",
             "value": "✓ Re-enabled custom provider key: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Clave de proveedor personalizada reactivada: %@"
+          }
         }
       }
     },
     "server-manager.api-key.already-exists": {
-      "comment": "Status title when API key already exists",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2207,11 +3305,17 @@
             "state": "translated",
             "value": "API key already exists"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La clave de API ya existe"
+          }
         }
       }
     },
     "server-manager.api-key.re-enabled": {
-      "comment": "Status title when stored API key was re-enabled",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2219,11 +3323,17 @@
             "state": "translated",
             "value": "API key was already stored and has been re-enabled"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La clave de API ya estaba guardada y se ha rehabilitado"
+          }
         }
       }
     },
     "server-manager.custom-provider.key-removed": {
-      "comment": "Status message when custom provider key is removed",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2231,11 +3341,17 @@
             "state": "translated",
             "value": "✓ Removed custom provider key: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Clave de proveedor personalizada eliminada: %@"
+          }
         }
       }
     },
     "server-manager.custom-provider.duplicate-credential-files-removed": {
-      "comment": "Status message when duplicate credential files are removed for a provider",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2243,11 +3359,17 @@
             "state": "translated",
             "value": "✓ Removed %d duplicate credential files for %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Se eliminaron %d archivos de credenciales duplicados para %@"
+          }
         }
       }
     },
     "server-manager.custom-provider.key-enabled": {
-      "comment": "Status message when custom provider key is enabled",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2255,11 +3377,17 @@
             "state": "translated",
             "value": "✓ Enabled custom provider key: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Clave de proveedor personalizado habilitada: %@"
+          }
         }
       }
     },
     "server-manager.custom-provider.key-disabled": {
-      "comment": "Status message when custom provider key is disabled",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2267,11 +3395,17 @@
             "state": "translated",
             "value": "⚠️ Disabled custom provider key: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Clave de proveedor personalizada deshabilitada: %@"
+          }
         }
       }
     },
     "server-manager.config.error.bundled-config-not-found": {
-      "comment": "Error when bundled config.yaml cannot be found in app bundle",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2279,11 +3413,17 @@
             "state": "translated",
             "value": "Could not locate the bundled config.yaml in the app bundle."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo localizar el archivo config.yaml incluido en el paquete de la aplicación."
+          }
         }
       }
     },
     "server-manager.config.error.base-config-load-failed": {
-      "comment": "Error when base configuration cannot be loaded",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2291,11 +3431,17 @@
             "state": "translated",
             "value": "Could not load the base configuration."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo cargar la configuración base."
+          }
         }
       }
     },
     "server-manager.config.error.write-merged-config-failed": {
-      "comment": "Error when writing merged configuration file fails",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2303,11 +3449,17 @@
             "state": "translated",
             "value": "Failed to write merged config to %@: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo escribir la config combinada en %@: %@"
+          }
         }
       }
     },
     "server-manager.process.warning.orphaned-processes-found": {
-      "comment": "Warning listing orphaned server process IDs",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2315,11 +3467,17 @@
             "state": "translated",
             "value": "⚠️ Found orphaned server process(es): %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "⚠️ Se encontraron procesos de servidor huérfanos: %@"
+          }
         }
       }
     },
     "server-manager.process.status.orphaned-processes-cleaned": {
-      "comment": "Status message when orphaned server processes are cleaned up",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2327,11 +3485,17 @@
             "state": "translated",
             "value": "✓ Cleaned up orphaned processes"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Procesos huérfanos eliminados"
+          }
         }
       }
     },
     "server-manager.config.error.bundled-config-load-failed": {
-      "comment": "Error when bundled config cannot be loaded from path",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2339,11 +3503,17 @@
             "state": "translated",
             "value": "Could not load the bundled config at %@."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo cargar el archivo de configuración incluido en %@."
+          }
         }
       }
     },
     "server-manager.config.error.user-config-load-failed": {
-      "comment": "Error when user config cannot be loaded from path",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2351,11 +3521,17 @@
             "state": "translated",
             "value": "Could not load the user config at %@."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo cargar la configuración de usuario en %@."
+          }
         }
       }
     },
     "server-manager.config.error.root-must-be-yaml-mapping": {
-      "comment": "Validation error when YAML config root is not a mapping",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2363,11 +3539,17 @@
             "state": "translated",
             "value": "Config at %@ must be a YAML mapping at the root."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La configuración en %@ debe ser un mapeo YAML en la raíz."
+          }
         }
       }
     },
     "server-manager.config.error.yaml-parse-failed": {
-      "comment": "Error when parsing YAML config fails",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2375,11 +3557,17 @@
             "state": "translated",
             "value": "Failed to parse YAML at %@: %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo analizar YAML en %@: %@"
+          }
         }
       }
     },
     "server-manager.custom-provider.error.invalid-configuration": {
-      "comment": "Validation error message for invalid custom provider configuration",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2387,14 +3575,26 @@
             "state": "translated",
             "value": "Invalid custom provider configuration. %@"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configuración inválida de proveedor personalizado. %@"
+          }
         }
       }
     },
     "server-manager.error.prefixed-message": {
-      "comment": "Error line that prefixes a dynamic message",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "❌ %@"
+          }
+        },
+        "es-419": {
           "stringUnit": {
             "state": "translated",
             "value": "❌ %@"
@@ -2403,7 +3603,7 @@
       }
     },
     "server-manager.config.status.path-changed-restarting": {
-      "comment": "Status message when config path changes and server restarts",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2411,11 +3611,17 @@
             "state": "translated",
             "value": "Config path changed; restarting server"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruta de configuración modificada; reiniciando servidor"
+          }
         }
       }
     },
     "server-manager.config.status.updated-hot-reload": {
-      "comment": "Status message when config is updated via hot reload",
+      "comment": "src/Sources/ServerManager.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2423,11 +3629,17 @@
             "state": "translated",
             "value": "Config updated (hot reload)"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Config actualizada (hot reload)"
+          }
         }
       }
     },
     "app.menu.about-vibeproxy": {
-      "comment": "Application menu item title for About dialog",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2435,11 +3647,17 @@
             "state": "translated",
             "value": "About VibeProxy"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Acerca de VibeProxy"
+          }
         }
       }
     },
     "app.menu.quit-vibeproxy": {
-      "comment": "Application menu item title to quit app with app name",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2447,11 +3665,17 @@
             "state": "translated",
             "value": "Quit VibeProxy"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salir de VibeProxy"
+          }
         }
       }
     },
     "app.menu.edit": {
-      "comment": "Top-level Edit menu title",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2459,11 +3683,17 @@
             "state": "translated",
             "value": "Edit"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Editar"
+          }
         }
       }
     },
     "app.menu.edit.undo": {
-      "comment": "Edit menu item title for Undo action",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2471,11 +3701,17 @@
             "state": "translated",
             "value": "Undo"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deshacer"
+          }
         }
       }
     },
     "app.menu.edit.redo": {
-      "comment": "Edit menu item title for Redo action",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2483,11 +3719,17 @@
             "state": "translated",
             "value": "Redo"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rehacer"
+          }
         }
       }
     },
     "app.menu.edit.cut": {
-      "comment": "Edit menu item title for Cut action",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2495,11 +3737,17 @@
             "state": "translated",
             "value": "Cut"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cortar"
+          }
         }
       }
     },
     "app.menu.edit.copy": {
-      "comment": "Edit menu item title for Copy action",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2507,11 +3755,17 @@
             "state": "translated",
             "value": "Copy"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar"
+          }
         }
       }
     },
     "app.menu.edit.paste": {
-      "comment": "Edit menu item title for Paste action",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2519,11 +3773,17 @@
             "state": "translated",
             "value": "Paste"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pegar"
+          }
         }
       }
     },
     "app.menu.edit.select-all": {
-      "comment": "Edit menu item title for Select All action",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2531,11 +3791,17 @@
             "state": "translated",
             "value": "Select All"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seleccionar todo"
+          }
         }
       }
     },
     "app.status-item.server-stopped": {
-      "comment": "Status item title when server is stopped",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2543,11 +3809,17 @@
             "state": "translated",
             "value": "Server: Stopped"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servidor: Detenido"
+          }
         }
       }
     },
     "app.status-item.open-settings": {
-      "comment": "Status menu item title to open settings window",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2555,11 +3827,17 @@
             "state": "translated",
             "value": "Open Settings"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Configuración"
+          }
         }
       }
     },
     "app.status-item.start-server": {
-      "comment": "Status menu item title to start backend server",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2567,11 +3845,17 @@
             "state": "translated",
             "value": "Start Server"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar Servidor"
+          }
         }
       }
     },
     "app.status-item.copy-server-url": {
-      "comment": "Status menu item title to copy server URL to clipboard",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2579,11 +3863,17 @@
             "state": "translated",
             "value": "Copy Server URL"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiar URL del Servidor"
+          }
         }
       }
     },
     "app.status-item.open-dashboard": {
-      "comment": "Status menu item title to open dashboard in browser",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2591,11 +3881,17 @@
             "state": "translated",
             "value": "Open Dashboard"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Panel de Control"
+          }
         }
       }
     },
     "app.status-item.check-for-updates": {
-      "comment": "Status menu item title to check for app updates",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2603,11 +3899,17 @@
             "state": "translated",
             "value": "Check for Updates..."
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buscar actualizaciones..."
+          }
         }
       }
     },
     "app.status-item.quit": {
-      "comment": "Status menu item title to quit app",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2615,11 +3917,17 @@
             "state": "translated",
             "value": "Quit"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salir"
+          }
         }
       }
     },
     "app.notification.server-started.title": {
-      "comment": "Notification title shown when server starts successfully",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2627,11 +3935,17 @@
             "state": "translated",
             "value": "Server Started"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servidor Iniciado"
+          }
         }
       }
     },
     "app.notification.server-started.body": {
-      "comment": "Notification body shown when server starts successfully",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2639,11 +3953,17 @@
             "state": "translated",
             "value": "VibeProxy is now running"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "VibeProxy ya está en ejecución"
+          }
         }
       }
     },
     "app.notification.server-failed.title": {
-      "comment": "Notification title shown when server fails to start",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2651,11 +3971,17 @@
             "state": "translated",
             "value": "Server Failed"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servidor Falló"
+          }
         }
       }
     },
     "app.notification.server-failed.body": {
-      "comment": "Notification body shown when backend server fails to start on default port",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2663,11 +3989,17 @@
             "state": "translated",
             "value": "Could not start backend server on port 8318"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo iniciar el servidor backend en el puerto 8318"
+          }
         }
       }
     },
     "app.notification.server-failed-thinking-proxy-timeout.body": {
-      "comment": "Notification body shown when thinking proxy startup times out",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2675,11 +4007,17 @@
             "state": "translated",
             "value": "Could not start thinking proxy on port 8317 (timeout)"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo iniciar el thinking proxy en el puerto 8317 (timeout)"
+          }
         }
       }
     },
     "app.notification.copied.title": {
-      "comment": "Notification title shown after copying server URL",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2687,11 +4025,17 @@
             "state": "translated",
             "value": "Copied"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copiado"
+          }
         }
       }
     },
     "app.notification.server-url-copied.body": {
-      "comment": "Notification body shown after copying server URL to clipboard",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2699,11 +4043,17 @@
             "state": "translated",
             "value": "Server URL copied to clipboard"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "URL del servidor copiada al portapapeles"
+          }
         }
       }
     },
     "app.status-item.server-running-port": {
-      "comment": "Status item title when server is running with active port",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -2711,17 +4061,29 @@
             "state": "translated",
             "value": "Server: Running (port %d)"
           }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Servidor: Activo (puerto %d)"
+          }
         }
       }
     },
     "app.status-item.stop-server": {
-      "comment": "Status menu item title to stop backend server",
+      "comment": "src/Sources/AppDelegate.swift",
       "extractionState": "manual",
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Stop Server"
+          }
+        },
+        "es-419": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detener Servidor"
           }
         }
       }
