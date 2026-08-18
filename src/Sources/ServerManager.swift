@@ -184,7 +184,11 @@ class ServerManager: ObservableObject {
         guard ConfigComposer.isOAuthProviderWildcardExcluded(oauthProviderKey, in: root) else {
             return nil
         }
-        return "Disabled in config via oauth-excluded-models. Remove the '*' exclusion for \(oauthProviderKey) to enable it here."
+        return String(format: String(
+            localized: "server-manager.provider-lock.disabled-in-config-oauth-excluded-models",
+            defaultValue: "Disabled in config via oauth-excluded-models. Remove the '*' exclusion for %@ to enable it here.",
+            comment: "Reason shown when provider is disabled by oauth-excluded-models config"
+        ), "\(oauthProviderKey)")
     }
 
     func isProviderToggleLocked(_ providerKey: String) -> Bool {
@@ -195,9 +199,21 @@ class ServerManager: ObservableObject {
     func setProviderEnabled(_ providerKey: String, enabled: Bool) {
         enabledProviders[providerKey] = enabled
         if enabled, let lockReason = providerConfigLockReason(providerKey) {
-            addLog("⚠️ \(providerKey) remains disabled: \(lockReason)")
+            addLog(String(format: String(
+                localized: "server-manager.provider-status.remains-disabled",
+                defaultValue: "⚠️ %@ remains disabled: %@",
+                comment: "Status line when provider remains disabled with lock reason"
+            ), "\(providerKey)", "\(lockReason)"))
         } else {
-            addLog(enabled ? "✓ Enabled provider: \(providerKey)" : "⚠️ Disabled provider: \(providerKey)")
+            addLog(enabled ? String(format: String(
+                localized: "server-manager.provider-status.enabled",
+                defaultValue: "✓ Enabled provider: %@",
+                comment: "Status line when provider is enabled"
+            ), "\(providerKey)") : String(format: String(
+                localized: "server-manager.provider-status.disabled",
+                defaultValue: "⚠️ Disabled provider: %@",
+                comment: "Status line when provider is disabled"
+            ), "\(providerKey)"))
         }
         reloadCustomProviders()
         requestConfigUpdate()
@@ -221,14 +237,22 @@ class ServerManager: ObservableObject {
 
         // Use bundled binary from app bundle
         guard let resourcePath = Bundle.main.resourcePath else {
-            addLog("❌ Error: Could not find resource path")
+            addLog(String(
+                localized: "server-manager.error.resource-path-not-found",
+                defaultValue: "❌ Error: Could not find resource path",
+                comment: "Error message when app resource path cannot be resolved"
+            ))
             completion(false)
             return
         }
         
         let bundledPath = (resourcePath as NSString).appendingPathComponent("cli-proxy-api-plus")
         guard FileManager.default.fileExists(atPath: bundledPath) else {
-            addLog("❌ Error: cli-proxy-api-plus binary not found at \(bundledPath)")
+            addLog(String(format: String(
+                localized: "server-manager.error.binary-not-found-at-path",
+                defaultValue: "❌ Error: cli-proxy-api-plus binary not found at %@",
+                comment: "Error message when bundled cli-proxy-api-plus binary is missing"
+            ), "\(bundledPath)"))
             completion(false)
             return
         }
@@ -236,7 +260,15 @@ class ServerManager: ObservableObject {
         // Use config path (merged with Z.AI if keys exist)
         let configPath = getConfigPath()
         guard !configPath.isEmpty && FileManager.default.fileExists(atPath: configPath) else {
-            addLog("❌ Error: \(configErrorMessage ?? "Could not resolve active config path")")
+            addLog(String(format: String(
+                localized: "server-manager.error.config-resolution",
+                defaultValue: "❌ Error: %@",
+                comment: "Error message when resolving active config path fails"
+            ), configErrorMessage ?? String(
+                localized: "server-manager.error.active-config-path-unresolved",
+                defaultValue: "Could not resolve active config path",
+                comment: "Fallback config error detail when active config path cannot be resolved"
+            )))
             completion(false)
             return
         }
@@ -262,7 +294,11 @@ class ServerManager: ObservableObject {
         errorPipe.fileHandleForReading.readabilityHandler = { [weak self] handle in
             let data = handle.availableData
             if let output = String(data: data, encoding: .utf8), !output.isEmpty {
-                self?.addLog("⚠️ \(output)")
+                self?.addLog(String(format: String(
+                    localized: "server-manager.warning.output",
+                    defaultValue: "⚠️ %@",
+                    comment: "Warning line that prefixes server output"
+                ), "\(output)"))
             }
         }
         
@@ -275,7 +311,11 @@ class ServerManager: ObservableObject {
             DispatchQueue.main.async {
                 self?.isRunning = false
                 self?.activeConfigPath = ""
-                self?.addLog("Server stopped with code: \(process.terminationStatus)")
+                self?.addLog(String(format: String(
+                    localized: "server-manager.status.stopped-with-code",
+                    defaultValue: "Server stopped with code: %d",
+                    comment: "Status message when server process exits with termination code"
+                ), process.terminationStatus))
                 NotificationCenter.default.post(name: .serverStatusChanged, object: nil)
             }
         }
@@ -286,7 +326,11 @@ class ServerManager: ObservableObject {
                 self.isRunning = true
                 self.activeConfigPath = configPath
             }
-            addLog("✓ Server started on port \(port)")
+            addLog(String(format: String(
+                localized: "server-manager.status.started-on-port",
+                defaultValue: "✓ Server started on port %d",
+                comment: "Status message when server starts successfully on port"
+            ), port))
             
             // Wait a bit to ensure it started successfully
             DispatchQueue.main.asyncAfter(deadline: .now() + Timing.readinessCheckDelay) { [weak self] in
@@ -295,12 +339,20 @@ class ServerManager: ObservableObject {
                     NotificationCenter.default.post(name: .serverStatusChanged, object: nil)
                     completion(true)
                 } else {
-                    self.addLog("⚠️ Server exited before becoming ready")
+                    self.addLog(String(
+                        localized: "server-manager.warning.exited-before-ready",
+                        defaultValue: "⚠️ Server exited before becoming ready",
+                        comment: "Warning message when server exits before ready state"
+                    ))
                     completion(false)
                 }
             }
         } catch {
-            addLog("❌ Failed to start server: \(error.localizedDescription)")
+            addLog(String(format: String(
+                localized: "server-manager.error.failed-to-start",
+                defaultValue: "❌ Failed to start server: %@",
+                comment: "Error message when server start fails with error details"
+            ), "\(error.localizedDescription)"))
             completion(false)
         }
     }
@@ -316,7 +368,11 @@ class ServerManager: ObservableObject {
         }
         
         let pid = process.processIdentifier
-        addLog("Stopping server (PID: \(pid))...")
+        addLog(String(format: String(
+            localized: "server-manager.status.stopping-with-pid",
+            defaultValue: "Stopping server (PID: %d)...",
+            comment: "Status message when stopping server process by PID"
+        ), pid))
         processQueue.async { [weak self] in
             guard let self = self else { return }
             
@@ -331,7 +387,11 @@ class ServerManager: ObservableObject {
             
             // If still running, force kill (SIGKILL)
             if process.isRunning {
-                self.addLog("⚠️ Server didn't stop gracefully, force killing...")
+                self.addLog(String(
+                    localized: "server-manager.warning.force-kill-server",
+                    defaultValue: "⚠️ Server didn't stop gracefully, force killing...",
+                    comment: "Warning message when server requires force kill"
+                ))
                 kill(pid, SIGKILL)
             }
             
@@ -341,7 +401,11 @@ class ServerManager: ObservableObject {
                 self.process = nil
                 self.isRunning = false
                 self.activeConfigPath = ""
-                self.addLog("✓ Server stopped")
+                self.addLog(String(
+                    localized: "server-manager.status.stopped",
+                    defaultValue: "✓ Server stopped",
+                    comment: "Status message when server stops successfully"
+                ))
                 NotificationCenter.default.post(name: .serverStatusChanged, object: nil)
                 completion?()
             }
@@ -354,13 +418,21 @@ class ServerManager: ObservableObject {
 
         // Use bundled binary from app bundle
         guard let resourcePath = Bundle.main.resourcePath else {
-            completion(false, "Could not find resource path")
+            completion(false, String(
+                localized: "server-manager.error.resource-path-not-found-plain",
+                defaultValue: "Could not find resource path",
+                comment: "Plain error message when app resource path cannot be resolved"
+            ))
             return
         }
         
         let bundledPath = (resourcePath as NSString).appendingPathComponent("cli-proxy-api-plus")
         guard FileManager.default.fileExists(atPath: bundledPath) else {
-            completion(false, "Binary not found at \(bundledPath)")
+            completion(false, String(format: String(
+                localized: "server-manager.error.binary-not-found-at-path-plain",
+                defaultValue: "Binary not found at %@",
+                comment: "Plain error message when bundled binary is missing at path"
+            ), "\(bundledPath)"))
             return
         }
         
@@ -369,7 +441,11 @@ class ServerManager: ObservableObject {
         
         let configPath = getConfigPath()
         guard !configPath.isEmpty else {
-            completion(false, configErrorMessage ?? "Could not resolve config path")
+            completion(false, configErrorMessage ?? String(
+                localized: "server-manager.error.config-path-unresolved",
+                defaultValue: "Could not resolve config path",
+                comment: "Error message when config path resolution fails"
+            ))
             return
         }
         
@@ -476,7 +552,11 @@ class ServerManager: ObservableObject {
             NSLog("[Auth] Starting process: %@ with args: %@", bundledPath, authProcess.arguments?.joined(separator: " ") ?? "none")
             activeAuthProcess = authProcess
             try authProcess.run()
-            addLog("✓ Authentication process started (PID: \(authProcess.processIdentifier)) - browser should open shortly")
+            addLog(String(format: String(
+                localized: "server-manager.auth.status.process-started",
+                defaultValue: "✓ Authentication process started (PID: %d) - browser should open shortly",
+                comment: "Status message when authentication helper process starts"
+            ), authProcess.processIdentifier))
             NSLog("[Auth] Process started with PID: %d", authProcess.processIdentifier)
             
             // Wait briefly to check if process crashes immediately or to capture output
@@ -495,7 +575,11 @@ class ServerManager: ObservableObject {
                             // Copy code to clipboard
                             NSPasteboard.general.clearContents()
                             NSPasteboard.general.setString(code, forType: .string)
-                            completion(true, "🌐 Browser opened for GitHub authentication.\n\n📋 Code copied to clipboard:\n\n\(code)\n\nJust paste it in the browser!\n\nThe app will automatically detect when you're authenticated.")
+                            completion(true, String(format: String(
+                                localized: "server-manager.auth.github.browser-opened-code-copied",
+                                defaultValue: "🌐 Browser opened for GitHub authentication.\n\n📋 Code copied to clipboard:\n\n%@\n\nJust paste it in the browser!\n\nThe app will automatically detect when you're authenticated.",
+                                comment: "Instruction message when GitHub authentication starts and device code is copied"
+                            ), "\(code)"))
                             return
                         } else if capture.text.contains("enter the code:") {
                             // Try simpler extraction
@@ -508,18 +592,30 @@ class ServerManager: ObservableObject {
                                         // Copy code to clipboard
                                         NSPasteboard.general.clearContents()
                                         NSPasteboard.general.setString(code, forType: .string)
-                                        completion(true, "🌐 Browser opened for GitHub authentication.\n\n📋 Code copied to clipboard:\n\n\(code)\n\nJust paste it in the browser!\n\nThe app will automatically detect when you're authenticated.")
+                                        completion(true, String(format: String(
+                                            localized: "server-manager.auth.github.browser-opened-code-copied",
+                                            defaultValue: "🌐 Browser opened for GitHub authentication.\n\n📋 Code copied to clipboard:\n\n%@\n\nJust paste it in the browser!\n\nThe app will automatically detect when you're authenticated.",
+                                            comment: "Instruction message when GitHub authentication starts and device code is copied"
+                                        ), "\(code)"))
                                         return
                                     }
                                 }
                             }
                         }
                         // Fallback if we couldn't extract the code
-                        completion(true, "🌐 Browser opened for GitHub authentication.\n\nCheck your terminal or the opened browser for the device code.\n\nThe app will automatically detect when you're authenticated.")
+                        completion(true, String(
+                            localized: "server-manager.auth.github.browser-opened-check-device-code",
+                            defaultValue: "🌐 Browser opened for GitHub authentication.\n\nCheck your terminal or the opened browser for the device code.\n\nThe app will automatically detect when you're authenticated.",
+                            comment: "Instruction message for GitHub authentication when user must find device code"
+                        ))
                         return
                     }
                     
-                    completion(true, "🌐 Browser opened for authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect when you're authenticated.")
+                    completion(true, String(
+                        localized: "server-manager.auth.browser-opened.generic",
+                        defaultValue: "🌐 Browser opened for authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect when you're authenticated.",
+                        comment: "Generic instruction message shown after opening browser for authentication"
+                    ))
                 } else {
                     // Process died quickly - check for error
                     let outputData = outputPipe.fileHandleForReading.readDataToEndOfFile()
@@ -534,11 +630,19 @@ class ServerManager: ObservableObject {
                     if output.contains("Opening browser") || output.contains("Attempting to open URL") {
                         // Browser opened but process finished (probably success)
                         NSLog("[Auth] Browser opened, process completed")
-                        completion(true, "🌐 Browser opened for authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect when you're authenticated.")
+                        completion(true, String(
+                            localized: "server-manager.auth.browser-opened.generic",
+                            defaultValue: "🌐 Browser opened for authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect when you're authenticated.",
+                            comment: "Generic instruction message shown after opening browser for authentication"
+                        ))
                     } else {
                         // Real error
                         NSLog("[Auth] Process failed")
-                        let message = error.isEmpty ? (output.isEmpty ? "Authentication process failed unexpectedly" : output) : error
+                        let message = error.isEmpty ? (output.isEmpty ? String(
+                            localized: "server-manager.auth.error.process-failed-unexpectedly",
+                            defaultValue: "Authentication process failed unexpectedly",
+                            comment: "Error message when authentication helper process fails unexpectedly"
+                        ) : output) : error
                         completion(false, message)
                     }
                 }
@@ -546,7 +650,11 @@ class ServerManager: ObservableObject {
         } catch {
             clearActiveAuthProcess(authProcess)
             NSLog("[Auth] Failed to start: %@", error.localizedDescription)
-            completion(false, "Failed to start auth process: \(error.localizedDescription)")
+            completion(false, String(format: String(
+                localized: "server-manager.auth.error.failed-to-start",
+                defaultValue: "Failed to start auth process: %@",
+                comment: "Error message when authentication process cannot be started"
+            ), "\(error.localizedDescription)"))
         }
     }
 
@@ -556,7 +664,11 @@ class ServerManager: ObservableObject {
         }
 
         if authProcess.isRunning {
-            addLog("⚠️ Terminating previous auth process (\(authProcess.processIdentifier)) before retry: \(reason)")
+            addLog(String(format: String(
+                localized: "server-manager.auth.warning.terminating-previous-process-before-retry",
+                defaultValue: "⚠️ Terminating previous auth process (%d) before retry: %@",
+                comment: "Warning message when previous auth process is terminated before retry"
+            ), authProcess.processIdentifier, "\(reason)"))
             authProcess.terminate()
 
             let deadline = Date().addingTimeInterval(Timing.gracefulTerminationTimeout)
@@ -614,7 +726,11 @@ class ServerManager: ObservableObject {
                         continue
                     }
                     kill(pid, SIGKILL)
-                    addLog("⚠️ Cleaned up stale auth listener process: \(pid)")
+                    addLog(String(format: String(
+                        localized: "server-manager.auth.warning.cleaned-stale-listener-process",
+                        defaultValue: "⚠️ Cleaned up stale auth listener process: %d",
+                        comment: "Warning message when stale auth listener process is cleaned up"
+                    ), pid))
                 }
             } catch {
                 // best-effort cleanup only
@@ -641,10 +757,18 @@ class ServerManager: ObservableObject {
 
             do {
                 let filePath = try self.zaiAPIKeyStore.save(apiKey: apiKey)
-                self.addLog("✓ Z.AI API key saved to \(filePath.lastPathComponent)")
+                self.addLog(String(format: String(
+                    localized: "server-manager.zai-api-key.saved-to-file",
+                    defaultValue: "✓ Z.AI API key saved to %@",
+                    comment: "Success message when Z.AI API key is saved to file"
+                ), "\(filePath.lastPathComponent)"))
                 self.refreshAuthBackedConfiguration()
                 DispatchQueue.main.async {
-                    completion(true, "API key saved successfully")
+                    completion(true, String(
+                        localized: "server-manager.api-key.saved-successfully",
+                        defaultValue: "API key saved successfully",
+                        comment: "Success title message after saving API key"
+                    ))
                 }
             } catch {
                 DispatchQueue.main.async {
@@ -676,15 +800,27 @@ class ServerManager: ObservableObject {
                 )
                 guard let provider = customProviders.first(where: { $0.id == providerID }) else {
                     DispatchQueue.main.async {
-                        completion(false, "Custom provider '\(providerID)' is not defined in config.yaml.")
+                        completion(false, String(format: String(
+                            localized: "server-manager.custom-provider.not-defined-in-config",
+                            defaultValue: "Custom provider '%@' is not defined in config.yaml.",
+                            comment: "Error message when custom provider ID is missing from config.yaml"
+                        ), "\(providerID)"))
                     }
                     return
                 }
 
                 if provider.inlineAPIKeys.contains(apiKey) {
-                    self.addLog("✓ API key for custom provider \(providerID) already exists in config")
+                    self.addLog(String(format: String(
+                        localized: "server-manager.custom-provider.api-key-already-exists-in-config",
+                        defaultValue: "✓ API key for custom provider %@ already exists in config",
+                        comment: "Status message when custom provider API key already exists in config"
+                    ), "\(providerID)"))
                     DispatchQueue.main.async {
-                        completion(true, "API key already exists in config")
+                        completion(true, String(
+                            localized: "server-manager.api-key.already-exists-in-config",
+                            defaultValue: "API key already exists in config",
+                            comment: "Status title when API key already exists in config"
+                        ))
                     }
                     return
                 }
@@ -692,21 +828,45 @@ class ServerManager: ObservableObject {
                 let saveResult = try self.customProviderCredentialStore.save(providerID: providerID, apiKey: apiKey)
                 switch saveResult {
                 case .created(let record):
-                    self.addLog("✓ Saved API key for custom provider: \(record.providerID)")
+                    self.addLog(String(format: String(
+                        localized: "server-manager.custom-provider.api-key-saved",
+                        defaultValue: "✓ Saved API key for custom provider: %@",
+                        comment: "Status message when custom provider API key is saved"
+                    ), "\(record.providerID)"))
                 case .alreadyPresent(let record):
-                    self.addLog("✓ Custom provider key already present: \(record.label)")
+                    self.addLog(String(format: String(
+                        localized: "server-manager.custom-provider.key-already-present",
+                        defaultValue: "✓ Custom provider key already present: %@",
+                        comment: "Status message when custom provider key is already stored"
+                    ), "\(record.label)"))
                 case .reenabled(let record):
-                    self.addLog("✓ Re-enabled custom provider key: \(record.label)")
+                    self.addLog(String(format: String(
+                        localized: "server-manager.custom-provider.key-re-enabled",
+                        defaultValue: "✓ Re-enabled custom provider key: %@",
+                        comment: "Status message when existing custom provider key is re-enabled"
+                    ), "\(record.label)"))
                 }
                 self.refreshAuthBackedConfiguration()
                 DispatchQueue.main.async {
                     switch saveResult {
                     case .created:
-                        completion(true, "API key saved successfully")
+                        completion(true, String(
+                            localized: "server-manager.api-key.saved-successfully",
+                            defaultValue: "API key saved successfully",
+                            comment: "Success title message after saving API key"
+                        ))
                     case .alreadyPresent:
-                        completion(true, "API key already exists")
+                        completion(true, String(
+                            localized: "server-manager.api-key.already-exists",
+                            defaultValue: "API key already exists",
+                            comment: "Status title when API key already exists"
+                        ))
                     case .reenabled:
-                        completion(true, "API key was already stored and has been re-enabled")
+                        completion(true, String(
+                            localized: "server-manager.api-key.re-enabled",
+                            defaultValue: "API key was already stored and has been re-enabled",
+                            comment: "Status title when stored API key was re-enabled"
+                        ))
                     }
                 }
             } catch {
@@ -738,9 +898,17 @@ class ServerManager: ObservableObject {
                 providerID: credential.providerID,
                 apiKey: credential.apiKey
             )
-            addLog("✓ Removed custom provider key: \(credential.label)")
+            addLog(String(format: String(
+                localized: "server-manager.custom-provider.key-removed",
+                defaultValue: "✓ Removed custom provider key: %@",
+                comment: "Status message when custom provider key is removed"
+            ), "\(credential.label)"))
             if deletedCount > 1 {
-                addLog("✓ Removed \(deletedCount) duplicate credential files for \(credential.providerID)")
+                addLog(String(format: String(
+                    localized: "server-manager.custom-provider.duplicate-credential-files-removed",
+                    defaultValue: "✓ Removed %d duplicate credential files for %@",
+                    comment: "Status message when duplicate credential files are removed for a provider"
+                ), deletedCount, "\(credential.providerID)"))
             }
             markObservedConfigInputsCurrent()
             reloadCustomProviders()
@@ -762,8 +930,16 @@ class ServerManager: ObservableObject {
             )
             addLog(
                 credential.isDisabled
-                    ? "✓ Enabled custom provider key: \(credential.label)"
-                    : "⚠️ Disabled custom provider key: \(credential.label)"
+                    ? String(format: String(
+                        localized: "server-manager.custom-provider.key-enabled",
+                        defaultValue: "✓ Enabled custom provider key: %@",
+                        comment: "Status message when custom provider key is enabled"
+                    ), "\(credential.label)")
+                    : String(format: String(
+                        localized: "server-manager.custom-provider.key-disabled",
+                        defaultValue: "⚠️ Disabled custom provider key: %@",
+                        comment: "Status message when custom provider key is disabled"
+                    ), "\(credential.label)")
             )
             markObservedConfigInputsCurrent()
             reloadCustomProviders()
@@ -819,14 +995,22 @@ class ServerManager: ObservableObject {
         enabledProviderStates: [String: Bool]
     ) -> Result<String, ConfigResolutionFailure> {
         guard bundledConfigPath() != nil else {
-            return .failure(ConfigResolutionFailure(message: "Could not locate the bundled config.yaml in the app bundle."))
+            return .failure(ConfigResolutionFailure(message: String(
+                localized: "server-manager.config.error.bundled-config-not-found",
+                defaultValue: "Could not locate the bundled config.yaml in the app bundle.",
+                comment: "Error when bundled config.yaml cannot be found in app bundle"
+            )))
         }
         let baseConfigResult = loadBaseConfigRoot()
         guard case .success(let baseConfig) = baseConfigResult else {
             if case .failure(let error) = baseConfigResult {
                 return .failure(error)
             }
-            return .failure(ConfigResolutionFailure(message: "Could not load the base configuration."))
+            return .failure(ConfigResolutionFailure(message: String(
+                localized: "server-manager.config.error.base-config-load-failed",
+                defaultValue: "Could not load the base configuration.",
+                comment: "Error when base configuration cannot be loaded"
+            )))
         }
         
         let authDir = authDirectoryURL()
@@ -889,7 +1073,11 @@ class ServerManager: ObservableObject {
         } catch {
             return .failure(
                 ConfigResolutionFailure(
-                    message: "Failed to write merged config to \(mergedConfigPath.path): \(error.localizedDescription)"
+                    message: String(format: String(
+                        localized: "server-manager.config.error.write-merged-config-failed",
+                        defaultValue: "Failed to write merged config to %@: %@",
+                        comment: "Error when writing merged configuration file fails"
+                    ), "\(mergedConfigPath.path)", "\(error.localizedDescription)")
                 )
             )
         }
@@ -921,7 +1109,11 @@ class ServerManager: ObservableObject {
                 let pids = output.components(separatedBy: .newlines).filter { !$0.isEmpty }
                 
                 if !pids.isEmpty {
-                    addLog("⚠️ Found orphaned server process(es): \(pids.joined(separator: ", "))")
+                    addLog(String(format: String(
+                        localized: "server-manager.process.warning.orphaned-processes-found",
+                        defaultValue: "⚠️ Found orphaned server process(es): %@",
+                        comment: "Warning listing orphaned server process IDs"
+                    ), "\(pids.joined(separator: ", "))"))
                     
                     // Now kill them
                     let killTask = Process()
@@ -933,7 +1125,11 @@ class ServerManager: ObservableObject {
                     
                     // Wait a moment for cleanup
                     Thread.sleep(forTimeInterval: 0.5)
-                    addLog("✓ Cleaned up orphaned processes")
+                    addLog(String(
+                        localized: "server-manager.process.status.orphaned-processes-cleaned",
+                        defaultValue: "✓ Cleaned up orphaned processes",
+                        comment: "Status message when orphaned server processes are cleaned up"
+                    ))
                 }
             }
             // Exit code 1 means no processes found - this is fine, no need to log
@@ -955,14 +1151,22 @@ class ServerManager: ObservableObject {
     
     private func loadBaseConfigRoot() -> Result<LoadedBaseConfig, ConfigResolutionFailure> {
         guard let bundledConfigPath = bundledConfigPath() else {
-            return .failure(ConfigResolutionFailure(message: "Could not locate the bundled config.yaml in the app bundle."))
+            return .failure(ConfigResolutionFailure(message: String(
+                localized: "server-manager.config.error.bundled-config-not-found",
+                defaultValue: "Could not locate the bundled config.yaml in the app bundle.",
+                comment: "Error when bundled config.yaml cannot be found in app bundle"
+            )))
         }
         let bundledRootResult = loadYAMLDictionary(atPath: bundledConfigPath)
         guard case .success(let bundledRoot) = bundledRootResult else {
             if case .failure(let error) = bundledRootResult {
                 return .failure(error)
             }
-            return .failure(ConfigResolutionFailure(message: "Could not load the bundled config at \(bundledConfigPath)."))
+            return .failure(ConfigResolutionFailure(message: String(format: String(
+                localized: "server-manager.config.error.bundled-config-load-failed",
+                defaultValue: "Could not load the bundled config at %@.",
+                comment: "Error when bundled config cannot be loaded from path"
+            ), "\(bundledConfigPath)")))
         }
         
         let userConfigPath = authDirectoryURL()
@@ -977,7 +1181,11 @@ class ServerManager: ObservableObject {
             if case .failure(let error) = userRootResult {
                 return .failure(error)
             }
-            return .failure(ConfigResolutionFailure(message: "Could not load the user config at \(userConfigPath)."))
+            return .failure(ConfigResolutionFailure(message: String(format: String(
+                localized: "server-manager.config.error.user-config-load-failed",
+                defaultValue: "Could not load the user config at %@.",
+                comment: "Error when user config cannot be loaded from path"
+            ), "\(userConfigPath)")))
         }
         
         let mergedRoot = ConfigComposer.composeAdditiveBaseConfig(
@@ -995,11 +1203,19 @@ class ServerManager: ObservableObject {
                 return .success([:])
             }
             guard let dictionary = ConfigComposer.stringKeyedDictionary(loaded) else {
-                return .failure(ConfigResolutionFailure(message: "Config at \(path) must be a YAML mapping at the root."))
+                return .failure(ConfigResolutionFailure(message: String(format: String(
+                    localized: "server-manager.config.error.root-must-be-yaml-mapping",
+                    defaultValue: "Config at %@ must be a YAML mapping at the root.",
+                    comment: "Validation error when YAML config root is not a mapping"
+                ), "\(path)")))
             }
             return .success(dictionary)
         } catch {
-            return .failure(ConfigResolutionFailure(message: "Failed to parse YAML at \(path): \(error.localizedDescription)"))
+            return .failure(ConfigResolutionFailure(message: String(format: String(
+                localized: "server-manager.config.error.yaml-parse-failed",
+                defaultValue: "Failed to parse YAML at %@: %@",
+                comment: "Error when parsing YAML config fails"
+            ), "\(path)", "\(error.localizedDescription)")))
         }
     }
 
@@ -1014,7 +1230,11 @@ class ServerManager: ObservableObject {
         guard validationErrors.isEmpty else {
             return .failure(
                 ConfigResolutionFailure(
-                    message: "Invalid custom provider configuration. \(validationErrors.joined(separator: " "))"
+                    message: String(format: String(
+                        localized: "server-manager.custom-provider.error.invalid-configuration",
+                        defaultValue: "Invalid custom provider configuration. %@",
+                        comment: "Validation error message for invalid custom provider configuration"
+                    ), "\(validationErrors.joined(separator: " "))")
                 )
             )
         }
@@ -1121,7 +1341,11 @@ class ServerManager: ObservableObject {
             let shouldLog = self.configErrorMessage != message
             self.configErrorMessage = message
             if shouldLog {
-                self.addLog("❌ \(message)")
+                self.addLog(String(format: String(
+                    localized: "server-manager.error.prefixed-message",
+                    defaultValue: "❌ %@",
+                    comment: "Error line that prefixes a dynamic message"
+                ), "\(message)"))
             }
         }
         if Thread.isMainThread {
@@ -1206,7 +1430,11 @@ class ServerManager: ObservableObject {
         if shouldRestart {
             isRestartingForConfigUpdate = true
             hasPendingConfigUpdate = false
-            addLog("Config path changed; restarting server")
+            addLog(String(
+                localized: "server-manager.config.status.path-changed-restarting",
+                defaultValue: "Config path changed; restarting server",
+                comment: "Status message when config path changes and server restarts"
+            ))
             stop { [weak self] in
                 self?.start { [weak self] _ in
                     self?.finishConfigUpdateRestart()
@@ -1216,7 +1444,11 @@ class ServerManager: ObservableObject {
         }
         
         if isRunning {
-            addLog("Config updated (hot reload)")
+            addLog(String(
+                localized: "server-manager.config.status.updated-hot-reload",
+                defaultValue: "Config updated (hot reload)",
+                comment: "Status message when config is updated via hot reload"
+            ))
         }
     }
     

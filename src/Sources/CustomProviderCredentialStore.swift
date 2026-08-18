@@ -111,7 +111,11 @@ final class CustomProviderCredentialStore {
             }
             guard !matchingRecords.isEmpty else {
                 throw CustomProviderCredentialStoreError.failedToDeleteCredential(
-                    "No stored credential was found for provider \(providerID)."
+                    String(format: String(
+                        localized: "custom-provider-credential-store.error.no-stored-credential-for-provider",
+                        defaultValue: "No stored credential was found for provider %@.",
+                        comment: "Error when no stored credential exists for requested provider"
+                    ), "\(providerID)")
                 )
             }
 
@@ -120,7 +124,11 @@ final class CustomProviderCredentialStore {
                     try fileManager.removeItem(at: record.filePath)
                 } catch {
                     throw CustomProviderCredentialStoreError.failedToDeleteCredential(
-                        "Failed to delete credential file at \(record.filePath.path): \(error.localizedDescription)"
+                        String(format: String(
+                            localized: "custom-provider-credential-store.error.delete-credential-file-failed",
+                            defaultValue: "Failed to delete credential file at %@: %@",
+                            comment: "Error when deleting credential file from disk fails"
+                        ), "\(record.filePath.path)", "\(error.localizedDescription)")
                     )
                 }
             }
@@ -147,7 +155,11 @@ final class CustomProviderCredentialStore {
             data = try Data(contentsOf: filePath)
         } catch {
             throw CustomProviderCredentialStoreError.failedToReadCredential(
-                "Failed to read credential file at \(filePath.path): \(error.localizedDescription)"
+                String(format: String(
+                    localized: "custom-provider-credential-store.error.read-credential-file-failed",
+                    defaultValue: "Failed to read credential file at %@: %@",
+                    comment: "Error when reading credential file from disk fails"
+                ), "\(filePath.path)", "\(error.localizedDescription)")
             )
         }
 
@@ -156,13 +168,21 @@ final class CustomProviderCredentialStore {
             jsonObject = try JSONSerialization.jsonObject(with: data)
         } catch {
             throw CustomProviderCredentialStoreError.invalidCredentialJSON(
-                "Credential file at \(filePath.path) contains invalid JSON: \(error.localizedDescription)"
+                String(format: String(
+                    localized: "custom-provider-credential-store.error.invalid-json-in-credential-file",
+                    defaultValue: "Credential file at %@ contains invalid JSON: %@",
+                    comment: "Error when credential file contains invalid JSON"
+                ), "\(filePath.path)", "\(error.localizedDescription)")
             )
         }
 
         guard let json = ConfigComposer.stringKeyedDictionary(jsonObject) else {
             throw CustomProviderCredentialStoreError.malformedCredential(
-                "Credential file at \(filePath.path) must contain a JSON object."
+                String(format: String(
+                    localized: "custom-provider-credential-store.error.credential-file-must-contain-json-object",
+                    defaultValue: "Credential file at %@ must contain a JSON object.",
+                    comment: "Error when credential file root value is not a JSON object"
+                ), "\(filePath.path)")
             )
         }
 
@@ -172,17 +192,29 @@ final class CustomProviderCredentialStore {
     private func record(from json: [String: Any], filePath: URL) throws -> CustomProviderCredentialRecord {
         guard (json["type"] as? String) == Self.authType else {
             throw CustomProviderCredentialStoreError.malformedCredential(
-                "Credential file at \(filePath.path) has an unexpected type."
+                String(format: String(
+                    localized: "custom-provider-credential-store.error.unexpected-credential-type",
+                    defaultValue: "Credential file at %@ has an unexpected type.",
+                    comment: "Error when credential payload type in file is unexpected"
+                ), "\(filePath.path)")
             )
         }
         guard let providerID = json["provider"] as? String, !providerID.isEmpty else {
             throw CustomProviderCredentialStoreError.malformedCredential(
-                "Credential file at \(filePath.path) is missing a provider."
+                String(format: String(
+                    localized: "custom-provider-credential-store.error.missing-provider-in-credential-file",
+                    defaultValue: "Credential file at %@ is missing a provider.",
+                    comment: "Error when credential file is missing provider field"
+                ), "\(filePath.path)")
             )
         }
         guard let apiKey = json["api_key"] as? String, !apiKey.isEmpty else {
             throw CustomProviderCredentialStoreError.malformedCredential(
-                "Credential file at \(filePath.path) is missing an api_key."
+                String(format: String(
+                    localized: "custom-provider-credential-store.error.missing-api-key-in-credential-file",
+                    defaultValue: "Credential file at %@ is missing an api_key.",
+                    comment: "Error when credential file is missing api_key field"
+                ), "\(filePath.path)")
             )
         }
 
@@ -200,7 +232,11 @@ final class CustomProviderCredentialStore {
             try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true)
         } catch {
             throw CustomProviderCredentialStoreError.failedToCreateDirectory(
-                "Failed to create auth directory at \(directoryURL.path): \(error.localizedDescription)"
+                String(format: String(
+                    localized: "custom-provider-credential-store.error.create-auth-directory-failed",
+                    defaultValue: "Failed to create auth directory at %@: %@",
+                    comment: "Error when creating auth directory for credential storage fails"
+                ), "\(directoryURL.path)", "\(error.localizedDescription)")
             )
         }
     }
@@ -232,7 +268,11 @@ final class CustomProviderCredentialStore {
                 issues.append(
                     CustomProviderCredentialLoadIssue(
                         filePath: file,
-                        message: "Unexpected error while loading \(file.path): \(error.localizedDescription)"
+                        message: String(format: String(
+                            localized: "custom-provider-credential-store.error.unexpected-load-error",
+                            defaultValue: "Unexpected error while loading %@: %@",
+                            comment: "Unexpected error while loading credential file from disk"
+                        ), "\(file.path)", "\(error.localizedDescription)")
                     )
                 )
             }
@@ -251,7 +291,11 @@ final class CustomProviderCredentialStore {
         }
         guard !matchingRecords.isEmpty else {
             throw CustomProviderCredentialStoreError.failedToWriteCredential(
-                "No stored credential was found for provider \(providerID)."
+                String(format: String(
+                    localized: "custom-provider-credential-store.error.no-stored-credential-for-provider",
+                    defaultValue: "No stored credential was found for provider %@.",
+                    comment: "Error when no stored credential exists for requested provider"
+                ), "\(providerID)")
             )
         }
 
@@ -264,7 +308,11 @@ final class CustomProviderCredentialStore {
                 data = try Data(contentsOf: credentialRecord.filePath)
             } catch {
                 throw CustomProviderCredentialStoreError.failedToReadCredential(
-                    "Failed to read credential file at \(credentialRecord.filePath.path): \(error.localizedDescription)"
+                    String(format: String(
+                        localized: "custom-provider-credential-store.error.read-credential-record-file-failed",
+                        defaultValue: "Failed to read credential file at %@: %@",
+                        comment: "Error when reading a selected credential file record fails"
+                    ), "\(credentialRecord.filePath.path)", "\(error.localizedDescription)")
                 )
             }
 
@@ -273,13 +321,21 @@ final class CustomProviderCredentialStore {
                 jsonObject = try JSONSerialization.jsonObject(with: data)
             } catch {
                 throw CustomProviderCredentialStoreError.invalidCredentialJSON(
-                    "Credential file at \(credentialRecord.filePath.path) contains invalid JSON: \(error.localizedDescription)"
+                    String(format: String(
+                        localized: "custom-provider-credential-store.error.invalid-json-in-selected-credential-file",
+                        defaultValue: "Credential file at %@ contains invalid JSON: %@",
+                        comment: "Error when selected credential file contains invalid JSON"
+                    ), "\(credentialRecord.filePath.path)", "\(error.localizedDescription)")
                 )
             }
 
             guard var json = ConfigComposer.stringKeyedDictionary(jsonObject) else {
                 throw CustomProviderCredentialStoreError.malformedCredential(
-                    "Credential file at \(credentialRecord.filePath.path) must contain a JSON object."
+                    String(format: String(
+                        localized: "custom-provider-credential-store.error.selected-credential-file-must-contain-json-object",
+                        defaultValue: "Credential file at %@ must contain a JSON object.",
+                        comment: "Error when selected credential file root value is not a JSON object"
+                    ), "\(credentialRecord.filePath.path)")
                 )
             }
 
@@ -320,7 +376,11 @@ final class CustomProviderCredentialStore {
             jsonData = try JSONSerialization.data(withJSONObject: json, options: jsonWriteOptions)
         } catch {
             throw CustomProviderCredentialStoreError.failedToSerializeCredential(
-                "Failed to serialize credential for \(providerID): \(error.localizedDescription)"
+                String(format: String(
+                    localized: "custom-provider-credential-store.error.serialize-credential-failed",
+                    defaultValue: "Failed to serialize credential for %@: %@",
+                    comment: "Error when serializing provider credential payload fails"
+                ), "\(providerID)", "\(error.localizedDescription)")
             )
         }
 
@@ -329,7 +389,11 @@ final class CustomProviderCredentialStore {
             try fileManager.setAttributes([.posixPermissions: 0o600], ofItemAtPath: filePath.path)
         } catch {
             throw CustomProviderCredentialStoreError.failedToWriteCredential(
-                "Failed to write credential file at \(filePath.path): \(error.localizedDescription)"
+                String(format: String(
+                    localized: "custom-provider-credential-store.error.write-credential-file-failed",
+                    defaultValue: "Failed to write credential file at %@: %@",
+                    comment: "Error when writing credential file to disk fails"
+                ), "\(filePath.path)", "\(error.localizedDescription)")
             )
         }
     }
