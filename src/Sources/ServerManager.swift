@@ -260,15 +260,16 @@ class ServerManager: ObservableObject {
         // Use config path (merged with Z.AI if keys exist)
         let configPath = getConfigPath()
         guard !configPath.isEmpty && FileManager.default.fileExists(atPath: configPath) else {
+            let configDetails = configErrorMessage ?? String(
+                localized: "server-manager.error.active-config-path-not-resolved",
+                defaultValue: "Could not resolve active config path",
+                comment: "Fallback config error detail when active config path cannot be resolved"
+            )
             addLog(String(format: String(
                 localized: "server-manager.error.config-resolution-failed",
                 defaultValue: "❌ Error: %@",
                 comment: "Error message prefix for config resolution failure details"
-            ), "\(configErrorMessage ?? String(
-                localized: "server-manager.error.active-config-path-not-resolved",
-                defaultValue: "Could not resolve active config path",
-                comment: "Fallback config error detail when active config path cannot be resolved"
-            ))"))
+            ), configDetails))
             completion(false)
             return
         }
@@ -744,11 +745,7 @@ class ServerManager: ObservableObject {
                 ), "\(filePath.lastPathComponent)"))
                 self.refreshAuthBackedConfiguration()
                 DispatchQueue.main.async {
-                    completion(true, String(
-                        localized: "server-manager.api-key.saved-successfully",
-                        defaultValue: "API key saved successfully",
-                        comment: "Generic success message when API key is saved"
-                    ))
+                    completion(true, "API key saved successfully")
                 }
             } catch {
                 DispatchQueue.main.async {
@@ -796,11 +793,7 @@ class ServerManager: ObservableObject {
                         comment: "Message when custom provider API key already exists in config"
                     ), "\(providerID)"))
                     DispatchQueue.main.async {
-                        completion(true, String(
-                            localized: "server-manager.api-key.already-exists-in-config",
-                            defaultValue: "API key already exists in config",
-                            comment: "Generic message when API key already exists in config"
-                        ))
+                        completion(true, "API key already exists in config")
                     }
                     return
                 }
@@ -830,23 +823,11 @@ class ServerManager: ObservableObject {
                 DispatchQueue.main.async {
                     switch saveResult {
                     case .created:
-                        completion(true, String(
-                            localized: "server-manager.api-key.saved-successfully",
-                            defaultValue: "API key saved successfully",
-                            comment: "Generic success message when API key is saved"
-                        ))
+                        completion(true, "API key saved successfully")
                     case .alreadyPresent:
-                        completion(true, String(
-                            localized: "server-manager.api-key.already-exists",
-                            defaultValue: "API key already exists",
-                            comment: "Generic message when API key already exists"
-                        ))
+                        completion(true, "API key already exists")
                     case .reenabled:
-                        completion(true, String(
-                            localized: "server-manager.api-key.reenabled-existing",
-                            defaultValue: "API key was already stored and has been re-enabled",
-                            comment: "Message when stored API key is re-enabled"
-                        ))
+                        completion(true, "API key was already stored and has been re-enabled")
                     }
                 }
             } catch {
