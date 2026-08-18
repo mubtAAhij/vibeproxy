@@ -264,11 +264,11 @@ class ServerManager: ObservableObject {
                 localized: "server-manager.error.prefixed-config-error",
                 defaultValue: "❌ Error: %@",
                 comment: "Prefixed error message for configuration resolution failures"
-            ), "\(configErrorMessage ?? String(
+            ), configErrorMessage ?? String(
                 localized: "server-manager.error.active-config-path-unresolved",
                 defaultValue: "Could not resolve active config path",
                 comment: "Fallback config resolution error when active config path cannot be resolved"
-            ))"))
+            ))
             completion(false)
             return
         }
@@ -812,11 +812,7 @@ class ServerManager: ObservableObject {
                         comment: "Message when custom provider API key already exists in config"
                     ), "\(providerID)"))
                     DispatchQueue.main.async {
-                        completion(true, String(
-                            localized: "server-manager.api-key.already-exists-in-config",
-                            defaultValue: "API key already exists in config",
-                            comment: "Title text when API key is already present in config"
-                        ))
+                        completion(true, "API key already exists in config")
                     }
                     return
                 }
