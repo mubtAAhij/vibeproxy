@@ -158,15 +158,30 @@ class TunnelManager {
     
     private func showCloudflaredInstallInstructions() {
         let alert = NSAlert()
-        alert.messageText = String(localized: "tunnel-manager.cloudflared.install.missing.title", defaultValue: "Cloudflared Not Installed", bundle: .main, comment: "Alert title shown when cloudflared is not installed")
+        alert.messageText = String(
+            localized: "tunnel-manager.cloudflared.install.missing.title",
+            defaultValue: "Cloudflared Not Installed",
+            bundle: .main,
+            comment: "Alert title shown when cloudflared is not installed"
+        )
         alert.informativeText = String(
             localized: "tunnel-manager.cloudflared.install.instructions",
             defaultValue: "To expose your server to the internet, you need to install cloudflared.\nInstall via Homebrew: \nbrew install cloudflared\n\nOr download from:\nhttps://github.com/cloudflare/cloudflared/releases",
             comment: "Cloudflared installation instructions with Homebrew and release download options"
         )
         alert.alertStyle = .informational
-        alert.addButton(withTitle: String(localized: "tunnel-manager.cloudflared.install.copy-command", defaultValue: "Copy Install Command", bundle: .main, comment: "Primary action button title to copy the cloudflared install command"))
-        alert.addButton(withTitle: String(localized: "common.cancel", defaultValue: "Cancel", bundle: .main, comment: "Generic cancel button title"))
+        alert.addButton(withTitle: String(
+            localized: "tunnel-manager.cloudflared.install.copy-command",
+            defaultValue: "Copy Install Command",
+            bundle: .main,
+            comment: "Primary action button title to copy the cloudflared install command"
+        ))
+        alert.addButton(withTitle: String(
+            localized: "common.cancel",
+            defaultValue: "Cancel",
+            bundle: .main,
+            comment: "Generic cancel button title"
+        ))
         
         let response = alert.runModal()
         if response == .alertFirstButtonReturn {
