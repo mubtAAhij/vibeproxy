@@ -36,6 +36,27 @@ mkdir -p "$APP_DIR/Contents/MacOS"
 mkdir -p "$APP_DIR/Contents/Resources"
 mkdir -p "$APP_DIR/Contents/Frameworks"
 
+# Compile String Catalogs into runtime .lproj tables for Bundle.main lookups
+echo -e "${BLUE}Compiling string catalogs...${NC}"
+XCSTRINGS_SOURCE="$SRC_DIR/Sources/Resources/Localizable.xcstrings"
+if [ -f "$XCSTRINGS_SOURCE" ]; then
+    XCODE_DEVELOPER_DIR="$(xcode-select -p 2>/dev/null || true)"
+    XCSTRINGSTOOL=""
+    if [ -n "$XCODE_DEVELOPER_DIR" ] && [ -x "$XCODE_DEVELOPER_DIR/usr/bin/xcstringstool" ]; then
+        XCSTRINGSTOOL="$XCODE_DEVELOPER_DIR/usr/bin/xcstringstool"
+    elif [ -x "/usr/bin/xcstringstool" ]; then
+        XCSTRINGSTOOL="/usr/bin/xcstringstool"
+    fi
+
+    if [ -z "$XCSTRINGSTOOL" ]; then
+        echo -e "${YELLOW}⚠️ xcstringstool not found; localization catalogs will not be runtime-loadable${NC}"
+        exit 1
+    fi
+
+    "$XCSTRINGSTOOL" compile "$XCSTRINGS_SOURCE" --output-directory "$APP_DIR/Contents/Resources"
+    echo -e "${GREEN}✅ Localized string tables compiled${NC}"
+fi
+
 # Copy executable
 echo -e "${BLUE}Copying executable...${NC}"
 cp "$BUILD_DIR/CLIProxyMenuBar" "$APP_DIR/Contents/MacOS/"
@@ -56,8 +77,8 @@ if [ -d "$SRC_DIR/Sources/Resources" ]; then
     # Use a loop to copy each item to avoid nested Resources folder
     for item in "$SRC_DIR/Sources/Resources/"*; do
         if [ -e "$item" ]; then
-            # Skip if it's a Swift file or Package.swift
-            if [[ "$item" != *.swift ]]; then
+            # Skip source-only files that should not ship in app resources
+            if [[ "$item" != *.swift && "$item" != *.xcstrings ]]; then
                 cp -r "$item" "$APP_DIR/Contents/Resources/"
             fi
         fi
