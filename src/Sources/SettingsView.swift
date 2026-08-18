@@ -20,25 +20,45 @@ struct AccountRowView: View {
                 .foregroundColor(account.isDisabled ? .secondary.opacity(0.5) : (account.isExpired ? .orange : .secondary))
                 .strikethrough(account.isDisabled)
             if account.isExpired && !account.isDisabled {
-                Text(String(localized: "settings.provider.status.expired", defaultValue: "(expired)", comment: "Status text shown next to an expired account/provider"))
+                Text(String(
+                    localized: "settings.provider.status.expired",
+                    defaultValue: "(expired)",
+                    comment: "Status text shown next to an expired account/provider"
+                ))
                     .font(.caption2)
                     .foregroundColor(.orange)
             }
             if account.isDisabled {
-                Text(String(localized: "settings.provider.status.disabled", defaultValue: "(disabled)", comment: "Status text shown next to a disabled account/provider"))
+                Text(String(
+                    localized: "settings.provider.status.disabled",
+                    defaultValue: "(disabled)",
+                    comment: "Status text shown next to a disabled account/provider"
+                ))
                     .font(.caption2)
                     .foregroundColor(.secondary)
             }
             if showDisableToggle {
                 let canDisable = account.isDisabled || !isLastEnabled
                 Button(action: onToggleDisabled) {
-                    Text(account.isDisabled ? String(localized: "settings.provider.action.enable", defaultValue: "Enable", comment: "Button label to enable a provider") : String(localized: "settings.provider.action.disable", defaultValue: "Disable", comment: "Button label to disable a provider"))
+                    Text(account.isDisabled ? String(
+                        localized: "settings.provider.action.enable",
+                        defaultValue: "Enable",
+                        comment: "Button label to enable a provider"
+                    ) : String(
+                        localized: "settings.provider.action.disable",
+                        defaultValue: "Disable",
+                        comment: "Button label to disable a provider"
+                    ))
                         .font(.caption)
                         .foregroundColor(account.isDisabled ? .green : (canDisable ? .orange : .secondary.opacity(0.4)))
                 }
                 .buttonStyle(.plain)
                 .disabled(!canDisable)
-                .help(!canDisable ? String(localized: "settings.provider.validation.one-account-required", defaultValue: "At least one account must remain enabled", comment: "Validation message when disabling would leave no enabled accounts") : "")
+                .help(!canDisable ? String(
+                    localized: "settings.provider.validation.one-account-required",
+                    defaultValue: "At least one account must remain enabled",
+                    comment: "Validation message when disabling would leave no enabled accounts"
+                ) : "")
                 .onHover { inside in
                     if canDisable {
                         if inside { NSCursor.pointingHand.push() } else { NSCursor.pop() }
@@ -49,7 +69,11 @@ struct AccountRowView: View {
                 HStack(spacing: 2) {
                     Image(systemName: "minus.circle.fill")
                         .font(.caption)
-                    Text(String(localized: "settings.account.action.remove", defaultValue: "Remove", comment: "Destructive button label to remove an account"))
+                    Text(String(
+                        localized: "settings.account.action.remove",
+                        defaultValue: "Remove",
+                        comment: "Destructive button label to remove an account"
+                    ))
                         .font(.caption)
                 }
                 .foregroundColor(removeColor)
@@ -71,15 +95,27 @@ struct VercelGatewayControls: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Toggle(isOn: $serverManager.vercelGatewayEnabled) {
-                Text(String(localized: "settings.gateway.toggle.title", defaultValue: "Use Vercel AI Gateway", comment: "Toggle title for enabling Vercel AI Gateway routing"))
+                Text(String(
+                    localized: "settings.gateway.toggle.title",
+                    defaultValue: "Use Vercel AI Gateway",
+                    comment: "Toggle title for enabling Vercel AI Gateway routing"
+                ))
                     .font(.caption)
             }
             .toggleStyle(.checkbox)
-            .help(String(localized: "settings.gateway.toggle.description", defaultValue: "Route Claude requests through Vercel AI Gateway for safer access to your Claude Max subscription", comment: "Description text explaining Vercel AI Gateway routing"))
+            .help(String(
+                localized: "settings.gateway.toggle.description",
+                defaultValue: "Route Claude requests through Vercel AI Gateway for safer access to your Claude Max subscription",
+                comment: "Description text explaining Vercel AI Gateway routing"
+            ))
             
             if serverManager.vercelGatewayEnabled {
                 HStack(spacing: 8) {
-                    Text(String(localized: "settings.gateway.api-key.label", defaultValue: "Vercel API key", comment: "Label for the Vercel API key input field"))
+                    Text(String(
+                        localized: "settings.gateway.api-key.label",
+                        defaultValue: "Vercel API key",
+                        comment: "Label for the Vercel API key input field"
+                    ))
                         .font(.caption)
                         .foregroundColor(.secondary)
                     SecureField("", text: $serverManager.vercelApiKey)
@@ -88,11 +124,19 @@ struct VercelGatewayControls: View {
                         .font(.caption)
                     
                     if showingSaved {
-                        Text(String(localized: "settings.gateway.api-key.saved", defaultValue: "Saved", comment: "Status text shown after API key is saved"))
+                        Text(String(
+                            localized: "settings.gateway.api-key.saved",
+                            defaultValue: "Saved",
+                            comment: "Status text shown after API key is saved"
+                        ))
                             .font(.caption)
                             .foregroundColor(.green)
                     } else {
-                        Button(String(localized: "settings.gateway.api-key.save", defaultValue: "Save", comment: "Button label to save API key")) {
+                        Button(String(
+                            localized: "settings.gateway.api-key.save",
+                            defaultValue: "Save",
+                            comment: "Button label to save API key"
+                        )) {
                             showingSaved = true
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                                 showingSaved = false
@@ -154,7 +198,15 @@ struct ServiceRow<ExtraContent: View>: View {
                 .controlSize(.mini)
                 .labelsHidden()
                 .disabled(isToggleLocked)
-                .help(toggleHelpText ?? (isEnabled ? String(localized: "settings.provider.toggle.disable-help", defaultValue: "Disable this provider", comment: "Help text for provider toggle when provider is currently enabled") : String(localized: "settings.provider.toggle.enable-help", defaultValue: "Enable this provider", comment: "Help text for provider toggle when provider is currently disabled")))
+                .help(toggleHelpText ?? (isEnabled ? String(
+                    localized: "settings.provider.toggle.disable-help",
+                    defaultValue: "Disable this provider",
+                    comment: "Help text for provider toggle when provider is currently enabled"
+                ) : String(
+                    localized: "settings.provider.toggle.enable-help",
+                    defaultValue: "Enable this provider",
+                    comment: "Help text for provider toggle when provider is currently disabled"
+                )))
 
                 if let nsImage = IconCatalog.shared.image(named: iconName, resizedTo: NSSize(width: 20, height: 20), template: true) {
                     Image(nsImage: nsImage)
@@ -175,7 +227,11 @@ struct ServiceRow<ExtraContent: View>: View {
                     ProgressView()
                         .controlSize(.small)
                 } else if isEnabled {
-                    Button(String(localized: "settings.account.action.add", defaultValue: "Add Account", comment: "Button title to add a new account")) {
+                    Button(String(
+                        localized: "settings.account.action.add",
+                        defaultValue: "Add Account",
+                        comment: "Button title to add a new account"
+                    )) {
                         onConnect()
                     }
                     .controlSize(.small)
@@ -193,7 +249,11 @@ struct ServiceRow<ExtraContent: View>: View {
                             .foregroundColor(.green)
 
                         if enabledCount > 1 {
-                            Text(String(localized: "settings.account.behavior.round-robin-auto-failover", defaultValue: "• Round-robin w/ auto-failover", comment: "Bullet point describing account routing behavior"))
+                            Text(String(
+                                localized: "settings.account.behavior.round-robin-auto-failover",
+                                defaultValue: "• Round-robin w/ auto-failover",
+                                comment: "Bullet point describing account routing behavior"
+                            ))
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
@@ -226,7 +286,11 @@ struct ServiceRow<ExtraContent: View>: View {
                         .padding(.top, 4)
                     }
                 } else {
-                    Text(String(localized: "settings.account.empty-state.title", defaultValue: "No connected accounts", comment: "Empty-state message shown when no accounts are connected"))
+                    Text(String(
+                        localized: "settings.account.empty-state.title",
+                        defaultValue: "No connected accounts",
+                        comment: "Empty-state message shown when no accounts are connected"
+                    ))
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .padding(.leading, 28)
@@ -253,11 +317,23 @@ struct ServiceRow<ExtraContent: View>: View {
         .onChange(of: isExpanded) { newValue in
             onExpandChange?(newValue)
         }
-        .alert(String(localized: "settings.account.remove.confirm.title", defaultValue: "Remove Account", comment: "Confirmation dialog title for removing an account"), isPresented: $showingRemoveConfirmation) {
-            Button(String(localized: "settings.account.remove.confirm.cancel", defaultValue: "Cancel", comment: "Cancel button label in remove account confirmation dialog"), role: .cancel) {
+        .alert(String(
+            localized: "settings.account.remove.confirm.title",
+            defaultValue: "Remove Account",
+            comment: "Confirmation dialog title for removing an account"
+        ), isPresented: $showingRemoveConfirmation) {
+            Button(String(
+                localized: "settings.account.remove.confirm.cancel",
+                defaultValue: "Cancel",
+                comment: "Cancel button label in remove account confirmation dialog"
+            ), role: .cancel) {
                 accountToRemove = nil
             }
-            Button(String(localized: "settings.account.action.remove", defaultValue: "Remove", comment: "Destructive confirmation button label to remove account"), role: .destructive) {
+            Button(String(
+                localized: "settings.account.action.remove",
+                defaultValue: "Remove",
+                comment: "Destructive confirmation button label to remove account"
+            ), role: .destructive) {
                 if let account = accountToRemove {
                     onDisconnect(account)
                 }
@@ -265,7 +341,12 @@ struct ServiceRow<ExtraContent: View>: View {
             }
         } message: {
             if let account = accountToRemove {
-                Text(String(format: String(localized: "settings.account-removal.confirmation", defaultValue: "Are you sure you want to remove %@ from %@?", bundle: .main, comment: "Confirmation message asking whether to remove an account from a service"), account.displayName, serviceType.displayName))
+                Text(String(format: String(
+                    localized: "settings.account-removal.confirmation",
+                    defaultValue: "Are you sure you want to remove %@ from %@?",
+                    bundle: .main,
+                    comment: "Confirmation message asking whether to remove an account from a service"
+                ), account.displayName, serviceType.displayName))
             }
         }
     }
@@ -289,20 +370,40 @@ struct CustomProviderCredentialRowView: View {
                 .foregroundColor(credential.isDisabled ? .secondary.opacity(0.5) : .secondary)
                 .strikethrough(credential.isDisabled)
             if credential.isDisabled {
-                Text(String(localized: "settings.credential.disabled-indicator", defaultValue: "(disabled)", bundle: .main, comment: "Status label shown for disabled credentials"))
+                Text(String(
+                    localized: "settings.credential.disabled-indicator",
+                    defaultValue: "(disabled)",
+                    bundle: .main,
+                    comment: "Status label shown for disabled credentials"
+                ))
                     .font(.caption2)
                     .foregroundColor(.secondary)
             }
             if showDisableToggle {
                 let canDisable = credential.isDisabled || !isLastEnabled
                 Button(action: onToggleDisabled) {
-                    Text(credential.isDisabled ? String(localized: "settings.credential.action.enable", defaultValue: "Enable", bundle: .main, comment: "Button title to enable a disabled credential") : String(localized: "settings.credential.action.disable", defaultValue: "Disable", bundle: .main, comment: "Button title to disable an enabled credential"))
+                    Text(credential.isDisabled ? String(
+                        localized: "settings.credential.action.enable",
+                        defaultValue: "Enable",
+                        bundle: .main,
+                        comment: "Button title to enable a disabled credential"
+                    ) : String(
+                        localized: "settings.credential.action.disable",
+                        defaultValue: "Disable",
+                        bundle: .main,
+                        comment: "Button title to disable an enabled credential"
+                    ))
                         .font(.caption)
                         .foregroundColor(credential.isDisabled ? .green : (canDisable ? .orange : .secondary.opacity(0.4)))
                 }
                 .buttonStyle(.plain)
                 .disabled(!canDisable)
-                .help(!canDisable ? String(localized: "settings.credential.disable.minimum-enabled-required", defaultValue: "At least one API key must remain enabled", bundle: .main, comment: "Help text explaining that at least one API key must stay enabled") : "")
+                .help(!canDisable ? String(
+                    localized: "settings.credential.disable.minimum-enabled-required",
+                    defaultValue: "At least one API key must remain enabled",
+                    bundle: .main,
+                    comment: "Help text explaining that at least one API key must stay enabled"
+                ) : "")
                 .onHover { inside in
                     if canDisable {
                         if inside { NSCursor.pointingHand.push() } else { NSCursor.pop() }
@@ -313,7 +414,12 @@ struct CustomProviderCredentialRowView: View {
                 HStack(spacing: 2) {
                     Image(systemName: "minus.circle.fill")
                         .font(.caption)
-                    Text(String(localized: "settings.credential.action.remove", defaultValue: "Remove", bundle: .main, comment: "Button title to remove a credential"))
+                    Text(String(
+                        localized: "settings.credential.action.remove",
+                        defaultValue: "Remove",
+                        bundle: .main,
+                        comment: "Button title to remove a credential"
+                    ))
                         .font(.caption)
                 }
                 .foregroundColor(removeColor)
@@ -349,7 +455,12 @@ struct CustomProviderRow: View {
     
     private var summaryText: String {
         if totalConfiguredKeyCount == 0 {
-            return String(localized: "settings.provider.summary.no-configured-api-keys", defaultValue: "No configured API keys", bundle: .main, comment: "Summary shown when a provider has no configured API keys")
+            return String(
+                localized: "settings.provider.summary.no-configured-api-keys",
+                defaultValue: "No configured API keys",
+                bundle: .main,
+                comment: "Summary shown when a provider has no configured API keys"
+            )
         }
         if provider.inlineKeyCount > 0 && !credentials.isEmpty {
             return "\(totalConfiguredKeyCount) API keys • \(provider.inlineKeyCount) in config • \(credentials.count) added here"
@@ -388,7 +499,17 @@ struct CustomProviderRow: View {
                 .toggleStyle(.switch)
                 .controlSize(.mini)
                 .labelsHidden()
-                .help(isEnabled ? String(localized: "settings.provider.toggle.help.disable", defaultValue: "Disable this provider", bundle: .main, comment: "Help text for disabling a provider") : String(localized: "settings.provider.toggle.help.enable", defaultValue: "Enable this provider", bundle: .main, comment: "Help text for enabling a provider"))
+                .help(isEnabled ? String(
+                    localized: "settings.provider.toggle.help.disable",
+                    defaultValue: "Disable this provider",
+                    bundle: .main,
+                    comment: "Help text for disabling a provider"
+                ) : String(
+                    localized: "settings.provider.toggle.help.enable",
+                    defaultValue: "Enable this provider",
+                    bundle: .main,
+                    comment: "Help text for enabling a provider"
+                ))
                 
                 Image(systemName: provider.effectiveIconSystemName)
                     .frame(width: 20, height: 20)
@@ -405,7 +526,12 @@ struct CustomProviderRow: View {
                     ProgressView()
                         .controlSize(.small)
                 } else if isEnabled {
-                    Button(String(localized: "settings.provider.action.add-api-key", defaultValue: "Add API Key", bundle: .main, comment: "Button title to add an API key")) {
+                    Button(String(
+                        localized: "settings.provider.action.add-api-key",
+                        defaultValue: "Add API Key",
+                        bundle: .main,
+                        comment: "Button title to add an API key"
+                    )) {
                         onConnect()
                     }
                     .controlSize(.small)
@@ -475,7 +601,12 @@ struct CustomProviderRow: View {
                         .padding(.top, 4)
                     }
                 } else {
-                    Text(String(localized: "settings.provider.summary.no-configured-api-keys", defaultValue: "No configured API keys", bundle: .main, comment: "Summary shown when a provider has no configured API keys"))
+                    Text(String(
+                        localized: "settings.provider.summary.no-configured-api-keys",
+                        defaultValue: "No configured API keys",
+                        bundle: .main,
+                        comment: "Summary shown when a provider has no configured API keys"
+                    ))
                         .font(.caption)
                         .foregroundColor(.secondary)
                         .padding(.leading, 28)
@@ -487,8 +618,18 @@ struct CustomProviderRow: View {
         .onChange(of: isExpanded) { newValue in
             onExpandChange?(newValue)
         }
-        .alert(String(localized: "settings.provider.remove-api-key.title", defaultValue: "Remove API Key", bundle: .main, comment: "Alert title for removing an API key"), isPresented: $showingRemoveConfirmation) {
-            Button(String(localized: "settings.common.cancel", defaultValue: "Cancel", bundle: .main, comment: "Cancel button title"), role: .cancel) {
+        .alert(String(
+            localized: "settings.provider.remove-api-key.title",
+            defaultValue: "Remove API Key",
+            bundle: .main,
+            comment: "Alert title for removing an API key"
+        ), isPresented: $showingRemoveConfirmation) {
+            Button(String(
+                localized: "settings.common.cancel",
+                defaultValue: "Cancel",
+                bundle: .main,
+                comment: "Cancel button title"
+            ), role: .cancel) {
                 credentialToRemove = nil
             }
             Button("Remove", role: .destructive) {
@@ -499,7 +640,12 @@ struct CustomProviderRow: View {
             }
         } message: {
             if let credential = credentialToRemove {
-                Text(String(format: String(localized: "settings.provider.credential-removal.confirmation", defaultValue: "Are you sure you want to remove %@ from %@?", bundle: .main, comment: "Confirmation message asking whether to remove a credential from a provider"), credential.label, provider.title))
+                Text(String(format: String(
+                    localized: "settings.provider.credential-removal.confirmation",
+                    defaultValue: "Are you sure you want to remove %@ from %@?",
+                    bundle: .main,
+                    comment: "Confirmation message asking whether to remove a credential from a provider"
+                ), credential.label, provider.title))
             }
         }
     }
@@ -538,7 +684,12 @@ struct SettingsView: View {
             Form {
                 Section {
                     HStack {
-                        Text(String(localized: "settings.server.status.title", defaultValue: "Server status", bundle: .main, comment: "Label for current server status"))
+                        Text(String(
+                            localized: "settings.server.status.title",
+                            defaultValue: "Server status",
+                            bundle: .main,
+                            comment: "Label for current server status"
+                        ))
                         Spacer()
                         Button(action: {
                             if serverManager.isRunning {
@@ -551,7 +702,17 @@ struct SettingsView: View {
                                 Circle()
                                     .fill(serverManager.isRunning ? Color.green : Color.red)
                                     .frame(width: 8, height: 8)
-                                Text(serverManager.isRunning ? String(localized: "settings.server.status.running", defaultValue: "Running", bundle: .main, comment: "Status text when server is running") : String(localized: "settings.server.status.stopped", defaultValue: "Stopped", bundle: .main, comment: "Status text when server is stopped"))
+                                Text(serverManager.isRunning ? String(
+                                    localized: "settings.server.status.running",
+                                    defaultValue: "Running",
+                                    bundle: .main,
+                                    comment: "Status text when server is running"
+                                ) : String(
+                                    localized: "settings.server.status.stopped",
+                                    defaultValue: "Stopped",
+                                    bundle: .main,
+                                    comment: "Status text when server is stopped"
+                                ))
                             }
                         }
                         .buttonStyle(.plain)
@@ -559,7 +720,12 @@ struct SettingsView: View {
                 }
 
                 if let configErrorMessage = serverManager.configErrorMessage {
-                    Section(String(localized: "settings.server.configuration-error.title", defaultValue: "Configuration Error", bundle: .main, comment: "Section title for server configuration errors")) {
+                    Section(String(
+                        localized: "settings.server.configuration-error.title",
+                        defaultValue: "Configuration Error",
+                        bundle: .main,
+                        comment: "Section title for server configuration errors"
+                    )) {
                         Text(configErrorMessage)
                             .font(.caption)
                             .foregroundColor(.red)
@@ -567,21 +733,38 @@ struct SettingsView: View {
                 }
 
                 Section {
-                    Toggle(String(localized: "settings.app.launch-at-login", defaultValue: "Launch at login", bundle: .main, comment: "Toggle title for launching the app at login"), isOn: $launchAtLogin)
+                    Toggle(String(
+                        localized: "settings.app.launch-at-login",
+                        defaultValue: "Launch at login",
+                        bundle: .main,
+                        comment: "Toggle title for launching the app at login"
+                    ), isOn: $launchAtLogin)
                         .onChange(of: launchAtLogin) { newValue in
                             toggleLaunchAtLogin(newValue)
                         }
 
                     HStack {
-                        Text(String(localized: "settings.providers.auth-files.title", defaultValue: "Auth files", comment: "Title for auth files setting section"))
+                        Text(String(
+                            localized: "settings.providers.auth-files.title",
+                            defaultValue: "Auth files",
+                            comment: "Title for auth files setting section"
+                        ))
                         Spacer()
-                        Button(String(localized: "settings.providers.auth-files.open-folder", defaultValue: "Open Folder", comment: "Button title to open auth files folder")) {
+                        Button(String(
+                            localized: "settings.providers.auth-files.open-folder",
+                            defaultValue: "Open Folder",
+                            comment: "Button title to open auth files folder"
+                        )) {
                             openAuthFolder()
                         }
                     }
                 }
 
-                Section(String(localized: "settings.services.title", defaultValue: "Services", comment: "Title for services section in settings")) {
+                Section(String(
+                    localized: "settings.services.title",
+                    defaultValue: "Services",
+                    comment: "Title for services section in settings"
+                )) {
                     ServiceRow(
                         serviceType: .antigravity,
                         iconName: "icon-antigravity.png",
@@ -647,7 +830,11 @@ struct SettingsView: View {
                         iconSystemName: nil,
                         accounts: authManager.accounts(for: .gemini),
                         isAuthenticating: authenticatingService == .gemini,
-                        helpText: String(localized: "settings.gemini.note.default-project", defaultValue: "⚠️ Note: If you're an existing Gemini user with multiple projects, authentication will use your default project. Set your desired project as default in Google AI Studio before connecting.", comment: "Informational note about Gemini default project behavior"),
+                        helpText: String(
+                            localized: "settings.gemini.note.default-project",
+                            defaultValue: "⚠️ Note: If you're an existing Gemini user with multiple projects, authentication will use your default project. Set your desired project as default in Google AI Studio before connecting.",
+                            comment: "Informational note about Gemini default project behavior"
+                        ),
                         isEnabled: serverManager.isProviderEnabled("gemini"),
                         isToggleLocked: serverManager.isProviderToggleLocked("gemini"),
                         toggleHelpText: serverManager.providerConfigLockReason("gemini"),
@@ -666,7 +853,11 @@ struct SettingsView: View {
                         iconSystemName: "moon.stars.fill",
                         accounts: authManager.accounts(for: .kimi),
                         isAuthenticating: authenticatingService == .kimi,
-                        helpText: String(localized: "settings.kimi.description.browser-auth", defaultValue: "Kimi uses browser-based account authentication so you can route requests through your Kimi subscription instead of an API key.", comment: "Description for Kimi authentication method"),
+                        helpText: String(
+                            localized: "settings.kimi.description.browser-auth",
+                            defaultValue: "Kimi uses browser-based account authentication so you can route requests through your Kimi subscription instead of an API key.",
+                            comment: "Description for Kimi authentication method"
+                        ),
                         isEnabled: serverManager.isProviderEnabled("kimi"),
                         isToggleLocked: serverManager.isProviderToggleLocked("kimi"),
                         toggleHelpText: serverManager.providerConfigLockReason("kimi"),
@@ -685,7 +876,11 @@ struct SettingsView: View {
                         iconSystemName: nil,
                         accounts: authManager.accounts(for: .copilot),
                         isAuthenticating: authenticatingService == .copilot,
-                        helpText: String(localized: "settings.copilot.description.subscription-model-access", defaultValue: "GitHub Copilot provides access to Claude, GPT, Gemini and other models via your Copilot subscription.", comment: "Description for GitHub Copilot provider"),
+                        helpText: String(
+                            localized: "settings.copilot.description.subscription-model-access",
+                            defaultValue: "GitHub Copilot provides access to Claude, GPT, Gemini and other models via your Copilot subscription.",
+                            comment: "Description for GitHub Copilot provider"
+                        ),
                         isEnabled: serverManager.isProviderEnabled("github-copilot"),
                         isToggleLocked: serverManager.isProviderToggleLocked("github-copilot"),
                         toggleHelpText: serverManager.providerConfigLockReason("github-copilot"),
@@ -723,7 +918,11 @@ struct SettingsView: View {
                         iconSystemName: nil,
                         accounts: authManager.accounts(for: .zai),
                         isAuthenticating: authenticatingService == .zai,
-                        helpText: String(localized: "settings.zai-glm.description.api-key", defaultValue: "Z.AI GLM provides access to GLM-4.7 and other models via API key. Get your key at https://z.ai/manage-apikey/apikey-list", comment: "Description for Z.AI GLM provider and key location"),
+                        helpText: String(
+                            localized: "settings.zai-glm.description.api-key",
+                            defaultValue: "Z.AI GLM provides access to GLM-4.7 and other models via API key. Get your key at https://z.ai/manage-apikey/apikey-list",
+                            comment: "Description for Z.AI GLM provider and key location"
+                        ),
                         isEnabled: serverManager.isProviderEnabled("zai"),
                         isToggleLocked: serverManager.isProviderToggleLocked("zai"),
                         toggleHelpText: serverManager.providerConfigLockReason("zai"),
@@ -738,7 +937,11 @@ struct SettingsView: View {
                 }
                 
                 if !serverManager.customProviders.isEmpty {
-                    Section(String(localized: "settings.custom-providers.title", defaultValue: "Custom Providers", comment: "Title for custom providers section")) {
+                    Section(String(
+                        localized: "settings.custom-providers.title",
+                        defaultValue: "Custom Providers",
+                        comment: "Title for custom providers section"
+                    )) {
                         ForEach(serverManager.customProviders) { provider in
                             CustomProviderRow(
                                 provider: provider,
@@ -775,7 +978,11 @@ struct SettingsView: View {
             // Footer
             VStack(spacing: 4) {
                 HStack(spacing: 4) {
-                    Text(String(format: String(localized: "settings.about.vibeproxy-thanks", defaultValue: "VibeProxy %@ was made possible thanks to", comment: "About text thanking contributors with app version"), "\(appVersion)"))
+                    Text(String(format: String(
+                        localized: "settings.about.vibeproxy-thanks",
+                        defaultValue: "VibeProxy %@ was made possible thanks to",
+                        comment: "About text thanking contributors with app version"
+                    ), "\(appVersion)"))
                         .font(.caption)
                         .foregroundColor(.secondary)
                     Link("CLIProxyAPIPlus", destination: URL(string: "https://github.com/router-for-me/CLIProxyAPIPlus")!)
@@ -788,7 +995,11 @@ struct SettingsView: View {
                     Text("|")
                         .font(.caption)
                         .foregroundColor(.secondary)
-                    Text(String(localized: "settings.about.license-mit", defaultValue: "License: MIT", comment: "License label in about section"))
+                    Text(String(
+                        localized: "settings.about.license-mit",
+                        defaultValue: "License: MIT",
+                        comment: "License label in about section"
+                    ))
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -804,12 +1015,20 @@ struct SettingsView: View {
                         .onHover { inside in
                             if inside { NSCursor.pointingHand.push() } else { NSCursor.pop() }
                         }
-                    Text(String(localized: "settings.about.all-rights-reserved", defaultValue: "All rights reserved.", comment: "Copyright notice in about section"))
+                    Text(String(
+                        localized: "settings.about.all-rights-reserved",
+                        defaultValue: "All rights reserved.",
+                        comment: "Copyright notice in about section"
+                    ))
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
 
-                Link(String(localized: "settings.about.report-issue", defaultValue: "Report an issue", comment: "Link title to report an issue"), destination: URL(string: "https://github.com/automazeio/vibeproxy/issues")!)
+                Link(String(
+                    localized: "settings.about.report-issue",
+                    defaultValue: "Report an issue",
+                    comment: "Link title to report an issue"
+                ), destination: URL(string: "https://github.com/automazeio/vibeproxy/issues")!)
                     .font(.caption)
                     .padding(.top, 6)
                     .onHover { inside in
@@ -821,20 +1040,36 @@ struct SettingsView: View {
         .frame(width: 480, height: 740)
         .sheet(isPresented: $showingQwenEmailPrompt) {
             VStack(spacing: 16) {
-                Text(String(localized: "settings.qwen.email-dialog.title", defaultValue: "Qwen Account Email", comment: "Dialog title requesting Qwen account email"))
+                Text(String(
+                    localized: "settings.qwen.email-dialog.title",
+                    defaultValue: "Qwen Account Email",
+                    comment: "Dialog title requesting Qwen account email"
+                ))
                     .font(.headline)
-                Text(String(localized: "settings.qwen.email-dialog.prompt", defaultValue: "Enter your Qwen account email address", comment: "Prompt text for Qwen email input"))
+                Text(String(
+                    localized: "settings.qwen.email-dialog.prompt",
+                    defaultValue: "Enter your Qwen account email address",
+                    comment: "Prompt text for Qwen email input"
+                ))
                     .font(.caption)
                     .foregroundColor(.secondary)
                 TextField("your.email@example.com", text: $qwenEmail)
                     .textFieldStyle(.roundedBorder)
                     .frame(width: 250)
                 HStack(spacing: 12) {
-                    Button(String(localized: "common.actions.cancel", defaultValue: "Cancel", comment: "Cancel button label in dialog")) {
+                    Button(String(
+                        localized: "common.actions.cancel",
+                        defaultValue: "Cancel",
+                        comment: "Cancel button label in dialog"
+                    )) {
                         showingQwenEmailPrompt = false
                         qwenEmail = ""
                     }
-                    Button(String(localized: "common.actions.continue", defaultValue: "Continue", comment: "Continue button label in dialog")) {
+                    Button(String(
+                        localized: "common.actions.continue",
+                        defaultValue: "Continue",
+                        comment: "Continue button label in dialog"
+                    )) {
                         showingQwenEmailPrompt = false
                         startQwenAuth(email: qwenEmail)
                     }
@@ -847,20 +1082,36 @@ struct SettingsView: View {
         }
         .sheet(isPresented: $showingZaiApiKeyPrompt) {
             VStack(spacing: 16) {
-                Text(String(localized: "settings.zai.api-key-dialog.title", defaultValue: "Z.AI API Key", comment: "Dialog title requesting Z.AI API key"))
+                Text(String(
+                    localized: "settings.zai.api-key-dialog.title",
+                    defaultValue: "Z.AI API Key",
+                    comment: "Dialog title requesting Z.AI API key"
+                ))
                     .font(.headline)
-                Text(String(localized: "settings.zai.api-key-dialog.prompt", defaultValue: "Enter your Z.AI API key from https://z.ai/manage-apikey/apikey-list", comment: "Prompt text for Z.AI API key input"))
+                Text(String(
+                    localized: "settings.zai.api-key-dialog.prompt",
+                    defaultValue: "Enter your Z.AI API key from https://z.ai/manage-apikey/apikey-list",
+                    comment: "Prompt text for Z.AI API key input"
+                ))
                     .font(.caption)
                     .foregroundColor(.secondary)
                 SecureField("", text: $zaiApiKey)
                     .textFieldStyle(.roundedBorder)
                     .frame(width: 300)
                 HStack(spacing: 12) {
-                    Button(String(localized: "common.actions.cancel", defaultValue: "Cancel", comment: "Cancel button label in API key dialog")) {
+                    Button(String(
+                        localized: "common.actions.cancel",
+                        defaultValue: "Cancel",
+                        comment: "Cancel button label in API key dialog"
+                    )) {
                         showingZaiApiKeyPrompt = false
                         zaiApiKey = ""
                     }
-                    Button(String(localized: "settings.zai.api-key-dialog.add-key", defaultValue: "Add Key", comment: "Confirmation button to add API key")) {
+                    Button(String(
+                        localized: "settings.zai.api-key-dialog.add-key",
+                        defaultValue: "Add Key",
+                        comment: "Confirmation button to add API key"
+                    )) {
                         showingZaiApiKeyPrompt = false
                         startZaiAuth(apiKey: zaiApiKey)
                     }
@@ -875,20 +1126,36 @@ struct SettingsView: View {
             customProviderApiKey = ""
         }) { provider in
             VStack(spacing: 16) {
-                Text(String(format: String(localized: "settings.custom-provider.api-key-dialog.title", defaultValue: "%@ API Key", comment: "Dialog title for adding an API key to a custom provider"), "\(provider.title)"))
+                Text(String(format: String(
+                    localized: "settings.custom-provider.api-key-dialog.title",
+                    defaultValue: "%@ API Key",
+                    comment: "Dialog title for adding an API key to a custom provider"
+                ), "\(provider.title)"))
                     .font(.headline)
-                Text(String(format: String(localized: "settings.custom-provider.api-key-dialog.prompt", defaultValue: "Enter an API key for %@", comment: "Prompt text for entering custom provider API key"), "\(provider.title)"))
+                Text(String(format: String(
+                    localized: "settings.custom-provider.api-key-dialog.prompt",
+                    defaultValue: "Enter an API key for %@",
+                    comment: "Prompt text for entering custom provider API key"
+                ), "\(provider.title)"))
                     .font(.caption)
                     .foregroundColor(.secondary)
                 SecureField("", text: $customProviderApiKey)
                     .textFieldStyle(.roundedBorder)
                     .frame(width: 320)
                 HStack(spacing: 12) {
-                    Button(String(localized: "common.actions.cancel", defaultValue: "Cancel", comment: "Cancel button label in custom provider API key dialog")) {
+                    Button(String(
+                        localized: "common.actions.cancel",
+                        defaultValue: "Cancel",
+                        comment: "Cancel button label in custom provider API key dialog"
+                    )) {
                         selectedCustomProvider = nil
                         customProviderApiKey = ""
                     }
-                    Button(String(localized: "settings.custom-provider.api-key-dialog.add-key", defaultValue: "Add Key", comment: "Confirmation button to add custom provider API key")) {
+                    Button(String(
+                        localized: "settings.custom-provider.api-key-dialog.add-key",
+                        defaultValue: "Add Key",
+                        comment: "Confirmation button to add custom provider API key"
+                    )) {
                         let currentProvider = provider
                         selectedCustomProvider = nil
                         startCustomProviderAuth(provider: currentProvider, apiKey: customProviderApiKey)
@@ -908,8 +1175,16 @@ struct SettingsView: View {
         .onReceive(NotificationCenter.default.publisher(for: .authDirectoryChanged)) { _ in
             authManager.checkAuthStatus()
         }
-        .alert(String(localized: "settings.authentication.result.title", defaultValue: "Authentication Result", comment: "Title for authentication result alert"), isPresented: $showingAuthResult) {
-            Button(String(localized: "common.actions.ok", defaultValue: "OK", comment: "OK button label in alert"), role: .cancel) { }
+        .alert(String(
+            localized: "settings.authentication.result.title",
+            defaultValue: "Authentication Result",
+            comment: "Title for authentication result alert"
+        ), isPresented: $showingAuthResult) {
+            Button(String(
+                localized: "common.actions.ok",
+                defaultValue: "OK",
+                comment: "OK button label in alert"
+            ), role: .cancel) { }
         } message: {
             Text(authResultMessage)
         }
@@ -922,12 +1197,24 @@ struct SettingsView: View {
             serverManager.refreshAuthBackedConfiguration()
             authResultSuccess = true
             authResultMessage = account.isDisabled
-                ? String(format: String(localized: "settings.authentication.account-enabled", defaultValue: "✓ Enabled %@", comment: "Success message indicating account was enabled"), "\(account.displayName)")
-                : String(format: String(localized: "settings.authentication.account-disabled", defaultValue: "✓ Disabled %@", comment: "Success message indicating account was disabled"), "\(account.displayName)")
+                ? String(format: String(
+                    localized: "settings.authentication.account-enabled",
+                    defaultValue: "✓ Enabled %@",
+                    comment: "Success message indicating account was enabled"
+                ), "\(account.displayName)")
+                : String(format: String(
+                    localized: "settings.authentication.account-disabled",
+                    defaultValue: "✓ Disabled %@",
+                    comment: "Success message indicating account was disabled"
+                ), "\(account.displayName)")
             showingAuthResult = true
         } else {
             authResultSuccess = false
-            authResultMessage = String(format: String(localized: "settings.authentication.account-update-failed", defaultValue: "Failed to update %@. Please try again.", comment: "Error message when updating account state fails"), "\(account.displayName)")
+            authResultMessage = String(format: String(
+                localized: "settings.authentication.account-update-failed",
+                defaultValue: "Failed to update %@. Please try again.",
+                comment: "Error message when updating account state fails"
+            ), "\(account.displayName)")
             showingAuthResult = true
         }
     }
@@ -989,7 +1276,15 @@ struct SettingsView: View {
                     self.showingAuthResult = true
                 } else {
                     self.authResultSuccess = false
-                    self.authResultMessage = String(format: String(localized: "settings.authentication.failed.with-details", defaultValue: "Authentication failed. Please check if the browser opened and try again.\n\nDetails: %@", comment: "Authentication failure message with output details"), "\(output.isEmpty ? String(localized: "settings.authentication.failed.no-output-details", defaultValue: "No output from authentication process", comment: "Fallback detail when authentication process returns no output") : output)")
+                    self.authResultMessage = String(format: String(
+                        localized: "settings.authentication.failed.with-details",
+                        defaultValue: "Authentication failed. Please check if the browser opened and try again.\n\nDetails: %@",
+                        comment: "Authentication failure message with output details"
+                    ), "\(output.isEmpty ? String(
+                        localized: "settings.authentication.failed.no-output-details",
+                        defaultValue: "No output from authentication process",
+                        comment: "Fallback detail when authentication process returns no output"
+                    ) : output)")
                     self.showingAuthResult = true
                 }
             }
@@ -999,21 +1294,53 @@ struct SettingsView: View {
     private func successMessage(for serviceType: ServiceType) -> String {
         switch serviceType {
         case .claude:
-            return String(localized: "settings.authentication.status.claude-code-browser-opened", defaultValue: "🌐 Browser opened for Claude Code authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect your credentials.", comment: "Status message shown when Claude Code authentication starts in browser")
+            return String(
+                localized: "settings.authentication.status.claude-code-browser-opened",
+                defaultValue: "🌐 Browser opened for Claude Code authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect your credentials.",
+                comment: "Status message shown when Claude Code authentication starts in browser"
+            )
         case .codex:
-            return String(localized: "settings.authentication.status.codex-browser-opened", defaultValue: "🌐 Browser opened for Codex authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect your credentials.", comment: "Status message shown when Codex authentication starts in browser")
+            return String(
+                localized: "settings.authentication.status.codex-browser-opened",
+                defaultValue: "🌐 Browser opened for Codex authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect your credentials.",
+                comment: "Status message shown when Codex authentication starts in browser"
+            )
         case .copilot:
-            return String(localized: "settings.authentication.status.copilot-device-auth-started", defaultValue: "🌐 GitHub Copilot authentication started!\n\nPlease visit github.com/login/device and enter the code shown.\n\nThe app will automatically detect your credentials.", comment: "Status message shown when GitHub Copilot device authentication starts")
+            return String(
+                localized: "settings.authentication.status.copilot-device-auth-started",
+                defaultValue: "🌐 GitHub Copilot authentication started!\n\nPlease visit github.com/login/device and enter the code shown.\n\nThe app will automatically detect your credentials.",
+                comment: "Status message shown when GitHub Copilot device authentication starts"
+            )
         case .gemini:
-            return String(localized: "settings.authentication.status.gemini-browser-opened", defaultValue: "🌐 Browser opened for Gemini authentication.\n\nPlease complete the login in your browser.\n\n⚠️ Note: If you have multiple projects, the default project will be used.", comment: "Status message shown when Gemini authentication starts in browser")
+            return String(
+                localized: "settings.authentication.status.gemini-browser-opened",
+                defaultValue: "🌐 Browser opened for Gemini authentication.\n\nPlease complete the login in your browser.\n\n⚠️ Note: If you have multiple projects, the default project will be used.",
+                comment: "Status message shown when Gemini authentication starts in browser"
+            )
         case .kimi:
-            return String(localized: "settings.authentication.status.kimi-browser-opened", defaultValue: "🌐 Browser opened for Kimi authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect your Kimi account.", comment: "Status message shown when Kimi authentication starts in browser")
+            return String(
+                localized: "settings.authentication.status.kimi-browser-opened",
+                defaultValue: "🌐 Browser opened for Kimi authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect your Kimi account.",
+                comment: "Status message shown when Kimi authentication starts in browser"
+            )
         case .qwen:
-            return String(localized: "settings.authentication.status.qwen-browser-opened", defaultValue: "🌐 Browser opened for Qwen authentication.\n\nPlease complete the login in your browser.", comment: "Status message shown when Qwen authentication starts in browser")
+            return String(
+                localized: "settings.authentication.status.qwen-browser-opened",
+                defaultValue: "🌐 Browser opened for Qwen authentication.\n\nPlease complete the login in your browser.",
+                comment: "Status message shown when Qwen authentication starts in browser"
+            )
         case .antigravity:
-            return String(localized: "settings.authentication.status.antigravity-browser-opened", defaultValue: "🌐 Browser opened for Antigravity authentication.\n\nPlease complete the login in your browser.", comment: "Status message shown when Antigravity authentication starts in browser")
+            return String(
+                localized: "settings.authentication.status.antigravity-browser-opened",
+                defaultValue: "🌐 Browser opened for Antigravity authentication.\n\nPlease complete the login in your browser.",
+                comment: "Status message shown when Antigravity authentication starts in browser"
+            )
         case .zai:
-            return String(localized: "settings.zai.api-key-added.success", defaultValue: "✓ Z.AI API key added successfully.\n\nYou can now use GLM models through the proxy.", comment: "Success message after adding Z.AI API key")
+            return String(
+                localized: "settings.zai.api-key-added.success",
+                defaultValue: "✓ Z.AI API key added successfully.\n\nYou can now use GLM models through the proxy.",
+                comment: "Success message after adding Z.AI API key"
+            )
         }
     }
     
@@ -1033,7 +1360,15 @@ struct SettingsView: View {
                     self.showingAuthResult = true
                 } else {
                     self.authResultSuccess = false
-                    self.authResultMessage = String(format: String(localized: "settings.authentication.failed.compact-with-details", defaultValue: "Authentication failed.\n\nDetails: %@", comment: "Authentication failure message with compact output details"), "\(output.isEmpty ? String(localized: "settings.authentication.failed.no-output", defaultValue: "No output", comment: "Fallback detail when compact authentication output is empty") : output)")
+                    self.authResultMessage = String(format: String(
+                        localized: "settings.authentication.failed.compact-with-details",
+                        defaultValue: "Authentication failed.\n\nDetails: %@",
+                        comment: "Authentication failure message with compact output details"
+                    ), "\(output.isEmpty ? String(
+                        localized: "settings.authentication.failed.no-output",
+                        defaultValue: "No output",
+                        comment: "Fallback detail when compact authentication output is empty"
+                    ) : output)")
                     self.showingAuthResult = true
                 }
             }
@@ -1057,7 +1392,15 @@ struct SettingsView: View {
                     self.authManager.checkAuthStatus()
                 } else {
                     self.authResultSuccess = false
-                    self.authResultMessage = String(format: String(localized: "settings.api-key.save-failed.with-details", defaultValue: "Failed to save API key.\n\nDetails: %@", comment: "Error message when saving API key fails with details"), "\(output.isEmpty ? String(localized: "settings.api-key.error.unknown", defaultValue: "Unknown error", comment: "Fallback detail when API key save failure has no output") : output)")
+                    self.authResultMessage = String(format: String(
+                        localized: "settings.api-key.save-failed.with-details",
+                        defaultValue: "Failed to save API key.\n\nDetails: %@",
+                        comment: "Error message when saving API key fails with details"
+                    ), "\(output.isEmpty ? String(
+                        localized: "settings.api-key.error.unknown",
+                        defaultValue: "Unknown error",
+                        comment: "Fallback detail when API key save failure has no output"
+                    ) : output)")
                     self.showingAuthResult = true
                 }
             }
@@ -1081,29 +1424,53 @@ struct SettingsView: View {
                         localized: "server.manager.api-key.saved-successfully.custom-provider",
                         defaultValue: "API key saved successfully"
                     ):
-                        self.authResultMessage = String(format: String(localized: "settings.custom-provider.api-key-added.success", defaultValue: "✓ %@ API key added successfully.\n\nYou can now use this provider through the proxy.", comment: "Success message after adding API key for a custom provider"), "\(provider.title)")
+                        self.authResultMessage = String(format: String(
+                            localized: "settings.custom-provider.api-key-added.success",
+                            defaultValue: "✓ %@ API key added successfully.\n\nYou can now use this provider through the proxy.",
+                            comment: "Success message after adding API key for a custom provider"
+                        ), "\(provider.title)")
                     case String(
                         localized: "server.manager.custom-provider.api-key-already-exists.short",
                         defaultValue: "API key already exists in config"
                     ):
-                        self.authResultMessage = String(format: String(localized: "settings.custom-provider.api-key-already-present.config-file", defaultValue: "✓ %@ already has this API key in ~/.cli-proxy-api/config.yaml.", comment: "Message indicating API key already exists in config file for provider"), "\(provider.title)")
+                        self.authResultMessage = String(format: String(
+                            localized: "settings.custom-provider.api-key-already-present.config-file",
+                            defaultValue: "✓ %@ already has this API key in ~/.cli-proxy-api/config.yaml.",
+                            comment: "Message indicating API key already exists in config file for provider"
+                        ), "\(provider.title)")
                     case String(
                         localized: "server.manager.api-key.already-exists",
                         defaultValue: "API key already exists"
                     ):
-                        self.authResultMessage = String(format: String(localized: "settings.custom-provider.api-key-already-stored", defaultValue: "✓ %@ already has this API key stored.", comment: "Message indicating API key was already stored for provider"), "\(provider.title)")
+                        self.authResultMessage = String(format: String(
+                            localized: "settings.custom-provider.api-key-already-stored",
+                            defaultValue: "✓ %@ already has this API key stored.",
+                            comment: "Message indicating API key was already stored for provider"
+                        ), "\(provider.title)")
                     case String(
                         localized: "server.manager.api-key.reenabled-existing",
                         defaultValue: "API key was already stored and has been re-enabled"
                     ):
-                        self.authResultMessage = String(format: String(localized: "settings.custom-provider.api-key-reenabled", defaultValue: "✓ %@ already had this API key stored, and it has been re-enabled.", comment: "Message indicating existing API key was re-enabled for provider"), "\(provider.title)")
+                        self.authResultMessage = String(format: String(
+                            localized: "settings.custom-provider.api-key-reenabled",
+                            defaultValue: "✓ %@ already had this API key stored, and it has been re-enabled.",
+                            comment: "Message indicating existing API key was re-enabled for provider"
+                        ), "\(provider.title)")
                     default:
                         self.authResultMessage = output
                     }
                     self.showingAuthResult = true
                 } else {
                     self.authResultSuccess = false
-                    self.authResultMessage = String(format: String(localized: "settings.custom-provider.api-key-save-failed.with-details", defaultValue: "Failed to save API key for %@.\n\nDetails: %@", comment: "Error message when saving provider API key fails with details"), "\(provider.title)", "\(output.isEmpty ? String(localized: "settings.custom-provider.api-key-save-failed.unknown-error", defaultValue: "Unknown error", comment: "Fallback detail when custom provider API key save failure has no output") : output)")
+                    self.authResultMessage = String(format: String(
+                        localized: "settings.custom-provider.api-key-save-failed.with-details",
+                        defaultValue: "Failed to save API key for %@.\n\nDetails: %@",
+                        comment: "Error message when saving provider API key fails with details"
+                    ), "\(provider.title)", "\(output.isEmpty ? String(
+                        localized: "settings.custom-provider.api-key-save-failed.unknown-error",
+                        defaultValue: "Unknown error",
+                        comment: "Fallback detail when custom provider API key save failure has no output"
+                    ) : output)")
                     self.showingAuthResult = true
                 }
             }
@@ -1114,11 +1481,23 @@ struct SettingsView: View {
         if serverManager.toggleCustomProviderCredentialDisabled(credential) {
             authResultSuccess = true
             authResultMessage = credential.isDisabled
-                ? String(format: String(localized: "settings.custom-provider.credential.enabled", defaultValue: "✓ Enabled %@ for %@", comment: "Success message when enabling a provider credential"), "\(credential.label)", "\(provider.title)")
-                : String(format: String(localized: "settings.custom-provider.credential.disabled", defaultValue: "✓ Disabled %@ for %@", comment: "Success message when disabling a provider credential"), "\(credential.label)", "\(provider.title)")
+                ? String(format: String(
+                    localized: "settings.custom-provider.credential.enabled",
+                    defaultValue: "✓ Enabled %@ for %@",
+                    comment: "Success message when enabling a provider credential"
+                ), "\(credential.label)", "\(provider.title)")
+                : String(format: String(
+                    localized: "settings.custom-provider.credential.disabled",
+                    defaultValue: "✓ Disabled %@ for %@",
+                    comment: "Success message when disabling a provider credential"
+                ), "\(credential.label)", "\(provider.title)")
         } else {
             authResultSuccess = false
-            authResultMessage = String(format: String(localized: "settings.custom-provider.credential.update-failed", defaultValue: "Failed to update %@ for %@. Please try again.", comment: "Error message when updating provider credential fails"), "\(credential.label)", "\(provider.title)")
+            authResultMessage = String(format: String(
+                localized: "settings.custom-provider.credential.update-failed",
+                defaultValue: "Failed to update %@ for %@. Please try again.",
+                comment: "Error message when updating provider credential fails"
+            ), "\(credential.label)", "\(provider.title)")
         }
         showingAuthResult = true
     }
@@ -1126,10 +1505,18 @@ struct SettingsView: View {
     private func disconnectCustomProviderCredential(provider: CustomProviderDefinition, credential: CustomProviderCredential) {
         if serverManager.deleteCustomProviderCredential(credential) {
             authResultSuccess = true
-            authResultMessage = String(format: String(localized: "settings.custom-provider.credential.removed", defaultValue: "✓ Removed %@ from %@", comment: "Success message when removing provider credential"), "\(credential.label)", "\(provider.title)")
+            authResultMessage = String(format: String(
+                localized: "settings.custom-provider.credential.removed",
+                defaultValue: "✓ Removed %@ from %@",
+                comment: "Success message when removing provider credential"
+            ), "\(credential.label)", "\(provider.title)")
         } else {
             authResultSuccess = false
-            authResultMessage = String(format: String(localized: "settings.custom-provider.credential.remove-failed", defaultValue: "Failed to remove %@ from %@", comment: "Error message when removing provider credential fails"), "\(credential.label)", "\(provider.title)")
+            authResultMessage = String(format: String(
+                localized: "settings.custom-provider.credential.remove-failed",
+                defaultValue: "Failed to remove %@ from %@",
+                comment: "Error message when removing provider credential fails"
+            ), "\(credential.label)", "\(provider.title)")
         }
         showingAuthResult = true
     }
@@ -1141,10 +1528,18 @@ struct SettingsView: View {
         let cleanup = {
             if self.authManager.deleteAccount(account) {
                 self.authResultSuccess = true
-                self.authResultMessage = String(format: String(localized: "settings.account.removed.from-provider", defaultValue: "✓ Removed %@ from %@", comment: "Success message when removing account from provider"), "\(account.displayName)", "\(account.type.displayName)")
+                self.authResultMessage = String(format: String(
+                    localized: "settings.account.removed.from-provider",
+                    defaultValue: "✓ Removed %@ from %@",
+                    comment: "Success message when removing account from provider"
+                ), "\(account.displayName)", "\(account.type.displayName)")
             } else {
                 self.authResultSuccess = false
-                self.authResultMessage = String(localized: "settings.account.remove-failed", defaultValue: "Failed to remove account", comment: "Error message when account removal fails")
+                self.authResultMessage = String(
+                    localized: "settings.account.remove-failed",
+                    defaultValue: "Failed to remove account",
+                    comment: "Error message when account removal fails"
+                )
             }
             self.showingAuthResult = true
             
