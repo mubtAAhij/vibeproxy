@@ -20,12 +20,27 @@ struct CustomProviderDefinition: Identifiable, Equatable {
         
         let modelSummary: String
         if modelAliases.isEmpty {
-            modelSummary = "No model aliases configured yet."
+            modelSummary = String(
+                localized: "custom-provider.help.model-aliases.none-configured",
+                defaultValue: "No model aliases configured yet.",
+                bundle: .main,
+                comment: "Help text when no model aliases are configured for a custom provider"
+            )
         } else {
-            modelSummary = "Models: \(modelAliases.joined(separator: ", "))."
+            modelSummary = String(format: String(
+                localized: "custom-provider.help.model-aliases.list",
+                defaultValue: "Models: %@.",
+                bundle: .main,
+                comment: "Help text listing configured model aliases for a custom provider"
+            ), modelAliases.joined(separator: ", "))
         }
         
-        return "OpenAI-compatible provider at \(baseURL). \(modelSummary)"
+        return String(format: String(
+            localized: "custom-provider.help.summary",
+            defaultValue: "OpenAI-compatible provider at %@. %@",
+            bundle: .main,
+            comment: "Summary help text describing a custom provider endpoint and model aliases"
+        ), baseURL, modelSummary)
     }
     
     var effectiveIconSystemName: String {
