@@ -17,6 +17,41 @@ BUNDLE_ID="com.cliproxyapi.menubar"
 BUILD_DIR="$SRC_DIR/.build/release"
 APP_DIR="$PROJECT_DIR/$APP_NAME.app"
 
+compile_string_catalogs() {
+    local source_catalog="$SRC_DIR/Sources/Resources/Localizable.xcstrings"
+    if [ ! -f "$source_catalog" ]; then
+        return 0
+    fi
+
+    local xcs_tool=""
+    if command -v xcrun >/dev/null 2>&1; then
+        if xcrun --find xcstringstool >/dev/null 2>&1; then
+            xcs_tool="$(xcrun --find xcstringstool)"
+        fi
+    fi
+
+    if [ -z "$xcs_tool" ]; then
+        echo -e "${YELLOW}⚠️ xcstringstool not found; skipping Localizable.xcstrings compile${NC}"
+        return 0
+    fi
+
+    echo -e "${BLUE}Compiling string catalogs...${NC}"
+    local temp_dir
+    temp_dir="$(mktemp -d)"
+
+    if ! "$xcs_tool" compile "$source_catalog" --output-directory "$temp_dir"; then
+        rm -rf "$temp_dir"
+        echo -e "${YELLOW}⚠️ Failed to compile Localizable.xcstrings${NC}"
+        exit 1
+    fi
+
+    find "$temp_dir" -type d -name "*.lproj" -print0 | while IFS= read -r -d "" locale_dir; do
+        cp -R "$locale_dir" "$APP_DIR/Contents/Resources/"
+    done
+
+    rm -rf "$temp_dir"
+}
+
 # Build the Swift executable first
 echo -e "${BLUE}Building Swift executable (release)...${NC}"
 cd "$SRC_DIR"
@@ -63,6 +98,8 @@ if [ -d "$SRC_DIR/Sources/Resources" ]; then
         fi
     done
 fi
+
+compile_string_catalogs
 
 # Verify critical files were copied
 echo "Checking bundled resources:"
