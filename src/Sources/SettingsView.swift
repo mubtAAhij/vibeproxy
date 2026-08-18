@@ -1276,15 +1276,16 @@ struct SettingsView: View {
                     self.showingAuthResult = true
                 } else {
                     self.authResultSuccess = false
+                    let detail = output.isEmpty ? String(
+                        localized: "settings.authentication.failed.no-output-details",
+                        defaultValue: "No output from authentication process",
+                        comment: "Fallback detail when authentication process returns no output"
+                    ) : output
                     self.authResultMessage = String(format: String(
                         localized: "settings.authentication.failed.with-details",
                         defaultValue: "Authentication failed. Please check if the browser opened and try again.\n\nDetails: %@",
                         comment: "Authentication failure message with output details"
-                    ), "\(output.isEmpty ? String(
-                        localized: "settings.authentication.failed.no-output-details",
-                        defaultValue: "No output from authentication process",
-                        comment: "Fallback detail when authentication process returns no output"
-                    ) : output)")
+                    ), detail)
                     self.showingAuthResult = true
                 }
             }
@@ -1360,15 +1361,16 @@ struct SettingsView: View {
                     self.showingAuthResult = true
                 } else {
                     self.authResultSuccess = false
+                    let detail = output.isEmpty ? String(
+                        localized: "settings.authentication.failed.no-output",
+                        defaultValue: "No output",
+                        comment: "Fallback detail when compact authentication output is empty"
+                    ) : output
                     self.authResultMessage = String(format: String(
                         localized: "settings.authentication.failed.compact-with-details",
                         defaultValue: "Authentication failed.\n\nDetails: %@",
                         comment: "Authentication failure message with compact output details"
-                    ), "\(output.isEmpty ? String(
-                        localized: "settings.authentication.failed.no-output",
-                        defaultValue: "No output",
-                        comment: "Fallback detail when compact authentication output is empty"
-                    ) : output)")
+                    ), detail)
                     self.showingAuthResult = true
                 }
             }
@@ -1392,15 +1394,16 @@ struct SettingsView: View {
                     self.authManager.checkAuthStatus()
                 } else {
                     self.authResultSuccess = false
+                    let detail = output.isEmpty ? String(
+                        localized: "settings.api-key.error.unknown",
+                        defaultValue: "Unknown error",
+                        comment: "Fallback detail when API key save failure has no output"
+                    ) : output
                     self.authResultMessage = String(format: String(
                         localized: "settings.api-key.save-failed.with-details",
                         defaultValue: "Failed to save API key.\n\nDetails: %@",
                         comment: "Error message when saving API key fails with details"
-                    ), "\(output.isEmpty ? String(
-                        localized: "settings.api-key.error.unknown",
-                        defaultValue: "Unknown error",
-                        comment: "Fallback detail when API key save failure has no output"
-                    ) : output)")
+                    ), detail)
                     self.showingAuthResult = true
                 }
             }
@@ -1420,37 +1423,25 @@ struct SettingsView: View {
                 if success {
                     self.authResultSuccess = true
                     switch output {
-                    case String(
-                        localized: "server.manager.api-key.saved-successfully.custom-provider",
-                        defaultValue: "API key saved successfully"
-                    ):
+                    case "API key saved successfully":
                         self.authResultMessage = String(format: String(
                             localized: "settings.custom-provider.api-key-added.success",
                             defaultValue: "✓ %@ API key added successfully.\n\nYou can now use this provider through the proxy.",
                             comment: "Success message after adding API key for a custom provider"
                         ), "\(provider.title)")
-                    case String(
-                        localized: "server.manager.custom-provider.api-key-already-exists.short",
-                        defaultValue: "API key already exists in config"
-                    ):
+                    case "API key already exists in config":
                         self.authResultMessage = String(format: String(
                             localized: "settings.custom-provider.api-key-already-present.config-file",
                             defaultValue: "✓ %@ already has this API key in ~/.cli-proxy-api/config.yaml.",
                             comment: "Message indicating API key already exists in config file for provider"
                         ), "\(provider.title)")
-                    case String(
-                        localized: "server.manager.api-key.already-exists",
-                        defaultValue: "API key already exists"
-                    ):
+                    case "API key already exists":
                         self.authResultMessage = String(format: String(
                             localized: "settings.custom-provider.api-key-already-stored",
                             defaultValue: "✓ %@ already has this API key stored.",
                             comment: "Message indicating API key was already stored for provider"
                         ), "\(provider.title)")
-                    case String(
-                        localized: "server.manager.api-key.reenabled-existing",
-                        defaultValue: "API key was already stored and has been re-enabled"
-                    ):
+                    case "API key was already stored and has been re-enabled":
                         self.authResultMessage = String(format: String(
                             localized: "settings.custom-provider.api-key-reenabled",
                             defaultValue: "✓ %@ already had this API key stored, and it has been re-enabled.",
@@ -1462,15 +1453,16 @@ struct SettingsView: View {
                     self.showingAuthResult = true
                 } else {
                     self.authResultSuccess = false
+                    let detail = output.isEmpty ? String(
+                        localized: "settings.custom-provider.api-key-save-failed.unknown-error",
+                        defaultValue: "Unknown error",
+                        comment: "Fallback detail when custom provider API key save failure has no output"
+                    ) : output
                     self.authResultMessage = String(format: String(
                         localized: "settings.custom-provider.api-key-save-failed.with-details",
                         defaultValue: "Failed to save API key for %@.\n\nDetails: %@",
                         comment: "Error message when saving provider API key fails with details"
-                    ), "\(provider.title)", "\(output.isEmpty ? String(
-                        localized: "settings.custom-provider.api-key-save-failed.unknown-error",
-                        defaultValue: "Unknown error",
-                        comment: "Fallback detail when custom provider API key save failure has no output"
-                    ) : output)")
+                    ), provider.title, detail)
                     self.showingAuthResult = true
                 }
             }
