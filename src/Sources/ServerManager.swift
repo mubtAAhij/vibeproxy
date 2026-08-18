@@ -268,7 +268,7 @@ class ServerManager: ObservableObject {
                 localized: "server-manager.error.active-config-path-unresolved",
                 defaultValue: "Could not resolve active config path",
                 comment: "Fallback config resolution error when active config path cannot be resolved"
-            ))
+            )))
             completion(false)
             return
         }
