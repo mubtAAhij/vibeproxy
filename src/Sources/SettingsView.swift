@@ -20,7 +20,11 @@ struct AccountRowView: View {
                 .foregroundColor(account.isDisabled ? .secondary.opacity(0.5) : (account.isExpired ? .orange : .secondary))
                 .strikethrough(account.isDisabled)
             if account.isExpired && !account.isDisabled {
-                Text("(expired)")
+                Text(String(
+                    localized: "settings.auth.expired-indicator",
+                    defaultValue: "(expired)",
+                    comment: "Badge text indicating an authentication token is expired"
+                ))
                     .font(.caption2)
                     .foregroundColor(.orange)
             }
@@ -75,7 +79,11 @@ struct VercelGatewayControls: View {
                     .font(.caption)
             }
             .toggleStyle(.checkbox)
-            .help("Route Claude requests through Vercel AI Gateway for safer access to your Claude Max subscription")
+            .help(String(
+                localized: "settings.vercel-gateway.description",
+                defaultValue: "Route Claude requests through Vercel AI Gateway for safer access to your Claude Max subscription",
+                comment: "Description text for routing Claude requests through Vercel AI Gateway"
+            ))
             
             if serverManager.vercelGatewayEnabled {
                 HStack(spacing: 8) {
@@ -175,7 +183,11 @@ struct ServiceRow<ExtraContent: View>: View {
                     ProgressView()
                         .controlSize(.small)
                 } else if isEnabled {
-                    Button("Add Account") {
+                    Button(String(
+                        localized: "settings.accounts.add-account-button",
+                        defaultValue: "Add Account",
+                        comment: "Button title to add a new connected account"
+                    )) {
                         onConnect()
                     }
                     .controlSize(.small)
@@ -188,12 +200,20 @@ struct ServiceRow<ExtraContent: View>: View {
                 if !accounts.isEmpty {
                     // Collapsible summary
                     HStack(spacing: 4) {
-                        Text("\(accounts.count) connected account\(accounts.count == 1 ? "" : "s")")
+                        Text(String(format: String(
+                            localized: "settings.accounts.connected-accounts-count",
+                            defaultValue: "%d connected account(s)",
+                            comment: "Summary showing the number of connected accounts"
+                        ), accounts.count))
                             .font(.caption)
                             .foregroundColor(.green)
 
                         if enabledCount > 1 {
-                            Text("• Round-robin w/ auto-failover")
+                            Text(String(
+                                localized: "settings.accounts.round-robin-auto-failover",
+                                defaultValue: "• Round-robin w/ auto-failover",
+                                comment: "Bullet point describing round-robin with auto-failover behavior"
+                            ))
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
@@ -265,7 +285,11 @@ struct ServiceRow<ExtraContent: View>: View {
             }
         } message: {
             if let account = accountToRemove {
-                Text("Are you sure you want to remove \(account.displayName) from \(serviceType.displayName)?")
+                Text(String(format: String(
+                    localized: "settings.accounts.remove-account-confirmation",
+                    defaultValue: "Are you sure you want to remove %@ from %@?",
+                    comment: "Confirmation message when removing a connected account"
+                ), "\(account.displayName)", "\(serviceType.displayName)"))
             }
         }
     }
@@ -405,7 +429,11 @@ struct CustomProviderRow: View {
                     ProgressView()
                         .controlSize(.small)
                 } else if isEnabled {
-                    Button("Add API Key") {
+                    Button(String(
+                        localized: "settings.custom-providers.add-api-key-button",
+                        defaultValue: "Add API Key",
+                        comment: "Button title to add an API key for a custom provider"
+                    )) {
                         onConnect()
                     }
                     .controlSize(.small)
@@ -452,7 +480,11 @@ struct CustomProviderRow: View {
                             }
 
                             if provider.inlineKeyCount > 0 {
-                                Text("Using \(provider.inlineKeyCount) API key\(provider.inlineKeyCount == 1 ? "" : "s") from ~/.cli-proxy-api/config.yaml")
+                                Text(String(format: String(
+                                    localized: "settings.custom-providers.using-inline-api-keys",
+                                    defaultValue: "Using %d API key(s) from ~/.cli-proxy-api/config.yaml",
+                                    comment: "Summary showing the number of inline API keys loaded from local config"
+                                ), provider.inlineKeyCount))
                                     .font(.caption)
                                     .foregroundColor(.secondary)
                                     .padding(.leading, 28)
@@ -487,7 +519,11 @@ struct CustomProviderRow: View {
         .onChange(of: isExpanded) { newValue in
             onExpandChange?(newValue)
         }
-        .alert("Remove API Key", isPresented: $showingRemoveConfirmation) {
+        .alert(String(
+            localized: "settings.custom-providers.remove-api-key-button",
+            defaultValue: "Remove API Key",
+            comment: "Button title to remove an API key from a custom provider"
+        ), isPresented: $showingRemoveConfirmation) {
             Button("Cancel", role: .cancel) {
                 credentialToRemove = nil
             }
@@ -499,7 +535,11 @@ struct CustomProviderRow: View {
             }
         } message: {
             if let credential = credentialToRemove {
-                Text("Are you sure you want to remove \(credential.label) from \(provider.title)?")
+                Text(String(format: String(
+                    localized: "settings.custom-providers.remove-api-key-confirmation",
+                    defaultValue: "Are you sure you want to remove %@ from %@?",
+                    comment: "Confirmation message when removing an API key credential"
+                ), "\(credential.label)", "\(provider.title)"))
             }
         }
     }
@@ -538,7 +578,11 @@ struct SettingsView: View {
             Form {
                 Section {
                     HStack {
-                        Text("Server status")
+                        Text(String(
+                            localized: "settings.server.status-title",
+                            defaultValue: "Server status",
+                            comment: "Section title for server status settings"
+                        ))
                         Spacer()
                         Button(action: {
                             if serverManager.isRunning {
@@ -551,7 +595,15 @@ struct SettingsView: View {
                                 Circle()
                                     .fill(serverManager.isRunning ? Color.green : Color.red)
                                     .frame(width: 8, height: 8)
-                                Text(serverManager.isRunning ? "Running" : "Stopped")
+                                Text(serverManager.isRunning ? String(
+                                    localized: "settings.server.status-running",
+                                    defaultValue: "Running",
+                                    comment: "Server state label when the server is running"
+                                ) : String(
+                                    localized: "settings.server.status-stopped",
+                                    defaultValue: "Stopped",
+                                    comment: "Server state label when the server is stopped"
+                                ))
                             }
                         }
                         .buttonStyle(.plain)
@@ -559,7 +611,11 @@ struct SettingsView: View {
                 }
 
                 if let configErrorMessage = serverManager.configErrorMessage {
-                    Section("Configuration Error") {
+                    Section(String(
+                        localized: "settings.server.configuration-error",
+                        defaultValue: "Configuration Error",
+                        comment: "Label shown when there is a server configuration error"
+                    )) {
                         Text(configErrorMessage)
                             .font(.caption)
                             .foregroundColor(.red)
@@ -567,21 +623,37 @@ struct SettingsView: View {
                 }
 
                 Section {
-                    Toggle("Launch at login", isOn: $launchAtLogin)
+                    Toggle(String(
+                        localized: "settings.server.launch-at-login",
+                        defaultValue: "Launch at login",
+                        comment: "Toggle label for launching app at login"
+                    ), isOn: $launchAtLogin)
                         .onChange(of: launchAtLogin) { newValue in
                             toggleLaunchAtLogin(newValue)
                         }
 
                     HStack {
-                        Text("Auth files")
+                        Text(String(
+                            localized: "settings.auth-files.title",
+                            defaultValue: "Auth files",
+                            comment: "Section title for authentication files actions"
+                        ))
                         Spacer()
-                        Button("Open Folder") {
+                        Button(String(
+                            localized: "settings.auth-files.open-folder-button",
+                            defaultValue: "Open Folder",
+                            comment: "Button title to open auth files folder"
+                        )) {
                             openAuthFolder()
                         }
                     }
                 }
 
-                Section("Services") {
+                Section(String(
+                    localized: "settings.services.title",
+                    defaultValue: "Services",
+                    comment: "Section title for service configuration"
+                )) {
                     ServiceRow(
                         serviceType: .antigravity,
                         iconName: "icon-antigravity.png",
@@ -647,7 +719,11 @@ struct SettingsView: View {
                         iconSystemName: nil,
                         accounts: authManager.accounts(for: .gemini),
                         isAuthenticating: authenticatingService == .gemini,
-                        helpText: "⚠️ Note: If you're an existing Gemini user with multiple projects, authentication will use your default project. Set your desired project as default in Google AI Studio before connecting.",
+                        helpText: String(
+                            localized: "settings.services.gemini.default-project-note",
+                            defaultValue: "⚠️ Note: If you're an existing Gemini user with multiple projects, authentication will use your default project. Set your desired project as default in Google AI Studio before connecting.",
+                            comment: "Informational note about Gemini default project selection during authentication"
+                        ),
                         isEnabled: serverManager.isProviderEnabled("gemini"),
                         isToggleLocked: serverManager.isProviderToggleLocked("gemini"),
                         toggleHelpText: serverManager.providerConfigLockReason("gemini"),
@@ -666,7 +742,11 @@ struct SettingsView: View {
                         iconSystemName: "moon.stars.fill",
                         accounts: authManager.accounts(for: .kimi),
                         isAuthenticating: authenticatingService == .kimi,
-                        helpText: "Kimi uses browser-based account authentication so you can route requests through your Kimi subscription instead of an API key.",
+                        helpText: String(
+                            localized: "settings.services.kimi.browser-auth-description",
+                            defaultValue: "Kimi uses browser-based account authentication so you can route requests through your Kimi subscription instead of an API key.",
+                            comment: "Description of Kimi browser-based account authentication behavior"
+                        ),
                         isEnabled: serverManager.isProviderEnabled("kimi"),
                         isToggleLocked: serverManager.isProviderToggleLocked("kimi"),
                         toggleHelpText: serverManager.providerConfigLockReason("kimi"),
@@ -685,7 +765,11 @@ struct SettingsView: View {
                         iconSystemName: nil,
                         accounts: authManager.accounts(for: .copilot),
                         isAuthenticating: authenticatingService == .copilot,
-                        helpText: "GitHub Copilot provides access to Claude, GPT, Gemini and other models via your Copilot subscription.",
+                        helpText: String(
+                            localized: "settings.services.copilot.description",
+                            defaultValue: "GitHub Copilot provides access to Claude, GPT, Gemini and other models via your Copilot subscription.",
+                            comment: "Description for GitHub Copilot service in settings"
+                        ),
                         isEnabled: serverManager.isProviderEnabled("github-copilot"),
                         isToggleLocked: serverManager.isProviderToggleLocked("github-copilot"),
                         toggleHelpText: serverManager.providerConfigLockReason("github-copilot"),
@@ -723,7 +807,11 @@ struct SettingsView: View {
                         iconSystemName: nil,
                         accounts: authManager.accounts(for: .zai),
                         isAuthenticating: authenticatingService == .zai,
-                        helpText: "Z.AI GLM provides access to GLM-4.7 and other models via API key. Get your key at https://z.ai/manage-apikey/apikey-list",
+                        helpText: String(
+                            localized: "settings.services.zai-glm.description",
+                            defaultValue: "Z.AI GLM provides access to GLM-4.7 and other models via API key. Get your key at https://z.ai/manage-apikey/apikey-list",
+                            comment: "Description for Z.AI GLM service including API key URL"
+                        ),
                         isEnabled: serverManager.isProviderEnabled("zai"),
                         isToggleLocked: serverManager.isProviderToggleLocked("zai"),
                         toggleHelpText: serverManager.providerConfigLockReason("zai"),
@@ -738,7 +826,11 @@ struct SettingsView: View {
                 }
                 
                 if !serverManager.customProviders.isEmpty {
-                    Section("Custom Providers") {
+                    Section(String(
+                        localized: "settings.custom-providers.section-title",
+                        defaultValue: "Custom Providers",
+                        comment: "Section title for custom providers in settings"
+                    )) {
                         ForEach(serverManager.customProviders) { provider in
                             CustomProviderRow(
                                 provider: provider,
@@ -775,7 +867,11 @@ struct SettingsView: View {
             // Footer
             VStack(spacing: 4) {
                 HStack(spacing: 4) {
-                    Text("VibeProxy \(appVersion) was made possible thanks to")
+                    Text(String(format: String(
+                        localized: "settings.about.credits-intro",
+                        defaultValue: "VibeProxy %@ was made possible thanks to",
+                        comment: "About section text introducing project acknowledgements with app version"
+                    ), "\(appVersion)"))
                         .font(.caption)
                         .foregroundColor(.secondary)
                     Link("CLIProxyAPIPlus", destination: URL(string: "https://github.com/router-for-me/CLIProxyAPIPlus")!)
@@ -788,7 +884,11 @@ struct SettingsView: View {
                     Text("|")
                         .font(.caption)
                         .foregroundColor(.secondary)
-                    Text("License: MIT")
+                    Text(String(
+                        localized: "settings.about.license-mit",
+                        defaultValue: "License: MIT",
+                        comment: "About section license label"
+                    ))
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
@@ -804,12 +904,20 @@ struct SettingsView: View {
                         .onHover { inside in
                             if inside { NSCursor.pointingHand.push() } else { NSCursor.pop() }
                         }
-                    Text("All rights reserved.")
+                    Text(String(
+                        localized: "settings.about.rights-reserved",
+                        defaultValue: "All rights reserved.",
+                        comment: "Copyright notice in about section"
+                    ))
                         .font(.caption)
                         .foregroundColor(.secondary)
                 }
 
-                Link("Report an issue", destination: URL(string: "https://github.com/automazeio/vibeproxy/issues")!)
+                Link(String(
+                    localized: "settings.about.report-issue-button",
+                    defaultValue: "Report an issue",
+                    comment: "Button title to report an issue"
+                ), destination: URL(string: "https://github.com/automazeio/vibeproxy/issues")!)
                     .font(.caption)
                     .padding(.top, 6)
                     .onHover { inside in
@@ -821,9 +929,17 @@ struct SettingsView: View {
         .frame(width: 480, height: 740)
         .sheet(isPresented: $showingQwenEmailPrompt) {
             VStack(spacing: 16) {
-                Text("Qwen Account Email")
+                Text(String(
+                    localized: "settings.qwen.account-email-title",
+                    defaultValue: "Qwen Account Email",
+                    comment: "Dialog title for entering Qwen account email"
+                ))
                     .font(.headline)
-                Text("Enter your Qwen account email address")
+                Text(String(
+                    localized: "settings.qwen.account-email-prompt",
+                    defaultValue: "Enter your Qwen account email address",
+                    comment: "Prompt asking user to enter Qwen account email"
+                ))
                     .font(.caption)
                     .foregroundColor(.secondary)
                 TextField("your.email@example.com", text: $qwenEmail)
@@ -834,7 +950,11 @@ struct SettingsView: View {
                         showingQwenEmailPrompt = false
                         qwenEmail = ""
                     }
-                    Button("Continue") {
+                    Button(String(
+                        localized: "settings.common.continue-button",
+                        defaultValue: "Continue",
+                        comment: "Continue button title in authentication dialogs"
+                    )) {
                         showingQwenEmailPrompt = false
                         startQwenAuth(email: qwenEmail)
                     }
@@ -847,9 +967,17 @@ struct SettingsView: View {
         }
         .sheet(isPresented: $showingZaiApiKeyPrompt) {
             VStack(spacing: 16) {
-                Text("Z.AI API Key")
+                Text(String(
+                    localized: "settings.zai.api-key-title",
+                    defaultValue: "Z.AI API Key",
+                    comment: "Dialog title for entering Z.AI API key"
+                ))
                     .font(.headline)
-                Text("Enter your Z.AI API key from https://z.ai/manage-apikey/apikey-list")
+                Text(String(
+                    localized: "settings.zai.api-key-prompt",
+                    defaultValue: "Enter your Z.AI API key from https://z.ai/manage-apikey/apikey-list",
+                    comment: "Prompt asking user to enter Z.AI API key with reference URL"
+                ))
                     .font(.caption)
                     .foregroundColor(.secondary)
                 SecureField("", text: $zaiApiKey)
@@ -860,7 +988,11 @@ struct SettingsView: View {
                         showingZaiApiKeyPrompt = false
                         zaiApiKey = ""
                     }
-                    Button("Add Key") {
+                    Button(String(
+                        localized: "settings.zai.add-key-button",
+                        defaultValue: "Add Key",
+                        comment: "Button title to add Z.AI API key"
+                    )) {
                         showingZaiApiKeyPrompt = false
                         startZaiAuth(apiKey: zaiApiKey)
                     }
@@ -875,9 +1007,17 @@ struct SettingsView: View {
             customProviderApiKey = ""
         }) { provider in
             VStack(spacing: 16) {
-                Text("\(provider.title) API Key")
+                Text(String(format: String(
+                    localized: "settings.custom-provider.api-key-title",
+                    defaultValue: "%@ API Key",
+                    comment: "Dialog title for entering API key for a custom provider"
+                ), "\(provider.title)"))
                     .font(.headline)
-                Text("Enter an API key for \(provider.title)")
+                Text(String(format: String(
+                    localized: "settings.custom-provider.api-key-prompt",
+                    defaultValue: "Enter an API key for %@",
+                    comment: "Prompt asking user to enter API key for a custom provider"
+                ), "\(provider.title)"))
                     .font(.caption)
                     .foregroundColor(.secondary)
                 SecureField("", text: $customProviderApiKey)
@@ -888,7 +1028,11 @@ struct SettingsView: View {
                         selectedCustomProvider = nil
                         customProviderApiKey = ""
                     }
-                    Button("Add Key") {
+                    Button(String(
+                        localized: "settings.custom-provider.add-key-button",
+                        defaultValue: "Add Key",
+                        comment: "Button title to add API key for a custom provider"
+                    )) {
                         let currentProvider = provider
                         selectedCustomProvider = nil
                         startCustomProviderAuth(provider: currentProvider, apiKey: customProviderApiKey)
@@ -908,8 +1052,16 @@ struct SettingsView: View {
         .onReceive(NotificationCenter.default.publisher(for: .authDirectoryChanged)) { _ in
             authManager.checkAuthStatus()
         }
-        .alert("Authentication Result", isPresented: $showingAuthResult) {
-            Button("OK", role: .cancel) { }
+        .alert(String(
+            localized: "settings.authentication.result-title",
+            defaultValue: "Authentication Result",
+            comment: "Title for authentication result alert"
+        ), isPresented: $showingAuthResult) {
+            Button(String(
+                localized: "settings.common.ok-button",
+                defaultValue: "OK",
+                comment: "OK button title in authentication result alert"
+            ), role: .cancel) { }
         } message: {
             Text(authResultMessage)
         }
@@ -922,12 +1074,24 @@ struct SettingsView: View {
             serverManager.refreshAuthBackedConfiguration()
             authResultSuccess = true
             authResultMessage = account.isDisabled
-                ? "✓ Enabled \(account.displayName)"
-                : "✓ Disabled \(account.displayName)"
+                ? String(format: String(
+                    localized: "settings.accounts.enabled-status",
+                    defaultValue: "✓ Enabled %@",
+                    comment: "Status text indicating an account has been enabled"
+                ), "\(account.displayName)")
+                : String(format: String(
+                    localized: "settings.accounts.disabled-status",
+                    defaultValue: "✓ Disabled %@",
+                    comment: "Status text indicating an account has been disabled"
+                ), "\(account.displayName)")
             showingAuthResult = true
         } else {
             authResultSuccess = false
-            authResultMessage = "Failed to update \(account.displayName). Please try again."
+            authResultMessage = String(format: String(
+                localized: "settings.accounts.update-failed",
+                defaultValue: "Failed to update %@. Please try again.",
+                comment: "Error message shown when updating an account fails"
+            ), "\(account.displayName)")
             showingAuthResult = true
         }
     }
@@ -989,7 +1153,16 @@ struct SettingsView: View {
                     self.showingAuthResult = true
                 } else {
                     self.authResultSuccess = false
-                    self.authResultMessage = "Authentication failed. Please check if the browser opened and try again.\n\nDetails: \(output.isEmpty ? "No output from authentication process" : output)"
+                    let details = output.isEmpty ? String(
+                        localized: "settings.authentication.no-output-from-process",
+                        defaultValue: "No output from authentication process",
+                        comment: "Fallback authentication detail when no output was returned"
+                    ) : output
+                    self.authResultMessage = String(format: String(
+                        localized: "settings.authentication.failed-with-browser-check-details",
+                        defaultValue: "Authentication failed. Please check if the browser opened and try again.\n\nDetails: %@",
+                        comment: "Authentication failure message with browser hint and detail output"
+                    ), details)
                     self.showingAuthResult = true
                 }
             }
@@ -999,21 +1172,53 @@ struct SettingsView: View {
     private func successMessage(for serviceType: ServiceType) -> String {
         switch serviceType {
         case .claude:
-            return "🌐 Browser opened for Claude Code authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect your credentials."
+            return String(
+                localized: "settings.authentication.claude-code-browser-opened",
+                defaultValue: "🌐 Browser opened for Claude Code authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect your credentials.",
+                comment: "Instruction message after opening browser for Claude Code authentication"
+            )
         case .codex:
-            return "🌐 Browser opened for Codex authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect your credentials."
+            return String(
+                localized: "settings.authentication.codex-browser-opened",
+                defaultValue: "🌐 Browser opened for Codex authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect your credentials.",
+                comment: "Instruction message after opening browser for Codex authentication"
+            )
         case .copilot:
-            return "🌐 GitHub Copilot authentication started!\n\nPlease visit github.com/login/device and enter the code shown.\n\nThe app will automatically detect your credentials."
+            return String(
+                localized: "settings.authentication.copilot-device-flow-started",
+                defaultValue: "🌐 GitHub Copilot authentication started!\n\nPlease visit github.com/login/device and enter the code shown.\n\nThe app will automatically detect your credentials.",
+                comment: "Instruction message when GitHub Copilot device authentication starts"
+            )
         case .gemini:
-            return "🌐 Browser opened for Gemini authentication.\n\nPlease complete the login in your browser.\n\n⚠️ Note: If you have multiple projects, the default project will be used."
+            return String(
+                localized: "settings.authentication.gemini-browser-opened",
+                defaultValue: "🌐 Browser opened for Gemini authentication.\n\nPlease complete the login in your browser.\n\n⚠️ Note: If you have multiple projects, the default project will be used.",
+                comment: "Instruction message after opening browser for Gemini authentication with default project note"
+            )
         case .kimi:
-            return "🌐 Browser opened for Kimi authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect your Kimi account."
+            return String(
+                localized: "settings.authentication.kimi-browser-opened",
+                defaultValue: "🌐 Browser opened for Kimi authentication.\n\nPlease complete the login in your browser.\n\nThe app will automatically detect your Kimi account.",
+                comment: "Instruction message after opening browser for Kimi authentication"
+            )
         case .qwen:
-            return "🌐 Browser opened for Qwen authentication.\n\nPlease complete the login in your browser."
+            return String(
+                localized: "settings.authentication.qwen-browser-opened",
+                defaultValue: "🌐 Browser opened for Qwen authentication.\n\nPlease complete the login in your browser.",
+                comment: "Instruction message after opening browser for Qwen authentication"
+            )
         case .antigravity:
-            return "🌐 Browser opened for Antigravity authentication.\n\nPlease complete the login in your browser."
+            return String(
+                localized: "settings.authentication.antigravity-browser-opened",
+                defaultValue: "🌐 Browser opened for Antigravity authentication.\n\nPlease complete the login in your browser.",
+                comment: "Instruction message after opening browser for Antigravity authentication"
+            )
         case .zai:
-            return "✓ Z.AI API key added successfully.\n\nYou can now use GLM models through the proxy."
+            return String(
+                localized: "settings.zai.api-key-added-success",
+                defaultValue: "✓ Z.AI API key added successfully.\n\nYou can now use GLM models through the proxy.",
+                comment: "Success message shown after adding Z.AI API key"
+            )
         }
     }
     
@@ -1033,7 +1238,16 @@ struct SettingsView: View {
                     self.showingAuthResult = true
                 } else {
                     self.authResultSuccess = false
-                    self.authResultMessage = "Authentication failed.\n\nDetails: \(output.isEmpty ? "No output" : output)"
+                    let details = output.isEmpty ? String(
+                        localized: "settings.authentication.no-output",
+                        defaultValue: "No output",
+                        comment: "Fallback detail text when command output is empty"
+                    ) : output
+                    self.authResultMessage = String(format: String(
+                        localized: "settings.authentication.failed-with-details",
+                        defaultValue: "Authentication failed.\n\nDetails: %@",
+                        comment: "Authentication failure message with details"
+                    ), details)
                     self.showingAuthResult = true
                 }
             }
@@ -1057,7 +1271,16 @@ struct SettingsView: View {
                     self.authManager.checkAuthStatus()
                 } else {
                     self.authResultSuccess = false
-                    self.authResultMessage = "Failed to save API key.\n\nDetails: \(output.isEmpty ? "Unknown error" : output)"
+                    let details = output.isEmpty ? String(
+                        localized: "settings.common.unknown-error",
+                        defaultValue: "Unknown error",
+                        comment: "Fallback error detail when no specific error is available"
+                    ) : output
+                    self.authResultMessage = String(format: String(
+                        localized: "settings.api-key.save-failed-with-details",
+                        defaultValue: "Failed to save API key.\n\nDetails: %@",
+                        comment: "Error message shown when saving API key fails with details"
+                    ), details)
                     self.showingAuthResult = true
                 }
             }
@@ -1078,20 +1301,45 @@ struct SettingsView: View {
                     self.authResultSuccess = true
                     switch output {
                     case "API key saved successfully":
-                        self.authResultMessage = "✓ \(provider.title) API key added successfully.\n\nYou can now use this provider through the proxy."
+                        self.authResultMessage = String(format: String(
+                            localized: "settings.custom-provider.api-key-added-success",
+                            defaultValue: "✓ %@ API key added successfully.\n\nYou can now use this provider through the proxy.",
+                            comment: "Success message shown after adding custom provider API key"
+                        ), "\(provider.title)")
                     case "API key already exists in config":
-                        self.authResultMessage = "✓ \(provider.title) already has this API key in ~/.cli-proxy-api/config.yaml."
+                        self.authResultMessage = String(format: String(
+                            localized: "settings.custom-provider.api-key-already-in-config",
+                            defaultValue: "✓ %@ already has this API key in ~/.cli-proxy-api/config.yaml.",
+                            comment: "Message shown when API key already exists in config file for provider"
+                        ), "\(provider.title)")
                     case "API key already exists":
-                        self.authResultMessage = "✓ \(provider.title) already has this API key stored."
+                        self.authResultMessage = String(format: String(
+                            localized: "settings.custom-provider.api-key-already-stored",
+                            defaultValue: "✓ %@ already has this API key stored.",
+                            comment: "Message shown when API key is already stored for provider"
+                        ), "\(provider.title)")
                     case "API key was already stored and has been re-enabled":
-                        self.authResultMessage = "✓ \(provider.title) already had this API key stored, and it has been re-enabled."
+                        self.authResultMessage = String(format: String(
+                            localized: "settings.custom-provider.api-key-reenabled",
+                            defaultValue: "✓ %@ already had this API key stored, and it has been re-enabled.",
+                            comment: "Message shown when previously stored API key is re-enabled for provider"
+                        ), "\(provider.title)")
                     default:
                         self.authResultMessage = output
                     }
                     self.showingAuthResult = true
                 } else {
                     self.authResultSuccess = false
-                    self.authResultMessage = "Failed to save API key for \(provider.title).\n\nDetails: \(output.isEmpty ? "Unknown error" : output)"
+                    let details = output.isEmpty ? String(
+                        localized: "settings.common.unknown-error",
+                        defaultValue: "Unknown error",
+                        comment: "Fallback error detail when no specific error message is available"
+                    ) : output
+                    self.authResultMessage = String(format: String(
+                        localized: "settings.custom-provider.api-key-save-failed-with-details",
+                        defaultValue: "Failed to save API key for %@.\n\nDetails: %@",
+                        comment: "Error message shown when saving custom provider API key fails with details"
+                    ), provider.title, details)
                     self.showingAuthResult = true
                 }
             }
@@ -1102,11 +1350,23 @@ struct SettingsView: View {
         if serverManager.toggleCustomProviderCredentialDisabled(credential) {
             authResultSuccess = true
             authResultMessage = credential.isDisabled
-                ? "✓ Enabled \(credential.label) for \(provider.title)"
-                : "✓ Disabled \(credential.label) for \(provider.title)"
+                ? String(format: String(
+                    localized: "settings.custom-provider.credential-enabled",
+                    defaultValue: "✓ Enabled %@ for %@",
+                    comment: "Success message when a provider credential is enabled"
+                ), "\(credential.label)", "\(provider.title)")
+                : String(format: String(
+                    localized: "settings.custom-provider.credential-disabled",
+                    defaultValue: "✓ Disabled %@ for %@",
+                    comment: "Success message when a provider credential is disabled"
+                ), "\(credential.label)", "\(provider.title)")
         } else {
             authResultSuccess = false
-            authResultMessage = "Failed to update \(credential.label) for \(provider.title). Please try again."
+            authResultMessage = String(format: String(
+                localized: "settings.custom-provider.credential-update-failed",
+                defaultValue: "Failed to update %@ for %@. Please try again.",
+                comment: "Error message when updating a provider credential fails"
+            ), "\(credential.label)", "\(provider.title)")
         }
         showingAuthResult = true
     }
@@ -1114,10 +1374,18 @@ struct SettingsView: View {
     private func disconnectCustomProviderCredential(provider: CustomProviderDefinition, credential: CustomProviderCredential) {
         if serverManager.deleteCustomProviderCredential(credential) {
             authResultSuccess = true
-            authResultMessage = "✓ Removed \(credential.label) from \(provider.title)"
+            authResultMessage = String(format: String(
+                localized: "settings.custom-provider.credential-removed",
+                defaultValue: "✓ Removed %@ from %@",
+                comment: "Success message when a provider credential is removed"
+            ), "\(credential.label)", "\(provider.title)")
         } else {
             authResultSuccess = false
-            authResultMessage = "Failed to remove \(credential.label) from \(provider.title)"
+            authResultMessage = String(format: String(
+                localized: "settings.custom-provider.credential-remove-failed",
+                defaultValue: "Failed to remove %@ from %@",
+                comment: "Error message when removing a provider credential fails"
+            ), "\(credential.label)", "\(provider.title)")
         }
         showingAuthResult = true
     }
@@ -1129,10 +1397,18 @@ struct SettingsView: View {
         let cleanup = {
             if self.authManager.deleteAccount(account) {
                 self.authResultSuccess = true
-                self.authResultMessage = "✓ Removed \(account.displayName) from \(account.type.displayName)"
+                self.authResultMessage = String(format: String(
+                    localized: "settings.accounts.account-removed",
+                    defaultValue: "✓ Removed %@ from %@",
+                    comment: "Success message when an account is removed from a service"
+                ), "\(account.displayName)", "\(account.type.displayName)")
             } else {
                 self.authResultSuccess = false
-                self.authResultMessage = "Failed to remove account"
+                self.authResultMessage = String(
+                    localized: "settings.accounts.remove-account-failed",
+                    defaultValue: "Failed to remove account",
+                    comment: "Error message when account removal fails"
+                )
             }
             self.showingAuthResult = true
             
