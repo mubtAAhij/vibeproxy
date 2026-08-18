@@ -64,6 +64,19 @@ if [ -d "$SRC_DIR/Sources/Resources" ]; then
     done
 fi
 
+# Compile string catalogs into runtime localization tables
+echo -e "${BLUE}Compiling localization catalogs...${NC}"
+if command -v xcrun >/dev/null 2>&1; then
+    find "$SRC_DIR/Sources/Resources" -name "*.xcstrings" -type f -print0 | while IFS= read -r -d  catalog; do
+        echo "Compiling $(basename "$catalog")"
+        xcrun xcstringstool compile \
+            --output-directory "$APP_DIR/Contents/Resources" \
+            "$catalog"
+    done
+else
+    echo -e "${YELLOW}⚠️ xcrun not found; skipping .xcstrings compilation${NC}"
+fi
+
 # Verify critical files were copied
 echo "Checking bundled resources:"
 ls -lh "$APP_DIR/Contents/Resources/"
